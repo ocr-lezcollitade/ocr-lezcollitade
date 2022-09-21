@@ -14,12 +14,16 @@ DEBUG_TARGET=$(DEBUG_TARGET_DIR)/Lezcollitade.debug
 SRC_DIR=./src
 SRC=main.c
 
-OBJ_DIR=./obj/Release
+OBJ_ROOT=./obj
+OBJ_DIR=$(OBJ_ROOT)/Release
 OBJS=$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
-DEBUG_OBJ_DIR=./obj/Debug
+DEBUG_OBJ_DIR=$(OBJ_ROOT)/Debug
 DEBUG_OBJS=$(addprefix $(DEBUG_OBJ_DIR)/, $(SRC:.c=.o))
 
+.PHONY: all prod debug clean build dbuild
+
+all: prod debug
 
 prod: $(TARGET)
 
@@ -33,7 +37,7 @@ $(DEBUG_TARGET): $(DEBUG_OBJS)
 	@mkdir -p $(DEBUG_TARGET_DIR)
 	$(LD)  $^ -o $@ $(LDFLAGS) 
 
-build_debug: $(DEBUG_OBJS)
+dbuild: $(DEBUG_OBJS)
 
 build: $(OBJS)
 
@@ -48,6 +52,5 @@ $(DEBUG_OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(DFLAGS) $< -o $@
 
 clean:
-	rm -rf $(DEBUG_OBJ_DIR)
-	rm -rf $(OBJ_DIR)
+	rm -rf $(OBJ_ROOT)
 	rm -rf $(TARGET_DIR)
