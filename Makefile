@@ -5,10 +5,11 @@ DFLAGS=-Wall -Werror -Wextra -O0 -c -g
 LD=gcc
 LFLAGS=
 
-TARGET_DIR=./bin
+ROOT_TARGET=./bin
+TARGET_DIR=$(ROOT_TARGET)/Release
 TARGET=$(TARGET_DIR)/Lezcollitade
 
-DEBUG_TARGET_DIR=$(TARGET_DIR)/Debug
+DEBUG_TARGET_DIR=$(ROOT_TARGET)/Debug
 DEBUG_TARGET=$(DEBUG_TARGET_DIR)/Lezcollitade.debug
 
 SRC_DIR=./src
@@ -53,4 +54,4 @@ $(DEBUG_OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 clean:
 	rm -rf $(OBJ_ROOT)
-	rm -rf $(TARGET_DIR)
+	rm -rf $(ROOT_TARGET)
