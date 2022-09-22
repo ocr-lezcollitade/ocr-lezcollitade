@@ -13,7 +13,8 @@ DEBUG_TARGET_DIR=$(ROOT_TARGET)/Debug
 DEBUG_TARGET=$(DEBUG_TARGET_DIR)/Lezcollitade.debug
 
 SRC_DIR=./src
-SRC=main.c
+SRC=main.c solver/solver.c
+
 
 OBJ_ROOT=./obj
 OBJ_DIR=$(OBJ_ROOT)/Release
