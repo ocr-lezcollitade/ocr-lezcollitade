@@ -16,3 +16,11 @@ build-job:
     - make prod
     - test -d ./bin || echo "missing folder ./bin" || tree ./bin || exit 1
     - test -f ./bin/Release/Lezcollitade || echo "missing prod bin" || tree ./bin/ || exit 1
+
+unit_test:
+  stage: test
+  image: ubuntu:22.04
+  before_script:
+    - apt-get update -y && apt-get install -y libcriterion-dev build-essential
+  script:
+    - make test

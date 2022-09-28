@@ -1,0 +1,554 @@
+\hypertarget{matrix_8c}{}\doxysection{src/utils/matrices/matrix.c File Reference}
+\label{matrix_8c}\index{src/utils/matrices/matrix.c@{src/utils/matrices/matrix.c}}
+{\ttfamily \#include $<$err.\+h$>$}\newline
+{\ttfamily \#include $<$malloc.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}matrix.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\+\_\+el\+\_\+at}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$mat, size\+\_\+t i, size\+\_\+t j)
+\begin{DoxyCompactList}\small\item\em gets the elements at position i, j \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}{mat\+\_\+set\+\_\+el}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$mat, size\+\_\+t i, size\+\_\+t j, double value)
+\item 
+\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ \mbox{\hyperlink{matrix_8c_a1d9b061fc8856e727f014c3266b7431d}{matrix\+\_\+create}} (size\+\_\+t rows, size\+\_\+t columns, int fill)
+\item 
+\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ \mbox{\hyperlink{matrix_8c_a517e248a0faeb2c0a2e1f1b823b8cd3b}{mat\+\_\+create\+\_\+fill}} (size\+\_\+t rows, size\+\_\+t columns, double $\ast$elements)
+\begin{DoxyCompactList}\small\item\em Creates a matrix and fills it. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\+\_\+free}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$mat)
+\begin{DoxyCompactList}\small\item\em frees the matrix \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ \mbox{\hyperlink{matrix_8c_aec843b4f924ae1c524b4f3e3dcc0ceda}{mat\+\_\+product}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$A, \mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$B)
+\begin{DoxyCompactList}\small\item\em Performs the dot product on 2 \mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} structures. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ \mbox{\hyperlink{matrix_8c_ae879f9c0777667d824577739915b8005}{mat\+\_\+add}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$A, \mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$B)
+\begin{DoxyCompactList}\small\item\em Performs the addition of 2 matrices. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ \mbox{\hyperlink{matrix_8c_a6492954f9eee90fbfa42811099eaccb5}{mat\+\_\+transform}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$A, \mbox{\hyperlink{matrix_8h_af967065ada73d6d2c06c01459e274435}{mat\+\_\+transform\+\_\+t}} transform, int inplace)
+\begin{DoxyCompactList}\small\item\em Applies the transform to each of the matrix\+\_\+elements. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ \mbox{\hyperlink{matrix_8c_abaf10396fc33e9bf687be1886fa5b40c}{mat\+\_\+scalar\+\_\+multiply}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$A, double scalar, int inplace)
+\begin{DoxyCompactList}\small\item\em Multiplies the matrix by a given scalar. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ \mbox{\hyperlink{matrix_8c_afb95f8ccd261f41e64bfb20e79920191}{mat\+\_\+transpose}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$A)
+\begin{DoxyCompactList}\small\item\em Transposes the given matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ \mbox{\hyperlink{matrix_8c_a893674697830a6f15bb693cb4a49dfeb}{mat\+\_\+identity}} (size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Creates an Identity matrix for given size. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{matrix_8c_ac7e2ad5d481c4124587a525ecd6c4460}{mat\+\_\+equal}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$A, \mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$B)
+\begin{DoxyCompactList}\small\item\em Checks if to matrices are equal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{matrix_8c_a5a425b597b5888564fe8e8e8fe1289fa}{mat\+\_\+fill}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$mat, double $\ast$elements)
+\begin{DoxyCompactList}\small\item\em Fills the matrix with the given elements. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{matrix_8c_aad33a6577c7e2d732fdec25cac8022ac}{mat\+\_\+print}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$mat)
+\begin{DoxyCompactList}\small\item\em Prints the matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{matrix_8c_ae879f9c0777667d824577739915b8005}\label{matrix_8c_ae879f9c0777667d824577739915b8005}} 
+\index{matrix.c@{matrix.c}!mat\_add@{mat\_add}}
+\index{mat\_add@{mat\_add}!matrix.c@{matrix.c}}
+\doxysubsubsection{\texorpdfstring{mat\_add()}{mat\_add()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ mat\+\_\+add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{A,  }\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{B }\end{DoxyParamCaption})}
+
+
+
+Performs the addition of 2 matrices. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em A} & The first matrix to be added. \\
+\hline
+{\em B} & The second matrix to be added. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of the addition, NULL if not possible. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{matrix_8c_source_l00074}{74}} of file \mbox{\hyperlink{matrix_8c_source}{matrix.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00075 \{}
+\DoxyCodeLine{00076     \textcolor{keywordflow}{if} (A-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}} != B-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}} || A-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}} != B-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}})}
+\DoxyCodeLine{00077         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00078 }
+\DoxyCodeLine{00079     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *res = \mbox{\hyperlink{matrix_8c_a1d9b061fc8856e727f014c3266b7431d}{matrix\_create}}(A-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}}, A-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}}, 0);}
+\DoxyCodeLine{00080     \textcolor{keywordflow}{if} (res == NULL)}
+\DoxyCodeLine{00081         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00082 }
+\DoxyCodeLine{00083     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < res-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}}; i++)}
+\DoxyCodeLine{00084         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} j = 0; j < res-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}}; j++)}
+\DoxyCodeLine{00085             \mbox{\hyperlink{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}{mat\_set\_el}}(res, i, j, \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(A, i, j) + \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(B, i, j));}
+\DoxyCodeLine{00086 }
+\DoxyCodeLine{00087     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{00088 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{matrix_8c_a517e248a0faeb2c0a2e1f1b823b8cd3b}\label{matrix_8c_a517e248a0faeb2c0a2e1f1b823b8cd3b}} 
+\index{matrix.c@{matrix.c}!mat\_create\_fill@{mat\_create\_fill}}
+\index{mat\_create\_fill@{mat\_create\_fill}!matrix.c@{matrix.c}}
+\doxysubsubsection{\texorpdfstring{mat\_create\_fill()}{mat\_create\_fill()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ mat\+\_\+create\+\_\+fill (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{rows,  }\item[{size\+\_\+t}]{columns,  }\item[{double $\ast$}]{elements }\end{DoxyParamCaption})}
+
+
+
+Creates a matrix and fills it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rows} & The number of rows. \\
+\hline
+{\em columns} & The number of columns. \\
+\hline
+{\em elements} & The values to fill in. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created matrix. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{matrix_8c_source_l00038}{38}} of file \mbox{\hyperlink{matrix_8c_source}{matrix.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00039 \{}
+\DoxyCodeLine{00040     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *res = \mbox{\hyperlink{matrix_8c_a1d9b061fc8856e727f014c3266b7431d}{matrix\_create}}(rows, columns, 0);}
+\DoxyCodeLine{00041     \mbox{\hyperlink{matrix_8c_a5a425b597b5888564fe8e8e8fe1289fa}{mat\_fill}}(res, elements);}
+\DoxyCodeLine{00042     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{00043 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}\label{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}} 
+\index{matrix.c@{matrix.c}!mat\_el\_at@{mat\_el\_at}}
+\index{mat\_el\_at@{mat\_el\_at}!matrix.c@{matrix.c}}
+\doxysubsubsection{\texorpdfstring{mat\_el\_at()}{mat\_el\_at()}}
+{\footnotesize\ttfamily double mat\+\_\+el\+\_\+at (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{mat,  }\item[{size\+\_\+t}]{i,  }\item[{size\+\_\+t}]{j }\end{DoxyParamCaption})}
+
+
+
+gets the elements at position i, j 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mat} & The \mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} to get the element from. \\
+\hline
+{\em i} & The index of the row. \\
+\hline
+{\em j} & The index of the column. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of the element at i, j. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{matrix_8c_source_l00006}{6}} of file \mbox{\hyperlink{matrix_8c_source}{matrix.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00007 \{}
+\DoxyCodeLine{00008     \textcolor{keywordtype}{size\_t} index = i * mat-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}} + j;}
+\DoxyCodeLine{00009     \textcolor{keywordflow}{return} mat-\/>\mbox{\hyperlink{structmatrix__t_aa61cbdd72bb422a8ddfeeeeebe728bd4}{\_elements}}[index];}
+\DoxyCodeLine{00010 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{matrix_8c_ac7e2ad5d481c4124587a525ecd6c4460}\label{matrix_8c_ac7e2ad5d481c4124587a525ecd6c4460}} 
+\index{matrix.c@{matrix.c}!mat\_equal@{mat\_equal}}
+\index{mat\_equal@{mat\_equal}!matrix.c@{matrix.c}}
+\doxysubsubsection{\texorpdfstring{mat\_equal()}{mat\_equal()}}
+{\footnotesize\ttfamily int mat\+\_\+equal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{A,  }\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{B }\end{DoxyParamCaption})}
+
+
+
+Checks if to matrices are equal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em A} & The first member of the equality. \\
+\hline
+{\em B} & The second member of the equality. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the matrices are equal, 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{matrix_8c_source_l00150}{150}} of file \mbox{\hyperlink{matrix_8c_source}{matrix.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00151 \{}
+\DoxyCodeLine{00152     \textcolor{keywordflow}{if} (A-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}} != B-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}} || A-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}} != B-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}})}
+\DoxyCodeLine{00153         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{00154 }
+\DoxyCodeLine{00155     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < A-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}}; i++)}
+\DoxyCodeLine{00156     \{}
+\DoxyCodeLine{00157         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} j = 0; j < A-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}}; j++)}
+\DoxyCodeLine{00158         \{}
+\DoxyCodeLine{00159             \textcolor{keywordflow}{if} (\mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(A, i, j) != \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(B, i, j))}
+\DoxyCodeLine{00160             \{}
+\DoxyCodeLine{00161                 \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{00162             \}}
+\DoxyCodeLine{00163         \}}
+\DoxyCodeLine{00164     \}}
+\DoxyCodeLine{00165 }
+\DoxyCodeLine{00166     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{00167 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{matrix_8c_a5a425b597b5888564fe8e8e8fe1289fa}\label{matrix_8c_a5a425b597b5888564fe8e8e8fe1289fa}} 
+\index{matrix.c@{matrix.c}!mat\_fill@{mat\_fill}}
+\index{mat\_fill@{mat\_fill}!matrix.c@{matrix.c}}
+\doxysubsubsection{\texorpdfstring{mat\_fill()}{mat\_fill()}}
+{\footnotesize\ttfamily void mat\+\_\+fill (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{mat,  }\item[{double $\ast$}]{elements }\end{DoxyParamCaption})}
+
+
+
+Fills the matrix with the given elements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mat} & The matrix to be filled. \\
+\hline
+{\em elements} & The array to fill the matrix with. It is assumed to have the correct dimensions (rows $\ast$ columns). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{matrix_8c_source_l00169}{169}} of file \mbox{\hyperlink{matrix_8c_source}{matrix.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00170 \{}
+\DoxyCodeLine{00171 }
+\DoxyCodeLine{00172     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < mat-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}}; i++)}
+\DoxyCodeLine{00173     \{}
+\DoxyCodeLine{00174         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} j = 0; j < mat-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}}; j++)}
+\DoxyCodeLine{00175         \{}
+\DoxyCodeLine{00176             \mbox{\hyperlink{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}{mat\_set\_el}}(mat, i, j, elements[i * mat-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}} + j]);}
+\DoxyCodeLine{00177         \}}
+\DoxyCodeLine{00178     \}}
+\DoxyCodeLine{00179 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{matrix_8c_a893674697830a6f15bb693cb4a49dfeb}\label{matrix_8c_a893674697830a6f15bb693cb4a49dfeb}} 
+\index{matrix.c@{matrix.c}!mat\_identity@{mat\_identity}}
+\index{mat\_identity@{mat\_identity}!matrix.c@{matrix.c}}
+\doxysubsubsection{\texorpdfstring{mat\_identity()}{mat\_identity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ mat\+\_\+identity (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Creates an Identity matrix for given size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The number of rows/cols of the matrix. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Identity matrix. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{matrix_8c_source_l00142}{142}} of file \mbox{\hyperlink{matrix_8c_source}{matrix.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00143 \{}
+\DoxyCodeLine{00144     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *res = \mbox{\hyperlink{matrix_8c_a1d9b061fc8856e727f014c3266b7431d}{matrix\_create}}(size, size, 1);}
+\DoxyCodeLine{00145     \textcolor{keywordflow}{while} (size-\/-\/)}
+\DoxyCodeLine{00146         \mbox{\hyperlink{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}{mat\_set\_el}}(res, size, size, 1);}
+\DoxyCodeLine{00147     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{00148 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{matrix_8c_aad33a6577c7e2d732fdec25cac8022ac}\label{matrix_8c_aad33a6577c7e2d732fdec25cac8022ac}} 
+\index{matrix.c@{matrix.c}!mat\_print@{mat\_print}}
+\index{mat\_print@{mat\_print}!matrix.c@{matrix.c}}
+\doxysubsubsection{\texorpdfstring{mat\_print()}{mat\_print()}}
+{\footnotesize\ttfamily void mat\+\_\+print (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{mat }\end{DoxyParamCaption})}
+
+
+
+Prints the matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mat} & The matrix to print. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{matrix_8c_source_l00181}{181}} of file \mbox{\hyperlink{matrix_8c_source}{matrix.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00182 \{}
+\DoxyCodeLine{00183     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < mat-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}}; i++)}
+\DoxyCodeLine{00184     \{}
+\DoxyCodeLine{00185         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} j = 0; j < mat-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}}; j++)}
+\DoxyCodeLine{00186         \{}
+\DoxyCodeLine{00187             printf(\textcolor{stringliteral}{"{}|\%3.3f"{}}, \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(mat, i, j));}
+\DoxyCodeLine{00188         \}}
+\DoxyCodeLine{00189         printf(\textcolor{stringliteral}{"{}|\(\backslash\)n"{}});}
+\DoxyCodeLine{00190     \}}
+\DoxyCodeLine{00191 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{matrix_8c_aec843b4f924ae1c524b4f3e3dcc0ceda}\label{matrix_8c_aec843b4f924ae1c524b4f3e3dcc0ceda}} 
+\index{matrix.c@{matrix.c}!mat\_product@{mat\_product}}
+\index{mat\_product@{mat\_product}!matrix.c@{matrix.c}}
+\doxysubsubsection{\texorpdfstring{mat\_product()}{mat\_product()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ mat\+\_\+product (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{A,  }\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{B }\end{DoxyParamCaption})}
+
+
+
+Performs the dot product on 2 \mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} structures. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em A} & The first matrix to be multiplied. \\
+\hline
+{\em B} & The second matrix to be multiplied. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resutl of the product, NULL if not possible. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{matrix_8c_source_l00051}{51}} of file \mbox{\hyperlink{matrix_8c_source}{matrix.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00052 \{}
+\DoxyCodeLine{00053     \textcolor{keywordflow}{if} (A-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}} != B-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}})}
+\DoxyCodeLine{00054         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00055 }
+\DoxyCodeLine{00056     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *res = \mbox{\hyperlink{matrix_8c_a1d9b061fc8856e727f014c3266b7431d}{matrix\_create}}(A-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}}, B-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}}, 0);}
+\DoxyCodeLine{00057     \textcolor{keywordflow}{if} (res == NULL)}
+\DoxyCodeLine{00058         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00059 }
+\DoxyCodeLine{00060     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < res-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}}; i++)}
+\DoxyCodeLine{00061     \{}
+\DoxyCodeLine{00062         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} j = 0; j < res-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}}; j++)}
+\DoxyCodeLine{00063         \{}
+\DoxyCodeLine{00064             \textcolor{keywordtype}{double} el = 0;}
+\DoxyCodeLine{00065             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} k = 0; k < A-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}}; k++)}
+\DoxyCodeLine{00066                 el += \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(A, i, k) * \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(B, k, j);}
+\DoxyCodeLine{00067             \mbox{\hyperlink{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}{mat\_set\_el}}(res, i, j, el);}
+\DoxyCodeLine{00068         \}}
+\DoxyCodeLine{00069     \}}
+\DoxyCodeLine{00070 }
+\DoxyCodeLine{00071     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{00072 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{matrix_8c_abaf10396fc33e9bf687be1886fa5b40c}\label{matrix_8c_abaf10396fc33e9bf687be1886fa5b40c}} 
+\index{matrix.c@{matrix.c}!mat\_scalar\_multiply@{mat\_scalar\_multiply}}
+\index{mat\_scalar\_multiply@{mat\_scalar\_multiply}!matrix.c@{matrix.c}}
+\doxysubsubsection{\texorpdfstring{mat\_scalar\_multiply()}{mat\_scalar\_multiply()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ mat\+\_\+scalar\+\_\+multiply (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{A,  }\item[{double}]{scalar,  }\item[{int}]{inplace }\end{DoxyParamCaption})}
+
+
+
+Multiplies the matrix by a given scalar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em A} & The matrix to apply the scalar on. \\
+\hline
+{\em scalar} & The scalar to be applied. \\
+\hline
+{\em inplace} & A flag indicating whether the transform should be done in place or not. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the transform matrix. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{matrix_8c_source_l00110}{110}} of file \mbox{\hyperlink{matrix_8c_source}{matrix.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00111 \{}
+\DoxyCodeLine{00112     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *res;}
+\DoxyCodeLine{00113     \textcolor{keywordflow}{if} (inplace)}
+\DoxyCodeLine{00114     \{}
+\DoxyCodeLine{00115         res = A;}
+\DoxyCodeLine{00116     \}}
+\DoxyCodeLine{00117     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00118     \{}
+\DoxyCodeLine{00119         res = \mbox{\hyperlink{matrix_8c_a1d9b061fc8856e727f014c3266b7431d}{matrix\_create}}(A-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}}, A-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}}, 0);}
+\DoxyCodeLine{00120     \}}
+\DoxyCodeLine{00121 }
+\DoxyCodeLine{00122     \textcolor{keywordflow}{if} (res == NULL)}
+\DoxyCodeLine{00123         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00124     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < res-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}}; i++)}
+\DoxyCodeLine{00125         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} j = 0; j < res-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}}; j++)}
+\DoxyCodeLine{00126             \mbox{\hyperlink{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}{mat\_set\_el}}(res, i, j, \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(A, i, j) * scalar);}
+\DoxyCodeLine{00127     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{00128 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}\label{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}} 
+\index{matrix.c@{matrix.c}!mat\_set\_el@{mat\_set\_el}}
+\index{mat\_set\_el@{mat\_set\_el}!matrix.c@{matrix.c}}
+\doxysubsubsection{\texorpdfstring{mat\_set\_el()}{mat\_set\_el()}}
+{\footnotesize\ttfamily void mat\+\_\+set\+\_\+el (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{mat,  }\item[{size\+\_\+t}]{i,  }\item[{size\+\_\+t}]{j,  }\item[{double}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{matrix_8c_source_l00012}{12}} of file \mbox{\hyperlink{matrix_8c_source}{matrix.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00013 \{}
+\DoxyCodeLine{00014     \textcolor{keywordtype}{size\_t} index = i * mat-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}} + j;}
+\DoxyCodeLine{00015     mat-\/>\mbox{\hyperlink{structmatrix__t_aa61cbdd72bb422a8ddfeeeeebe728bd4}{\_elements}}[index] = value;}
+\DoxyCodeLine{00016 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{matrix_8c_a6492954f9eee90fbfa42811099eaccb5}\label{matrix_8c_a6492954f9eee90fbfa42811099eaccb5}} 
+\index{matrix.c@{matrix.c}!mat\_transform@{mat\_transform}}
+\index{mat\_transform@{mat\_transform}!matrix.c@{matrix.c}}
+\doxysubsubsection{\texorpdfstring{mat\_transform()}{mat\_transform()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ mat\+\_\+transform (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{A,  }\item[{\mbox{\hyperlink{matrix_8h_af967065ada73d6d2c06c01459e274435}{mat\+\_\+transform\+\_\+t}}}]{transform,  }\item[{int}]{inplace }\end{DoxyParamCaption})}
+
+
+
+Applies the transform to each of the matrix\+\_\+elements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em A} & The matrix to apply the transform on. \\
+\hline
+{\em transform} & The transform to be applied. \\
+\hline
+{\em inplace} & A boolean indicating whether the transform should be inplace. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the transformed matrix. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{matrix_8c_source_l00090}{90}} of file \mbox{\hyperlink{matrix_8c_source}{matrix.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00091 \{}
+\DoxyCodeLine{00092     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *res;}
+\DoxyCodeLine{00093     \textcolor{keywordflow}{if} (inplace)}
+\DoxyCodeLine{00094     \{}
+\DoxyCodeLine{00095         res = A;}
+\DoxyCodeLine{00096     \}}
+\DoxyCodeLine{00097     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00098     \{}
+\DoxyCodeLine{00099         res = \mbox{\hyperlink{matrix_8c_a1d9b061fc8856e727f014c3266b7431d}{matrix\_create}}(A-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}}, A-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}}, 0);}
+\DoxyCodeLine{00100     \}}
+\DoxyCodeLine{00101 }
+\DoxyCodeLine{00102     \textcolor{keywordflow}{if} (res == NULL)}
+\DoxyCodeLine{00103         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00104     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < res-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}}; i++)}
+\DoxyCodeLine{00105         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} j = 0; j < res-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}}; j++)}
+\DoxyCodeLine{00106             \mbox{\hyperlink{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}{mat\_set\_el}}(res, i, j, transform(\mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(A, i, j)));}
+\DoxyCodeLine{00107     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{00108 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{matrix_8c_afb95f8ccd261f41e64bfb20e79920191}\label{matrix_8c_afb95f8ccd261f41e64bfb20e79920191}} 
+\index{matrix.c@{matrix.c}!mat\_transpose@{mat\_transpose}}
+\index{mat\_transpose@{mat\_transpose}!matrix.c@{matrix.c}}
+\doxysubsubsection{\texorpdfstring{mat\_transpose()}{mat\_transpose()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ mat\+\_\+transpose (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{A }\end{DoxyParamCaption})}
+
+
+
+Transposes the given matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em A} & The matrix to be transposed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The transposed matrix. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{matrix_8c_source_l00130}{130}} of file \mbox{\hyperlink{matrix_8c_source}{matrix.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00131 \{}
+\DoxyCodeLine{00132     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *res = \mbox{\hyperlink{matrix_8c_a1d9b061fc8856e727f014c3266b7431d}{matrix\_create}}(A-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}}, A-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}}, 0);}
+\DoxyCodeLine{00133     \textcolor{keywordflow}{if} (res == NULL)}
+\DoxyCodeLine{00134         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00135 }
+\DoxyCodeLine{00136     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < res-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}}; i++)}
+\DoxyCodeLine{00137         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} j = 0; j < res-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}}; j++)}
+\DoxyCodeLine{00138             \mbox{\hyperlink{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}{mat\_set\_el}}(res, i, j, \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(A, j, i));}
+\DoxyCodeLine{00139     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{00140 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{matrix_8c_a1d9b061fc8856e727f014c3266b7431d}\label{matrix_8c_a1d9b061fc8856e727f014c3266b7431d}} 
+\index{matrix.c@{matrix.c}!matrix\_create@{matrix\_create}}
+\index{matrix\_create@{matrix\_create}!matrix.c@{matrix.c}}
+\doxysubsubsection{\texorpdfstring{matrix\_create()}{matrix\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ matrix\+\_\+create (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{rows,  }\item[{size\+\_\+t}]{columns,  }\item[{int}]{fill }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{matrix_8c_source_l00018}{18}} of file \mbox{\hyperlink{matrix_8c_source}{matrix.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00019 \{}
+\DoxyCodeLine{00020     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *res = (\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}}));}
+\DoxyCodeLine{00021     \textcolor{keywordflow}{if} (res == NULL)}
+\DoxyCodeLine{00022         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00023     \textcolor{keywordtype}{size\_t} count = rows * columns;}
+\DoxyCodeLine{00024     res-\/>\mbox{\hyperlink{structmatrix__t_aa61cbdd72bb422a8ddfeeeeebe728bd4}{\_elements}} = (\textcolor{keywordtype}{double} *)malloc(count * \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{double}));}
+\DoxyCodeLine{00025     \textcolor{keywordflow}{if} (res-\/>\mbox{\hyperlink{structmatrix__t_aa61cbdd72bb422a8ddfeeeeebe728bd4}{\_elements}} == NULL)}
+\DoxyCodeLine{00026         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00027     \textcolor{keywordflow}{if} (fill)}
+\DoxyCodeLine{00028     \{}
+\DoxyCodeLine{00029         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < count; i++)}
+\DoxyCodeLine{00030             res-\/>\mbox{\hyperlink{structmatrix__t_aa61cbdd72bb422a8ddfeeeeebe728bd4}{\_elements}}[i] = 0;}
+\DoxyCodeLine{00031     \}}
+\DoxyCodeLine{00032 }
+\DoxyCodeLine{00033     res-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}} = rows;}
+\DoxyCodeLine{00034     res-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}} = columns;}
+\DoxyCodeLine{00035     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{00036 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}\label{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}} 
+\index{matrix.c@{matrix.c}!matrix\_free@{matrix\_free}}
+\index{matrix\_free@{matrix\_free}!matrix.c@{matrix.c}}
+\doxysubsubsection{\texorpdfstring{matrix\_free()}{matrix\_free()}}
+{\footnotesize\ttfamily matrix\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{mat }\end{DoxyParamCaption})}
+
+
+
+frees the matrix 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mat} & the matrix to free \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{matrix_8c_source_l00045}{45}} of file \mbox{\hyperlink{matrix_8c_source}{matrix.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00046 \{}
+\DoxyCodeLine{00047     free(mat-\/>\mbox{\hyperlink{structmatrix__t_aa61cbdd72bb422a8ddfeeeeebe728bd4}{\_elements}});}
+\DoxyCodeLine{00048     free(mat);}
+\DoxyCodeLine{00049 \}}
+
+\end{DoxyCode}
