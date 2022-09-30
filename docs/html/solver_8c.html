@@ -99,10 +99,10 @@ Functions</h2></td></tr>
 <tr class="memdesc:a29dce49f6d53b86d3bd65a83528fe33d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if all the rows, columns and squares are valid.  <a href="solver_8c.html#a29dce49f6d53b86d3bd65a83528fe33d">More...</a><br /></td></tr>
 <tr class="separator:a29dce49f6d53b86d3bd65a83528fe33d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96776fdbf6c9ceb8774e2ea643cf5b1a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="solver_8c.html#a96776fdbf6c9ceb8774e2ea643cf5b1a">win</a> (int grid[9][9])</td></tr>
-<tr class="memdesc:a96776fdbf6c9ceb8774e2ea643cf5b1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if all the cases have a number and all the rows, columns and squares are valid.  <a href="solver_8c.html#a96776fdbf6c9ceb8774e2ea643cf5b1a">More...</a><br /></td></tr>
+<tr class="memdesc:a96776fdbf6c9ceb8774e2ea643cf5b1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if all the cases have a number and all the rows, columns and squares are valid represting the sudoku.  <a href="solver_8c.html#a96776fdbf6c9ceb8774e2ea643cf5b1a">More...</a><br /></td></tr>
 <tr class="separator:a96776fdbf6c9ceb8774e2ea643cf5b1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34d8e6241d75827a5fbfeff56a349223"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="solver_8c.html#a34d8e6241d75827a5fbfeff56a349223">solve</a> (char *inputFile)</td></tr>
-<tr class="memdesc:a34d8e6241d75827a5fbfeff56a349223"><td class="mdescLeft">&#160;</td><td class="mdescRight">read a sudoku grid from a file, solve it and write the solution in another file in ".result"  <a href="solver_8c.html#a34d8e6241d75827a5fbfeff56a349223">More...</a><br /></td></tr>
+<tr class="memdesc:a34d8e6241d75827a5fbfeff56a349223"><td class="mdescLeft">&#160;</td><td class="mdescRight">read a sudoku grid from a file, solve it and write the solution in another file in ".result" the name og the input file  <a href="solver_8c.html#a34d8e6241d75827a5fbfeff56a349223">More...</a><br /></td></tr>
 <tr class="separator:a34d8e6241d75827a5fbfeff56a349223"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -131,13 +131,13 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if all the rows, columns and squares are valid 0 otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="solver_8c_source.html#l00055">55</a> of file <a class="el" href="solver_8c_source.html">solver.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   55</span>                             {</div>
-<div class="line"><span class="lineno">   56</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="solver_8c.html#aad387507e1f3968615c1733a841b5f9f">checkSquare</a>(grid) + <a class="code hl_function" href="solver_8c.html#a57e0e94f66ead394268d24355f020755">checkCol</a>(grid) + <a class="code hl_function" href="solver_8c.html#a674647d95cde344eca6a014ebb07f9e3">checkRow</a>(grid) == 3;</div>
-<div class="line"><span class="lineno">   57</span>}</div>
-<div class="ttc" id="asolver_8c_html_a57e0e94f66ead394268d24355f020755"><div class="ttname"><a href="solver_8c.html#a57e0e94f66ead394268d24355f020755">checkCol</a></div><div class="ttdeci">int checkCol(int grid[9][9])</div><div class="ttdoc">Checks if all the columns are valid.</div><div class="ttdef"><b>Definition:</b> <a href="solver_8c_source.html#l00025">solver.c:25</a></div></div>
-<div class="ttc" id="asolver_8c_html_a674647d95cde344eca6a014ebb07f9e3"><div class="ttname"><a href="solver_8c.html#a674647d95cde344eca6a014ebb07f9e3">checkRow</a></div><div class="ttdeci">int checkRow(int grid[9][9])</div><div class="ttdoc">Checks if all the rows are valid.</div><div class="ttdef"><b>Definition:</b> <a href="solver_8c_source.html#l00011">solver.c:11</a></div></div>
-<div class="ttc" id="asolver_8c_html_aad387507e1f3968615c1733a841b5f9f"><div class="ttname"><a href="solver_8c.html#aad387507e1f3968615c1733a841b5f9f">checkSquare</a></div><div class="ttdeci">int checkSquare(int grid[9][9])</div><div class="ttdoc">Checks if all the squares are valid.</div><div class="ttdef"><b>Definition:</b> <a href="solver_8c_source.html#l00038">solver.c:38</a></div></div>
+<p class="definition">Definition at line <a class="el" href="solver_8c_source.html#l00072">72</a> of file <a class="el" href="solver_8c_source.html">solver.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   73</span>{</div>
+<div class="line"><span class="lineno">   74</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="solver_8c.html#aad387507e1f3968615c1733a841b5f9f">checkSquare</a>(grid) + <a class="code hl_function" href="solver_8c.html#a57e0e94f66ead394268d24355f020755">checkCol</a>(grid) + <a class="code hl_function" href="solver_8c.html#a674647d95cde344eca6a014ebb07f9e3">checkRow</a>(grid) == 3;</div>
+<div class="line"><span class="lineno">   75</span>}</div>
+<div class="ttc" id="asolver_8c_html_a57e0e94f66ead394268d24355f020755"><div class="ttname"><a href="solver_8c.html#a57e0e94f66ead394268d24355f020755">checkCol</a></div><div class="ttdeci">int checkCol(int grid[9][9])</div><div class="ttdoc">Checks if all the columns are valid.</div><div class="ttdef"><b>Definition:</b> <a href="solver_8c_source.html#l00030">solver.c:30</a></div></div>
+<div class="ttc" id="asolver_8c_html_a674647d95cde344eca6a014ebb07f9e3"><div class="ttname"><a href="solver_8c.html#a674647d95cde344eca6a014ebb07f9e3">checkRow</a></div><div class="ttdeci">int checkRow(int grid[9][9])</div><div class="ttdoc">Checks if all the rows are valid.</div><div class="ttdef"><b>Definition:</b> <a href="solver_8c_source.html#l00012">solver.c:12</a></div></div>
+<div class="ttc" id="asolver_8c_html_aad387507e1f3968615c1733a841b5f9f"><div class="ttname"><a href="solver_8c.html#aad387507e1f3968615c1733a841b5f9f">checkSquare</a></div><div class="ttdeci">int checkSquare(int grid[9][9])</div><div class="ttdoc">Checks if all the squares are valid.</div><div class="ttdef"><b>Definition:</b> <a href="solver_8c_source.html#l00048">solver.c:48</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -166,19 +166,23 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if all the columns are valid 0 otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="solver_8c_source.html#l00025">25</a> of file <a class="el" href="solver_8c_source.html">solver.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   25</span>                            {</div>
-<div class="line"><span class="lineno">   26</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;9;i++){</div>
-<div class="line"><span class="lineno">   27</span>        <span class="keywordtype">int</span> histo[] = {0,0,0,0,0,0,0,0,0,0};</div>
-<div class="line"><span class="lineno">   28</span>        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j=0;j&lt;9;j++){</div>
-<div class="line"><span class="lineno">   29</span>            histo[grid[j][i]]++;</div>
-<div class="line"><span class="lineno">   30</span>        }</div>
-<div class="line"><span class="lineno">   31</span>        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> k=1;k&lt;10;k++){</div>
-<div class="line"><span class="lineno">   32</span>            <span class="keywordflow">if</span>(histo[k]&gt;1) <span class="keywordflow">return</span> 0;</div>
-<div class="line"><span class="lineno">   33</span>        }</div>
-<div class="line"><span class="lineno">   34</span>    }</div>
-<div class="line"><span class="lineno">   35</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><span class="lineno">   36</span>}</div>
+<p class="definition">Definition at line <a class="el" href="solver_8c_source.html#l00030">30</a> of file <a class="el" href="solver_8c_source.html">solver.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   31</span>{</div>
+<div class="line"><span class="lineno">   32</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 9; i++)</div>
+<div class="line"><span class="lineno">   33</span>    {</div>
+<div class="line"><span class="lineno">   34</span>        <span class="keywordtype">int</span> histo[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};</div>
+<div class="line"><span class="lineno">   35</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; 9; j++)</div>
+<div class="line"><span class="lineno">   36</span>        {</div>
+<div class="line"><span class="lineno">   37</span>            histo[grid[j][i]]++;</div>
+<div class="line"><span class="lineno">   38</span>        }</div>
+<div class="line"><span class="lineno">   39</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 1; k &lt; 10; k++)</div>
+<div class="line"><span class="lineno">   40</span>        {</div>
+<div class="line"><span class="lineno">   41</span>            <span class="keywordflow">if</span> (histo[k] &gt; 1)</div>
+<div class="line"><span class="lineno">   42</span>                <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">   43</span>        }</div>
+<div class="line"><span class="lineno">   44</span>    }</div>
+<div class="line"><span class="lineno">   45</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">   46</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -207,19 +211,23 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if the rows are valids 0 otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="solver_8c_source.html#l00011">11</a> of file <a class="el" href="solver_8c_source.html">solver.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   11</span>                            {</div>
-<div class="line"><span class="lineno">   12</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;9;i++){</div>
-<div class="line"><span class="lineno">   13</span>        <span class="keywordtype">int</span> histo[] = {0,0,0,0,0,0,0,0,0,0};</div>
-<div class="line"><span class="lineno">   14</span>        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j=0;j&lt;9;j++){</div>
-<div class="line"><span class="lineno">   15</span>            histo[grid[i][j]]++;</div>
-<div class="line"><span class="lineno">   16</span>        }</div>
-<div class="line"><span class="lineno">   17</span>        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> k=1;k&lt;10;k++){</div>
-<div class="line"><span class="lineno">   18</span>            <span class="keywordflow">if</span>(histo[k]&gt;1) <span class="keywordflow">return</span> 0;</div>
-<div class="line"><span class="lineno">   19</span>        }</div>
-<div class="line"><span class="lineno">   20</span>    }</div>
-<div class="line"><span class="lineno">   21</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><span class="lineno">   22</span>}</div>
+<p class="definition">Definition at line <a class="el" href="solver_8c_source.html#l00012">12</a> of file <a class="el" href="solver_8c_source.html">solver.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   13</span>{</div>
+<div class="line"><span class="lineno">   14</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 9; i++)</div>
+<div class="line"><span class="lineno">   15</span>    {</div>
+<div class="line"><span class="lineno">   16</span>        <span class="keywordtype">int</span> histo[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};</div>
+<div class="line"><span class="lineno">   17</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; 9; j++)</div>
+<div class="line"><span class="lineno">   18</span>        {</div>
+<div class="line"><span class="lineno">   19</span>            histo[grid[i][j]]++;</div>
+<div class="line"><span class="lineno">   20</span>        }</div>
+<div class="line"><span class="lineno">   21</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 1; k &lt; 10; k++)</div>
+<div class="line"><span class="lineno">   22</span>        {</div>
+<div class="line"><span class="lineno">   23</span>            <span class="keywordflow">if</span> (histo[k] &gt; 1)</div>
+<div class="line"><span class="lineno">   24</span>                <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">   25</span>        }</div>
+<div class="line"><span class="lineno">   26</span>    }</div>
+<div class="line"><span class="lineno">   27</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">   28</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -248,23 +256,29 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if all the squares are valid 0 otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="solver_8c_source.html#l00038">38</a> of file <a class="el" href="solver_8c_source.html">solver.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   38</span>                               {</div>
-<div class="line"><span class="lineno">   39</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> a = 0; a &lt; 9 / 3; a++){</div>
-<div class="line"><span class="lineno">   40</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> b = 0; b &lt; 9 / 3; b++){</div>
-<div class="line"><span class="lineno">   41</span>            <span class="keywordtype">int</span> histo[] = {0,0,0,0,0,0,0,0,0,0};</div>
-<div class="line"><span class="lineno">   42</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 9 / 3; i++){</div>
-<div class="line"><span class="lineno">   43</span>                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; 9/3; j++){</div>
-<div class="line"><span class="lineno">   44</span>                    histo[grid[a * 9 / 3 + i][ b * 9 / 3 + j]]++;</div>
-<div class="line"><span class="lineno">   45</span>                }</div>
-<div class="line"><span class="lineno">   46</span>                <span class="keywordflow">for</span>(<span class="keywordtype">int</span> k=1;k&lt;10;k++){</div>
-<div class="line"><span class="lineno">   47</span>                    <span class="keywordflow">if</span>(histo[k]&gt;1) <span class="keywordflow">return</span> 0;</div>
-<div class="line"><span class="lineno">   48</span>                }</div>
-<div class="line"><span class="lineno">   49</span>            }</div>
-<div class="line"><span class="lineno">   50</span>        }</div>
-<div class="line"><span class="lineno">   51</span>    }</div>
-<div class="line"><span class="lineno">   52</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><span class="lineno">   53</span>}</div>
+<p class="definition">Definition at line <a class="el" href="solver_8c_source.html#l00048">48</a> of file <a class="el" href="solver_8c_source.html">solver.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   49</span>{</div>
+<div class="line"><span class="lineno">   50</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> a = 0; a &lt; 9 / 3; a++)</div>
+<div class="line"><span class="lineno">   51</span>    {</div>
+<div class="line"><span class="lineno">   52</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> b = 0; b &lt; 9 / 3; b++)</div>
+<div class="line"><span class="lineno">   53</span>        {</div>
+<div class="line"><span class="lineno">   54</span>            <span class="keywordtype">int</span> histo[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};</div>
+<div class="line"><span class="lineno">   55</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 9 / 3; i++)</div>
+<div class="line"><span class="lineno">   56</span>            {</div>
+<div class="line"><span class="lineno">   57</span>                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; 9 / 3; j++)</div>
+<div class="line"><span class="lineno">   58</span>                {</div>
+<div class="line"><span class="lineno">   59</span>                    histo[grid[a * 9 / 3 + i][b * 9 / 3 + j]]++;</div>
+<div class="line"><span class="lineno">   60</span>                }</div>
+<div class="line"><span class="lineno">   61</span>                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 1; k &lt; 10; k++)</div>
+<div class="line"><span class="lineno">   62</span>                {</div>
+<div class="line"><span class="lineno">   63</span>                    <span class="keywordflow">if</span> (histo[k] &gt; 1)</div>
+<div class="line"><span class="lineno">   64</span>                        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">   65</span>                }</div>
+<div class="line"><span class="lineno">   66</span>            }</div>
+<div class="line"><span class="lineno">   67</span>        }</div>
+<div class="line"><span class="lineno">   68</span>    }</div>
+<div class="line"><span class="lineno">   69</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">   70</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -284,153 +298,173 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>read a sudoku grid from a file, solve it and write the solution in another file in ".result" </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">inputFile</td><td>the name og the input file </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>read a sudoku grid from a file, solve it and write the solution in another file in ".result" the name og the input file </p>
 <dl class="section return"><dt>Returns</dt><dd>0 if the grid is solvable, 0 otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="solver_8c_source.html#l00070">70</a> of file <a class="el" href="solver_8c_source.html">solver.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   70</span>                           {</div>
-<div class="line"><span class="lineno">   71</span> </div>
-<div class="line"><span class="lineno">   72</span>    FILE *fpointer = fopen(inputFile,<span class="stringliteral">&quot;r&quot;</span>);</div>
-<div class="line"><span class="lineno">   73</span>    <span class="keywordtype">char</span> line[15];</div>
-<div class="line"><span class="lineno">   74</span> </div>
-<div class="line"><span class="lineno">   75</span>    <span class="keywordtype">int</span> grid[9][9];</div>
-<div class="line"><span class="lineno">   76</span>    <span class="keywordtype">int</span> i = 0;</div>
-<div class="line"><span class="lineno">   77</span>    <span class="keywordtype">int</span> delta=0;</div>
-<div class="line"><span class="lineno">   78</span> </div>
-<div class="line"><span class="lineno">   79</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;9;i++){</div>
-<div class="line"><span class="lineno">   80</span>           <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j=0;j&lt;9;j++){</div>
-<div class="line"><span class="lineno">   81</span>                grid[i][j] = 0;</div>
-<div class="line"><span class="lineno">   82</span>           }</div>
-<div class="line"><span class="lineno">   83</span>    }</div>
-<div class="line"><span class="lineno">   84</span> </div>
-<div class="line"><span class="lineno">   85</span>    <span class="keywordflow">while</span>(fgets(line,15,fpointer)){</div>
-<div class="line"><span class="lineno">   86</span>        <span class="keywordflow">if</span>(i!=3 &amp;&amp; i!=7){</div>
-<div class="line"><span class="lineno">   87</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j=0;j&lt;3;j++){</div>
-<div class="line"><span class="lineno">   88</span>                <span class="keywordflow">if</span>(line[j]&gt;=<span class="charliteral">&#39;0&#39;</span> &amp;&amp; line[j]&lt;=<span class="charliteral">&#39;9&#39;</span>)grid[i-delta][j] = line[j]-48;</div>
-<div class="line"><span class="lineno">   89</span>            }</div>
-<div class="line"><span class="lineno">   90</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j=4;j&lt;7;j++){</div>
-<div class="line"><span class="lineno">   91</span>                <span class="keywordflow">if</span>(line[j]&gt;=<span class="charliteral">&#39;0&#39;</span> &amp;&amp; line[j]&lt;=<span class="charliteral">&#39;9&#39;</span>)grid[i-delta][j-1] = line[j]-48;</div>
-<div class="line"><span class="lineno">   92</span>            }</div>
-<div class="line"><span class="lineno">   93</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j=8;j&lt;11;j++){</div>
-<div class="line"><span class="lineno">   94</span>                <span class="keywordflow">if</span>(line[j]&gt;=<span class="charliteral">&#39;0&#39;</span> &amp;&amp; line[j]&lt;=<span class="charliteral">&#39;9&#39;</span>)grid[i-delta][j-2] = line[j]-48;</div>
-<div class="line"><span class="lineno">   95</span>            }</div>
-<div class="line"><span class="lineno">   96</span>        }</div>
-<div class="line"><span class="lineno">   97</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(i==3) delta=1;</div>
-<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(i==7) delta=2;</div>
-<div class="line"><span class="lineno">   99</span>        i++;</div>
-<div class="line"><span class="lineno">  100</span>    }</div>
-<div class="line"><span class="lineno">  101</span> </div>
-<div class="line"><span class="lineno">  102</span>    fclose(fpointer);</div>
-<div class="line"><span class="lineno">  103</span> </div>
-<div class="line"><span class="lineno">  104</span>    <span class="comment">//Debug</span></div>
-<div class="line"><span class="lineno">  105</span> </div>
-<div class="line"><span class="lineno">  106</span>    <span class="comment">/*for(int i=0;i&lt;9;i++){</span></div>
-<div class="line"><span class="lineno">  107</span><span class="comment">        for(int j=0;j&lt;9;j++){</span></div>
-<div class="line"><span class="lineno">  108</span><span class="comment">        printf(&quot;%d&quot;,grid[i][j]);</span></div>
-<div class="line"><span class="lineno">  109</span><span class="comment">        }</span></div>
-<div class="line"><span class="lineno">  110</span><span class="comment">        printf(&quot;\n&quot;);</span></div>
-<div class="line"><span class="lineno">  111</span><span class="comment">    }</span></div>
-<div class="line"><span class="lineno">  112</span><span class="comment"></span> </div>
-<div class="line"><span class="lineno">  113</span><span class="comment">    //    printf(&quot;CheckRow : %d\n&quot;,checkRow(grid));</span></div>
-<div class="line"><span class="lineno">  114</span><span class="comment">    //    printf(&quot;CheckCol : %d\n&quot;,checkCol(grid));</span></div>
-<div class="line"><span class="lineno">  115</span><span class="comment">    //    printf(&quot;CheckSquare : %d\n&quot;,checkSquare(grid));</span></div>
-<div class="line"><span class="lineno">  116</span><span class="comment"></span> </div>
-<div class="line"><span class="lineno">  117</span><span class="comment">    */</span></div>
-<div class="line"><span class="lineno">  118</span> </div>
-<div class="line"><span class="lineno">  119</span> </div>
-<div class="line"><span class="lineno">  120</span>    <span class="comment">// Si mauvaise grille</span></div>
-<div class="line"><span class="lineno">  121</span> </div>
-<div class="line"><span class="lineno">  122</span>    <span class="keywordflow">if</span>(!<a class="code hl_function" href="solver_8c.html#a57e0e94f66ead394268d24355f020755">checkCol</a>(grid) || !<a class="code hl_function" href="solver_8c.html#a674647d95cde344eca6a014ebb07f9e3">checkRow</a>(grid) || !<a class="code hl_function" href="solver_8c.html#aad387507e1f3968615c1733a841b5f9f">checkSquare</a>(grid)){</div>
-<div class="line"><span class="lineno">  123</span>        printf(<span class="stringliteral">&quot;Erreur dans grille d&#39;entrée\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  124</span>        <span class="keywordflow">return</span> 1;</div>
-<div class="line"><span class="lineno">  125</span>    }</div>
-<div class="line"><span class="lineno">  126</span> </div>
-<div class="line"><span class="lineno">  127</span>    <span class="comment">//On defini les case vides</span></div>
-<div class="line"><span class="lineno">  128</span> </div>
-<div class="line"><span class="lineno">  129</span>    <span class="keywordtype">int</span> nbEmpty=0;</div>
-<div class="line"><span class="lineno">  130</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structCell.html">Cell</a> empty[81];</div>
-<div class="line"><span class="lineno">  131</span> </div>
-<div class="line"><span class="lineno">  132</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;9;i++){</div>
-<div class="line"><span class="lineno">  133</span>        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j=0;j&lt;9;j++){</div>
-<div class="line"><span class="lineno">  134</span>            <span class="keywordflow">if</span>(grid[i][j] == 0){</div>
-<div class="line"><span class="lineno">  135</span>                <span class="keyword">struct </span><a class="code hl_struct" href="structCell.html">Cell</a> c;</div>
-<div class="line"><span class="lineno">  136</span>                c.<a class="code hl_variable" href="structCell.html#ac008158796a0bfdf37be2f26eff651ef">x</a> = i;</div>
-<div class="line"><span class="lineno">  137</span>                c.y = j;</div>
-<div class="line"><span class="lineno">  138</span>                empty[nbEmpty] = c;</div>
-<div class="line"><span class="lineno">  139</span>                nbEmpty++;</div>
-<div class="line"><span class="lineno">  140</span>            }</div>
-<div class="line"><span class="lineno">  141</span>        }</div>
-<div class="line"><span class="lineno">  142</span>    }</div>
-<div class="line"><span class="lineno">  143</span> </div>
-<div class="line"><span class="lineno">  144</span>    <span class="comment">// Debut de la boucle principale</span></div>
-<div class="line"><span class="lineno">  145</span> </div>
-<div class="line"><span class="lineno">  146</span>    <span class="keywordtype">int</span> index = 0;</div>
-<div class="line"><span class="lineno">  147</span> </div>
-<div class="line"><span class="lineno">  148</span>    <span class="keywordflow">while</span>(index&lt;nbEmpty &amp;&amp; index &gt;=0){</div>
-<div class="line"><span class="lineno">  149</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structCell.html">Cell</a> curr = empty[index];</div>
-<div class="line"><span class="lineno">  150</span>        <span class="keywordflow">if</span>(grid[curr.<a class="code hl_variable" href="structCell.html#ac008158796a0bfdf37be2f26eff651ef">x</a>][curr.<a class="code hl_variable" href="structCell.html#ab99a0cead05c6b8129ddf3231b11c1ad">y</a>] &lt; 9){</div>
-<div class="line"><span class="lineno">  151</span>            grid[curr.<a class="code hl_variable" href="structCell.html#ac008158796a0bfdf37be2f26eff651ef">x</a>][curr.<a class="code hl_variable" href="structCell.html#ab99a0cead05c6b8129ddf3231b11c1ad">y</a>]++;</div>
-<div class="line"><span class="lineno">  152</span>            <span class="keywordflow">if</span>(<a class="code hl_function" href="solver_8c.html#a29dce49f6d53b86d3bd65a83528fe33d">allChecks</a>(grid)) index++;</div>
-<div class="line"><span class="lineno">  153</span>        }<span class="keywordflow">else</span>{</div>
-<div class="line"><span class="lineno">  154</span>            grid[curr.<a class="code hl_variable" href="structCell.html#ac008158796a0bfdf37be2f26eff651ef">x</a>][curr.<a class="code hl_variable" href="structCell.html#ab99a0cead05c6b8129ddf3231b11c1ad">y</a>] = 0;</div>
-<div class="line"><span class="lineno">  155</span>            index--;</div>
-<div class="line"><span class="lineno">  156</span>        }</div>
-<div class="line"><span class="lineno">  157</span>    }</div>
-<div class="line"><span class="lineno">  158</span> </div>
-<div class="line"><span class="lineno">  159</span>    <span class="keywordflow">if</span>(index&lt;0){</div>
-<div class="line"><span class="lineno">  160</span>        printf(<span class="stringliteral">&quot;Pas résolvable :(\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  161</span>        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><span class="lineno">  162</span>    }</div>
-<div class="line"><span class="lineno">  163</span> </div>
-<div class="line"><span class="lineno">  164</span>    <span class="keywordflow">if</span>(<a class="code hl_function" href="solver_8c.html#a96776fdbf6c9ceb8774e2ea643cf5b1a">win</a>(grid)){</div>
-<div class="line"><span class="lineno">  165</span>        <span class="comment">/*printf(&quot;Voici la solution\n&quot;);</span></div>
-<div class="line"><span class="lineno">  166</span><span class="comment">        for(int i=0;i&lt;9;i++){</span></div>
-<div class="line"><span class="lineno">  167</span><span class="comment">            for(int j=0;j&lt;9;j++){</span></div>
-<div class="line"><span class="lineno">  168</span><span class="comment">                printf(&quot;%d&quot;,grid[i][j]);</span></div>
-<div class="line"><span class="lineno">  169</span><span class="comment">            }</span></div>
-<div class="line"><span class="lineno">  170</span><span class="comment">            printf(&quot;\n&quot;);</span></div>
-<div class="line"><span class="lineno">  171</span><span class="comment">        }*/</span></div>
-<div class="line"><span class="lineno">  172</span> </div>
-<div class="line"><span class="lineno">  173</span>        <span class="comment">// On ecrit dans un nouveau file</span></div>
-<div class="line"><span class="lineno">  174</span>        <span class="keywordtype">char</span> outputExt[] = <span class="stringliteral">&quot;.result&quot;</span>;</div>
-<div class="line"><span class="lineno">  175</span>        strcat(inputFile,outputExt);</div>
-<div class="line"><span class="lineno">  176</span>        FILE *pfile = fopen(inputFile,<span class="stringliteral">&quot;w&quot;</span>);</div>
-<div class="line"><span class="lineno">  177</span> </div>
-<div class="line"><span class="lineno">  178</span>        <span class="keywordtype">char</span> ligne[12];;</div>
-<div class="line"><span class="lineno">  179</span>        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;9;i++){</div>
-<div class="line"><span class="lineno">  180</span>            <span class="keywordtype">int</span> d=0; </div>
-<div class="line"><span class="lineno">  181</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j=0;j&lt;9;j++){</div>
-<div class="line"><span class="lineno">  182</span>                ligne[j+d] = grid[i][j]+48;</div>
-<div class="line"><span class="lineno">  183</span>                <span class="keywordflow">if</span>(j==2 || j==5){</div>
-<div class="line"><span class="lineno">  184</span>                    d++;</div>
-<div class="line"><span class="lineno">  185</span>                    ligne[j+d] = <span class="charliteral">&#39; &#39;</span>;</div>
-<div class="line"><span class="lineno">  186</span>                }</div>
-<div class="line"><span class="lineno">  187</span>            }</div>
-<div class="line"><span class="lineno">  188</span>            ligne[11] = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><span class="lineno">  189</span>            <span class="comment">//for(int k=0;k&lt;12;k++) printf(&quot;%c&quot;,ligne[k]);</span></div>
-<div class="line"><span class="lineno">  190</span>            <span class="comment">//printf(&quot;fin\n&quot;);</span></div>
-<div class="line"><span class="lineno">  191</span>            fputs(ligne,pfile);</div>
-<div class="line"><span class="lineno">  192</span>            <span class="comment">//char test[3] = {i+48,&#39;\n&#39;,&#39;\0&#39;};</span></div>
-<div class="line"><span class="lineno">  193</span>            fputs(<span class="stringliteral">&quot;\n&quot;</span>,pfile);</div>
-<div class="line"><span class="lineno">  194</span>            <span class="keywordflow">if</span>(i==2 || i==5) fputs(<span class="stringliteral">&quot;\n&quot;</span>,pfile);</div>
-<div class="line"><span class="lineno">  195</span>            <span class="comment">//free(ligne);</span></div>
-<div class="line"><span class="lineno">  196</span>        }</div>
-<div class="line"><span class="lineno">  197</span>        fclose(pfile);</div>
-<div class="line"><span class="lineno">  198</span> </div>
-<div class="line"><span class="lineno">  199</span>        }</div>
-<div class="line"><span class="lineno">  200</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><span class="lineno">  201</span>}</div>
-<div class="ttc" id="asolver_8c_html_a29dce49f6d53b86d3bd65a83528fe33d"><div class="ttname"><a href="solver_8c.html#a29dce49f6d53b86d3bd65a83528fe33d">allChecks</a></div><div class="ttdeci">int allChecks(int grid[9][9])</div><div class="ttdoc">Checks if all the rows, columns and squares are valid.</div><div class="ttdef"><b>Definition:</b> <a href="solver_8c_source.html#l00055">solver.c:55</a></div></div>
-<div class="ttc" id="asolver_8c_html_a96776fdbf6c9ceb8774e2ea643cf5b1a"><div class="ttname"><a href="solver_8c.html#a96776fdbf6c9ceb8774e2ea643cf5b1a">win</a></div><div class="ttdeci">int win(int grid[9][9])</div><div class="ttdoc">Checks if all the cases have a number and all the rows, columns and squares are valid.</div><div class="ttdef"><b>Definition:</b> <a href="solver_8c_source.html#l00059">solver.c:59</a></div></div>
-<div class="ttc" id="astructCell_html"><div class="ttname"><a href="structCell.html">Cell</a></div><div class="ttdef"><b>Definition:</b> <a href="solver_8c_source.html#l00006">solver.c:6</a></div></div>
-<div class="ttc" id="astructCell_html_ab99a0cead05c6b8129ddf3231b11c1ad"><div class="ttname"><a href="structCell.html#ab99a0cead05c6b8129ddf3231b11c1ad">Cell::y</a></div><div class="ttdeci">int y</div><div class="ttdef"><b>Definition:</b> <a href="solver_8c_source.html#l00008">solver.c:8</a></div></div>
-<div class="ttc" id="astructCell_html_ac008158796a0bfdf37be2f26eff651ef"><div class="ttname"><a href="structCell.html#ac008158796a0bfdf37be2f26eff651ef">Cell::x</a></div><div class="ttdeci">int x</div><div class="ttdef"><b>Definition:</b> <a href="solver_8c_source.html#l00007">solver.c:7</a></div></div>
+<p class="definition">Definition at line <a class="el" href="solver_8c_source.html#l00090">90</a> of file <a class="el" href="solver_8c_source.html">solver.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   91</span>{</div>
+<div class="line"><span class="lineno">   92</span> </div>
+<div class="line"><span class="lineno">   93</span>    FILE *fpointer = fopen(inputFile, <span class="stringliteral">&quot;r&quot;</span>);</div>
+<div class="line"><span class="lineno">   94</span>    <span class="keywordtype">char</span> line[15];</div>
+<div class="line"><span class="lineno">   95</span> </div>
+<div class="line"><span class="lineno">   96</span>    <span class="keywordtype">int</span> grid[9][9];</div>
+<div class="line"><span class="lineno">   97</span>    <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><span class="lineno">   98</span>    <span class="keywordtype">int</span> delta = 0;</div>
+<div class="line"><span class="lineno">   99</span> </div>
+<div class="line"><span class="lineno">  100</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 9; i++)</div>
+<div class="line"><span class="lineno">  101</span>    {</div>
+<div class="line"><span class="lineno">  102</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; 9; j++)</div>
+<div class="line"><span class="lineno">  103</span>        {</div>
+<div class="line"><span class="lineno">  104</span>            grid[i][j] = 0;</div>
+<div class="line"><span class="lineno">  105</span>        }</div>
+<div class="line"><span class="lineno">  106</span>    }</div>
+<div class="line"><span class="lineno">  107</span> </div>
+<div class="line"><span class="lineno">  108</span>    <span class="keywordflow">while</span> (fgets(line, 15, fpointer))</div>
+<div class="line"><span class="lineno">  109</span>    {</div>
+<div class="line"><span class="lineno">  110</span>        <span class="keywordflow">if</span> (i != 3 &amp;&amp; i != 7)</div>
+<div class="line"><span class="lineno">  111</span>        {</div>
+<div class="line"><span class="lineno">  112</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; 3; j++)</div>
+<div class="line"><span class="lineno">  113</span>            {</div>
+<div class="line"><span class="lineno">  114</span>                <span class="keywordflow">if</span> (line[j] &gt;= <span class="charliteral">&#39;0&#39;</span> &amp;&amp; line[j] &lt;= <span class="charliteral">&#39;9&#39;</span>)</div>
+<div class="line"><span class="lineno">  115</span>                    grid[i - delta][j] = line[j] - 48;</div>
+<div class="line"><span class="lineno">  116</span>            }</div>
+<div class="line"><span class="lineno">  117</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 4; j &lt; 7; j++)</div>
+<div class="line"><span class="lineno">  118</span>            {</div>
+<div class="line"><span class="lineno">  119</span>                <span class="keywordflow">if</span> (line[j] &gt;= <span class="charliteral">&#39;0&#39;</span> &amp;&amp; line[j] &lt;= <span class="charliteral">&#39;9&#39;</span>)</div>
+<div class="line"><span class="lineno">  120</span>                    grid[i - delta][j - 1] = line[j] - 48;</div>
+<div class="line"><span class="lineno">  121</span>            }</div>
+<div class="line"><span class="lineno">  122</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 8; j &lt; 11; j++)</div>
+<div class="line"><span class="lineno">  123</span>            {</div>
+<div class="line"><span class="lineno">  124</span>                <span class="keywordflow">if</span> (line[j] &gt;= <span class="charliteral">&#39;0&#39;</span> &amp;&amp; line[j] &lt;= <span class="charliteral">&#39;9&#39;</span>)</div>
+<div class="line"><span class="lineno">  125</span>                    grid[i - delta][j - 2] = line[j] - 48;</div>
+<div class="line"><span class="lineno">  126</span>            }</div>
+<div class="line"><span class="lineno">  127</span>        }</div>
+<div class="line"><span class="lineno">  128</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (i == 3)</div>
+<div class="line"><span class="lineno">  129</span>            delta = 1;</div>
+<div class="line"><span class="lineno">  130</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (i == 7)</div>
+<div class="line"><span class="lineno">  131</span>            delta = 2;</div>
+<div class="line"><span class="lineno">  132</span>        i++;</div>
+<div class="line"><span class="lineno">  133</span>    }</div>
+<div class="line"><span class="lineno">  134</span> </div>
+<div class="line"><span class="lineno">  135</span>    fclose(fpointer);</div>
+<div class="line"><span class="lineno">  136</span> </div>
+<div class="line"><span class="lineno">  137</span>    <span class="comment">// Debug</span></div>
+<div class="line"><span class="lineno">  138</span> </div>
+<div class="line"><span class="lineno">  139</span>    <span class="comment">/*for(int i=0;i&lt;9;i++){</span></div>
+<div class="line"><span class="lineno">  140</span><span class="comment">        for(int j=0;j&lt;9;j++){</span></div>
+<div class="line"><span class="lineno">  141</span><span class="comment">        printf(&quot;%d&quot;,grid[i][j]);</span></div>
+<div class="line"><span class="lineno">  142</span><span class="comment">        }</span></div>
+<div class="line"><span class="lineno">  143</span><span class="comment">        printf(&quot;\n&quot;);</span></div>
+<div class="line"><span class="lineno">  144</span><span class="comment">    }</span></div>
+<div class="line"><span class="lineno">  145</span><span class="comment"></span> </div>
+<div class="line"><span class="lineno">  146</span><span class="comment">    //    printf(&quot;CheckRow : %d\n&quot;,checkRow(grid));</span></div>
+<div class="line"><span class="lineno">  147</span><span class="comment">    //    printf(&quot;CheckCol : %d\n&quot;,checkCol(grid));</span></div>
+<div class="line"><span class="lineno">  148</span><span class="comment">    //    printf(&quot;CheckSquare : %d\n&quot;,checkSquare(grid));</span></div>
+<div class="line"><span class="lineno">  149</span><span class="comment"></span> </div>
+<div class="line"><span class="lineno">  150</span><span class="comment">    */</span></div>
+<div class="line"><span class="lineno">  151</span> </div>
+<div class="line"><span class="lineno">  152</span>    <span class="comment">// Si mauvaise grille</span></div>
+<div class="line"><span class="lineno">  153</span> </div>
+<div class="line"><span class="lineno">  154</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="solver_8c.html#a57e0e94f66ead394268d24355f020755">checkCol</a>(grid) || !<a class="code hl_function" href="solver_8c.html#a674647d95cde344eca6a014ebb07f9e3">checkRow</a>(grid) || !<a class="code hl_function" href="solver_8c.html#aad387507e1f3968615c1733a841b5f9f">checkSquare</a>(grid))</div>
+<div class="line"><span class="lineno">  155</span>    {</div>
+<div class="line"><span class="lineno">  156</span>        printf(<span class="stringliteral">&quot;Erreur dans grille d&#39;entrée\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  157</span>        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">  158</span>    }</div>
+<div class="line"><span class="lineno">  159</span> </div>
+<div class="line"><span class="lineno">  160</span>    <span class="comment">// On defini les case vides</span></div>
+<div class="line"><span class="lineno">  161</span> </div>
+<div class="line"><span class="lineno">  162</span>    <span class="keywordtype">int</span> nbEmpty = 0;</div>
+<div class="line"><span class="lineno">  163</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structCell.html">Cell</a> empty[81];</div>
+<div class="line"><span class="lineno">  164</span> </div>
+<div class="line"><span class="lineno">  165</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 9; i++)</div>
+<div class="line"><span class="lineno">  166</span>    {</div>
+<div class="line"><span class="lineno">  167</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; 9; j++)</div>
+<div class="line"><span class="lineno">  168</span>        {</div>
+<div class="line"><span class="lineno">  169</span>            <span class="keywordflow">if</span> (grid[i][j] == 0)</div>
+<div class="line"><span class="lineno">  170</span>            {</div>
+<div class="line"><span class="lineno">  171</span>                <span class="keyword">struct </span><a class="code hl_struct" href="structCell.html">Cell</a> c;</div>
+<div class="line"><span class="lineno">  172</span>                c.<a class="code hl_variable" href="structCell.html#ac008158796a0bfdf37be2f26eff651ef">x</a> = i;</div>
+<div class="line"><span class="lineno">  173</span>                c.y = j;</div>
+<div class="line"><span class="lineno">  174</span>                empty[nbEmpty] = c;</div>
+<div class="line"><span class="lineno">  175</span>                nbEmpty++;</div>
+<div class="line"><span class="lineno">  176</span>            }</div>
+<div class="line"><span class="lineno">  177</span>        }</div>
+<div class="line"><span class="lineno">  178</span>    }</div>
+<div class="line"><span class="lineno">  179</span> </div>
+<div class="line"><span class="lineno">  180</span>    <span class="comment">// Debut de la boucle principale</span></div>
+<div class="line"><span class="lineno">  181</span> </div>
+<div class="line"><span class="lineno">  182</span>    <span class="keywordtype">int</span> index = 0;</div>
+<div class="line"><span class="lineno">  183</span> </div>
+<div class="line"><span class="lineno">  184</span>    <span class="keywordflow">while</span> (index &lt; nbEmpty &amp;&amp; index &gt;= 0)</div>
+<div class="line"><span class="lineno">  185</span>    {</div>
+<div class="line"><span class="lineno">  186</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structCell.html">Cell</a> curr = empty[index];</div>
+<div class="line"><span class="lineno">  187</span>        <span class="keywordflow">if</span> (grid[curr.<a class="code hl_variable" href="structCell.html#ac008158796a0bfdf37be2f26eff651ef">x</a>][curr.<a class="code hl_variable" href="structCell.html#ab99a0cead05c6b8129ddf3231b11c1ad">y</a>] &lt; 9)</div>
+<div class="line"><span class="lineno">  188</span>        {</div>
+<div class="line"><span class="lineno">  189</span>            grid[curr.<a class="code hl_variable" href="structCell.html#ac008158796a0bfdf37be2f26eff651ef">x</a>][curr.<a class="code hl_variable" href="structCell.html#ab99a0cead05c6b8129ddf3231b11c1ad">y</a>]++;</div>
+<div class="line"><span class="lineno">  190</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="solver_8c.html#a29dce49f6d53b86d3bd65a83528fe33d">allChecks</a>(grid))</div>
+<div class="line"><span class="lineno">  191</span>                index++;</div>
+<div class="line"><span class="lineno">  192</span>        }</div>
+<div class="line"><span class="lineno">  193</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  194</span>        {</div>
+<div class="line"><span class="lineno">  195</span>            grid[curr.<a class="code hl_variable" href="structCell.html#ac008158796a0bfdf37be2f26eff651ef">x</a>][curr.<a class="code hl_variable" href="structCell.html#ab99a0cead05c6b8129ddf3231b11c1ad">y</a>] = 0;</div>
+<div class="line"><span class="lineno">  196</span>            index--;</div>
+<div class="line"><span class="lineno">  197</span>        }</div>
+<div class="line"><span class="lineno">  198</span>    }</div>
+<div class="line"><span class="lineno">  199</span> </div>
+<div class="line"><span class="lineno">  200</span>    <span class="keywordflow">if</span> (index &lt; 0)</div>
+<div class="line"><span class="lineno">  201</span>    {</div>
+<div class="line"><span class="lineno">  202</span>        printf(<span class="stringliteral">&quot;Pas résolvable :(\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  203</span>        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  204</span>    }</div>
+<div class="line"><span class="lineno">  205</span> </div>
+<div class="line"><span class="lineno">  206</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="solver_8c.html#a96776fdbf6c9ceb8774e2ea643cf5b1a">win</a>(grid))</div>
+<div class="line"><span class="lineno">  207</span>    {</div>
+<div class="line"><span class="lineno">  208</span>        <span class="comment">/*printf(&quot;Voici la solution\n&quot;);</span></div>
+<div class="line"><span class="lineno">  209</span><span class="comment">        for(int i=0;i&lt;9;i++){</span></div>
+<div class="line"><span class="lineno">  210</span><span class="comment">            for(int j=0;j&lt;9;j++){</span></div>
+<div class="line"><span class="lineno">  211</span><span class="comment">                printf(&quot;%d&quot;,grid[i][j]);</span></div>
+<div class="line"><span class="lineno">  212</span><span class="comment">            }</span></div>
+<div class="line"><span class="lineno">  213</span><span class="comment">            printf(&quot;\n&quot;);</span></div>
+<div class="line"><span class="lineno">  214</span><span class="comment">        }*/</span></div>
+<div class="line"><span class="lineno">  215</span> </div>
+<div class="line"><span class="lineno">  216</span>        <span class="comment">// On ecrit dans un nouveau file</span></div>
+<div class="line"><span class="lineno">  217</span>        <span class="keywordtype">char</span> outputExt[] = <span class="stringliteral">&quot;.result&quot;</span>;</div>
+<div class="line"><span class="lineno">  218</span>        strcat(inputFile, outputExt);</div>
+<div class="line"><span class="lineno">  219</span>        FILE *pfile = fopen(inputFile, <span class="stringliteral">&quot;w&quot;</span>);</div>
+<div class="line"><span class="lineno">  220</span> </div>
+<div class="line"><span class="lineno">  221</span>        <span class="keywordtype">char</span> ligne[12];</div>
+<div class="line"><span class="lineno">  222</span>        ;</div>
+<div class="line"><span class="lineno">  223</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 9; i++)</div>
+<div class="line"><span class="lineno">  224</span>        {</div>
+<div class="line"><span class="lineno">  225</span>            <span class="keywordtype">int</span> d = 0;</div>
+<div class="line"><span class="lineno">  226</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; 9; j++)</div>
+<div class="line"><span class="lineno">  227</span>            {</div>
+<div class="line"><span class="lineno">  228</span>                ligne[j + d] = grid[i][j] + 48;</div>
+<div class="line"><span class="lineno">  229</span>                <span class="keywordflow">if</span> (j == 2 || j == 5)</div>
+<div class="line"><span class="lineno">  230</span>                {</div>
+<div class="line"><span class="lineno">  231</span>                    d++;</div>
+<div class="line"><span class="lineno">  232</span>                    ligne[j + d] = <span class="charliteral">&#39; &#39;</span>;</div>
+<div class="line"><span class="lineno">  233</span>                }</div>
+<div class="line"><span class="lineno">  234</span>            }</div>
+<div class="line"><span class="lineno">  235</span>            ligne[11] = <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><span class="lineno">  236</span>            <span class="comment">// for(int k=0;k&lt;12;k++) printf(&quot;%c&quot;,ligne[k]);</span></div>
+<div class="line"><span class="lineno">  237</span>            <span class="comment">// printf(&quot;fin\n&quot;);</span></div>
+<div class="line"><span class="lineno">  238</span>            fputs(ligne, pfile);</div>
+<div class="line"><span class="lineno">  239</span>            <span class="comment">// char test[3] = {i+48,&#39;\n&#39;,&#39;\0&#39;};</span></div>
+<div class="line"><span class="lineno">  240</span>            fputs(<span class="stringliteral">&quot;\n&quot;</span>, pfile);</div>
+<div class="line"><span class="lineno">  241</span>            <span class="keywordflow">if</span> (i == 2 || i == 5)</div>
+<div class="line"><span class="lineno">  242</span>                fputs(<span class="stringliteral">&quot;\n&quot;</span>, pfile);</div>
+<div class="line"><span class="lineno">  243</span>            <span class="comment">// free(ligne);</span></div>
+<div class="line"><span class="lineno">  244</span>        }</div>
+<div class="line"><span class="lineno">  245</span>        fclose(pfile);</div>
+<div class="line"><span class="lineno">  246</span>    }</div>
+<div class="line"><span class="lineno">  247</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  248</span>}</div>
+<div class="ttc" id="asolver_8c_html_a29dce49f6d53b86d3bd65a83528fe33d"><div class="ttname"><a href="solver_8c.html#a29dce49f6d53b86d3bd65a83528fe33d">allChecks</a></div><div class="ttdeci">int allChecks(int grid[9][9])</div><div class="ttdoc">Checks if all the rows, columns and squares are valid.</div><div class="ttdef"><b>Definition:</b> <a href="solver_8c_source.html#l00072">solver.c:72</a></div></div>
+<div class="ttc" id="asolver_8c_html_a96776fdbf6c9ceb8774e2ea643cf5b1a"><div class="ttname"><a href="solver_8c.html#a96776fdbf6c9ceb8774e2ea643cf5b1a">win</a></div><div class="ttdeci">int win(int grid[9][9])</div><div class="ttdoc">Checks if all the cases have a number and all the rows, columns and squares are valid represting the ...</div><div class="ttdef"><b>Definition:</b> <a href="solver_8c_source.html#l00077">solver.c:77</a></div></div>
+<div class="ttc" id="astructCell_html"><div class="ttname"><a href="structCell.html">Cell</a></div><div class="ttdef"><b>Definition:</b> <a href="solver_8c_source.html#l00006">solver.c:7</a></div></div>
+<div class="ttc" id="astructCell_html_ab99a0cead05c6b8129ddf3231b11c1ad"><div class="ttname"><a href="structCell.html#ab99a0cead05c6b8129ddf3231b11c1ad">Cell::y</a></div><div class="ttdeci">int y</div><div class="ttdef"><b>Definition:</b> <a href="solver_8c_source.html#l00009">solver.c:9</a></div></div>
+<div class="ttc" id="astructCell_html_ac008158796a0bfdf37be2f26eff651ef"><div class="ttname"><a href="structCell.html#ac008158796a0bfdf37be2f26eff651ef">Cell::x</a></div><div class="ttdeci">int x</div><div class="ttdef"><b>Definition:</b> <a href="solver_8c_source.html#l00008">solver.c:8</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -450,24 +484,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Checks if all the cases have a number and all the rows, columns and squares are valid. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">grid</td><td>2-d array represting the sudoku </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Checks if all the cases have a number and all the rows, columns and squares are valid represting the sudoku. </p>
 <dl class="section return"><dt>Returns</dt><dd>1 if all the cases have a number and all the rows, columns and squares are valid 0 otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="solver_8c_source.html#l00059">59</a> of file <a class="el" href="solver_8c_source.html">solver.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   59</span>                       {</div>
-<div class="line"><span class="lineno">   60</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;9;i++){</div>
-<div class="line"><span class="lineno">   61</span>        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j=0;j&lt;9;j++){</div>
-<div class="line"><span class="lineno">   62</span>            <span class="keywordflow">if</span>(grid[i][j] == 0) <span class="keywordflow">return</span> 0;</div>
-<div class="line"><span class="lineno">   63</span>        }</div>
-<div class="line"><span class="lineno">   64</span>    }</div>
-<div class="line"><span class="lineno">   65</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="solver_8c.html#aad387507e1f3968615c1733a841b5f9f">checkSquare</a>(grid) + <a class="code hl_function" href="solver_8c.html#a57e0e94f66ead394268d24355f020755">checkCol</a>(grid) + <a class="code hl_function" href="solver_8c.html#a674647d95cde344eca6a014ebb07f9e3">checkRow</a>(grid) == 3;</div>
-<div class="line"><span class="lineno">   66</span>}</div>
+<p class="definition">Definition at line <a class="el" href="solver_8c_source.html#l00077">77</a> of file <a class="el" href="solver_8c_source.html">solver.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   78</span>{</div>
+<div class="line"><span class="lineno">   79</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 9; i++)</div>
+<div class="line"><span class="lineno">   80</span>    {</div>
+<div class="line"><span class="lineno">   81</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; 9; j++)</div>
+<div class="line"><span class="lineno">   82</span>        {</div>
+<div class="line"><span class="lineno">   83</span>            <span class="keywordflow">if</span> (grid[i][j] == 0)</div>
+<div class="line"><span class="lineno">   84</span>                <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">   85</span>        }</div>
+<div class="line"><span class="lineno">   86</span>    }</div>
+<div class="line"><span class="lineno">   87</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="solver_8c.html#aad387507e1f3968615c1733a841b5f9f">checkSquare</a>(grid) + <a class="code hl_function" href="solver_8c.html#a57e0e94f66ead394268d24355f020755">checkCol</a>(grid) + <a class="code hl_function" href="solver_8c.html#a674647d95cde344eca6a014ebb07f9e3">checkRow</a>(grid) == 3;</div>
+<div class="line"><span class="lineno">   88</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

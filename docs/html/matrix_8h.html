@@ -130,6 +130,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aad33a6577c7e2d732fdec25cac8022ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#aad33a6577c7e2d732fdec25cac8022ac">mat_print</a> (<a class="el" href="structmatrix__t.html">matrix_t</a> *mat)</td></tr>
 <tr class="memdesc:aad33a6577c7e2d732fdec25cac8022ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the matrix.  <a href="matrix_8h.html#aad33a6577c7e2d732fdec25cac8022ac">More...</a><br /></td></tr>
 <tr class="separator:aad33a6577c7e2d732fdec25cac8022ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4970f9c83f185813ab569266c4fd0de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structmatrix__t.html">matrix_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#ad4970f9c83f185813ab569266c4fd0de">mat_copy</a> (<a class="el" href="structmatrix__t.html">matrix_t</a> *origin)</td></tr>
+<tr class="memdesc:ad4970f9c83f185813ab569266c4fd0de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the matrix.  <a href="matrix_8h.html#ad4970f9c83f185813ab569266c4fd0de">More...</a><br /></td></tr>
+<tr class="separator:ad4970f9c83f185813ab569266c4fd0de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="af967065ada73d6d2c06c01459e274435" name="af967065ada73d6d2c06c01459e274435"></a>
@@ -208,6 +211,49 @@ Functions</h2></td></tr>
 <div class="ttc" id="astructmatrix__t_html"><div class="ttname"><a href="structmatrix__t.html">matrix_t</a></div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00009">matrix.h:10</a></div></div>
 <div class="ttc" id="astructmatrix__t_html_a23b46615e6b5054c03f59a5b33fdaac8"><div class="ttname"><a href="structmatrix__t.html#a23b46615e6b5054c03f59a5b33fdaac8">matrix_t::columns</a></div><div class="ttdeci">size_t columns</div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00013">matrix.h:13</a></div></div>
 <div class="ttc" id="astructmatrix__t_html_a9620f15b4416ec1830196db9ec904fc5"><div class="ttname"><a href="structmatrix__t.html#a9620f15b4416ec1830196db9ec904fc5">matrix_t::rows</a></div><div class="ttdeci">size_t rows</div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00012">matrix.h:12</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ad4970f9c83f185813ab569266c4fd0de" name="ad4970f9c83f185813ab569266c4fd0de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4970f9c83f185813ab569266c4fd0de">&#9670;&nbsp;</a></span>mat_copy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structmatrix__t.html">matrix_t</a> * mat_copy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmatrix__t.html">matrix_t</a> *&#160;</td>
+          <td class="paramname"><em>origin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copies the matrix. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">origin</td><td>The origin matrix. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A copy of the matrix. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="matrix_8c_source.html#l00193">193</a> of file <a class="el" href="matrix_8c_source.html">matrix.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  194</span>{</div>
+<div class="line"><span class="lineno">  195</span>    <a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> *result = <a class="code hl_function" href="matrix_8c.html#a1d9b061fc8856e727f014c3266b7431d">matrix_create</a>(origin-&gt;<a class="code hl_variable" href="structmatrix__t.html#a9620f15b4416ec1830196db9ec904fc5">rows</a>, origin-&gt;<a class="code hl_variable" href="structmatrix__t.html#a23b46615e6b5054c03f59a5b33fdaac8">columns</a>, 0);</div>
+<div class="line"><span class="lineno">  196</span>    <span class="keywordflow">if</span> (result == NULL)</div>
+<div class="line"><span class="lineno">  197</span>        <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><span class="lineno">  198</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; origin-&gt;<a class="code hl_variable" href="structmatrix__t.html#a9620f15b4416ec1830196db9ec904fc5">rows</a>; i++)</div>
+<div class="line"><span class="lineno">  199</span>    {</div>
+<div class="line"><span class="lineno">  200</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; origin-&gt;<a class="code hl_variable" href="structmatrix__t.html#a23b46615e6b5054c03f59a5b33fdaac8">columns</a>; j++)</div>
+<div class="line"><span class="lineno">  201</span>        {</div>
+<div class="line"><span class="lineno">  202</span>            <a class="code hl_function" href="matrix_8c.html#a0e411263cdaaa67eae166d067996f5b6">mat_set_el</a>(result, i, j, <a class="code hl_function" href="matrix_8c.html#a631ff21351ba5ec31350fb5277605d3b">mat_el_at</a>(origin, i, j));</div>
+<div class="line"><span class="lineno">  203</span>        }</div>
+<div class="line"><span class="lineno">  204</span>    }</div>
+<div class="line"><span class="lineno">  205</span> </div>
+<div class="line"><span class="lineno">  206</span>    <span class="keywordflow">return</span> result;</div>
+<div class="line"><span class="lineno">  207</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

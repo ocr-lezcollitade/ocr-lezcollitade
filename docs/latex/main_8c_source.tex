@@ -4,12 +4,30 @@
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00001}00001 \textcolor{preprocessor}{\#include <stdio.h>}}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00002}00002 \textcolor{preprocessor}{\#include <stdlib.h>}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00003}00003 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{solver_8h}{./solver/solver.h}}"{}}}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00004}00004 }
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00005}\mbox{\hyperlink{main_8c_a3c04138a5bfe5d72780bb7e82a18e627}{00005}} \textcolor{keywordtype}{int} \mbox{\hyperlink{main_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{int} argc,\textcolor{keywordtype}{char} ** argv) \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00006}00006     \textcolor{keywordflow}{if}(argc == 2)}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00007}00007         \mbox{\hyperlink{solver_8c_a34d8e6241d75827a5fbfeff56a349223}{solve}}(argv[1]);}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00008}00008     \textcolor{keywordflow}{return} 0;}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00009}00009 \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00003}00003 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{network_8h}{./network/network.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00004}00004 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{solver_8h}{./solver/solver.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00005}00005 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{matrix_8h}{./utils/matrices/matrix.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00007}\mbox{\hyperlink{main_8c_a3c04138a5bfe5d72780bb7e82a18e627}{00007}} \textcolor{keywordtype}{int} \mbox{\hyperlink{main_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv)}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00008}00008 \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00010}00010     \textcolor{keywordflow}{if} (argc == 2)}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00011}00011     \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00012}00012         \textcolor{keywordtype}{size\_t} layers[] = \{2, 2, 1\};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00013}00013         \mbox{\hyperlink{structnetwork__t}{network\_t}} *net}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00014}00014             = \mbox{\hyperlink{network_8c_aba00189ea608835915fdd9f753c33fd4}{network\_generate}}(layers, \textcolor{keyword}{sizeof}(layers) / \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{size\_t}));}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00015}00015         \textcolor{keywordtype}{double} values[] = \{1, 1\};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00016}00016         \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *input = \mbox{\hyperlink{matrix_8c_a517e248a0faeb2c0a2e1f1b823b8cd3b}{mat\_create\_fill}}(2, 1, values);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00017}00017         \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *result = \mbox{\hyperlink{network_8c_a49d5f5101cda3ffc8355a0237ee16709}{compute\_result}}(input, net);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00018}00018         printf(\textcolor{stringliteral}{"{}result: \%f\(\backslash\)n"{}}, \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(result, 0, 0));}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00019}00019         \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(input);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00020}00020         \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(result);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00021}00021         \mbox{\hyperlink{network_8c_aee995127aad46272ae3ddc5dfef07edc}{network\_save}}(argv[1], net);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00022}00022         \mbox{\hyperlink{network_8c_ab7de60cd0ad5a69e135b63d264018d1a}{network\_free}}(net);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00023}00023         net = \mbox{\hyperlink{network_8c_a71f0aa4f7efea3ff158a49342228bb80}{network\_load}}(argv[1]);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00024}00024         \mbox{\hyperlink{network_8c_ab7de60cd0ad5a69e135b63d264018d1a}{network\_free}}(net);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00025}00025     \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00026}00026     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00027}00027 \}}
 
 \end{DoxyCode}

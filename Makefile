@@ -1,9 +1,9 @@
 CC=gcc
 CFLAGS=-Wall -Werror -Wextra -O3 -c
-DFLAGS=-Wall -Werror -Wextra -O0 -c -g
+DFLAGS=-Wall -Werror -Wextra -O0 -c -g -fsanitize=address
 
 LD=gcc
-LFLAGS=
+LDFLAGS=-lm
 
 ROOT_TARGET=./bin
 TARGET_DIR=$(ROOT_TARGET)/Release
@@ -15,11 +15,11 @@ DEBUG_TARGET=$(DEBUG_TARGET_DIR)/Lezcollitade.debug
 
 TEST_DIR=./tests
 TEST_BIN=$(TEST_DIR)/bin
-TEST_BINS=$(TEST_BIN)/utils/matrices/matrix_test
+TEST_BINS=$(TEST_BIN)/utils/matrices/matrix_test $(TEST_BIN)/network/function_test
 
 SRC_DIR=./src
 
-SRC=main.c utils/matrices/matrix.c solver/solver.c
+SRC=main.c utils/matrices/matrix.c solver/solver.c network/function.c network/network.c
 
 OBJ_ROOT=./obj
 OBJ_DIR=$(OBJ_ROOT)/Release
@@ -42,7 +42,7 @@ debug: $(DEBUG_TARGET)
 
 $(DEBUG_TARGET): $(DEBUG_OBJS)
 	@mkdir -p $(DEBUG_TARGET_DIR)
-	$(LD)  $^ -o $@ $(LDFLAGS) 
+	$(LD)  $^ -o $@ $(LDFLAGS)  -fsanitize=address
 
 dbuild: $(DEBUG_OBJS)
 
@@ -69,7 +69,7 @@ $(LIB): $(OBJS)
 $(TEST_BIN)/%: $(TEST_DIR)/%.c $(LIB)
 	@mkdir -p $(shell echo $@ | grep -Eo "(\w+/)+")
 	@# vim color scheme debug "
-	$(CC) -g -Wall -Wextra -Werror $< $(LIB) -o $@ -lcriterion
+	$(CC) -g -Wall -Wextra -Werror $< $(LIB) -o $@ -lcriterion -lm
 
 test: clean $(LIB) $(TEST_BINS)
 	for test in $(TEST_BINS);do ./$$test; done

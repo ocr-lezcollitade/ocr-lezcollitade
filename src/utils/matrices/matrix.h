@@ -155,4 +155,12 @@ void mat_fill(matrix_t *mat, double *elements);
  */
 void mat_print(matrix_t *mat);
 
+/**
+ *  \brief          Copies the matrix.
+ *  \fn             matrix_t *mat_copy(matrix_t *origin);
+ *  \param origin   The origin matrix.
+ *  \return         A copy of the matrix.
+ */
+matrix_t *mat_copy(matrix_t *origin);
+
 #endif /* !MATH_MATRIX_H */

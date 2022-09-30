@@ -1,0 +1,55 @@
+\hypertarget{network_8h_source}{}\doxysection{network.\+h}
+\label{network_8h_source}\index{src/network/network.h@{src/network/network.h}}
+\mbox{\hyperlink{network_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00001}00001 \textcolor{preprocessor}{\#ifndef UTILS\_NETWORK\_H}}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00002}00002 \textcolor{preprocessor}{\#define UTILS\_NETWORK\_H}}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00003}00003 \textcolor{preprocessor}{\#include "{}../utils/matrices/matrix.h"{}}}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00009}\mbox{\hyperlink{structneuron__t}{00009}} \textcolor{keyword}{typedef} \textcolor{keyword}{struct}}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00010}00010 \{}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00011}\mbox{\hyperlink{structneuron__t_a6182effa3a478564d7dcd7f9d856c029}{00011}}     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *\mbox{\hyperlink{structneuron__t_a6182effa3a478564d7dcd7f9d856c029}{weights}}; }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00013}\mbox{\hyperlink{structneuron__t_ad82dab1b1a60940e62e80270ad99a522}{00013}}     \textcolor{keywordtype}{double} \mbox{\hyperlink{structneuron__t_ad82dab1b1a60940e62e80270ad99a522}{bias}};       }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00014}00014 \} \mbox{\hyperlink{structneuron__t}{neuron\_t}};}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00023}00023 \mbox{\hyperlink{structneuron__t}{neuron\_t}} *\mbox{\hyperlink{network_8h_aa706a2634d39e1b59182ab9a9403931c}{neuron\_create}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *weights, \textcolor{keywordtype}{double} bias);}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00030}00030 \textcolor{keywordtype}{void} \mbox{\hyperlink{network_8h_a634adde351458c2e8f8825c1816eeb43}{neuron\_free}}(\mbox{\hyperlink{structneuron__t}{neuron\_t}} *neuron);}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00036}\mbox{\hyperlink{structlayer__t}{00036}} \textcolor{keyword}{typedef} \textcolor{keyword}{struct}}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00037}00037 \{}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00038}\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{00038}}     \mbox{\hyperlink{structneuron__t}{neuron\_t}} **\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}; }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00039}\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{00039}}     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}};       }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00040}00040 \} \mbox{\hyperlink{structlayer__t}{layer\_t}};}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00056}00056 \mbox{\hyperlink{structlayer__t}{layer\_t}} *\mbox{\hyperlink{network_8h_adb61905641c2a84fe9cd88fb04672361}{layer\_create\_from\_mat}}(}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00057}00057     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} **weights, \textcolor{keywordtype}{double} *biases, \textcolor{keywordtype}{size\_t} count);}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00058}00058 }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00066}00066 \mbox{\hyperlink{structlayer__t}{layer\_t}} *\mbox{\hyperlink{network_8h_ad534d5135c47b2ae4f4637ddcde85205}{layer\_create}}(\mbox{\hyperlink{structneuron__t}{neuron\_t}} **neurons, \textcolor{keywordtype}{size\_t} count);}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00073}00073 \textcolor{keywordtype}{void} \mbox{\hyperlink{network_8h_ac0e36ece7ab68f5333223ea9167938d9}{layer\_free}}(\mbox{\hyperlink{structlayer__t}{layer\_t}} *layer);}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00074}00074 }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00079}\mbox{\hyperlink{structnetwork__t}{00079}} \textcolor{keyword}{typedef} \textcolor{keyword}{struct}}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00080}00080 \{}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00081}\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{00081}}     \mbox{\hyperlink{structlayer__t}{layer\_t}} **\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}};   }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00082}\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{00082}}     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}; }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00083}\mbox{\hyperlink{structnetwork__t_af7a2fbc049a0fd2d5ad14f218658ca83}{00083}}     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structnetwork__t_af7a2fbc049a0fd2d5ad14f218658ca83}{inputs}};      }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00084}00084 \} \mbox{\hyperlink{structnetwork__t}{network\_t}};}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00085}00085 }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00098}00098 \mbox{\hyperlink{structnetwork__t}{network\_t}} *\mbox{\hyperlink{network_8h_ad7ec187320facb456542975fd39de56e}{network\_create}}(\mbox{\hyperlink{structlayer__t}{layer\_t}} **layers, \textcolor{keywordtype}{size\_t} layer\_count, \textcolor{keywordtype}{size\_t} inputs);}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00099}00099 }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00108}00108 \mbox{\hyperlink{structnetwork__t}{network\_t}} *\mbox{\hyperlink{network_8h_ab6cea4b6d29301dd8feecd3db3a22e74}{network\_generate}}(\textcolor{keywordtype}{size\_t} *neurons, \textcolor{keywordtype}{size\_t} size);}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00109}00109 }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00128}00128 \mbox{\hyperlink{structnetwork__t}{network\_t}} *\mbox{\hyperlink{network_8h_a7b66b0f05d89a6c97711273d511444e4}{network\_load}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *file);}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00129}00129 }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00136}00136 \textcolor{keywordtype}{void} \mbox{\hyperlink{network_8h_acd7231053a980eb6e53011a63601389f}{network\_save}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *file, \mbox{\hyperlink{structnetwork__t}{network\_t}} *network);}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00137}00137 }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00143}00143 \textcolor{keywordtype}{void} \mbox{\hyperlink{network_8h_a409a0ece3c34a9afeaafecddf73a3e1a}{network\_free}}(\mbox{\hyperlink{structnetwork__t}{network\_t}} *network);}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00144}00144 }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00152}00152 \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *\mbox{\hyperlink{network_8h_ae31874ff552d5ac00586d3b4e9c9c078}{compute\_layer}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *values, \mbox{\hyperlink{structlayer__t}{layer\_t}} *layer);}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00153}00153 }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00162}00162 \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *\mbox{\hyperlink{network_8h_a49d5f5101cda3ffc8355a0237ee16709}{compute\_result}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *values, \mbox{\hyperlink{structnetwork__t}{network\_t}} *network);}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00163}00163 }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00164}00164 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !UTILS\_NETWORK\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

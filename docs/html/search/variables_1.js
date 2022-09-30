@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['columns_0',['columns',['../structmatrix__t.html#a23b46615e6b5054c03f59a5b33fdaac8',1,'matrix_t']]]
+  ['bias_0',['bias',['../structneuron__t.html#ad82dab1b1a60940e62e80270ad99a522',1,'neuron_t']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['readme_2emd_0',['README.md',['../README_8md.html',1,'']]],
-  ['rows_1',['rows',['../structmatrix__t.html#a9620f15b4416ec1830196db9ec904fc5',1,'matrix_t']]]
+  ['generate_5fweights_0',['generate_weights',['../function_8c.html#ae6d5ccd297429cb956c9a4deb3d5daa8',1,'generate_weights(double n):&#160;function.c'],['../function_8h.html#ae6d5ccd297429cb956c9a4deb3d5daa8',1,'generate_weights(double n):&#160;function.c']]]
 ];

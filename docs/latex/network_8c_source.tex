@@ -1,0 +1,480 @@
+\hypertarget{network_8c_source}{}\doxysection{network.\+c}
+\label{network_8c_source}\index{src/network/network.c@{src/network/network.c}}
+\mbox{\hyperlink{network_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00001}00001 \textcolor{preprocessor}{\#include <err.h>}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00002}00002 \textcolor{preprocessor}{\#include <malloc.h>}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00003}00003 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00004}00004 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{network_8h}{network.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00005}00005 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{function_8h}{function.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00008}\mbox{\hyperlink{network_8c_a28a631a46550a13bbf48635953aafcbd}{00008}} \textcolor{preprocessor}{\#define CHK(ptr, function, message)               \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00009}00009 \textcolor{preprocessor}{    \{                                             \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00010}00010 \textcolor{preprocessor}{        if (ptr == NULL)                          \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00011}00011 \textcolor{preprocessor}{            errx(1, "{}\%s: \%s"{}}, function, message); \(\backslash\)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00012}00012     \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00014}\mbox{\hyperlink{network_8c_ae31874ff552d5ac00586d3b4e9c9c078}{00014}} \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *\mbox{\hyperlink{network_8c_ae31874ff552d5ac00586d3b4e9c9c078}{compute\_layer}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *values, \mbox{\hyperlink{structlayer__t}{layer\_t}} *layer)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00015}00015 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00016}00016     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *result = \mbox{\hyperlink{matrix_8c_a1d9b061fc8856e727f014c3266b7431d}{matrix\_create}}(layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}}, 1, 0);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00017}00017     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}}; i++)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00018}00018     \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00019}00019         \mbox{\hyperlink{structneuron__t}{neuron\_t}} *neuron = layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[i];}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00020}00020         \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *tmp = \mbox{\hyperlink{matrix_8c_aec843b4f924ae1c524b4f3e3dcc0ceda}{mat\_product}}(neuron-\/>\mbox{\hyperlink{structneuron__t_a6182effa3a478564d7dcd7f9d856c029}{weights}}, values);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00021}00021         \textcolor{keywordtype}{double} postres = \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(tmp, 0, 0) + neuron-\/>\mbox{\hyperlink{structneuron__t_ad82dab1b1a60940e62e80270ad99a522}{bias}};}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00022}00022         postres = \mbox{\hyperlink{function_8c_aa924e8c95bc498ebc9f8e08a0c491e7c}{sigmoid}}(postres);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00023}00023         \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(tmp);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00024}00024         \mbox{\hyperlink{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}{mat\_set\_el}}(result, i, 0, postres);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00025}00025     \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00027}00027     \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00028}00028 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00030}\mbox{\hyperlink{network_8c_a49d5f5101cda3ffc8355a0237ee16709}{00030}} \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *\mbox{\hyperlink{network_8c_a49d5f5101cda3ffc8355a0237ee16709}{compute\_result}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *values, \mbox{\hyperlink{structnetwork__t}{network\_t}} *network)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00031}00031 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00032}00032     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *lastResults = \mbox{\hyperlink{matrix_8c_ad4970f9c83f185813ab569266c4fd0de}{mat\_copy}}(values);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00033}00033     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < network-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}; i++)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00034}00034     \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00035}00035         \mbox{\hyperlink{structlayer__t}{layer\_t}} *layer = network-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[i];}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00036}00036         \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *tmp = \mbox{\hyperlink{network_8c_ae31874ff552d5ac00586d3b4e9c9c078}{compute\_layer}}(lastResults, layer);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00037}00037         \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(lastResults);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00038}00038         lastResults = tmp;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00039}00039     \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00040}00040 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00041}00041     \textcolor{keywordflow}{return} lastResults;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00042}00042 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00044}\mbox{\hyperlink{network_8c_aa706a2634d39e1b59182ab9a9403931c}{00044}} \mbox{\hyperlink{structneuron__t}{neuron\_t}} *\mbox{\hyperlink{network_8c_aa706a2634d39e1b59182ab9a9403931c}{neuron\_create}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *weights, \textcolor{keywordtype}{double} bias)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00045}00045 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00046}00046     \mbox{\hyperlink{structneuron__t}{neuron\_t}} *neuron = (\mbox{\hyperlink{structneuron__t}{neuron\_t}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structneuron__t}{neuron\_t}}));}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00047}00047     \textcolor{keywordflow}{if} (neuron == NULL)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00048}00048         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00049}00049     neuron-\/>\mbox{\hyperlink{structneuron__t_a6182effa3a478564d7dcd7f9d856c029}{weights}} = weights;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00050}00050     neuron-\/>\mbox{\hyperlink{structneuron__t_ad82dab1b1a60940e62e80270ad99a522}{bias}} = bias;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00051}00051 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00052}00052     \textcolor{keywordflow}{return} neuron;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00053}00053 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00055}\mbox{\hyperlink{network_8c_a634adde351458c2e8f8825c1816eeb43}{00055}} \textcolor{keywordtype}{void} \mbox{\hyperlink{network_8c_a634adde351458c2e8f8825c1816eeb43}{neuron\_free}}(\mbox{\hyperlink{structneuron__t}{neuron\_t}} *neuron)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00056}00056 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00057}00057     \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(neuron-\/>\mbox{\hyperlink{structneuron__t_a6182effa3a478564d7dcd7f9d856c029}{weights}});}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00058}00058     free(neuron);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00059}00059 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00061}\mbox{\hyperlink{network_8c_adb61905641c2a84fe9cd88fb04672361}{00061}} \mbox{\hyperlink{structlayer__t}{layer\_t}} *\mbox{\hyperlink{network_8c_adb61905641c2a84fe9cd88fb04672361}{layer\_create\_from\_mat}}(}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00062}00062     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} **weights, \textcolor{keywordtype}{double} *biases, \textcolor{keywordtype}{size\_t} count)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00063}00063 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00064}00064     \mbox{\hyperlink{structlayer__t}{layer\_t}} *layer = (\mbox{\hyperlink{structlayer__t}{layer\_t}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlayer__t}{layer\_t}}));}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00065}00065     \textcolor{keywordflow}{if} (layer == NULL)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00066}00066         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00067}00067     layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}} = count;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00068}00068     layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}} = (\mbox{\hyperlink{structneuron__t}{neuron\_t}} **)malloc(count * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structneuron__t}{neuron\_t}} *));}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00069}00069     \textcolor{keywordflow}{if} (layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}} == NULL)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00070}00070         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00071}00071     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < count; i++)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00072}00072         layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[i] = \mbox{\hyperlink{network_8c_aa706a2634d39e1b59182ab9a9403931c}{neuron\_create}}(weights[i], biases[i]);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00073}00073 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00074}00074     \textcolor{keywordflow}{return} layer;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00075}00075 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00076}00076 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00077}\mbox{\hyperlink{network_8c_ad534d5135c47b2ae4f4637ddcde85205}{00077}} \mbox{\hyperlink{structlayer__t}{layer\_t}} *\mbox{\hyperlink{network_8c_ad534d5135c47b2ae4f4637ddcde85205}{layer\_create}}(\mbox{\hyperlink{structneuron__t}{neuron\_t}} **neurons, \textcolor{keywordtype}{size\_t} count)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00078}00078 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00079}00079     \mbox{\hyperlink{structlayer__t}{layer\_t}} *layer = (\mbox{\hyperlink{structlayer__t}{layer\_t}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlayer__t}{layer\_t}}));}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00080}00080     \textcolor{keywordflow}{if} (layer == NULL)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00081}00081         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00082}00082     layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}} = neurons;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00083}00083     layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}} = count;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00084}00084 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00085}00085     \textcolor{keywordflow}{return} layer;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00086}00086 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00087}00087 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00088}\mbox{\hyperlink{network_8c_ac0e36ece7ab68f5333223ea9167938d9}{00088}} \textcolor{keywordtype}{void} \mbox{\hyperlink{network_8c_ac0e36ece7ab68f5333223ea9167938d9}{layer\_free}}(\mbox{\hyperlink{structlayer__t}{layer\_t}} *layer)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00089}00089 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00090}00090     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}}; i++)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00091}00091     \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00092}00092         \mbox{\hyperlink{network_8c_a634adde351458c2e8f8825c1816eeb43}{neuron\_free}}(layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[i]);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00093}00093     \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00094}00094 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00095}00095     free(layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}});}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00096}00096     free(layer);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00097}00097 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00098}00098 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00099}\mbox{\hyperlink{network_8c_ad7ec187320facb456542975fd39de56e}{00099}} \mbox{\hyperlink{structnetwork__t}{network\_t}} *\mbox{\hyperlink{network_8c_ad7ec187320facb456542975fd39de56e}{network\_create}}(\mbox{\hyperlink{structlayer__t}{layer\_t}} **layers, \textcolor{keywordtype}{size\_t} layer\_count, \textcolor{keywordtype}{size\_t} inputs)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00100}00100 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00101}00101     \mbox{\hyperlink{structnetwork__t}{network\_t}} *res = (\mbox{\hyperlink{structnetwork__t}{network\_t}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structnetwork__t}{network\_t}}));}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00102}00102     \textcolor{keywordflow}{if} (res == NULL)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00103}00103         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00104}00104     res-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}} = layers;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00105}00105     res-\/>\mbox{\hyperlink{structnetwork__t_af7a2fbc049a0fd2d5ad14f218658ca83}{inputs}} = inputs;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00106}00106     res-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}} = layer\_count;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00107}00107     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00108}00108 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00109}00109 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00110}\mbox{\hyperlink{network_8c_ab7de60cd0ad5a69e135b63d264018d1a}{00110}} \textcolor{keywordtype}{void} \mbox{\hyperlink{network_8c_ab7de60cd0ad5a69e135b63d264018d1a}{network\_free}}(\mbox{\hyperlink{structnetwork__t}{network\_t}} *net)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00111}00111 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00112}00112     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < net-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}; i++)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00113}00113     \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00114}00114         \mbox{\hyperlink{network_8c_ac0e36ece7ab68f5333223ea9167938d9}{layer\_free}}(net-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[i]);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00115}00115     \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00116}00116 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00117}00117     free(net-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}});}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00118}00118     free(net);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00119}00119 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00120}00120 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00121}\mbox{\hyperlink{network_8c_abd607f13447d238cfa36348ed8e5d383}{00121}} \textcolor{preprocessor}{\#define READ\_LENGTH 1024}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00122}00122 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00123}00123 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{size\_t} parseSize(\textcolor{keywordtype}{size\_t} old, \textcolor{keywordtype}{char} c)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00124}00124 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00125}00125     \textcolor{keywordflow}{return} old * 10 + (c -\/ \textcolor{charliteral}{'0'});}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00126}00126 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00127}00127 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00128}00128 \textcolor{keyword}{static} \textcolor{keywordtype}{double} parseNumber(\textcolor{keywordtype}{double} old, \textcolor{keywordtype}{char} c, \textcolor{keywordtype}{size\_t} *offset, \textcolor{keywordtype}{int} negative)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00129}00129 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00130}00130     \textcolor{keywordflow}{if} (c == \textcolor{charliteral}{'.'})}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00131}00131     \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00132}00132         *offset = 1;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00133}00133         \textcolor{keywordflow}{return} old;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00134}00134     \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00135}00135 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00136}00136     \textcolor{keywordtype}{double} value = c -\/ \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00137}00137     \textcolor{keywordflow}{if} (*offset > 0)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00138}00138     \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00139}00139         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < *offset; i++)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00140}00140         \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00141}00141             value /= 10.0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00142}00142         \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00143}00143         (*offset)++;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00144}00144         \textcolor{keywordflow}{if} (negative)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00145}00145             old -\/= value;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00146}00146         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00147}00147             old += value;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00148}00148     \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00149}00149     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00150}00150     \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00151}00151         \textcolor{keywordflow}{if} (negative)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00152}00152             old = old * 10 -\/ value;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00153}00153         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00154}00154             old = old * 10 + value;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00155}00155     \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00156}00156 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00157}00157     \textcolor{keywordflow}{return} old;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00158}00158 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00159}00159 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00160}00160 \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keywordtype}{void} parser\_error(\textcolor{keywordtype}{size\_t} line, \textcolor{keywordtype}{size\_t} column, \textcolor{keywordtype}{char} c)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00161}00161 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00162}00162     errx(1, \textcolor{stringliteral}{"{}unknown character \(\backslash\)'\%c\(\backslash\)'(\%d) while parsing at position (\%zu,\%zu)"{}},}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00163}00163         c, c, line, column);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00164}00164 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00165}00165 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00166}00166 \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keywordtype}{int} parse\_header(}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00167}00167     FILE *file, \textcolor{keywordtype}{size\_t} *layer\_count, \textcolor{keywordtype}{size\_t} *input\_neurons, \textcolor{keywordtype}{size\_t} *line)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00168}00168 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00169}00169 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00170}00170     \textcolor{keywordtype}{char} buffer[\mbox{\hyperlink{network_8c_abd607f13447d238cfa36348ed8e5d383}{READ\_LENGTH}}];}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00171}00171     \textcolor{keywordtype}{size\_t} comma\_count = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00172}00172     \textcolor{keywordtype}{size\_t} value = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00173}00173     \textcolor{keywordtype}{size\_t} index = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00174}00174     \textcolor{keywordtype}{int} in\_number = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00175}00175     \textcolor{keywordflow}{while} (1)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00176}00176     \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00177}00177         \textcolor{keywordflow}{if} (fgets(buffer, \mbox{\hyperlink{network_8c_abd607f13447d238cfa36348ed8e5d383}{READ\_LENGTH}}, file) == NULL)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00178}00178             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00179}00179         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < \mbox{\hyperlink{network_8c_abd607f13447d238cfa36348ed8e5d383}{READ\_LENGTH}}; i++, index++)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00180}00180         \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00181}00181             \textcolor{keywordtype}{char} c = buffer[i];}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00182}00182             \textcolor{keywordflow}{if} (c >= \textcolor{charliteral}{'0'} \&\& c <= \textcolor{charliteral}{'9'})}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00183}00183             \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00184}00184                 in\_number = 1;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00185}00185                 value = parseSize(value, c);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00186}00186             \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00187}00187             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (c == \textcolor{charliteral}{','})}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00188}00188             \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00189}00189                 \textcolor{keywordflow}{if} (comma\_count == 0)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00190}00190                 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00191}00191                     *layer\_count = value;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00192}00192                     value = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00193}00193                 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00194}00194                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00195}00195                 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00196}00196                     parser\_error(0, index, c);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00197}00197                 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00198}00198                 comma\_count++;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00199}00199             \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00200}00200             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (c == \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00201}00201             \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00202}00202                 \textcolor{comment}{// only encountered new line}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00203}00203                 \textcolor{keywordflow}{if} (comma\_count == 0 \&\& !in\_number)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00204}00204                 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00205}00205                     (*line)++;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00206}00206                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00207}00207                 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00208}00208                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (comma\_count == 1)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00209}00209                     *input\_neurons = value;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00210}00210                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00211}00211                     parser\_error(0, index, c);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00212}00212                 \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00213}00213             \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00214}00214             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (c == \textcolor{charliteral}{' '})}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00215}00215             \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00216}00216                 in\_number = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00217}00217             \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00218}00218             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00219}00219             \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00220}00220                 parser\_error(*line, index, c);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00221}00221             \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00222}00222         \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00223}00223     \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00224}00224 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00225}00225     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00226}00226 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00227}00227 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00228}00228 \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keywordtype}{int} parse\_layer\_header(}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00229}00229     FILE *file, \textcolor{keywordtype}{size\_t} *neuron\_count, \textcolor{keywordtype}{size\_t} *line)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00230}00230 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00231}00231 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00232}00232     \textcolor{keywordtype}{char} buffer[\mbox{\hyperlink{network_8c_abd607f13447d238cfa36348ed8e5d383}{READ\_LENGTH}}];}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00233}00233 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00234}00234     \textcolor{keywordtype}{size\_t} value = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00235}00235     \textcolor{keywordtype}{int} in\_number = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00236}00236     \textcolor{keywordtype}{size\_t} index = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00237}00237     \textcolor{keywordflow}{while} (1)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00238}00238     \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00239}00239         \textcolor{keywordflow}{if} (fgets(buffer, \mbox{\hyperlink{network_8c_abd607f13447d238cfa36348ed8e5d383}{READ\_LENGTH}}, file) == NULL)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00240}00240             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00241}00241         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < \mbox{\hyperlink{network_8c_abd607f13447d238cfa36348ed8e5d383}{READ\_LENGTH}}; i++, index++)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00242}00242         \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00243}00243             \textcolor{keywordtype}{char} c = buffer[i];}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00244}00244             \textcolor{keywordflow}{if} (c >= \textcolor{charliteral}{'0'} \&\& c <= \textcolor{charliteral}{'9'})}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00245}00245             \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00246}00246                 in\_number = 1;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00247}00247                 value = parseSize(value, c);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00248}00248             \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00249}00249             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (c == \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00250}00250             \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00251}00251                 \textcolor{keywordflow}{if} (!in\_number)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00252}00252                 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00253}00253                     (*line)++;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00254}00254                     index = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00255}00255                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00256}00256                 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00257}00257                 *neuron\_count = value;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00258}00258                 \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00259}00259             \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00260}00260             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (c == \textcolor{charliteral}{'\(\backslash\)0'})}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00261}00261             \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00262}00262                 *neuron\_count = value;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00263}00263                 \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00264}00264             \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00265}00265             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (c != \textcolor{charliteral}{' '})}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00266}00266             \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00267}00267                 parser\_error(*line, index, c);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00268}00268             \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00269}00269         \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00270}00270     \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00271}00271 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00272}00272     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00273}00273 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00274}00274 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00275}00275 \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keywordtype}{int} parse\_neuron\_line(}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00276}00276     FILE *file, \textcolor{keywordtype}{double} *result, \textcolor{keywordtype}{size\_t} count, \textcolor{keywordtype}{size\_t} *line)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00277}00277 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00278}00278 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00279}00279     \textcolor{keywordtype}{char} buffer[\mbox{\hyperlink{network_8c_abd607f13447d238cfa36348ed8e5d383}{READ\_LENGTH}}];}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00281}00281     \textcolor{keywordtype}{size\_t} col = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00282}00282     \textcolor{keywordtype}{size\_t} index = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00283}00283     \textcolor{keywordtype}{size\_t} value\_offset = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00284}00284     \textcolor{keywordtype}{double} value = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00285}00285     \textcolor{keywordtype}{int} value\_negative = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00286}00286     \textcolor{keywordtype}{int} in\_number = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00287}00287     \textcolor{keywordflow}{while} (1)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00288}00288     \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00289}00289         \textcolor{keywordflow}{if} (fgets(buffer, \mbox{\hyperlink{network_8c_abd607f13447d238cfa36348ed8e5d383}{READ\_LENGTH}}, file) == NULL)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00290}00290             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00291}00291         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < \mbox{\hyperlink{network_8c_abd607f13447d238cfa36348ed8e5d383}{READ\_LENGTH}}; i++, col++)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00292}00292         \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00293}00293             \textcolor{keywordtype}{char} c = buffer[i];}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00294}00294             \textcolor{keywordflow}{if} (c == \textcolor{charliteral}{'-\/'})}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00295}00295             \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00296}00296                 \textcolor{keywordflow}{if} (in\_number)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00297}00297                     parser\_error(*line, col, c);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00298}00298                 value\_negative = 1;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00299}00299             \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00300}00300             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (c == \textcolor{charliteral}{'.'})}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00301}00301             \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00302}00302                 \textcolor{keywordflow}{if} (value\_offset > 0)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00303}00303                     parser\_error(*line, col, c);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00304}00304                 value = parseNumber(value, c, \&value\_offset, value\_negative);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00305}00305                 in\_number = 1;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00306}00306             \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00307}00307             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ((c >= \textcolor{charliteral}{'0'} \&\& c <= \textcolor{charliteral}{'9'}))}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00308}00308             \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00309}00309                 in\_number = 1;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00310}00310                 value = parseNumber(value, c, \&value\_offset, value\_negative);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00311}00311             \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00312}00312             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (c == \textcolor{charliteral}{','})}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00313}00313             \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00314}00314 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00315}00315                 \textcolor{keywordflow}{if} (!in\_number || index + 1 >= count)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00316}00316                     parser\_error(*line, col, c);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00317}00317                 in\_number = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00318}00318                 result[index++] = value;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00319}00319                 value = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00320}00320                 value\_negative = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00321}00321                 value\_offset = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00322}00322             \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00323}00323             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (c == \textcolor{charliteral}{'\(\backslash\)0'})}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00324}00324             \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00325}00325                 result[index++] = value;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00326}00326                 \textcolor{keywordflow}{if} (index < count)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00327}00327                 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00328}00328                     errx(1, \textcolor{stringliteral}{"{}missing values at line \%zu"{}}, *line);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00329}00329                 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00330}00330                 \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00331}00331             \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00332}00332             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (c == \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00333}00333             \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00334}00334                 \textcolor{keywordflow}{if} (!in\_number \&\& index == 0)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00335}00335                 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00336}00336                     col = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00337}00337                     (*line)++;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00338}00338                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00339}00339                 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00340}00340                 result[index++] = value;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00341}00341                 \textcolor{keywordflow}{if} (index < count)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00342}00342                     errx(1, \textcolor{stringliteral}{"{}missing values at line \%zu"{}}, *line);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00343}00343                 \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00344}00344             \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00345}00345             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (c != \textcolor{charliteral}{' '})}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00346}00346             \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00347}00347                 parser\_error(*line, col, c);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00348}00348             \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00349}00349         \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00350}00350     \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00351}00351 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00352}00352     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00353}00353 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00354}00354 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00355}00355 \textcolor{keyword}{static} \textcolor{keyword}{inline} \mbox{\hyperlink{structneuron__t}{neuron\_t}} *parse\_results(\textcolor{keywordtype}{double} *values, \textcolor{keywordtype}{size\_t} weight\_count)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00356}00356 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00357}00357     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *weights = \mbox{\hyperlink{matrix_8c_a517e248a0faeb2c0a2e1f1b823b8cd3b}{mat\_create\_fill}}(1, weight\_count, values);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00358}00358     \textcolor{keywordflow}{return} \mbox{\hyperlink{network_8c_aa706a2634d39e1b59182ab9a9403931c}{neuron\_create}}(weights, values[weight\_count]);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00359}00359 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00360}00360 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00361}\mbox{\hyperlink{network_8c_a71f0aa4f7efea3ff158a49342228bb80}{00361}} \mbox{\hyperlink{structnetwork__t}{network\_t}} *\mbox{\hyperlink{network_8c_a71f0aa4f7efea3ff158a49342228bb80}{network\_load}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *path)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00362}00362 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00363}00363     \textcolor{comment}{// open the file}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00364}00364     FILE *file = fopen(path, \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00365}00365     \mbox{\hyperlink{network_8c_a28a631a46550a13bbf48635953aafcbd}{CHK}}(file, \textcolor{stringliteral}{"{}network\_load"{}}, \textcolor{stringliteral}{"{}could not open file"{}});}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00366}00366 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00367}00367     \textcolor{keywordtype}{size\_t} layer\_count, weight\_count, neuron\_count = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00368}00368     \textcolor{keywordtype}{size\_t} neuron\_index = 0, layer\_index = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00369}00369     \textcolor{keywordtype}{int} in\_layer = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00370}00370     \textcolor{keywordtype}{size\_t} line = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00371}00371     \textcolor{keywordtype}{int} alive = parse\_header(file, \&layer\_count, \&neuron\_count, \&line);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00372}00372     line++;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00373}00373     \textcolor{keywordflow}{if} (!alive)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00374}00374         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00375}00375 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00376}00376     \mbox{\hyperlink{structlayer__t}{layer\_t}} **layers = (\mbox{\hyperlink{structlayer__t}{layer\_t}} **)malloc(layer\_count * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlayer__t}{layer\_t}} *));}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00377}00377     \mbox{\hyperlink{structnetwork__t}{network\_t}} *res = \mbox{\hyperlink{network_8c_ad7ec187320facb456542975fd39de56e}{network\_create}}(layers, layer\_count, neuron\_count);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00378}00378     \textcolor{keywordtype}{double} *values;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00379}00379     \textcolor{keywordflow}{while} (layer\_index < layer\_count)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00380}00380     \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00381}00381         \textcolor{keywordflow}{if} (!in\_layer)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00382}00382         \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00383}00383             weight\_count = neuron\_count;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00384}00384             alive = parse\_layer\_header(file, \&neuron\_count, \&line);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00385}00385             line++;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00386}00386             neuron\_index = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00387}00387             in\_layer = 1;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00388}00388             layers[layer\_index] = \mbox{\hyperlink{network_8c_ad534d5135c47b2ae4f4637ddcde85205}{layer\_create}}(}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00389}00389                 (\mbox{\hyperlink{structneuron__t}{neuron\_t}} **)malloc(neuron\_count * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structneuron__t}{neuron\_t}} *)),}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00390}00390                 neuron\_count);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00391}00391         \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00392}00392         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00393}00393         \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00394}00394             \textcolor{keywordflow}{if} (neuron\_count == neuron\_index)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00395}00395             \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00396}00396                 in\_layer = 0;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00397}00397                 layer\_index++;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00398}00398             \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00399}00399             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00400}00400             \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00401}00401                 values = (\textcolor{keywordtype}{double} *)malloc((weight\_count + 1) * \textcolor{keyword}{sizeof}(double));}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00402}00402                 alive}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00403}00403                     = parse\_neuron\_line(file, values, weight\_count + 1, \&line);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00404}00404                 line++;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00405}00405                 layers[layer\_index]-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[neuron\_index]}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00406}00406                     = parse\_results(values, weight\_count);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00407}00407                 free(values);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00408}00408                 neuron\_index++;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00409}00409             \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00410}00410         \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00411}00411     \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00412}00412     \textcolor{comment}{// close the file}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00413}00413     fclose(file);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00414}00414     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00415}00415 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00416}00416 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00417}00417 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} neuron\_save(}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00418}00418     FILE *file, \mbox{\hyperlink{structneuron__t}{neuron\_t}} *neuron, \textcolor{keywordtype}{size\_t} weight\_count)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00419}00419 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00420}00420     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < weight\_count; i++)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00421}00421     \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00422}00422         fprintf(file, \textcolor{stringliteral}{"{}\%f, "{}}, \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(neuron-\/>\mbox{\hyperlink{structneuron__t_a6182effa3a478564d7dcd7f9d856c029}{weights}}, 0, i));}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00423}00423     \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00424}00424     fprintf(file, \textcolor{stringliteral}{"{}\%f\(\backslash\)n"{}}, neuron-\/>\mbox{\hyperlink{structneuron__t_ad82dab1b1a60940e62e80270ad99a522}{bias}});}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00425}00425 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00426}00426 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00427}00427 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} layer\_save(FILE *file, \mbox{\hyperlink{structlayer__t}{layer\_t}} *layer, \textcolor{keywordtype}{size\_t} weight\_count)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00428}00428 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00429}00429 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00430}00430     fprintf(file, \textcolor{stringliteral}{"{}\%zu\(\backslash\)n"{}}, layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}});}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00431}00431     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}}; i++)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00432}00432     \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00433}00433         neuron\_save(file, layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[i], weight\_count);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00434}00434     \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00435}00435 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00436}00436 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00437}\mbox{\hyperlink{network_8c_aee995127aad46272ae3ddc5dfef07edc}{00437}} \textcolor{keywordtype}{void} \mbox{\hyperlink{network_8c_aee995127aad46272ae3ddc5dfef07edc}{network\_save}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, \mbox{\hyperlink{structnetwork__t}{network\_t}} *net)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00438}00438 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00439}00439     FILE *file = fopen(path, \textcolor{stringliteral}{"{}w"{}});}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00440}00440     \mbox{\hyperlink{network_8c_a28a631a46550a13bbf48635953aafcbd}{CHK}}(file, \textcolor{stringliteral}{"{}network\_save"{}}, \textcolor{stringliteral}{"{}could not open file"{}});}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00441}00441     fprintf(file, \textcolor{stringliteral}{"{}\%zu, \%zu\(\backslash\)n"{}}, net-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}, net-\/>\mbox{\hyperlink{structnetwork__t_af7a2fbc049a0fd2d5ad14f218658ca83}{inputs}});}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00442}00442     \textcolor{keywordtype}{size\_t} weight\_count = net-\/>\mbox{\hyperlink{structnetwork__t_af7a2fbc049a0fd2d5ad14f218658ca83}{inputs}};}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00443}00443     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < net-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}; i++)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00444}00444     \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00445}00445         fprintf(file, \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00446}00446         layer\_save(file, net-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[i], weight\_count);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00447}00447         weight\_count = net-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[i]-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}};}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00448}00448     \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00449}00449     fclose(file);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00450}00450 \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00451}00451 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00452}\mbox{\hyperlink{network_8c_aba00189ea608835915fdd9f753c33fd4}{00452}} \mbox{\hyperlink{structnetwork__t}{network\_t}} *\mbox{\hyperlink{network_8c_aba00189ea608835915fdd9f753c33fd4}{network\_generate}}(\textcolor{keywordtype}{size\_t} *neuron\_count, \textcolor{keywordtype}{size\_t} size)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00453}00453 \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00454}00454     \textcolor{keywordflow}{if} (size < 2)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00455}00455         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00456}00456     \mbox{\hyperlink{structlayer__t}{layer\_t}} **layers = (\mbox{\hyperlink{structlayer__t}{layer\_t}} **)malloc((size -\/ 1) * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlayer__t}{layer\_t}} *));}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00457}00457     \textcolor{keywordtype}{size\_t} weights = neuron\_count[0];}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00458}00458     \mbox{\hyperlink{structnetwork__t}{network\_t}} *res = \mbox{\hyperlink{network_8c_ad7ec187320facb456542975fd39de56e}{network\_create}}(layers, size -\/ 1, weights);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00459}00459 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00460}00460     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 1; i < size; i++)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00461}00461     \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00462}00462         \textcolor{keywordtype}{size\_t} n\_count = neuron\_count[i];}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00463}00463         \mbox{\hyperlink{structneuron__t}{neuron\_t}} **neurons = (\mbox{\hyperlink{structneuron__t}{neuron\_t}} **)malloc(n\_count * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structneuron__t}{neuron\_t}} *));}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00464}00464         \mbox{\hyperlink{structlayer__t}{layer\_t}} *layer = \mbox{\hyperlink{network_8c_ad534d5135c47b2ae4f4637ddcde85205}{layer\_create}}(neurons, n\_count);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00465}00465         layers[i -\/ 1] = layer;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00466}00466         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} ni = 0; ni < n\_count; ni++)}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00467}00467         \{}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00468}00468             \textcolor{keywordtype}{double} *values = \mbox{\hyperlink{function_8c_ae6d5ccd297429cb956c9a4deb3d5daa8}{generate\_weights}}(weights + 1);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00469}00469             layers[i -\/ 1]-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[ni] = parse\_results(values, weights);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00470}00470             free(values);}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00471}00471         \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00472}00472         weights = n\_count;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00473}00473     \}}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00474}00474 }
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00475}00475     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{\Hypertarget{network_8c_source_l00476}00476 \}}
+
+\end{DoxyCode}

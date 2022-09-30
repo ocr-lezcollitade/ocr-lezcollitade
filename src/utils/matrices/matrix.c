@@ -189,3 +189,19 @@ void mat_print(matrix_t *mat)
         printf("|\n");
     }
 }
+
+matrix_t *mat_copy(matrix_t *origin)
+{
+    matrix_t *result = matrix_create(origin->rows, origin->columns, 0);
+    if (result == NULL)
+        return NULL;
+    for (size_t i = 0; i < origin->rows; i++)
+    {
+        for (size_t j = 0; j < origin->columns; j++)
+        {
+            mat_set_el(result, i, j, mat_el_at(origin, i, j));
+        }
+    }
+
+    return result;
+}

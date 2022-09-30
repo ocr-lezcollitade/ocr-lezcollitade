@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['x_0',['x',['../structCell.html#ac008158796a0bfdf37be2f26eff651ef',1,'Cell']]]
+  ['inputs_0',['inputs',['../structnetwork__t.html#af7a2fbc049a0fd2d5ad14f218658ca83',1,'network_t']]]
 ];

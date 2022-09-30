@@ -70,13 +70,14 @@ Test(matrix_product, basics)
     cr_expect(mat_equal(res, expected), "res should be equal to expected");
 }
 
-Test(matrix_product, vectors) {
+Test(matrix_product, vectors)
+{
     matrix_t *A = matrix_create(1, 2, 0);
     double v1[] = {1, 2};
     mat_fill(A, (double *)v1);
     double v2[] = {3, 4};
     matrix_t *B = matrix_create(2, 1, 0);
-    mat_fill(B, (double *) v2);
+    mat_fill(B, (double *)v2);
     matrix_t *expected = matrix_create(1, 1, 0);
     mat_set_el(expected, 0, 0, 11);
 
@@ -89,6 +90,6 @@ Test(matrix_product, vectors) {
     expected = matrix_create(2, 2, 0);
     double v3[] = {3, 6, 4, 8};
     mat_fill(expected, v3);
-    
+
     cr_expect(mat_equal(res, expected), "vector prod should be equal");
 }

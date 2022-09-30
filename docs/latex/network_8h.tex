@@ -1,0 +1,541 @@
+\hypertarget{network_8h}{}\doxysection{src/network/network.h File Reference}
+\label{network_8h}\index{src/network/network.h@{src/network/network.h}}
+{\ttfamily \#include \char`\"{}../utils/matrices/matrix.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structneuron__t}{neuron\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em A struct representing a neuron in the network. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structlayer__t}{layer\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em A struct representing a layer in the network. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structnetwork__t}{network\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em A struct representing a neural network. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structneuron__t}{neuron\+\_\+t}} $\ast$ \mbox{\hyperlink{network_8h_aa706a2634d39e1b59182ab9a9403931c}{neuron\+\_\+create}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$weights, double bias)
+\begin{DoxyCompactList}\small\item\em Creates a neuron. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{network_8h_a634adde351458c2e8f8825c1816eeb43}{neuron\+\_\+free}} (\mbox{\hyperlink{structneuron__t}{neuron\+\_\+t}} $\ast$neuron)
+\begin{DoxyCompactList}\small\item\em Frees the allocated neuron. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structlayer__t}{layer\+\_\+t}} $\ast$ \mbox{\hyperlink{network_8h_adb61905641c2a84fe9cd88fb04672361}{layer\+\_\+create\+\_\+from\+\_\+mat}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$$\ast$weights, double $\ast$biases, size\+\_\+t count)
+\begin{DoxyCompactList}\small\item\em Creates filled layer from an array of weights, and an array of biases. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structlayer__t}{layer\+\_\+t}} $\ast$ \mbox{\hyperlink{network_8h_ad534d5135c47b2ae4f4637ddcde85205}{layer\+\_\+create}} (\mbox{\hyperlink{structneuron__t}{neuron\+\_\+t}} $\ast$$\ast$neurons, size\+\_\+t count)
+\begin{DoxyCompactList}\small\item\em Creates a layer from an array of neurons. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{network_8h_ac0e36ece7ab68f5333223ea9167938d9}{layer\+\_\+free}} (\mbox{\hyperlink{structlayer__t}{layer\+\_\+t}} $\ast$layer)
+\begin{DoxyCompactList}\small\item\em Frees an allocated layer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$ \mbox{\hyperlink{network_8h_ad7ec187320facb456542975fd39de56e}{network\+\_\+create}} (\mbox{\hyperlink{structlayer__t}{layer\+\_\+t}} $\ast$$\ast$layers, size\+\_\+t layer\+\_\+count, size\+\_\+t inputs)
+\begin{DoxyCompactList}\small\item\em Creates a network from an array of layers. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$ \mbox{\hyperlink{network_8h_ab6cea4b6d29301dd8feecd3db3a22e74}{network\+\_\+generate}} (size\+\_\+t $\ast$neurons, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Generates a network based on given neuron count. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$ \mbox{\hyperlink{network_8h_a7b66b0f05d89a6c97711273d511444e4}{network\+\_\+load}} (const char $\ast$file)
+\begin{DoxyCompactList}\small\item\em Loads the network from a file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{network_8h_acd7231053a980eb6e53011a63601389f}{network\+\_\+save}} (const char $\ast$file, \mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$network)
+\begin{DoxyCompactList}\small\item\em Saves a network to a file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{network_8h_a409a0ece3c34a9afeaafecddf73a3e1a}{network\+\_\+free}} (\mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$network)
+\begin{DoxyCompactList}\small\item\em Frees the allocated network. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ \mbox{\hyperlink{network_8h_ae31874ff552d5ac00586d3b4e9c9c078}{compute\+\_\+layer}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$values, \mbox{\hyperlink{structlayer__t}{layer\+\_\+t}} $\ast$layer)
+\begin{DoxyCompactList}\small\item\em Computes all the weights of one layer from the input. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ \mbox{\hyperlink{network_8h_a49d5f5101cda3ffc8355a0237ee16709}{compute\+\_\+result}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$values, \mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$network)
+\begin{DoxyCompactList}\small\item\em Computes the result of the input by the network. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{network_8h_ae31874ff552d5ac00586d3b4e9c9c078}\label{network_8h_ae31874ff552d5ac00586d3b4e9c9c078}} 
+\index{network.h@{network.h}!compute\_layer@{compute\_layer}}
+\index{compute\_layer@{compute\_layer}!network.h@{network.h}}
+\doxysubsubsection{\texorpdfstring{compute\_layer()}{compute\_layer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ compute\+\_\+layer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{values,  }\item[{\mbox{\hyperlink{structlayer__t}{layer\+\_\+t}} $\ast$}]{layer }\end{DoxyParamCaption})}
+
+
+
+Computes all the weights of one layer from the input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inputs} & The column vector of inputs from the previous layer. \\
+\hline
+{\em layer} & The layer to compute. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The column vector of outputs. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{network_8c_source_l00014}{14}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00015 \{}
+\DoxyCodeLine{00016     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *result = \mbox{\hyperlink{matrix_8c_a1d9b061fc8856e727f014c3266b7431d}{matrix\_create}}(layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}}, 1, 0);}
+\DoxyCodeLine{00017     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}}; i++)}
+\DoxyCodeLine{00018     \{}
+\DoxyCodeLine{00019         \mbox{\hyperlink{structneuron__t}{neuron\_t}} *neuron = layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[i];}
+\DoxyCodeLine{00020         \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *tmp = \mbox{\hyperlink{matrix_8c_aec843b4f924ae1c524b4f3e3dcc0ceda}{mat\_product}}(neuron-\/>\mbox{\hyperlink{structneuron__t_a6182effa3a478564d7dcd7f9d856c029}{weights}}, values);}
+\DoxyCodeLine{00021         \textcolor{keywordtype}{double} postres = \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(tmp, 0, 0) + neuron-\/>\mbox{\hyperlink{structneuron__t_ad82dab1b1a60940e62e80270ad99a522}{bias}};}
+\DoxyCodeLine{00022         postres = \mbox{\hyperlink{function_8c_aa924e8c95bc498ebc9f8e08a0c491e7c}{sigmoid}}(postres);}
+\DoxyCodeLine{00023         \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(tmp);}
+\DoxyCodeLine{00024         \mbox{\hyperlink{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}{mat\_set\_el}}(result, i, 0, postres);}
+\DoxyCodeLine{00025     \}}
+\DoxyCodeLine{00026 }
+\DoxyCodeLine{00027     \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{00028 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{network_8h_a49d5f5101cda3ffc8355a0237ee16709}\label{network_8h_a49d5f5101cda3ffc8355a0237ee16709}} 
+\index{network.h@{network.h}!compute\_result@{compute\_result}}
+\index{compute\_result@{compute\_result}!network.h@{network.h}}
+\doxysubsubsection{\texorpdfstring{compute\_result()}{compute\_result()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ compute\+\_\+result (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{values,  }\item[{\mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$}]{network }\end{DoxyParamCaption})}
+
+
+
+Computes the result of the input by the network. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inputs} & The column vector of the values. \\
+\hline
+{\em network} & The network to apply the values to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The column vector of the computed results. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{network_8c_source_l00030}{30}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031 \{}
+\DoxyCodeLine{00032     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *lastResults = \mbox{\hyperlink{matrix_8c_ad4970f9c83f185813ab569266c4fd0de}{mat\_copy}}(values);}
+\DoxyCodeLine{00033     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < network-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}; i++)}
+\DoxyCodeLine{00034     \{}
+\DoxyCodeLine{00035         \mbox{\hyperlink{structlayer__t}{layer\_t}} *layer = network-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[i];}
+\DoxyCodeLine{00036         \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *tmp = \mbox{\hyperlink{network_8c_ae31874ff552d5ac00586d3b4e9c9c078}{compute\_layer}}(lastResults, layer);}
+\DoxyCodeLine{00037         \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(lastResults);}
+\DoxyCodeLine{00038         lastResults = tmp;}
+\DoxyCodeLine{00039     \}}
+\DoxyCodeLine{00040 }
+\DoxyCodeLine{00041     \textcolor{keywordflow}{return} lastResults;}
+\DoxyCodeLine{00042 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{network_8h_ad534d5135c47b2ae4f4637ddcde85205}\label{network_8h_ad534d5135c47b2ae4f4637ddcde85205}} 
+\index{network.h@{network.h}!layer\_create@{layer\_create}}
+\index{layer\_create@{layer\_create}!network.h@{network.h}}
+\doxysubsubsection{\texorpdfstring{layer\_create()}{layer\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structlayer__t}{layer\+\_\+t}} $\ast$ layer\+\_\+create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structneuron__t}{neuron\+\_\+t}} $\ast$$\ast$}]{neurons,  }\item[{size\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+
+
+Creates a layer from an array of neurons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em neurons} & The array of neurons in the layer. \\
+\hline
+{\em count} & The count of neurons in the layer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created layer. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{network_8c_source_l00077}{77}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00078 \{}
+\DoxyCodeLine{00079     \mbox{\hyperlink{structlayer__t}{layer\_t}} *layer = (\mbox{\hyperlink{structlayer__t}{layer\_t}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlayer__t}{layer\_t}}));}
+\DoxyCodeLine{00080     \textcolor{keywordflow}{if} (layer == NULL)}
+\DoxyCodeLine{00081         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00082     layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}} = neurons;}
+\DoxyCodeLine{00083     layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}} = count;}
+\DoxyCodeLine{00084 }
+\DoxyCodeLine{00085     \textcolor{keywordflow}{return} layer;}
+\DoxyCodeLine{00086 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{network_8h_adb61905641c2a84fe9cd88fb04672361}\label{network_8h_adb61905641c2a84fe9cd88fb04672361}} 
+\index{network.h@{network.h}!layer\_create\_from\_mat@{layer\_create\_from\_mat}}
+\index{layer\_create\_from\_mat@{layer\_create\_from\_mat}!network.h@{network.h}}
+\doxysubsubsection{\texorpdfstring{layer\_create\_from\_mat()}{layer\_create\_from\_mat()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structlayer__t}{layer\+\_\+t}} $\ast$ layer\+\_\+create\+\_\+from\+\_\+mat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$$\ast$}]{weights,  }\item[{double $\ast$}]{biases,  }\item[{size\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+
+
+Creates filled layer from an array of weights, and an array of biases. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em weights} & The array of weights for each neuron in the layer. \\
+\hline
+{\em biases} & The array of biases for each neuron in the layer. \\
+\hline
+{\em count} & The number of elements to be created, hence the size of weights and biases. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created layer. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{network_8c_source_l00061}{61}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00063 \{}
+\DoxyCodeLine{00064     \mbox{\hyperlink{structlayer__t}{layer\_t}} *layer = (\mbox{\hyperlink{structlayer__t}{layer\_t}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlayer__t}{layer\_t}}));}
+\DoxyCodeLine{00065     \textcolor{keywordflow}{if} (layer == NULL)}
+\DoxyCodeLine{00066         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00067     layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}} = count;}
+\DoxyCodeLine{00068     layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}} = (\mbox{\hyperlink{structneuron__t}{neuron\_t}} **)malloc(count * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structneuron__t}{neuron\_t}} *));}
+\DoxyCodeLine{00069     \textcolor{keywordflow}{if} (layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}} == NULL)}
+\DoxyCodeLine{00070         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00071     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < count; i++)}
+\DoxyCodeLine{00072         layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[i] = \mbox{\hyperlink{network_8c_aa706a2634d39e1b59182ab9a9403931c}{neuron\_create}}(weights[i], biases[i]);}
+\DoxyCodeLine{00073 }
+\DoxyCodeLine{00074     \textcolor{keywordflow}{return} layer;}
+\DoxyCodeLine{00075 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{network_8h_ac0e36ece7ab68f5333223ea9167938d9}\label{network_8h_ac0e36ece7ab68f5333223ea9167938d9}} 
+\index{network.h@{network.h}!layer\_free@{layer\_free}}
+\index{layer\_free@{layer\_free}!network.h@{network.h}}
+\doxysubsubsection{\texorpdfstring{layer\_free()}{layer\_free()}}
+{\footnotesize\ttfamily void layer\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlayer__t}{layer\+\_\+t}} $\ast$}]{layer }\end{DoxyParamCaption})}
+
+
+
+Frees an allocated layer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em layer} & The layer to be freed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{network_8c_source_l00088}{88}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00089 \{}
+\DoxyCodeLine{00090     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}}; i++)}
+\DoxyCodeLine{00091     \{}
+\DoxyCodeLine{00092         \mbox{\hyperlink{network_8c_a634adde351458c2e8f8825c1816eeb43}{neuron\_free}}(layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[i]);}
+\DoxyCodeLine{00093     \}}
+\DoxyCodeLine{00094 }
+\DoxyCodeLine{00095     free(layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}});}
+\DoxyCodeLine{00096     free(layer);}
+\DoxyCodeLine{00097 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{network_8h_ad7ec187320facb456542975fd39de56e}\label{network_8h_ad7ec187320facb456542975fd39de56e}} 
+\index{network.h@{network.h}!network\_create@{network\_create}}
+\index{network\_create@{network\_create}!network.h@{network.h}}
+\doxysubsubsection{\texorpdfstring{network\_create()}{network\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$ network\+\_\+create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlayer__t}{layer\+\_\+t}} $\ast$$\ast$}]{layers,  }\item[{size\+\_\+t}]{layer\+\_\+count,  }\item[{size\+\_\+t}]{inputs }\end{DoxyParamCaption})}
+
+
+
+Creates a network from an array of layers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em layers} & The array of layers in the network. \\
+\hline
+{\em size} & The number of layers in the array. \\
+\hline
+{\em inputs} & The number of neurons in the input layer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created network. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{network_8c_source_l00099}{99}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00100 \{}
+\DoxyCodeLine{00101     \mbox{\hyperlink{structnetwork__t}{network\_t}} *res = (\mbox{\hyperlink{structnetwork__t}{network\_t}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structnetwork__t}{network\_t}}));}
+\DoxyCodeLine{00102     \textcolor{keywordflow}{if} (res == NULL)}
+\DoxyCodeLine{00103         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00104     res-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}} = layers;}
+\DoxyCodeLine{00105     res-\/>\mbox{\hyperlink{structnetwork__t_af7a2fbc049a0fd2d5ad14f218658ca83}{inputs}} = inputs;}
+\DoxyCodeLine{00106     res-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}} = layer\_count;}
+\DoxyCodeLine{00107     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{00108 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{network_8h_a409a0ece3c34a9afeaafecddf73a3e1a}\label{network_8h_a409a0ece3c34a9afeaafecddf73a3e1a}} 
+\index{network.h@{network.h}!network\_free@{network\_free}}
+\index{network\_free@{network\_free}!network.h@{network.h}}
+\doxysubsubsection{\texorpdfstring{network\_free()}{network\_free()}}
+{\footnotesize\ttfamily void network\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$}]{net }\end{DoxyParamCaption})}
+
+
+
+Frees the allocated network. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em network} & The network to be freed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{network_8c_source_l00110}{110}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00111 \{}
+\DoxyCodeLine{00112     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < net-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}; i++)}
+\DoxyCodeLine{00113     \{}
+\DoxyCodeLine{00114         \mbox{\hyperlink{network_8c_ac0e36ece7ab68f5333223ea9167938d9}{layer\_free}}(net-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[i]);}
+\DoxyCodeLine{00115     \}}
+\DoxyCodeLine{00116 }
+\DoxyCodeLine{00117     free(net-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}});}
+\DoxyCodeLine{00118     free(net);}
+\DoxyCodeLine{00119 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{network_8h_ab6cea4b6d29301dd8feecd3db3a22e74}\label{network_8h_ab6cea4b6d29301dd8feecd3db3a22e74}} 
+\index{network.h@{network.h}!network\_generate@{network\_generate}}
+\index{network\_generate@{network\_generate}!network.h@{network.h}}
+\doxysubsubsection{\texorpdfstring{network\_generate()}{network\_generate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$ network\+\_\+generate (\begin{DoxyParamCaption}\item[{size\+\_\+t $\ast$}]{neuron\+\_\+count,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Generates a network based on given neuron count. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em neurons} & An array containing the number of neurons at each layer including input layer.\\
+\hline
+{\em size} & The length of the array, hence the number of layers plus the input layer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The generated network. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{network_8c_source_l00452}{452}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00453 \{}
+\DoxyCodeLine{00454     \textcolor{keywordflow}{if} (size < 2)}
+\DoxyCodeLine{00455         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00456     \mbox{\hyperlink{structlayer__t}{layer\_t}} **layers = (\mbox{\hyperlink{structlayer__t}{layer\_t}} **)malloc((size -\/ 1) * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlayer__t}{layer\_t}} *));}
+\DoxyCodeLine{00457     \textcolor{keywordtype}{size\_t} weights = neuron\_count[0];}
+\DoxyCodeLine{00458     \mbox{\hyperlink{structnetwork__t}{network\_t}} *res = \mbox{\hyperlink{network_8c_ad7ec187320facb456542975fd39de56e}{network\_create}}(layers, size -\/ 1, weights);}
+\DoxyCodeLine{00459 }
+\DoxyCodeLine{00460     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 1; i < size; i++)}
+\DoxyCodeLine{00461     \{}
+\DoxyCodeLine{00462         \textcolor{keywordtype}{size\_t} n\_count = neuron\_count[i];}
+\DoxyCodeLine{00463         \mbox{\hyperlink{structneuron__t}{neuron\_t}} **neurons = (\mbox{\hyperlink{structneuron__t}{neuron\_t}} **)malloc(n\_count * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structneuron__t}{neuron\_t}} *));}
+\DoxyCodeLine{00464         \mbox{\hyperlink{structlayer__t}{layer\_t}} *layer = \mbox{\hyperlink{network_8c_ad534d5135c47b2ae4f4637ddcde85205}{layer\_create}}(neurons, n\_count);}
+\DoxyCodeLine{00465         layers[i -\/ 1] = layer;}
+\DoxyCodeLine{00466         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} ni = 0; ni < n\_count; ni++)}
+\DoxyCodeLine{00467         \{}
+\DoxyCodeLine{00468             \textcolor{keywordtype}{double} *values = \mbox{\hyperlink{function_8c_ae6d5ccd297429cb956c9a4deb3d5daa8}{generate\_weights}}(weights + 1);}
+\DoxyCodeLine{00469             layers[i -\/ 1]-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[ni] = parse\_results(values, weights);}
+\DoxyCodeLine{00470             free(values);}
+\DoxyCodeLine{00471         \}}
+\DoxyCodeLine{00472         weights = n\_count;}
+\DoxyCodeLine{00473     \}}
+\DoxyCodeLine{00474 }
+\DoxyCodeLine{00475     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{00476 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{network_8h_a7b66b0f05d89a6c97711273d511444e4}\label{network_8h_a7b66b0f05d89a6c97711273d511444e4}} 
+\index{network.h@{network.h}!network\_load@{network\_load}}
+\index{network\_load@{network\_load}!network.h@{network.h}}
+\doxysubsubsection{\texorpdfstring{network\_load()}{network\_load()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$ network\+\_\+load (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file }\end{DoxyParamCaption})}
+
+
+
+Loads the network from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The path of the file to load. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The loaded network. The file format\+: The file will start with two comma-\/separated integer indicating the number of layers and the number of input neurons. Each layer will start by the number of neurons in the layer. Then each neuron information will be seperated by a newline char. Neuron format\+: $<$weight1$>$, ... , $<$weightn$>$, $<$bias$>$ Example for xor network with random biases and weights\+: 2,2 \# The number of layers and the number of input neurons. 2 \# The number of neurons in layer 1 1,1,-\/0.\+5 \# neuron 1,1 weights are \mbox{[}1, 1\mbox{]} and the bias is -\/0.\+5 -\/1,-\/1,1.\+5 1 \# The number of neurons in layer 2 1, 1, 0.\+5 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{network_8c_source_l00361}{361}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00362 \{}
+\DoxyCodeLine{00363     \textcolor{comment}{// open the file}}
+\DoxyCodeLine{00364     FILE *file = fopen(path, \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{00365     \mbox{\hyperlink{network_8c_a28a631a46550a13bbf48635953aafcbd}{CHK}}(file, \textcolor{stringliteral}{"{}network\_load"{}}, \textcolor{stringliteral}{"{}could not open file"{}});}
+\DoxyCodeLine{00366 }
+\DoxyCodeLine{00367     \textcolor{keywordtype}{size\_t} layer\_count, weight\_count, neuron\_count = 0;}
+\DoxyCodeLine{00368     \textcolor{keywordtype}{size\_t} neuron\_index = 0, layer\_index = 0;}
+\DoxyCodeLine{00369     \textcolor{keywordtype}{int} in\_layer = 0;}
+\DoxyCodeLine{00370     \textcolor{keywordtype}{size\_t} line = 0;}
+\DoxyCodeLine{00371     \textcolor{keywordtype}{int} alive = parse\_header(file, \&layer\_count, \&neuron\_count, \&line);}
+\DoxyCodeLine{00372     line++;}
+\DoxyCodeLine{00373     \textcolor{keywordflow}{if} (!alive)}
+\DoxyCodeLine{00374         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00375 }
+\DoxyCodeLine{00376     \mbox{\hyperlink{structlayer__t}{layer\_t}} **layers = (\mbox{\hyperlink{structlayer__t}{layer\_t}} **)malloc(layer\_count * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlayer__t}{layer\_t}} *));}
+\DoxyCodeLine{00377     \mbox{\hyperlink{structnetwork__t}{network\_t}} *res = \mbox{\hyperlink{network_8c_ad7ec187320facb456542975fd39de56e}{network\_create}}(layers, layer\_count, neuron\_count);}
+\DoxyCodeLine{00378     \textcolor{keywordtype}{double} *values;}
+\DoxyCodeLine{00379     \textcolor{keywordflow}{while} (layer\_index < layer\_count)}
+\DoxyCodeLine{00380     \{}
+\DoxyCodeLine{00381         \textcolor{keywordflow}{if} (!in\_layer)}
+\DoxyCodeLine{00382         \{}
+\DoxyCodeLine{00383             weight\_count = neuron\_count;}
+\DoxyCodeLine{00384             alive = parse\_layer\_header(file, \&neuron\_count, \&line);}
+\DoxyCodeLine{00385             line++;}
+\DoxyCodeLine{00386             neuron\_index = 0;}
+\DoxyCodeLine{00387             in\_layer = 1;}
+\DoxyCodeLine{00388             layers[layer\_index] = \mbox{\hyperlink{network_8c_ad534d5135c47b2ae4f4637ddcde85205}{layer\_create}}(}
+\DoxyCodeLine{00389                 (\mbox{\hyperlink{structneuron__t}{neuron\_t}} **)malloc(neuron\_count * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structneuron__t}{neuron\_t}} *)),}
+\DoxyCodeLine{00390                 neuron\_count);}
+\DoxyCodeLine{00391         \}}
+\DoxyCodeLine{00392         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00393         \{}
+\DoxyCodeLine{00394             \textcolor{keywordflow}{if} (neuron\_count == neuron\_index)}
+\DoxyCodeLine{00395             \{}
+\DoxyCodeLine{00396                 in\_layer = 0;}
+\DoxyCodeLine{00397                 layer\_index++;}
+\DoxyCodeLine{00398             \}}
+\DoxyCodeLine{00399             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00400             \{}
+\DoxyCodeLine{00401                 values = (\textcolor{keywordtype}{double} *)malloc((weight\_count + 1) * \textcolor{keyword}{sizeof}(double));}
+\DoxyCodeLine{00402                 alive}
+\DoxyCodeLine{00403                     = parse\_neuron\_line(file, values, weight\_count + 1, \&line);}
+\DoxyCodeLine{00404                 line++;}
+\DoxyCodeLine{00405                 layers[layer\_index]-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[neuron\_index]}
+\DoxyCodeLine{00406                     = parse\_results(values, weight\_count);}
+\DoxyCodeLine{00407                 free(values);}
+\DoxyCodeLine{00408                 neuron\_index++;}
+\DoxyCodeLine{00409             \}}
+\DoxyCodeLine{00410         \}}
+\DoxyCodeLine{00411     \}}
+\DoxyCodeLine{00412     \textcolor{comment}{// close the file}}
+\DoxyCodeLine{00413     fclose(file);}
+\DoxyCodeLine{00414     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{00415 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{network_8h_acd7231053a980eb6e53011a63601389f}\label{network_8h_acd7231053a980eb6e53011a63601389f}} 
+\index{network.h@{network.h}!network\_save@{network\_save}}
+\index{network\_save@{network\_save}!network.h@{network.h}}
+\doxysubsubsection{\texorpdfstring{network\_save()}{network\_save()}}
+{\footnotesize\ttfamily void network\+\_\+save (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path,  }\item[{\mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$}]{net }\end{DoxyParamCaption})}
+
+
+
+Saves a network to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The file to save the network to. \\
+\hline
+{\em network} & The network to be saved. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{network_8c_source_l00437}{437}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00438 \{}
+\DoxyCodeLine{00439     FILE *file = fopen(path, \textcolor{stringliteral}{"{}w"{}});}
+\DoxyCodeLine{00440     \mbox{\hyperlink{network_8c_a28a631a46550a13bbf48635953aafcbd}{CHK}}(file, \textcolor{stringliteral}{"{}network\_save"{}}, \textcolor{stringliteral}{"{}could not open file"{}});}
+\DoxyCodeLine{00441     fprintf(file, \textcolor{stringliteral}{"{}\%zu, \%zu\(\backslash\)n"{}}, net-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}, net-\/>\mbox{\hyperlink{structnetwork__t_af7a2fbc049a0fd2d5ad14f218658ca83}{inputs}});}
+\DoxyCodeLine{00442     \textcolor{keywordtype}{size\_t} weight\_count = net-\/>\mbox{\hyperlink{structnetwork__t_af7a2fbc049a0fd2d5ad14f218658ca83}{inputs}};}
+\DoxyCodeLine{00443     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < net-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}; i++)}
+\DoxyCodeLine{00444     \{}
+\DoxyCodeLine{00445         fprintf(file, \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00446         layer\_save(file, net-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[i], weight\_count);}
+\DoxyCodeLine{00447         weight\_count = net-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[i]-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}};}
+\DoxyCodeLine{00448     \}}
+\DoxyCodeLine{00449     fclose(file);}
+\DoxyCodeLine{00450 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{network_8h_aa706a2634d39e1b59182ab9a9403931c}\label{network_8h_aa706a2634d39e1b59182ab9a9403931c}} 
+\index{network.h@{network.h}!neuron\_create@{neuron\_create}}
+\index{neuron\_create@{neuron\_create}!network.h@{network.h}}
+\doxysubsubsection{\texorpdfstring{neuron\_create()}{neuron\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structneuron__t}{neuron\+\_\+t}} $\ast$ neuron\+\_\+create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{weights,  }\item[{double}]{bias }\end{DoxyParamCaption})}
+
+
+
+Creates a neuron. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em weights} & The weights of the neuron. \\
+\hline
+{\em bias} & The bias of the neuron. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The instantiated neuron. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{network_8c_source_l00044}{44}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00045 \{}
+\DoxyCodeLine{00046     \mbox{\hyperlink{structneuron__t}{neuron\_t}} *neuron = (\mbox{\hyperlink{structneuron__t}{neuron\_t}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structneuron__t}{neuron\_t}}));}
+\DoxyCodeLine{00047     \textcolor{keywordflow}{if} (neuron == NULL)}
+\DoxyCodeLine{00048         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00049     neuron-\/>\mbox{\hyperlink{structneuron__t_a6182effa3a478564d7dcd7f9d856c029}{weights}} = weights;}
+\DoxyCodeLine{00050     neuron-\/>\mbox{\hyperlink{structneuron__t_ad82dab1b1a60940e62e80270ad99a522}{bias}} = bias;}
+\DoxyCodeLine{00051 }
+\DoxyCodeLine{00052     \textcolor{keywordflow}{return} neuron;}
+\DoxyCodeLine{00053 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{network_8h_a634adde351458c2e8f8825c1816eeb43}\label{network_8h_a634adde351458c2e8f8825c1816eeb43}} 
+\index{network.h@{network.h}!neuron\_free@{neuron\_free}}
+\index{neuron\_free@{neuron\_free}!network.h@{network.h}}
+\doxysubsubsection{\texorpdfstring{neuron\_free()}{neuron\_free()}}
+{\footnotesize\ttfamily void neuron\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structneuron__t}{neuron\+\_\+t}} $\ast$}]{neuron }\end{DoxyParamCaption})}
+
+
+
+Frees the allocated neuron. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em neuron} & The neuron to free. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{network_8c_source_l00055}{55}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00056 \{}
+\DoxyCodeLine{00057     \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(neuron-\/>\mbox{\hyperlink{structneuron__t_a6182effa3a478564d7dcd7f9d856c029}{weights}});}
+\DoxyCodeLine{00058     free(neuron);}
+\DoxyCodeLine{00059 \}}
+
+\end{DoxyCode}

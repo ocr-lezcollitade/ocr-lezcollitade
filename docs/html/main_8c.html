@@ -73,7 +73,9 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="network_8h_source.html">./network/network.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="solver_8h_source.html">./solver/solver.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="matrix_8h_source.html">./utils/matrices/matrix.h</a>&quot;</code><br />
 </div>
 <p><a href="main_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -109,13 +111,37 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00005">5</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">    5</span>                                {</div>
-<div class="line"><span class="lineno">    6</span>    <span class="keywordflow">if</span>(argc == 2)</div>
-<div class="line"><span class="lineno">    7</span>        <a class="code hl_function" href="solver_8c.html#a34d8e6241d75827a5fbfeff56a349223">solve</a>(argv[1]);</div>
-<div class="line"><span class="lineno">    8</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><span class="lineno">    9</span>}</div>
-<div class="ttc" id="asolver_8c_html_a34d8e6241d75827a5fbfeff56a349223"><div class="ttname"><a href="solver_8c.html#a34d8e6241d75827a5fbfeff56a349223">solve</a></div><div class="ttdeci">int solve(char *inputFile)</div><div class="ttdoc">read a sudoku grid from a file, solve it and write the solution in another file in &quot;....</div><div class="ttdef"><b>Definition:</b> <a href="solver_8c_source.html#l00070">solver.c:70</a></div></div>
+<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00007">7</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">    8</span>{</div>
+<div class="line"><span class="lineno">    9</span> </div>
+<div class="line"><span class="lineno">   10</span>    <span class="keywordflow">if</span> (argc == 2)</div>
+<div class="line"><span class="lineno">   11</span>    {</div>
+<div class="line"><span class="lineno">   12</span>        <span class="keywordtype">size_t</span> layers[] = {2, 2, 1};</div>
+<div class="line"><span class="lineno">   13</span>        <a class="code hl_struct" href="structnetwork__t.html">network_t</a> *net</div>
+<div class="line"><span class="lineno">   14</span>            = <a class="code hl_function" href="network_8c.html#aba00189ea608835915fdd9f753c33fd4">network_generate</a>(layers, <span class="keyword">sizeof</span>(layers) / <span class="keyword">sizeof</span>(<span class="keywordtype">size_t</span>));</div>
+<div class="line"><span class="lineno">   15</span>        <span class="keywordtype">double</span> values[] = {1, 1};</div>
+<div class="line"><span class="lineno">   16</span>        <a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> *input = <a class="code hl_function" href="matrix_8c.html#a517e248a0faeb2c0a2e1f1b823b8cd3b">mat_create_fill</a>(2, 1, values);</div>
+<div class="line"><span class="lineno">   17</span>        <a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> *result = <a class="code hl_function" href="network_8c.html#a49d5f5101cda3ffc8355a0237ee16709">compute_result</a>(input, net);</div>
+<div class="line"><span class="lineno">   18</span>        printf(<span class="stringliteral">&quot;result: %f\n&quot;</span>, <a class="code hl_function" href="matrix_8c.html#a631ff21351ba5ec31350fb5277605d3b">mat_el_at</a>(result, 0, 0));</div>
+<div class="line"><span class="lineno">   19</span>        <a class="code hl_function" href="matrix_8c.html#aa20fd2a5c773eda620ce98e2f121b687">matrix_free</a>(input);</div>
+<div class="line"><span class="lineno">   20</span>        <a class="code hl_function" href="matrix_8c.html#aa20fd2a5c773eda620ce98e2f121b687">matrix_free</a>(result);</div>
+<div class="line"><span class="lineno">   21</span>        <a class="code hl_function" href="network_8c.html#aee995127aad46272ae3ddc5dfef07edc">network_save</a>(argv[1], net);</div>
+<div class="line"><span class="lineno">   22</span>        <a class="code hl_function" href="network_8c.html#ab7de60cd0ad5a69e135b63d264018d1a">network_free</a>(net);</div>
+<div class="line"><span class="lineno">   23</span>        net = <a class="code hl_function" href="network_8c.html#a71f0aa4f7efea3ff158a49342228bb80">network_load</a>(argv[1]);</div>
+<div class="line"><span class="lineno">   24</span>        <a class="code hl_function" href="network_8c.html#ab7de60cd0ad5a69e135b63d264018d1a">network_free</a>(net);</div>
+<div class="line"><span class="lineno">   25</span>    }</div>
+<div class="line"><span class="lineno">   26</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">   27</span>}</div>
+<div class="ttc" id="amatrix_8c_html_a517e248a0faeb2c0a2e1f1b823b8cd3b"><div class="ttname"><a href="matrix_8c.html#a517e248a0faeb2c0a2e1f1b823b8cd3b">mat_create_fill</a></div><div class="ttdeci">matrix_t * mat_create_fill(size_t rows, size_t columns, double *elements)</div><div class="ttdoc">Creates a matrix and fills it.</div><div class="ttdef"><b>Definition:</b> <a href="matrix_8c_source.html#l00038">matrix.c:38</a></div></div>
+<div class="ttc" id="amatrix_8c_html_a631ff21351ba5ec31350fb5277605d3b"><div class="ttname"><a href="matrix_8c.html#a631ff21351ba5ec31350fb5277605d3b">mat_el_at</a></div><div class="ttdeci">double mat_el_at(matrix_t *mat, size_t i, size_t j)</div><div class="ttdoc">gets the elements at position i, j</div><div class="ttdef"><b>Definition:</b> <a href="matrix_8c_source.html#l00006">matrix.c:6</a></div></div>
+<div class="ttc" id="amatrix_8c_html_aa20fd2a5c773eda620ce98e2f121b687"><div class="ttname"><a href="matrix_8c.html#aa20fd2a5c773eda620ce98e2f121b687">matrix_free</a></div><div class="ttdeci">void matrix_free(matrix_t *mat)</div><div class="ttdoc">frees the matrix</div><div class="ttdef"><b>Definition:</b> <a href="matrix_8c_source.html#l00045">matrix.c:45</a></div></div>
+<div class="ttc" id="anetwork_8c_html_a49d5f5101cda3ffc8355a0237ee16709"><div class="ttname"><a href="network_8c.html#a49d5f5101cda3ffc8355a0237ee16709">compute_result</a></div><div class="ttdeci">matrix_t * compute_result(matrix_t *values, network_t *network)</div><div class="ttdoc">Computes the result of the input by the network.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00030">network.c:30</a></div></div>
+<div class="ttc" id="anetwork_8c_html_a71f0aa4f7efea3ff158a49342228bb80"><div class="ttname"><a href="network_8c.html#a71f0aa4f7efea3ff158a49342228bb80">network_load</a></div><div class="ttdeci">network_t * network_load(const char *path)</div><div class="ttdoc">Loads the network from a file.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00361">network.c:361</a></div></div>
+<div class="ttc" id="anetwork_8c_html_ab7de60cd0ad5a69e135b63d264018d1a"><div class="ttname"><a href="network_8c.html#ab7de60cd0ad5a69e135b63d264018d1a">network_free</a></div><div class="ttdeci">void network_free(network_t *net)</div><div class="ttdoc">Frees the allocated network.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00110">network.c:110</a></div></div>
+<div class="ttc" id="anetwork_8c_html_aba00189ea608835915fdd9f753c33fd4"><div class="ttname"><a href="network_8c.html#aba00189ea608835915fdd9f753c33fd4">network_generate</a></div><div class="ttdeci">network_t * network_generate(size_t *neuron_count, size_t size)</div><div class="ttdoc">Generates a network based on given neuron count.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00452">network.c:452</a></div></div>
+<div class="ttc" id="anetwork_8c_html_aee995127aad46272ae3ddc5dfef07edc"><div class="ttname"><a href="network_8c.html#aee995127aad46272ae3ddc5dfef07edc">network_save</a></div><div class="ttdeci">void network_save(const char *path, network_t *net)</div><div class="ttdoc">Saves a network to a file.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00437">network.c:437</a></div></div>
+<div class="ttc" id="astructmatrix__t_html"><div class="ttname"><a href="structmatrix__t.html">matrix_t</a></div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00009">matrix.h:10</a></div></div>
+<div class="ttc" id="astructnetwork__t_html"><div class="ttname"><a href="structnetwork__t.html">network_t</a></div><div class="ttdoc">A struct representing a neural network.</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00079">network.h:80</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>

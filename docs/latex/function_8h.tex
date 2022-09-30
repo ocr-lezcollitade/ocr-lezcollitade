@@ -1,0 +1,186 @@
+\hypertarget{function_8h}{}\doxysection{src/network/function.h File Reference}
+\label{function_8h}\index{src/network/function.h@{src/network/function.h}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{function_8h_adf5bc76de62d9db530dd1b752315c311}{sigmoid}} (double arg)
+\begin{DoxyCompactList}\small\item\em The sigmoid function. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{function_8h_ae26b6248510ebcfc65f48a62e8b01ba1}{nb\+\_\+m1\+\_\+and\+\_\+1}} ()
+\item 
+int \mbox{\hyperlink{function_8h_a1422db7183b6193c878d7afb32cd60a6}{index\+\_\+random}} (int count)
+\item 
+double \mbox{\hyperlink{function_8h_a5530f7da19de2bf4e3ab4b717824472c}{normal}} (double z)
+\begin{DoxyCompactList}\small\item\em Returns a number following the standard normal distribution;. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{function_8h_a0770694792334e6a69938e6a9364fbb9}{sign}} (double nb)
+\begin{DoxyCompactList}\small\item\em Returns 1 if the double is positive, -\/1 otherwise;. \end{DoxyCompactList}\item 
+double $\ast$ \mbox{\hyperlink{function_8h_ae6d5ccd297429cb956c9a4deb3d5daa8}{generate\+\_\+weights}} (double n)
+\begin{DoxyCompactList}\small\item\em Returns a double pointer with values following normal distribution; of element for the distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{function_8h_ae6d5ccd297429cb956c9a4deb3d5daa8}\label{function_8h_ae6d5ccd297429cb956c9a4deb3d5daa8}} 
+\index{function.h@{function.h}!generate\_weights@{generate\_weights}}
+\index{generate\_weights@{generate\_weights}!function.h@{function.h}}
+\doxysubsubsection{\texorpdfstring{generate\_weights()}{generate\_weights()}}
+{\footnotesize\ttfamily double $\ast$ generate\+\_\+weights (\begin{DoxyParamCaption}\item[{double}]{n }\end{DoxyParamCaption})}
+
+
+
+Returns a double pointer with values following normal distribution; of element for the distribution. 
+
+\begin{DoxyReturn}{Returns}
+a double pointer with values following normal distribution; 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{function_8c_source_l00032}{32}} of file \mbox{\hyperlink{function_8c_source}{function.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00033 \{}
+\DoxyCodeLine{00034     \textcolor{keywordtype}{size\_t} index = 0;}
+\DoxyCodeLine{00035     \textcolor{keywordtype}{double} *values = (\textcolor{keywordtype}{double} *)malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{double}) * n);}
+\DoxyCodeLine{00036     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = -\/n / 2; i < n / 2; i++)}
+\DoxyCodeLine{00037     \{}
+\DoxyCodeLine{00038         \textcolor{keywordtype}{double} nb = \mbox{\hyperlink{function_8c_a5530f7da19de2bf4e3ab4b717824472c}{normal}}(\mbox{\hyperlink{function_8c_ae26b6248510ebcfc65f48a62e8b01ba1}{nb\_m1\_and\_1}}() * 2) * \mbox{\hyperlink{function_8c_a0770694792334e6a69938e6a9364fbb9}{sign}}(i);}
+\DoxyCodeLine{00039         values[index] = nb;}
+\DoxyCodeLine{00040         index++;}
+\DoxyCodeLine{00041     \}}
+\DoxyCodeLine{00042 }
+\DoxyCodeLine{00043     \textcolor{comment}{// SHUFFLE}}
+\DoxyCodeLine{00044 }
+\DoxyCodeLine{00045     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 100; i++)}
+\DoxyCodeLine{00046     \{}
+\DoxyCodeLine{00047         \textcolor{keywordtype}{int} i1 = \mbox{\hyperlink{function_8c_a1422db7183b6193c878d7afb32cd60a6}{index\_random}}(n);}
+\DoxyCodeLine{00048         \textcolor{keywordtype}{int} i2 = \mbox{\hyperlink{function_8c_a1422db7183b6193c878d7afb32cd60a6}{index\_random}}(n);}
+\DoxyCodeLine{00049         \textcolor{keywordtype}{double} temp = values[i1];}
+\DoxyCodeLine{00050         values[i1] = values[i2];}
+\DoxyCodeLine{00051         values[i2] = temp;}
+\DoxyCodeLine{00052     \}}
+\DoxyCodeLine{00053     \textcolor{keywordflow}{return} values;}
+\DoxyCodeLine{00054 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8h_a1422db7183b6193c878d7afb32cd60a6}\label{function_8h_a1422db7183b6193c878d7afb32cd60a6}} 
+\index{function.h@{function.h}!index\_random@{index\_random}}
+\index{index\_random@{index\_random}!function.h@{function.h}}
+\doxysubsubsection{\texorpdfstring{index\_random()}{index\_random()}}
+{\footnotesize\ttfamily int index\+\_\+random (\begin{DoxyParamCaption}\item[{int}]{count }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{function_8c_source_l00015}{15}} of file \mbox{\hyperlink{function_8c_source}{function.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016 \{}
+\DoxyCodeLine{00017     \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})((((double)rand() / (double)(\textcolor{keywordtype}{unsigned})RAND\_MAX + 1))}
+\DoxyCodeLine{00018                  * (double)count)}
+\DoxyCodeLine{00019            -\/ count;}
+\DoxyCodeLine{00020 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8h_ae26b6248510ebcfc65f48a62e8b01ba1}\label{function_8h_ae26b6248510ebcfc65f48a62e8b01ba1}} 
+\index{function.h@{function.h}!nb\_m1\_and\_1@{nb\_m1\_and\_1}}
+\index{nb\_m1\_and\_1@{nb\_m1\_and\_1}!function.h@{function.h}}
+\doxysubsubsection{\texorpdfstring{nb\_m1\_and\_1()}{nb\_m1\_and\_1()}}
+{\footnotesize\ttfamily double nb\+\_\+m1\+\_\+and\+\_\+1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{function_8c_source_l00010}{10}} of file \mbox{\hyperlink{function_8c_source}{function.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00011 \{}
+\DoxyCodeLine{00012     \textcolor{keywordflow}{return} ((\textcolor{keywordtype}{double})rand() / (\textcolor{keywordtype}{double})((\textcolor{keywordtype}{unsigned})RAND\_MAX + 1)) * 2 -\/ 1;}
+\DoxyCodeLine{00013 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8h_a5530f7da19de2bf4e3ab4b717824472c}\label{function_8h_a5530f7da19de2bf4e3ab4b717824472c}} 
+\index{function.h@{function.h}!normal@{normal}}
+\index{normal@{normal}!function.h@{function.h}}
+\doxysubsubsection{\texorpdfstring{normal()}{normal()}}
+{\footnotesize\ttfamily double normal (\begin{DoxyParamCaption}\item[{double}]{z }\end{DoxyParamCaption})}
+
+
+
+Returns a number following the standard normal distribution;. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em z} & The argument for the standard normal distribution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number following the standard normal distribution 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{function_8c_source_l00022}{22}} of file \mbox{\hyperlink{function_8c_source}{function.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023 \{}
+\DoxyCodeLine{00024     \textcolor{keywordflow}{return} exp(-\/(z * z) / 2) / sqrt(2 * M\_PI);}
+\DoxyCodeLine{00025 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8h_adf5bc76de62d9db530dd1b752315c311}\label{function_8h_adf5bc76de62d9db530dd1b752315c311}} 
+\index{function.h@{function.h}!sigmoid@{sigmoid}}
+\index{sigmoid@{sigmoid}!function.h@{function.h}}
+\doxysubsubsection{\texorpdfstring{sigmoid()}{sigmoid()}}
+{\footnotesize\ttfamily double sigmoid (\begin{DoxyParamCaption}\item[{double}]{x }\end{DoxyParamCaption})}
+
+
+
+The sigmoid function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The argument of the sigmoid. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of x by the sigmoid. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{function_8c_source_l00005}{5}} of file \mbox{\hyperlink{function_8c_source}{function.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00006 \{}
+\DoxyCodeLine{00007     \textcolor{keywordflow}{return} 1 / (1 + exp(-\/x));}
+\DoxyCodeLine{00008 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8h_a0770694792334e6a69938e6a9364fbb9}\label{function_8h_a0770694792334e6a69938e6a9364fbb9}} 
+\index{function.h@{function.h}!sign@{sign}}
+\index{sign@{sign}!function.h@{function.h}}
+\doxysubsubsection{\texorpdfstring{sign()}{sign()}}
+{\footnotesize\ttfamily double sign (\begin{DoxyParamCaption}\item[{double}]{nb }\end{DoxyParamCaption})}
+
+
+
+Returns 1 if the double is positive, -\/1 otherwise;. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nb} & A double number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 1 if the double is positive, -\/1 otherwise; 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{function_8c_source_l00027}{27}} of file \mbox{\hyperlink{function_8c_source}{function.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00028 \{}
+\DoxyCodeLine{00029     \textcolor{keywordflow}{return} (nb > 0 ? 1 : -\/1);}
+\DoxyCodeLine{00030 \}}
+
+\end{DoxyCode}

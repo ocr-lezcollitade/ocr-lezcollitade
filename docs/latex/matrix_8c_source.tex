@@ -193,5 +193,21 @@
 \DoxyCodeLine{\Hypertarget{matrix_8c_source_l00189}00189         printf(\textcolor{stringliteral}{"{}|\(\backslash\)n"{}});}
 \DoxyCodeLine{\Hypertarget{matrix_8c_source_l00190}00190     \}}
 \DoxyCodeLine{\Hypertarget{matrix_8c_source_l00191}00191 \}}
+\DoxyCodeLine{\Hypertarget{matrix_8c_source_l00192}00192 }
+\DoxyCodeLine{\Hypertarget{matrix_8c_source_l00193}\mbox{\hyperlink{matrix_8c_ad4970f9c83f185813ab569266c4fd0de}{00193}} \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *\mbox{\hyperlink{matrix_8c_ad4970f9c83f185813ab569266c4fd0de}{mat\_copy}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *origin)}
+\DoxyCodeLine{\Hypertarget{matrix_8c_source_l00194}00194 \{}
+\DoxyCodeLine{\Hypertarget{matrix_8c_source_l00195}00195     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *result = \mbox{\hyperlink{matrix_8c_a1d9b061fc8856e727f014c3266b7431d}{matrix\_create}}(origin-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}}, origin-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}}, 0);}
+\DoxyCodeLine{\Hypertarget{matrix_8c_source_l00196}00196     \textcolor{keywordflow}{if} (result == NULL)}
+\DoxyCodeLine{\Hypertarget{matrix_8c_source_l00197}00197         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{\Hypertarget{matrix_8c_source_l00198}00198     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < origin-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}}; i++)}
+\DoxyCodeLine{\Hypertarget{matrix_8c_source_l00199}00199     \{}
+\DoxyCodeLine{\Hypertarget{matrix_8c_source_l00200}00200         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} j = 0; j < origin-\/>\mbox{\hyperlink{structmatrix__t_a23b46615e6b5054c03f59a5b33fdaac8}{columns}}; j++)}
+\DoxyCodeLine{\Hypertarget{matrix_8c_source_l00201}00201         \{}
+\DoxyCodeLine{\Hypertarget{matrix_8c_source_l00202}00202             \mbox{\hyperlink{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}{mat\_set\_el}}(result, i, j, \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(origin, i, j));}
+\DoxyCodeLine{\Hypertarget{matrix_8c_source_l00203}00203         \}}
+\DoxyCodeLine{\Hypertarget{matrix_8c_source_l00204}00204     \}}
+\DoxyCodeLine{\Hypertarget{matrix_8c_source_l00205}00205 }
+\DoxyCodeLine{\Hypertarget{matrix_8c_source_l00206}00206     \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{\Hypertarget{matrix_8c_source_l00207}00207 \}}
 
 \end{DoxyCode}

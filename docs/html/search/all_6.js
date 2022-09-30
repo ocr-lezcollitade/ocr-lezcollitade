@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['solve_0',['solve',['../solver_8c.html#a34d8e6241d75827a5fbfeff56a349223',1,'solve(char *inputFile):&#160;solver.c'],['../solver_8h.html#a34d8e6241d75827a5fbfeff56a349223',1,'solve(char *inputFile):&#160;solver.c']]],
-  ['solver_2ec_1',['solver.c',['../solver_8c.html',1,'']]],
-  ['solver_2eh_2',['solver.h',['../solver_8h.html',1,'']]]
+  ['index_5frandom_0',['index_random',['../function_8c.html#a1422db7183b6193c878d7afb32cd60a6',1,'index_random(int count):&#160;function.c'],['../function_8h.html#a1422db7183b6193c878d7afb32cd60a6',1,'index_random(int count):&#160;function.c']]],
+  ['inputs_1',['inputs',['../structnetwork__t.html#af7a2fbc049a0fd2d5ad14f218658ca83',1,'network_t']]]
 ];
