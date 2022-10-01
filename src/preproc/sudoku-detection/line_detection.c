@@ -82,12 +82,12 @@ void get_max(matrix_t *accumulator)
             if(el > max)
             {
                 max = el;
-                //printf("\n----------------------------------------------------------------------------------------------------------\n\nmax = %f (%zu, %zu)", max, i, j);
+                printf("\n----------------------------------------------------------------------------------------------------------\n\nmax = %f (%zu, %zu)", max, i, j);
             }
             else
-                if(el == max)
+                if(el >= 10)
                 {
-                    //printf("max = %f (%zu, %zu)\n", max, i, j);
+                    printf("max = %f (%zu, %zu)\n", max, i, j);
                 }
         }
 
@@ -112,12 +112,19 @@ void line_detection(SDL_Surface* surface, matrix_t *accumulator)
             
             if (r+g+b == 765) //pixel is white
             {
+                size_t r = sqrt(w*w+h*h)+1;
+                size_t min_t = 0;
                 for (int t = 0; t < 90; t++)
                 {
                     int arg = (t * M_PI) / 180;
-                    size_t r = x*cos(arg) + y*sin(arg);
-                    mat_set_el(accumulator, r, t, mat_el_at(accumulator, r, t)+1);
+                    size_t new = x*cos(arg) + y*sin(arg);
+                    if (new < r)
+                    {
+                        r = new;
+                        min_t = t;
+                    }
                 }
+                mat_set_el(accumulator, r, min_t, mat_el_at(accumulator, r, min_t)+1);
             }
         }
     }
