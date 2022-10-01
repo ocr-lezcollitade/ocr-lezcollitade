@@ -71,6 +71,12 @@ SDL_Surface* load_image(const char* path)
     return surface;
 }
 
+//draws the lines stored in the accumulator
+void accumulator_to_image(size_t rho, size_t theta, SDL_Surface *surface)
+{
+    SDL_PixelFormat* format = surface->format;
+    
+}
 
 void get_max(matrix_t *accumulator)
 {
@@ -82,13 +88,18 @@ void get_max(matrix_t *accumulator)
             if(el > max)
             {
                 max = el;
-                printf("\n----------------------------------------------------------------------------------------------------------\n\nmax = %f (%zu, %zu)", max, i, j);
             }
-            else
-                if(el >= 10)
-                {
-                    printf("max = %f (%zu, %zu)\n", max, i, j);
-                }
+        }
+    double thres = max*0.5
+    for (size_t i = 0; i < accumulator->rows; i++)
+        for (size_t j = 0; j < accumulator->columns; j++)
+        {
+            double el = mat_el_at(accumulator, i, j);
+            if(el > thres)
+            {
+                max = el;
+                printf("max = %f (%zu, %zu)", max, i, j);
+            }
         }
 
 }
