@@ -2,9 +2,49 @@
 #include <stdlib.h>
 #include "function.h"
 
-double sigmoid(double x)
+static double sigmoid(double x)
 {
     return 1 / (1 + exp(-x));
+}
+
+static double sigmoid_derivative(double x)
+{
+    return x * (1 - x);
+}
+
+double output_activation(double arg)
+{
+    return tanh(arg);
+}
+
+double output_activation_derivative(double arg)
+{
+    return 1 - pow(tanh(arg), 2);
+}
+double activation(double arg)
+{
+    return sigmoid(arg);
+}
+
+double activation_derivative(double arg)
+{
+    return sigmoid_derivative(arg);
+}
+
+double cost(matrix_t *target, matrix_t *output)
+{
+    double res = 0;
+    for (size_t i = 0; i < target->rows; i++)
+    {
+        res += pow(mat_el_at(target, i, 0) - mat_el_at(output, i, 0), 2);
+    }
+
+    return res / 2;
+}
+
+double cost_derivative(double target, double output)
+{
+    return output - target;
 }
 
 double nb_m1_and_1()

@@ -11,7 +11,8 @@
             errx(1, "%s: %s", function, message); \
     }
 
-matrix_t *compute_layer(matrix_t *values, layer_t *layer)
+matrix_t *compute_layer(
+    matrix_t *values, layer_t *layer, mat_transform_t activation)
 {
     matrix_t *result = matrix_create(layer->count, 1, 0);
     for (size_t i = 0; i < layer->count; i++)
@@ -19,7 +20,7 @@ matrix_t *compute_layer(matrix_t *values, layer_t *layer)
         neuron_t *neuron = layer->neurons[i];
         matrix_t *tmp = mat_product(neuron->weights, values);
         double postres = mat_el_at(tmp, 0, 0) + neuron->bias;
-        postres = sigmoid(postres);
+        postres = activation(postres);
         matrix_free(tmp);
         mat_set_el(result, i, 0, postres);
     }
@@ -30,24 +31,34 @@ matrix_t *compute_layer(matrix_t *values, layer_t *layer)
 matrix_t *compute_result(matrix_t *values, network_t *network)
 {
     matrix_t *lastResults = mat_copy(values);
-    for (size_t i = 0; i < network->layer_count; i++)
+    size_t i;
+    for (i = 0; i < network->layer_count - 1; i++)
     {
         layer_t *layer = network->layers[i];
-        matrix_t *tmp = compute_layer(lastResults, layer);
+        matrix_t *tmp = compute_layer(lastResults, layer, activation);
         matrix_free(lastResults);
         lastResults = tmp;
     }
+
+    layer_t *layer = network->layers[i];
+    matrix_t *tmp = compute_layer(lastResults, layer, output_activation);
+    matrix_free(lastResults);
+    lastResults = tmp;
 
     return lastResults;
 }
 
 void compute_result_with_save(matrix_t **values, network_t *network)
 {
-    for (size_t i = 0; i < network->layer_count; i++)
+    size_t i;
+    for (i = 0; i < network->layer_count - 1; i++)
     {
         layer_t *layer = network->layers[i];
-        values[i + 1] = compute_layer(values[i], layer);
+        values[i + 1] = compute_layer(values[i], layer, activation);
     }
+
+    layer_t *layer = network->layers[i];
+    values[i + 1] = compute_layer(values[i], layer, output_activation);
 }
 
 neuron_t *neuron_create(matrix_t *weights, double bias)
@@ -512,4 +523,110 @@ network_t *network_copy(network_t *old)
     }
 
     return res;
+}
+
+static double output_neuron_train(neuron_t *trained, neuron_t *old,
+    double rate, double target, double output, matrix_t *previous_result)
+{
+    double delta = cost_derivative(target, output)
+                   * output_activation_derivative(output);
+
+    trained->bias -= rate * delta;
+    for (size_t i = 0; i < trained->weights->columns; i++)
+    {
+        double value = mat_el_at(old->weights, 0, i)
+                       - rate * delta * mat_el_at(previous_result, i, 0);
+        mat_set_el(trained->weights, 0, i, value);
+    }
+
+    return delta;
+}
+
+static void compute_deltas(
+    matrix_t **outputs, network_t *old, matrix_t **deltas)
+{
+
+    for (int i = old->layer_count - 2; i >= 0; i--)
+    {
+        layer_t *layer = old->layers[i];
+        layer_t *prev_layer = old->layers[i + 1];
+        matrix_t *delta = matrix_create(layer->count, 1, 0);
+        deltas[i] = delta;
+        for (size_t j = 0; j < layer->count; j++)
+        {
+            double tmp_delta = 0;
+            for (size_t k = 0; k < prev_layer->count; k++)
+            {
+                neuron_t *prev_neuron = prev_layer->neurons[k];
+                tmp_delta += mat_el_at(deltas[i + 1], k, 0)
+                             * mat_el_at(prev_neuron->weights, 0, j)
+                             * activation_derivative(
+                                 mat_el_at(outputs[i + 1], j, 0));
+            }
+            mat_set_el(delta, j, 0, tmp_delta);
+        }
+    }
+}
+
+static void hidden_layer_train(
+    matrix_t **outputs, network_t *new, matrix_t **deltas, double rate)
+{
+
+    for (int i = new->layer_count - 2; i >= 0; i--)
+    {
+        layer_t *layer = new->layers[i];
+        for (size_t j = 0; j < layer->count; j++)
+        {
+            neuron_t *new_neuron = new->layers[i]->neurons[j];
+            new_neuron->bias -= rate * mat_el_at(deltas[i], j, 0);
+            for (size_t w = 0; w < new_neuron->weights->columns; w++)
+            {
+                double new_weight = mat_el_at(new_neuron->weights, 0, w);
+                mat_set_el(new_neuron->weights, 0, w,
+                    new_weight
+                        - rate * mat_el_at(deltas[i], j, 0)
+                              * mat_el_at(outputs[i], w, 0));
+            }
+        }
+    }
+}
+
+void network_train(
+    network_t **pnet, matrix_t *inputs, matrix_t *target, double rate)
+{
+    network_t *trained = network_copy(*pnet);
+
+    matrix_t **outputs
+        = (matrix_t **)malloc(((*pnet)->layer_count + 1) * sizeof(matrix_t *));
+    outputs[0] = inputs;
+
+    matrix_t **deltas
+        = (matrix_t **)malloc((*pnet)->layer_count * sizeof(matrix_t *));
+
+    compute_result_with_save(outputs, *pnet);
+
+    size_t layer_i = trained->layer_count - 1;
+    layer_t *trained_layer = trained->layers[layer_i];
+    layer_t *old_layer = (*pnet)->layers[layer_i];
+    deltas[layer_i] = matrix_create(trained_layer->count, 1, 0);
+    for (size_t ni = 0; ni < trained_layer->count; ni++)
+    {
+        double delta = output_neuron_train(trained_layer->neurons[ni],
+            old_layer->neurons[ni], rate, mat_el_at(target, ni, 0),
+            mat_el_at(outputs[layer_i + 1], ni, 0), outputs[layer_i]);
+        mat_set_el(deltas[layer_i], ni, 0, delta);
+    }
+
+    compute_deltas(outputs, *pnet, deltas);
+    hidden_layer_train(outputs, trained, deltas, rate);
+
+    for (size_t i = 1; i <= trained->layer_count; i++)
+    {
+        matrix_free(outputs[i]);
+        matrix_free(deltas[i - 1]);
+    }
+    free(outputs);
+    free(deltas);
+    network_free(*pnet);
+    *pnet = trained;
 }

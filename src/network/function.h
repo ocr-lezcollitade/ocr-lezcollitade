@@ -1,13 +1,19 @@
 #ifndef UTILS_FUNCTION_H
 #define UTILS_FUNCTION_H
 
-/**
- * \brief       The sigmoid function.
- * \fn          double sigmoid(double x)
- * \param x     The argument of the sigmoid.
- * \return      The result of x by the sigmoid.
- */
-double sigmoid(double arg);
+#include "../utils/matrices/matrix.h"
+
+double activation(double arg);
+
+double activation_derivative(double arg);
+
+double output_activation(double arg);
+
+double output_activation_derivative(double arg);
+
+double cost(matrix_t *target, matrix_t *output);
+
+double cost_derivative(double target, double output);
 
 /**
  *  \brief      Returns a double  random in ]-1; 1[.
