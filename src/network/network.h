@@ -144,12 +144,15 @@ void network_free(network_t *network);
 
 /**
  *  \brief          Computes all the weights of one layer from the input.
- *  \fn             matrix_t *compute_layer(matrix_t *inputs, layer_t *layer)
+ *  \fn             matrix_t *compute_layer(matrix_t *inputs, layer_t *layer
+ *  mat_transform_t activation)
  *  \param inputs   The column vector of inputs from the previous layer.
  *  \param layer    The layer to compute.
+ *  \param activation   The activation function.
  *  \return         The column vector of outputs.
  */
-matrix_t *compute_layer(matrix_t *values, layer_t *layer);
+matrix_t *compute_layer(
+    matrix_t *values, layer_t *layer, mat_transform_t activation);
 
 /**
  *  \brief          Computes the result of the input by the network.
@@ -181,5 +184,8 @@ void compute_result_save(matrix_t **partial_results, network_t *network);
  *  \return         The copied network.
  */
 network_t *network_copy(network_t *old);
+
+void network_train(
+    network_t **pnet, matrix_t *inputs, matrix_t *target, double rate);
 
 #endif /* !UTILS_NETWORK_H */

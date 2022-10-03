@@ -71,7 +71,8 @@ $(function() {
   <div class="headertitle"><div class="title">function.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
+<div class="textblock"><code>#include &quot;<a class="el" href="matrix_8h_source.html">../utils/matrices/matrix.h</a>&quot;</code><br />
+</div>
 <p><a href="function_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -79,6 +80,14 @@ Functions</h2></td></tr>
 <tr class="memitem:adf5bc76de62d9db530dd1b752315c311"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="function_8h.html#adf5bc76de62d9db530dd1b752315c311">sigmoid</a> (double arg)</td></tr>
 <tr class="memdesc:adf5bc76de62d9db530dd1b752315c311"><td class="mdescLeft">&#160;</td><td class="mdescRight">The sigmoid function.  <a href="function_8h.html#adf5bc76de62d9db530dd1b752315c311">More...</a><br /></td></tr>
 <tr class="separator:adf5bc76de62d9db530dd1b752315c311"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a312ab1be52b156fb23e9345424c0f2b9"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="function_8h.html#a312ab1be52b156fb23e9345424c0f2b9">activation</a> (double arg)</td></tr>
+<tr class="separator:a312ab1be52b156fb23e9345424c0f2b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6d7096342f96b308435d4c27ac905e6"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="function_8h.html#ab6d7096342f96b308435d4c27ac905e6">activation_derivative</a> (double arg)</td></tr>
+<tr class="separator:ab6d7096342f96b308435d4c27ac905e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dc739a8f297a615beeed83b8b1de5c3"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="function_8h.html#a9dc739a8f297a615beeed83b8b1de5c3">cost</a> (<a class="el" href="structmatrix__t.html">matrix_t</a> *target, <a class="el" href="structmatrix__t.html">matrix_t</a> *output)</td></tr>
+<tr class="separator:a9dc739a8f297a615beeed83b8b1de5c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace36f4d417e611fd6e6d265b09066b89"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="function_8h.html#ace36f4d417e611fd6e6d265b09066b89">cost_derivative</a> (double target, double output)</td></tr>
+<tr class="separator:ace36f4d417e611fd6e6d265b09066b89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae26b6248510ebcfc65f48a62e8b01ba1"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="function_8h.html#ae26b6248510ebcfc65f48a62e8b01ba1">nb_m1_and_1</a> ()</td></tr>
 <tr class="separator:ae26b6248510ebcfc65f48a62e8b01ba1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1422db7183b6193c878d7afb32cd60a6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="function_8h.html#a1422db7183b6193c878d7afb32cd60a6">index_random</a> (int count)</td></tr>
@@ -94,6 +103,127 @@ Functions</h2></td></tr>
 <tr class="separator:ae6d5ccd297429cb956c9a4deb3d5daa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a312ab1be52b156fb23e9345424c0f2b9" name="a312ab1be52b156fb23e9345424c0f2b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a312ab1be52b156fb23e9345424c0f2b9">&#9670;&nbsp;</a></span>activation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double activation </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>arg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="function_8c_source.html#l00015">15</a> of file <a class="el" href="function_8c_source.html">function.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   16</span>{</div>
+<div class="line"><span class="lineno">   17</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="function_8c.html#aa924e8c95bc498ebc9f8e08a0c491e7c">sigmoid</a>(arg);</div>
+<div class="line"><span class="lineno">   18</span>}</div>
+<div class="ttc" id="afunction_8c_html_aa924e8c95bc498ebc9f8e08a0c491e7c"><div class="ttname"><a href="function_8c.html#aa924e8c95bc498ebc9f8e08a0c491e7c">sigmoid</a></div><div class="ttdeci">double sigmoid(double x)</div><div class="ttdoc">The sigmoid function.</div><div class="ttdef"><b>Definition:</b> <a href="function_8c_source.html#l00005">function.c:5</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ab6d7096342f96b308435d4c27ac905e6" name="ab6d7096342f96b308435d4c27ac905e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6d7096342f96b308435d4c27ac905e6">&#9670;&nbsp;</a></span>activation_derivative()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double activation_derivative </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>arg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="function_8c_source.html#l00020">20</a> of file <a class="el" href="function_8c_source.html">function.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   21</span>{</div>
+<div class="line"><span class="lineno">   22</span>    <span class="keywordflow">return</span> sigmoid_derivative(arg);</div>
+<div class="line"><span class="lineno">   23</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a9dc739a8f297a615beeed83b8b1de5c3" name="a9dc739a8f297a615beeed83b8b1de5c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9dc739a8f297a615beeed83b8b1de5c3">&#9670;&nbsp;</a></span>cost()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double cost </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmatrix__t.html">matrix_t</a> *&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structmatrix__t.html">matrix_t</a> *&#160;</td>
+          <td class="paramname"><em>output</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="function_8c_source.html#l00025">25</a> of file <a class="el" href="function_8c_source.html">function.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   26</span>{</div>
+<div class="line"><span class="lineno">   27</span>    <span class="keywordtype">double</span> res = 0;</div>
+<div class="line"><span class="lineno">   28</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; target-&gt;<a class="code hl_variable" href="structmatrix__t.html#a9620f15b4416ec1830196db9ec904fc5">rows</a>; i++)</div>
+<div class="line"><span class="lineno">   29</span>    {</div>
+<div class="line"><span class="lineno">   30</span>        res += pow(<a class="code hl_function" href="matrix_8c.html#a631ff21351ba5ec31350fb5277605d3b">mat_el_at</a>(target, i, 0) - <a class="code hl_function" href="matrix_8c.html#a631ff21351ba5ec31350fb5277605d3b">mat_el_at</a>(output, i, 0), 2);</div>
+<div class="line"><span class="lineno">   31</span>    }</div>
+<div class="line"><span class="lineno">   32</span> </div>
+<div class="line"><span class="lineno">   33</span>    <span class="keywordflow">return</span> res / 2;</div>
+<div class="line"><span class="lineno">   34</span>}</div>
+<div class="ttc" id="amatrix_8c_html_a631ff21351ba5ec31350fb5277605d3b"><div class="ttname"><a href="matrix_8c.html#a631ff21351ba5ec31350fb5277605d3b">mat_el_at</a></div><div class="ttdeci">double mat_el_at(matrix_t *mat, size_t i, size_t j)</div><div class="ttdoc">gets the elements at position i, j</div><div class="ttdef"><b>Definition:</b> <a href="matrix_8c_source.html#l00006">matrix.c:6</a></div></div>
+<div class="ttc" id="astructmatrix__t_html_a9620f15b4416ec1830196db9ec904fc5"><div class="ttname"><a href="structmatrix__t.html#a9620f15b4416ec1830196db9ec904fc5">matrix_t::rows</a></div><div class="ttdeci">size_t rows</div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00012">matrix.h:12</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ace36f4d417e611fd6e6d265b09066b89" name="ace36f4d417e611fd6e6d265b09066b89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace36f4d417e611fd6e6d265b09066b89">&#9670;&nbsp;</a></span>cost_derivative()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double cost_derivative </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>output</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="function_8c_source.html#l00036">36</a> of file <a class="el" href="function_8c_source.html">function.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   37</span>{</div>
+<div class="line"><span class="lineno">   38</span>    <span class="keywordflow">return</span> output - target;</div>
+<div class="line"><span class="lineno">   39</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="ae6d5ccd297429cb956c9a4deb3d5daa8" name="ae6d5ccd297429cb956c9a4deb3d5daa8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae6d5ccd297429cb956c9a4deb3d5daa8">&#9670;&nbsp;</a></span>generate_weights()</h2>
 
@@ -113,33 +243,33 @@ Functions</h2></td></tr>
 <p>Returns a double pointer with values following normal distribution; of element for the distribution. </p>
 <dl class="section return"><dt>Returns</dt><dd>a double pointer with values following normal distribution; </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="function_8c_source.html#l00032">32</a> of file <a class="el" href="function_8c_source.html">function.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   33</span>{</div>
-<div class="line"><span class="lineno">   34</span>    <span class="keywordtype">size_t</span> index = 0;</div>
-<div class="line"><span class="lineno">   35</span>    <span class="keywordtype">double</span> *values = (<span class="keywordtype">double</span> *)malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">double</span>) * n);</div>
-<div class="line"><span class="lineno">   36</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = -n / 2; i &lt; n / 2; i++)</div>
-<div class="line"><span class="lineno">   37</span>    {</div>
-<div class="line"><span class="lineno">   38</span>        <span class="keywordtype">double</span> nb = <a class="code hl_function" href="function_8c.html#a5530f7da19de2bf4e3ab4b717824472c">normal</a>(<a class="code hl_function" href="function_8c.html#ae26b6248510ebcfc65f48a62e8b01ba1">nb_m1_and_1</a>() * 2) * <a class="code hl_function" href="function_8c.html#a0770694792334e6a69938e6a9364fbb9">sign</a>(i);</div>
-<div class="line"><span class="lineno">   39</span>        values[index] = nb;</div>
-<div class="line"><span class="lineno">   40</span>        index++;</div>
-<div class="line"><span class="lineno">   41</span>    }</div>
-<div class="line"><span class="lineno">   42</span> </div>
-<div class="line"><span class="lineno">   43</span>    <span class="comment">// SHUFFLE</span></div>
-<div class="line"><span class="lineno">   44</span> </div>
-<div class="line"><span class="lineno">   45</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 100; i++)</div>
-<div class="line"><span class="lineno">   46</span>    {</div>
-<div class="line"><span class="lineno">   47</span>        <span class="keywordtype">int</span> i1 = <a class="code hl_function" href="function_8c.html#a1422db7183b6193c878d7afb32cd60a6">index_random</a>(n);</div>
-<div class="line"><span class="lineno">   48</span>        <span class="keywordtype">int</span> i2 = <a class="code hl_function" href="function_8c.html#a1422db7183b6193c878d7afb32cd60a6">index_random</a>(n);</div>
-<div class="line"><span class="lineno">   49</span>        <span class="keywordtype">double</span> temp = values[i1];</div>
-<div class="line"><span class="lineno">   50</span>        values[i1] = values[i2];</div>
-<div class="line"><span class="lineno">   51</span>        values[i2] = temp;</div>
-<div class="line"><span class="lineno">   52</span>    }</div>
-<div class="line"><span class="lineno">   53</span>    <span class="keywordflow">return</span> values;</div>
-<div class="line"><span class="lineno">   54</span>}</div>
-<div class="ttc" id="afunction_8c_html_a0770694792334e6a69938e6a9364fbb9"><div class="ttname"><a href="function_8c.html#a0770694792334e6a69938e6a9364fbb9">sign</a></div><div class="ttdeci">double sign(double nb)</div><div class="ttdoc">Returns 1 if the double is positive, -1 otherwise;.</div><div class="ttdef"><b>Definition:</b> <a href="function_8c_source.html#l00027">function.c:27</a></div></div>
-<div class="ttc" id="afunction_8c_html_a1422db7183b6193c878d7afb32cd60a6"><div class="ttname"><a href="function_8c.html#a1422db7183b6193c878d7afb32cd60a6">index_random</a></div><div class="ttdeci">int index_random(int count)</div><div class="ttdef"><b>Definition:</b> <a href="function_8c_source.html#l00015">function.c:15</a></div></div>
-<div class="ttc" id="afunction_8c_html_a5530f7da19de2bf4e3ab4b717824472c"><div class="ttname"><a href="function_8c.html#a5530f7da19de2bf4e3ab4b717824472c">normal</a></div><div class="ttdeci">double normal(double z)</div><div class="ttdoc">Returns a number following the standard normal distribution;.</div><div class="ttdef"><b>Definition:</b> <a href="function_8c_source.html#l00022">function.c:22</a></div></div>
-<div class="ttc" id="afunction_8c_html_ae26b6248510ebcfc65f48a62e8b01ba1"><div class="ttname"><a href="function_8c.html#ae26b6248510ebcfc65f48a62e8b01ba1">nb_m1_and_1</a></div><div class="ttdeci">double nb_m1_and_1()</div><div class="ttdef"><b>Definition:</b> <a href="function_8c_source.html#l00010">function.c:10</a></div></div>
+<p class="definition">Definition at line <a class="el" href="function_8c_source.html#l00063">63</a> of file <a class="el" href="function_8c_source.html">function.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   64</span>{</div>
+<div class="line"><span class="lineno">   65</span>    <span class="keywordtype">size_t</span> index = 0;</div>
+<div class="line"><span class="lineno">   66</span>    <span class="keywordtype">double</span> *values = (<span class="keywordtype">double</span> *)malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">double</span>) * n);</div>
+<div class="line"><span class="lineno">   67</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = -n / 2; i &lt; n / 2; i++)</div>
+<div class="line"><span class="lineno">   68</span>    {</div>
+<div class="line"><span class="lineno">   69</span>        <span class="keywordtype">double</span> nb = <a class="code hl_function" href="function_8c.html#a5530f7da19de2bf4e3ab4b717824472c">normal</a>(<a class="code hl_function" href="function_8c.html#ae26b6248510ebcfc65f48a62e8b01ba1">nb_m1_and_1</a>() * 2) * <a class="code hl_function" href="function_8c.html#a0770694792334e6a69938e6a9364fbb9">sign</a>(i);</div>
+<div class="line"><span class="lineno">   70</span>        values[index] = nb;</div>
+<div class="line"><span class="lineno">   71</span>        index++;</div>
+<div class="line"><span class="lineno">   72</span>    }</div>
+<div class="line"><span class="lineno">   73</span> </div>
+<div class="line"><span class="lineno">   74</span>    <span class="comment">// SHUFFLE</span></div>
+<div class="line"><span class="lineno">   75</span> </div>
+<div class="line"><span class="lineno">   76</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 100; i++)</div>
+<div class="line"><span class="lineno">   77</span>    {</div>
+<div class="line"><span class="lineno">   78</span>        <span class="keywordtype">int</span> i1 = <a class="code hl_function" href="function_8c.html#a1422db7183b6193c878d7afb32cd60a6">index_random</a>(n);</div>
+<div class="line"><span class="lineno">   79</span>        <span class="keywordtype">int</span> i2 = <a class="code hl_function" href="function_8c.html#a1422db7183b6193c878d7afb32cd60a6">index_random</a>(n);</div>
+<div class="line"><span class="lineno">   80</span>        <span class="keywordtype">double</span> temp = values[i1];</div>
+<div class="line"><span class="lineno">   81</span>        values[i1] = values[i2];</div>
+<div class="line"><span class="lineno">   82</span>        values[i2] = temp;</div>
+<div class="line"><span class="lineno">   83</span>    }</div>
+<div class="line"><span class="lineno">   84</span>    <span class="keywordflow">return</span> values;</div>
+<div class="line"><span class="lineno">   85</span>}</div>
+<div class="ttc" id="afunction_8c_html_a0770694792334e6a69938e6a9364fbb9"><div class="ttname"><a href="function_8c.html#a0770694792334e6a69938e6a9364fbb9">sign</a></div><div class="ttdeci">double sign(double nb)</div><div class="ttdoc">Returns 1 if the double is positive, -1 otherwise;.</div><div class="ttdef"><b>Definition:</b> <a href="function_8c_source.html#l00058">function.c:58</a></div></div>
+<div class="ttc" id="afunction_8c_html_a1422db7183b6193c878d7afb32cd60a6"><div class="ttname"><a href="function_8c.html#a1422db7183b6193c878d7afb32cd60a6">index_random</a></div><div class="ttdeci">int index_random(int count)</div><div class="ttdef"><b>Definition:</b> <a href="function_8c_source.html#l00046">function.c:46</a></div></div>
+<div class="ttc" id="afunction_8c_html_a5530f7da19de2bf4e3ab4b717824472c"><div class="ttname"><a href="function_8c.html#a5530f7da19de2bf4e3ab4b717824472c">normal</a></div><div class="ttdeci">double normal(double z)</div><div class="ttdoc">Returns a number following the standard normal distribution;.</div><div class="ttdef"><b>Definition:</b> <a href="function_8c_source.html#l00053">function.c:53</a></div></div>
+<div class="ttc" id="afunction_8c_html_ae26b6248510ebcfc65f48a62e8b01ba1"><div class="ttname"><a href="function_8c.html#ae26b6248510ebcfc65f48a62e8b01ba1">nb_m1_and_1</a></div><div class="ttdeci">double nb_m1_and_1()</div><div class="ttdef"><b>Definition:</b> <a href="function_8c_source.html#l00041">function.c:41</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -159,12 +289,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="function_8c_source.html#l00015">15</a> of file <a class="el" href="function_8c_source.html">function.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   16</span>{</div>
-<div class="line"><span class="lineno">   17</span>    <span class="keywordflow">return</span> (<span class="keywordtype">int</span>)((((double)rand() / (double)(<span class="keywordtype">unsigned</span>)RAND_MAX + 1))</div>
-<div class="line"><span class="lineno">   18</span>                 * (double)count)</div>
-<div class="line"><span class="lineno">   19</span>           - count;</div>
-<div class="line"><span class="lineno">   20</span>}</div>
+<p class="definition">Definition at line <a class="el" href="function_8c_source.html#l00046">46</a> of file <a class="el" href="function_8c_source.html">function.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   47</span>{</div>
+<div class="line"><span class="lineno">   48</span>    <span class="keywordflow">return</span> (<span class="keywordtype">int</span>)((((double)rand() / (double)(<span class="keywordtype">unsigned</span>)RAND_MAX + 1))</div>
+<div class="line"><span class="lineno">   49</span>                 * (double)count)</div>
+<div class="line"><span class="lineno">   50</span>           - count;</div>
+<div class="line"><span class="lineno">   51</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -183,10 +313,10 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="function_8c_source.html#l00010">10</a> of file <a class="el" href="function_8c_source.html">function.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   11</span>{</div>
-<div class="line"><span class="lineno">   12</span>    <span class="keywordflow">return</span> ((<span class="keywordtype">double</span>)rand() / (<span class="keywordtype">double</span>)((<span class="keywordtype">unsigned</span>)RAND_MAX + 1)) * 2 - 1;</div>
-<div class="line"><span class="lineno">   13</span>}</div>
+<p class="definition">Definition at line <a class="el" href="function_8c_source.html#l00041">41</a> of file <a class="el" href="function_8c_source.html">function.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   42</span>{</div>
+<div class="line"><span class="lineno">   43</span>    <span class="keywordflow">return</span> ((<span class="keywordtype">double</span>)rand() / (<span class="keywordtype">double</span>)((<span class="keywordtype">unsigned</span>)RAND_MAX + 1)) * 2 - 1;</div>
+<div class="line"><span class="lineno">   44</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -215,10 +345,10 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number following the standard normal distribution </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="function_8c_source.html#l00022">22</a> of file <a class="el" href="function_8c_source.html">function.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   23</span>{</div>
-<div class="line"><span class="lineno">   24</span>    <span class="keywordflow">return</span> exp(-(z * z) / 2) / sqrt(2 * M_PI);</div>
-<div class="line"><span class="lineno">   25</span>}</div>
+<p class="definition">Definition at line <a class="el" href="function_8c_source.html#l00053">53</a> of file <a class="el" href="function_8c_source.html">function.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   54</span>{</div>
+<div class="line"><span class="lineno">   55</span>    <span class="keywordflow">return</span> exp(-(z * z) / 2) / sqrt(2 * M_PI);</div>
+<div class="line"><span class="lineno">   56</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -279,10 +409,10 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns 1 if the double is positive, -1 otherwise; </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="function_8c_source.html#l00027">27</a> of file <a class="el" href="function_8c_source.html">function.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   28</span>{</div>
-<div class="line"><span class="lineno">   29</span>    <span class="keywordflow">return</span> (nb &gt; 0 ? 1 : -1);</div>
-<div class="line"><span class="lineno">   30</span>}</div>
+<p class="definition">Definition at line <a class="el" href="function_8c_source.html#l00058">58</a> of file <a class="el" href="function_8c_source.html">function.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   59</span>{</div>
+<div class="line"><span class="lineno">   60</span>    <span class="keywordflow">return</span> (nb &gt; 0 ? 1 : -1);</div>
+<div class="line"><span class="lineno">   61</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

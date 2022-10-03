@@ -11,50 +11,81 @@
 \DoxyCodeLine{\Hypertarget{function_8c_source_l00007}00007     \textcolor{keywordflow}{return} 1 / (1 + exp(-\/x));}
 \DoxyCodeLine{\Hypertarget{function_8c_source_l00008}00008 \}}
 \DoxyCodeLine{\Hypertarget{function_8c_source_l00009}00009 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00010}\mbox{\hyperlink{function_8c_ae26b6248510ebcfc65f48a62e8b01ba1}{00010}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_ae26b6248510ebcfc65f48a62e8b01ba1}{nb\_m1\_and\_1}}()}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00010}00010 \textcolor{keyword}{static} \textcolor{keywordtype}{double} sigmoid\_derivative(\textcolor{keywordtype}{double} x)}
 \DoxyCodeLine{\Hypertarget{function_8c_source_l00011}00011 \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00012}00012     \textcolor{keywordflow}{return} ((\textcolor{keywordtype}{double})rand() / (\textcolor{keywordtype}{double})((\textcolor{keywordtype}{unsigned})RAND\_MAX + 1)) * 2 -\/ 1;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00012}00012     \textcolor{keywordflow}{return} x * (1 -\/ x);}
 \DoxyCodeLine{\Hypertarget{function_8c_source_l00013}00013 \}}
 \DoxyCodeLine{\Hypertarget{function_8c_source_l00014}00014 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00015}\mbox{\hyperlink{function_8c_a1422db7183b6193c878d7afb32cd60a6}{00015}} \textcolor{keywordtype}{int} \mbox{\hyperlink{function_8c_a1422db7183b6193c878d7afb32cd60a6}{index\_random}}(\textcolor{keywordtype}{int} count)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00015}\mbox{\hyperlink{function_8c_a312ab1be52b156fb23e9345424c0f2b9}{00015}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_a312ab1be52b156fb23e9345424c0f2b9}{activation}}(\textcolor{keywordtype}{double} arg)}
 \DoxyCodeLine{\Hypertarget{function_8c_source_l00016}00016 \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00017}00017     \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})((((double)rand() / (double)(\textcolor{keywordtype}{unsigned})RAND\_MAX + 1))}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00018}00018                  * (double)count)}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00019}00019            -\/ count;}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00020}00020 \}}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00021}00021 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00022}\mbox{\hyperlink{function_8c_a5530f7da19de2bf4e3ab4b717824472c}{00022}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_a5530f7da19de2bf4e3ab4b717824472c}{normal}}(\textcolor{keywordtype}{double} z)}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00023}00023 \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00024}00024     \textcolor{keywordflow}{return} exp(-\/(z * z) / 2) / sqrt(2 * M\_PI);}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00025}00025 \}}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00026}00026 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00027}\mbox{\hyperlink{function_8c_a0770694792334e6a69938e6a9364fbb9}{00027}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_a0770694792334e6a69938e6a9364fbb9}{sign}}(\textcolor{keywordtype}{double} nb)}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00028}00028 \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00029}00029     \textcolor{keywordflow}{return} (nb > 0 ? 1 : -\/1);}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00030}00030 \}}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00031}00031 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00032}\mbox{\hyperlink{function_8c_ae6d5ccd297429cb956c9a4deb3d5daa8}{00032}} \textcolor{keywordtype}{double} *\mbox{\hyperlink{function_8c_ae6d5ccd297429cb956c9a4deb3d5daa8}{generate\_weights}}(\textcolor{keywordtype}{double} n)}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00033}00033 \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00034}00034     \textcolor{keywordtype}{size\_t} index = 0;}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00035}00035     \textcolor{keywordtype}{double} *values = (\textcolor{keywordtype}{double} *)malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{double}) * n);}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00036}00036     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = -\/n / 2; i < n / 2; i++)}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00037}00037     \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00038}00038         \textcolor{keywordtype}{double} nb = \mbox{\hyperlink{function_8c_a5530f7da19de2bf4e3ab4b717824472c}{normal}}(\mbox{\hyperlink{function_8c_ae26b6248510ebcfc65f48a62e8b01ba1}{nb\_m1\_and\_1}}() * 2) * \mbox{\hyperlink{function_8c_a0770694792334e6a69938e6a9364fbb9}{sign}}(i);}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00039}00039         values[index] = nb;}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00040}00040         index++;}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00041}00041     \}}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00042}00042 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00043}00043     \textcolor{comment}{// SHUFFLE}}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00044}00044 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00045}00045     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 100; i++)}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00046}00046     \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00047}00047         \textcolor{keywordtype}{int} i1 = \mbox{\hyperlink{function_8c_a1422db7183b6193c878d7afb32cd60a6}{index\_random}}(n);}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00048}00048         \textcolor{keywordtype}{int} i2 = \mbox{\hyperlink{function_8c_a1422db7183b6193c878d7afb32cd60a6}{index\_random}}(n);}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00049}00049         \textcolor{keywordtype}{double} temp = values[i1];}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00050}00050         values[i1] = values[i2];}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00051}00051         values[i2] = temp;}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00052}00052     \}}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00053}00053     \textcolor{keywordflow}{return} values;}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00054}00054 \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00017}00017     \textcolor{keywordflow}{return} \mbox{\hyperlink{function_8c_aa924e8c95bc498ebc9f8e08a0c491e7c}{sigmoid}}(arg);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00018}00018 \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00020}\mbox{\hyperlink{function_8c_ab6d7096342f96b308435d4c27ac905e6}{00020}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_ab6d7096342f96b308435d4c27ac905e6}{activation\_derivative}}(\textcolor{keywordtype}{double} arg)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00021}00021 \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00022}00022     \textcolor{keywordflow}{return} sigmoid\_derivative(arg);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00023}00023 \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00025}\mbox{\hyperlink{function_8c_a9dc739a8f297a615beeed83b8b1de5c3}{00025}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_a9dc739a8f297a615beeed83b8b1de5c3}{cost}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *target, \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *output)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00026}00026 \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00027}00027     \textcolor{keywordtype}{double} res = 0;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00028}00028     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < target-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}}; i++)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00029}00029     \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00030}00030         res += pow(\mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(target, i, 0) -\/ \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(output, i, 0), 2);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00031}00031     \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00033}00033     \textcolor{keywordflow}{return} res / 2;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00034}00034 \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00036}\mbox{\hyperlink{function_8c_ace36f4d417e611fd6e6d265b09066b89}{00036}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_ace36f4d417e611fd6e6d265b09066b89}{cost\_derivative}}(\textcolor{keywordtype}{double} target, \textcolor{keywordtype}{double} output)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00037}00037 \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00038}00038     \textcolor{keywordflow}{return} output -\/ target;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00039}00039 \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00040}00040 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00041}\mbox{\hyperlink{function_8c_ae26b6248510ebcfc65f48a62e8b01ba1}{00041}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_ae26b6248510ebcfc65f48a62e8b01ba1}{nb\_m1\_and\_1}}()}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00042}00042 \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00043}00043     \textcolor{keywordflow}{return} ((\textcolor{keywordtype}{double})rand() / (\textcolor{keywordtype}{double})((\textcolor{keywordtype}{unsigned})RAND\_MAX + 1)) * 2 -\/ 1;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00044}00044 \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00046}\mbox{\hyperlink{function_8c_a1422db7183b6193c878d7afb32cd60a6}{00046}} \textcolor{keywordtype}{int} \mbox{\hyperlink{function_8c_a1422db7183b6193c878d7afb32cd60a6}{index\_random}}(\textcolor{keywordtype}{int} count)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00047}00047 \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00048}00048     \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})((((double)rand() / (double)(\textcolor{keywordtype}{unsigned})RAND\_MAX + 1))}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00049}00049                  * (double)count)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00050}00050            -\/ count;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00051}00051 \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00053}\mbox{\hyperlink{function_8c_a5530f7da19de2bf4e3ab4b717824472c}{00053}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_a5530f7da19de2bf4e3ab4b717824472c}{normal}}(\textcolor{keywordtype}{double} z)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00054}00054 \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00055}00055     \textcolor{keywordflow}{return} exp(-\/(z * z) / 2) / sqrt(2 * M\_PI);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00056}00056 \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00057}00057 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00058}\mbox{\hyperlink{function_8c_a0770694792334e6a69938e6a9364fbb9}{00058}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_a0770694792334e6a69938e6a9364fbb9}{sign}}(\textcolor{keywordtype}{double} nb)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00059}00059 \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00060}00060     \textcolor{keywordflow}{return} (nb > 0 ? 1 : -\/1);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00061}00061 \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00063}\mbox{\hyperlink{function_8c_ae6d5ccd297429cb956c9a4deb3d5daa8}{00063}} \textcolor{keywordtype}{double} *\mbox{\hyperlink{function_8c_ae6d5ccd297429cb956c9a4deb3d5daa8}{generate\_weights}}(\textcolor{keywordtype}{double} n)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00064}00064 \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00065}00065     \textcolor{keywordtype}{size\_t} index = 0;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00066}00066     \textcolor{keywordtype}{double} *values = (\textcolor{keywordtype}{double} *)malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{double}) * n);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00067}00067     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = -\/n / 2; i < n / 2; i++)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00068}00068     \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00069}00069         \textcolor{keywordtype}{double} nb = \mbox{\hyperlink{function_8c_a5530f7da19de2bf4e3ab4b717824472c}{normal}}(\mbox{\hyperlink{function_8c_ae26b6248510ebcfc65f48a62e8b01ba1}{nb\_m1\_and\_1}}() * 2) * \mbox{\hyperlink{function_8c_a0770694792334e6a69938e6a9364fbb9}{sign}}(i);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00070}00070         values[index] = nb;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00071}00071         index++;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00072}00072     \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00073}00073 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00074}00074     \textcolor{comment}{// SHUFFLE}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00076}00076     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 100; i++)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00077}00077     \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00078}00078         \textcolor{keywordtype}{int} i1 = \mbox{\hyperlink{function_8c_a1422db7183b6193c878d7afb32cd60a6}{index\_random}}(n);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00079}00079         \textcolor{keywordtype}{int} i2 = \mbox{\hyperlink{function_8c_a1422db7183b6193c878d7afb32cd60a6}{index\_random}}(n);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00080}00080         \textcolor{keywordtype}{double} temp = values[i1];}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00081}00081         values[i1] = values[i2];}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00082}00082         values[i2] = temp;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00083}00083     \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00084}00084     \textcolor{keywordflow}{return} values;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00085}00085 \}}
 
 \end{DoxyCode}
