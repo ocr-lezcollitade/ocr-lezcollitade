@@ -1,9 +1,10 @@
 CC=gcc
-CFLAGS=-Wall -Werror -Wextra -O3 -c
-DFLAGS=-Wall -Werror -Wextra -O0 -c -g -fsanitize=address
+CFLAGS=-Wall -Werror -Wextra -O3 -c `pkg-config --cflags sdl2 SDL2_image`
+DFLAGS=-Wall -Werror -Wextra -O0 -c -g -fsanitize=address `pkg-config --cflags sdl2 SDL2_image`
 
 LD=gcc
 LDFLAGS=-lm
+LDLIBS=`pkg-config --libs sdl2 SDL2_image`
 
 ROOT_TARGET=./bin
 TARGET_DIR=$(ROOT_TARGET)/Release
@@ -19,7 +20,7 @@ TEST_BINS=$(TEST_BIN)/utils/matrices/matrix_test $(TEST_BIN)/network/function_te
 
 SRC_DIR=./src
 
-SRC=main.c utils/mnist/loader.c utils/matrices/matrix.c solver/solver.c network/function.c network/network.c
+SRC=main.c utils/mnist/loader.c utils/matrices/matrix.c solver/solver.c network/function.c network/network.c preproc/rotate/rotate.c
 
 OBJ_ROOT=./obj
 OBJ_DIR=$(OBJ_ROOT)/Release
@@ -36,13 +37,13 @@ prod: $(TARGET)
 
 $(TARGET): $(OBJS)
 	@mkdir -p $(TARGET_DIR)
-	$(LD)  $^ -o $@ $(LDFLAGS) 
+	$(LD) $^ $(LDLIBS) -o $@ $(LDFLAGS) 
 
 debug: $(DEBUG_TARGET)
 
 $(DEBUG_TARGET): $(DEBUG_OBJS)
 	@mkdir -p $(DEBUG_TARGET_DIR)
-	$(LD)  $^ -o $@ $(LDFLAGS)  -fsanitize=address
+	$(LD) $^ $(LDLIBS) -o $@ $(LDFLAGS)  -fsanitize=address
 
 dbuild: $(DEBUG_OBJS)
 
