@@ -1,0 +1,91 @@
+\hypertarget{loader_8c}{}\doxysection{src/utils/mnist/loader.c File Reference}
+\label{loader_8c}\index{src/utils/mnist/loader.c@{src/utils/mnist/loader.c}}
+{\ttfamily \#include $<$err.\+h$>$}\newline
+{\ttfamily \#include $<$malloc.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}loader.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{loader_8c_a894874fce4252e840e2412fd1dbfa4ea}{OUTPUT\+\_\+\+SIZE}}~10
+\item 
+\#define \mbox{\hyperlink{loader_8c_abd607f13447d238cfa36348ed8e5d383}{READ\+\_\+\+LENGTH}}~1024
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{loader_8c_a5732969f39cd8df18bbdc133bd6f70f2}{load\+\_\+mnist}} (const char $\ast$path, \mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$$\ast$$\ast$\+\_\+inputs, \mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$$\ast$$\ast$\+\_\+expected, size\+\_\+t start, size\+\_\+t length, const char $\ast$mode, size\+\_\+t inputsize, size\+\_\+t outputsize)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{loader_8c_a894874fce4252e840e2412fd1dbfa4ea}\label{loader_8c_a894874fce4252e840e2412fd1dbfa4ea}} 
+\index{loader.c@{loader.c}!OUTPUT\_SIZE@{OUTPUT\_SIZE}}
+\index{OUTPUT\_SIZE@{OUTPUT\_SIZE}!loader.c@{loader.c}}
+\doxysubsubsection{\texorpdfstring{OUTPUT\_SIZE}{OUTPUT\_SIZE}}
+{\footnotesize\ttfamily \#define OUTPUT\+\_\+\+SIZE~10}
+
+
+
+Definition at line \mbox{\hyperlink{loader_8c_source_l00008}{8}} of file \mbox{\hyperlink{loader_8c_source}{loader.\+c}}.
+
+\mbox{\Hypertarget{loader_8c_abd607f13447d238cfa36348ed8e5d383}\label{loader_8c_abd607f13447d238cfa36348ed8e5d383}} 
+\index{loader.c@{loader.c}!READ\_LENGTH@{READ\_LENGTH}}
+\index{READ\_LENGTH@{READ\_LENGTH}!loader.c@{loader.c}}
+\doxysubsubsection{\texorpdfstring{READ\_LENGTH}{READ\_LENGTH}}
+{\footnotesize\ttfamily \#define READ\+\_\+\+LENGTH~1024}
+
+
+
+Definition at line \mbox{\hyperlink{loader_8c_source_l00009}{9}} of file \mbox{\hyperlink{loader_8c_source}{loader.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{loader_8c_a5732969f39cd8df18bbdc133bd6f70f2}\label{loader_8c_a5732969f39cd8df18bbdc133bd6f70f2}} 
+\index{loader.c@{loader.c}!load\_mnist@{load\_mnist}}
+\index{load\_mnist@{load\_mnist}!loader.c@{loader.c}}
+\doxysubsubsection{\texorpdfstring{load\_mnist()}{load\_mnist()}}
+{\footnotesize\ttfamily int load\+\_\+mnist (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path,  }\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$$\ast$$\ast$}]{\+\_\+inputs,  }\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$$\ast$$\ast$}]{\+\_\+expected,  }\item[{size\+\_\+t}]{start,  }\item[{size\+\_\+t}]{length,  }\item[{const char $\ast$}]{mode,  }\item[{size\+\_\+t}]{inputsize,  }\item[{size\+\_\+t}]{outputsize }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{loader_8c_source_l00094}{94}} of file \mbox{\hyperlink{loader_8c_source}{loader.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00097 \{}
+\DoxyCodeLine{00098 }
+\DoxyCodeLine{00099     \textcolor{keywordflow}{if} (strcmp(mode, \mbox{\hyperlink{loader_8h_a3d8d65e2de4c173a15a05a5d5dda60b8}{CSV\_MODE}}) \&\& strcmp(mode, \mbox{\hyperlink{loader_8h_a399981b4dd18f0e6b9252badf307ce05}{BINARY\_MODE}}))}
+\DoxyCodeLine{00100     \{}
+\DoxyCodeLine{00101         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{00102     \}}
+\DoxyCodeLine{00103 }
+\DoxyCodeLine{00104     FILE *file = fopen(path, mode);}
+\DoxyCodeLine{00105     \textcolor{keywordflow}{if} (file == NULL)}
+\DoxyCodeLine{00106         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{00107     *\_inputs = (\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **)malloc(length * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *));}
+\DoxyCodeLine{00108     \textcolor{keywordflow}{if} (*\_inputs == NULL)}
+\DoxyCodeLine{00109         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{00110     init\_vectors(*\_inputs, length, inputsize, 0);}
+\DoxyCodeLine{00111     *\_expected = (\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **)malloc(length * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *));}
+\DoxyCodeLine{00112     \textcolor{keywordflow}{if} (*\_expected == NULL)}
+\DoxyCodeLine{00113         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{00114     init\_vectors(*\_expected, length, outputsize, 1);}
+\DoxyCodeLine{00115 }
+\DoxyCodeLine{00116     \textcolor{keywordtype}{int} result;}
+\DoxyCodeLine{00117     \textcolor{keywordflow}{if} (strcmp(mode, \mbox{\hyperlink{loader_8h_a3d8d65e2de4c173a15a05a5d5dda60b8}{CSV\_MODE}}) == 0)}
+\DoxyCodeLine{00118     \{}
+\DoxyCodeLine{00119         result = load\_csv(file, *\_inputs, *\_expected, start, length);}
+\DoxyCodeLine{00120     \}}
+\DoxyCodeLine{00121     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00122     \{}
+\DoxyCodeLine{00123         result = -\/1;}
+\DoxyCodeLine{00124     \}}
+\DoxyCodeLine{00125     fclose(file);}
+\DoxyCodeLine{00126     \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{00127 \}}
+
+\end{DoxyCode}

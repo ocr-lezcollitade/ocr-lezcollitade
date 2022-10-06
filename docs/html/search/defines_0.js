@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['chk_0',['CHK',['../network_8c.html#a28a631a46550a13bbf48635953aafcbd',1,'network.c']]]
+  ['binary_5fmode_0',['BINARY_MODE',['../loader_8h.html#a399981b4dd18f0e6b9252badf307ce05',1,'loader.h']]]
 ];

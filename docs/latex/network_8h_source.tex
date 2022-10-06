@@ -46,17 +46,20 @@
 \DoxyCodeLine{\Hypertarget{network_8h_source_l00137}00137 }
 \DoxyCodeLine{\Hypertarget{network_8h_source_l00143}00143 \textcolor{keywordtype}{void} \mbox{\hyperlink{network_8h_a409a0ece3c34a9afeaafecddf73a3e1a}{network\_free}}(\mbox{\hyperlink{structnetwork__t}{network\_t}} *network);}
 \DoxyCodeLine{\Hypertarget{network_8h_source_l00144}00144 }
-\DoxyCodeLine{\Hypertarget{network_8h_source_l00152}00152 \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *\mbox{\hyperlink{network_8h_ae31874ff552d5ac00586d3b4e9c9c078}{compute\_layer}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *values, \mbox{\hyperlink{structlayer__t}{layer\_t}} *layer);}
-\DoxyCodeLine{\Hypertarget{network_8h_source_l00153}00153 }
-\DoxyCodeLine{\Hypertarget{network_8h_source_l00162}00162 \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *\mbox{\hyperlink{network_8h_a49d5f5101cda3ffc8355a0237ee16709}{compute\_result}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *values, \mbox{\hyperlink{structnetwork__t}{network\_t}} *network);}
-\DoxyCodeLine{\Hypertarget{network_8h_source_l00163}00163 }
-\DoxyCodeLine{\Hypertarget{network_8h_source_l00175}\mbox{\hyperlink{network_8h_a6df00131457a033be796e569f897b000}{00175}} \textcolor{keywordtype}{void} \mbox{\hyperlink{network_8h_a6df00131457a033be796e569f897b000}{compute\_result\_save}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **partial\_results, \mbox{\hyperlink{structnetwork__t}{network\_t}} *network);}
-\DoxyCodeLine{\Hypertarget{network_8h_source_l00176}00176 }
-\DoxyCodeLine{\Hypertarget{network_8h_source_l00183}00183 \mbox{\hyperlink{structnetwork__t}{network\_t}} *\mbox{\hyperlink{network_8h_abef62369a77da828529fbf193f111ef7}{network\_copy}}(\mbox{\hyperlink{structnetwork__t}{network\_t}} *old);}
-\DoxyCodeLine{\Hypertarget{network_8h_source_l00184}00184 }
-\DoxyCodeLine{\Hypertarget{network_8h_source_l00185}00185 \textcolor{keywordtype}{void} \mbox{\hyperlink{network_8h_ac99789abdffa9915778914a50c1b4514}{network\_train}}(}
-\DoxyCodeLine{\Hypertarget{network_8h_source_l00186}00186     \mbox{\hyperlink{structnetwork__t}{network\_t}} **pnet, \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *inputs, \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *target, \textcolor{keywordtype}{double} rate);}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00154}00154 \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *\mbox{\hyperlink{network_8h_a4ddc3e0dbc1979105df3cb54aea54319}{compute\_layer}}(}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00155}00155     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *values, \mbox{\hyperlink{structlayer__t}{layer\_t}} *layer, \mbox{\hyperlink{matrix_8h_af967065ada73d6d2c06c01459e274435}{mat\_transform\_t}} \mbox{\hyperlink{function_8c_a312ab1be52b156fb23e9345424c0f2b9}{activation}});}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00156}00156 }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00165}00165 \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *\mbox{\hyperlink{network_8h_a49d5f5101cda3ffc8355a0237ee16709}{compute\_result}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *values, \mbox{\hyperlink{structnetwork__t}{network\_t}} *network);}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00166}00166 }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00178}\mbox{\hyperlink{network_8h_a6df00131457a033be796e569f897b000}{00178}} \textcolor{keywordtype}{void} \mbox{\hyperlink{network_8h_a6df00131457a033be796e569f897b000}{compute\_result\_save}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **partial\_results, \mbox{\hyperlink{structnetwork__t}{network\_t}} *network);}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00179}00179 }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00186}00186 \mbox{\hyperlink{structnetwork__t}{network\_t}} *\mbox{\hyperlink{network_8h_abef62369a77da828529fbf193f111ef7}{network\_copy}}(\mbox{\hyperlink{structnetwork__t}{network\_t}} *old);}
 \DoxyCodeLine{\Hypertarget{network_8h_source_l00187}00187 }
-\DoxyCodeLine{\Hypertarget{network_8h_source_l00188}00188 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !UTILS\_NETWORK\_H */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00188}00188 \textcolor{keywordtype}{void} \mbox{\hyperlink{network_8h_ac99789abdffa9915778914a50c1b4514}{network\_train}}(}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00189}00189     \mbox{\hyperlink{structnetwork__t}{network\_t}} **pnet, \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *inputs, \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *target, \textcolor{keywordtype}{double} rate);}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00190}00190 }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00199}00199 \textcolor{keywordtype}{int} \mbox{\hyperlink{network_8h_a338eaca7b062c45c2ddf651ec7bfb5ab}{network\_get\_output}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *outputs, \textcolor{keywordtype}{double} threshold);}
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00200}00200 }
+\DoxyCodeLine{\Hypertarget{network_8h_source_l00201}00201 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !UTILS\_NETWORK\_H */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}
