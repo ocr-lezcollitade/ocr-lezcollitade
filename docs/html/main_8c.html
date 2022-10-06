@@ -71,11 +71,13 @@ $(function() {
   <div class="headertitle"><div class="title">main.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;math.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="network_8h_source.html">./network/network.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="solver_8h_source.html">./solver/solver.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="matrix_8h_source.html">./utils/matrices/matrix.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="loader_8h_source.html">./utils/mnist/loader.h</a>&quot;</code><br />
 </div>
 <p><a href="main_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -111,64 +113,90 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00007">7</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">    8</span>{</div>
-<div class="line"><span class="lineno">    9</span> </div>
-<div class="line"><span class="lineno">   10</span>    <span class="keywordflow">if</span> (argc == 2)</div>
-<div class="line"><span class="lineno">   11</span>    {</div>
-<div class="line"><span class="lineno">   12</span>        printf(<span class="stringliteral">&quot;%s\n&quot;</span>, argv[1]);</div>
-<div class="line"><span class="lineno">   13</span>        <span class="keywordtype">size_t</span> layers[] = {2, 2, 1};</div>
-<div class="line"><span class="lineno">   14</span>        <a class="code hl_struct" href="structnetwork__t.html">network_t</a> *net</div>
-<div class="line"><span class="lineno">   15</span>            = <a class="code hl_function" href="network_8c.html#aba00189ea608835915fdd9f753c33fd4">network_generate</a>(layers, <span class="keyword">sizeof</span>(layers) / <span class="keyword">sizeof</span>(<span class="keywordtype">size_t</span>));</div>
-<div class="line"><span class="lineno">   16</span>        <span class="keywordtype">double</span> values[][2] = {{1, 1}, {1, 0}, {0, 1}, {0, 0}};</div>
-<div class="line"><span class="lineno">   17</span>        <span class="keywordtype">double</span> dexpected[][1] = {{0}, {1}, {1}, {0}};</div>
-<div class="line"><span class="lineno">   18</span>        <a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> **inputs = (<a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> **)malloc(4 * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> *));</div>
-<div class="line"><span class="lineno">   19</span>        <a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> **expected = (<a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> **)malloc(4 * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> *));</div>
-<div class="line"><span class="lineno">   20</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; 4; i++)</div>
-<div class="line"><span class="lineno">   21</span>        {</div>
-<div class="line"><span class="lineno">   22</span>            inputs[i] = <a class="code hl_function" href="matrix_8c.html#a517e248a0faeb2c0a2e1f1b823b8cd3b">mat_create_fill</a>(2, 1, values[i]);</div>
-<div class="line"><span class="lineno">   23</span>            expected[i] = <a class="code hl_function" href="matrix_8c.html#a517e248a0faeb2c0a2e1f1b823b8cd3b">mat_create_fill</a>(1, 1, dexpected[i]);</div>
-<div class="line"><span class="lineno">   24</span>        }</div>
-<div class="line"><span class="lineno">   25</span> </div>
-<div class="line"><span class="lineno">   26</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; 100; j++)</div>
-<div class="line"><span class="lineno">   27</span>        {</div>
-<div class="line"><span class="lineno">   28</span>            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = 0; k &lt; 100000; k++)</div>
-<div class="line"><span class="lineno">   29</span>            {</div>
-<div class="line"><span class="lineno">   30</span>                <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; 4; i++)</div>
-<div class="line"><span class="lineno">   31</span>                {</div>
-<div class="line"><span class="lineno">   32</span>                    <a class="code hl_function" href="network_8c.html#ac99789abdffa9915778914a50c1b4514">network_train</a>(&amp;net, inputs[i], expected[i], 0.1);</div>
-<div class="line"><span class="lineno">   33</span>                }</div>
-<div class="line"><span class="lineno">   34</span>            }</div>
-<div class="line"><span class="lineno">   35</span>            printf(<span class="stringliteral">&quot;advancement: %zu\n&quot;</span>, j);</div>
-<div class="line"><span class="lineno">   36</span>        }</div>
-<div class="line"><span class="lineno">   37</span> </div>
-<div class="line"><span class="lineno">   38</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; 4; i++)</div>
-<div class="line"><span class="lineno">   39</span>        {</div>
-<div class="line"><span class="lineno">   40</span>            <a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> *res = <a class="code hl_function" href="network_8c.html#a49d5f5101cda3ffc8355a0237ee16709">compute_result</a>(inputs[i], net);</div>
-<div class="line"><span class="lineno">   41</span>            printf(<span class="stringliteral">&quot;%f, %f -&gt; %f\n&quot;</span>, <a class="code hl_function" href="matrix_8c.html#a631ff21351ba5ec31350fb5277605d3b">mat_el_at</a>(inputs[i], 0, 0),</div>
-<div class="line"><span class="lineno">   42</span>                <a class="code hl_function" href="matrix_8c.html#a631ff21351ba5ec31350fb5277605d3b">mat_el_at</a>(inputs[i], 1, 0), <a class="code hl_function" href="matrix_8c.html#a631ff21351ba5ec31350fb5277605d3b">mat_el_at</a>(res, 0, 0));</div>
-<div class="line"><span class="lineno">   43</span>            <a class="code hl_function" href="matrix_8c.html#aa20fd2a5c773eda620ce98e2f121b687">matrix_free</a>(res);</div>
-<div class="line"><span class="lineno">   44</span>        }</div>
-<div class="line"><span class="lineno">   45</span> </div>
-<div class="line"><span class="lineno">   46</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; 4; i++)</div>
-<div class="line"><span class="lineno">   47</span>        {</div>
-<div class="line"><span class="lineno">   48</span>            <a class="code hl_function" href="matrix_8c.html#aa20fd2a5c773eda620ce98e2f121b687">matrix_free</a>(inputs[i]);</div>
-<div class="line"><span class="lineno">   49</span>            <a class="code hl_function" href="matrix_8c.html#aa20fd2a5c773eda620ce98e2f121b687">matrix_free</a>(expected[i]);</div>
-<div class="line"><span class="lineno">   50</span>        }</div>
-<div class="line"><span class="lineno">   51</span>        free(inputs);</div>
-<div class="line"><span class="lineno">   52</span>        free(expected);</div>
-<div class="line"><span class="lineno">   53</span> </div>
-<div class="line"><span class="lineno">   54</span>        <a class="code hl_function" href="network_8c.html#ab7de60cd0ad5a69e135b63d264018d1a">network_free</a>(net);</div>
-<div class="line"><span class="lineno">   55</span>    }</div>
-<div class="line"><span class="lineno">   56</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><span class="lineno">   57</span>}</div>
+<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00009">9</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   10</span>{</div>
+<div class="line"><span class="lineno">   11</span>    <span class="keywordflow">if</span> (argc == 2)</div>
+<div class="line"><span class="lineno">   12</span>    {</div>
+<div class="line"><span class="lineno">   13</span>        <a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> **inputs;</div>
+<div class="line"><span class="lineno">   14</span>        <a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> **expected;</div>
+<div class="line"><span class="lineno">   15</span> </div>
+<div class="line"><span class="lineno">   16</span>        <a class="code hl_function" href="loader_8c.html#a5732969f39cd8df18bbdc133bd6f70f2">load_mnist</a>(argv[1], &amp;inputs, &amp;expected, 1, 1000, <a class="code hl_define" href="loader_8h.html#a3d8d65e2de4c173a15a05a5d5dda60b8">CSV_MODE</a>, 784, 10);</div>
+<div class="line"><span class="lineno">   17</span> </div>
+<div class="line"><span class="lineno">   18</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; 5; i++)</div>
+<div class="line"><span class="lineno">   19</span>        {</div>
+<div class="line"><span class="lineno">   20</span> </div>
+<div class="line"><span class="lineno">   21</span>            printf(<span class="stringliteral">&quot;result: \n&quot;</span>);</div>
+<div class="line"><span class="lineno">   22</span>            <a class="code hl_function" href="matrix_8c.html#aad33a6577c7e2d732fdec25cac8022ac">mat_print</a>(expected[i]);</div>
+<div class="line"><span class="lineno">   23</span>            <a class="code hl_function" href="matrix_8c.html#aa20fd2a5c773eda620ce98e2f121b687">matrix_free</a>(expected[i]);</div>
+<div class="line"><span class="lineno">   24</span>            <a class="code hl_function" href="matrix_8c.html#aa20fd2a5c773eda620ce98e2f121b687">matrix_free</a>(inputs[i]);</div>
+<div class="line"><span class="lineno">   25</span>        }</div>
+<div class="line"><span class="lineno">   26</span>        free(inputs);</div>
+<div class="line"><span class="lineno">   27</span>        free(expected);</div>
+<div class="line"><span class="lineno">   28</span>    }</div>
+<div class="line"><span class="lineno">   29</span> </div>
+<div class="line"><span class="lineno">   30</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">   31</span> </div>
+<div class="line"><span class="lineno">   32</span>    <span class="keywordflow">if</span> (argc == 2)</div>
+<div class="line"><span class="lineno">   33</span>    {</div>
+<div class="line"><span class="lineno">   34</span>        printf(<span class="stringliteral">&quot;%s\n&quot;</span>, argv[1]);</div>
+<div class="line"><span class="lineno">   35</span>        <span class="keywordtype">size_t</span> layers[] = {2, 2, 1};</div>
+<div class="line"><span class="lineno">   36</span>        <a class="code hl_struct" href="structnetwork__t.html">network_t</a> *net</div>
+<div class="line"><span class="lineno">   37</span>            = <a class="code hl_function" href="network_8c.html#aba00189ea608835915fdd9f753c33fd4">network_generate</a>(layers, <span class="keyword">sizeof</span>(layers) / <span class="keyword">sizeof</span>(<span class="keywordtype">size_t</span>));</div>
+<div class="line"><span class="lineno">   38</span> </div>
+<div class="line"><span class="lineno">   39</span>        <span class="comment">/*</span></div>
+<div class="line"><span class="lineno">   40</span><span class="comment">           network_t *net = network_load(argv[1]);*/</span></div>
+<div class="line"><span class="lineno">   41</span>        <span class="keywordtype">double</span> values[][2] = {{1, 1}, {1, 0}, {0, 1}, {0, 0}};</div>
+<div class="line"><span class="lineno">   42</span>        <span class="keywordtype">double</span> dexpected[][1] = {{0}, {1}, {1}, {0}};</div>
+<div class="line"><span class="lineno">   43</span>        <a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> **inputs = (<a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> **)malloc(4 * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> *));</div>
+<div class="line"><span class="lineno">   44</span>        <a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> **expected = (<a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> **)malloc(4 * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> *));</div>
+<div class="line"><span class="lineno">   45</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; 4; i++)</div>
+<div class="line"><span class="lineno">   46</span>        {</div>
+<div class="line"><span class="lineno">   47</span>            inputs[i] = <a class="code hl_function" href="matrix_8c.html#a517e248a0faeb2c0a2e1f1b823b8cd3b">mat_create_fill</a>(2, 1, values[i]);</div>
+<div class="line"><span class="lineno">   48</span>            expected[i] = <a class="code hl_function" href="matrix_8c.html#a517e248a0faeb2c0a2e1f1b823b8cd3b">mat_create_fill</a>(1, 1, dexpected[i]);</div>
+<div class="line"><span class="lineno">   49</span>        }</div>
+<div class="line"><span class="lineno">   50</span> </div>
+<div class="line"><span class="lineno">   51</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; 100; j++)</div>
+<div class="line"><span class="lineno">   52</span>        {</div>
+<div class="line"><span class="lineno">   53</span>            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = 0; k &lt; 100000; k++)</div>
+<div class="line"><span class="lineno">   54</span>            {</div>
+<div class="line"><span class="lineno">   55</span>                <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; 4; i++)</div>
+<div class="line"><span class="lineno">   56</span>                {</div>
+<div class="line"><span class="lineno">   57</span>                    <a class="code hl_function" href="network_8c.html#ac99789abdffa9915778914a50c1b4514">network_train</a>(&amp;net, inputs[i], expected[i], 0.001);</div>
+<div class="line"><span class="lineno">   58</span>                }</div>
+<div class="line"><span class="lineno">   59</span>            }</div>
+<div class="line"><span class="lineno">   60</span>            printf(<span class="stringliteral">&quot;advancement: %zu\n&quot;</span>, j);</div>
+<div class="line"><span class="lineno">   61</span>        }</div>
+<div class="line"><span class="lineno">   62</span> </div>
+<div class="line"><span class="lineno">   63</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; 4; i++)</div>
+<div class="line"><span class="lineno">   64</span>        {</div>
+<div class="line"><span class="lineno">   65</span>            <a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> *res = <a class="code hl_function" href="network_8c.html#a49d5f5101cda3ffc8355a0237ee16709">compute_result</a>(inputs[i], net);</div>
+<div class="line"><span class="lineno">   66</span>            printf(<span class="stringliteral">&quot;%f, %f -&gt; %f\n&quot;</span>, <a class="code hl_function" href="matrix_8c.html#a631ff21351ba5ec31350fb5277605d3b">mat_el_at</a>(inputs[i], 0, 0),</div>
+<div class="line"><span class="lineno">   67</span>                <a class="code hl_function" href="matrix_8c.html#a631ff21351ba5ec31350fb5277605d3b">mat_el_at</a>(inputs[i], 1, 0), <a class="code hl_function" href="matrix_8c.html#a631ff21351ba5ec31350fb5277605d3b">mat_el_at</a>(res, 0, 0));</div>
+<div class="line"><span class="lineno">   68</span>            <a class="code hl_function" href="matrix_8c.html#aa20fd2a5c773eda620ce98e2f121b687">matrix_free</a>(res);</div>
+<div class="line"><span class="lineno">   69</span>        }</div>
+<div class="line"><span class="lineno">   70</span> </div>
+<div class="line"><span class="lineno">   71</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; 4; i++)</div>
+<div class="line"><span class="lineno">   72</span>        {</div>
+<div class="line"><span class="lineno">   73</span>            <a class="code hl_function" href="matrix_8c.html#aa20fd2a5c773eda620ce98e2f121b687">matrix_free</a>(inputs[i]);</div>
+<div class="line"><span class="lineno">   74</span>            <a class="code hl_function" href="matrix_8c.html#aa20fd2a5c773eda620ce98e2f121b687">matrix_free</a>(expected[i]);</div>
+<div class="line"><span class="lineno">   75</span>        }</div>
+<div class="line"><span class="lineno">   76</span>        free(inputs);</div>
+<div class="line"><span class="lineno">   77</span>        free(expected);</div>
+<div class="line"><span class="lineno">   78</span> </div>
+<div class="line"><span class="lineno">   79</span>        <a class="code hl_function" href="network_8c.html#ab7de60cd0ad5a69e135b63d264018d1a">network_free</a>(net);</div>
+<div class="line"><span class="lineno">   80</span>    }</div>
+<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">   82</span>}</div>
+<div class="ttc" id="aloader_8c_html_a5732969f39cd8df18bbdc133bd6f70f2"><div class="ttname"><a href="loader_8c.html#a5732969f39cd8df18bbdc133bd6f70f2">load_mnist</a></div><div class="ttdeci">int load_mnist(const char *path, matrix_t ***_inputs, matrix_t ***_expected, size_t start, size_t length, const char *mode, size_t inputsize, size_t outputsize)</div><div class="ttdef"><b>Definition:</b> <a href="loader_8c_source.html#l00094">loader.c:94</a></div></div>
+<div class="ttc" id="aloader_8h_html_a3d8d65e2de4c173a15a05a5d5dda60b8"><div class="ttname"><a href="loader_8h.html#a3d8d65e2de4c173a15a05a5d5dda60b8">CSV_MODE</a></div><div class="ttdeci">#define CSV_MODE</div><div class="ttdef"><b>Definition:</b> <a href="loader_8h_source.html#l00007">loader.h:7</a></div></div>
 <div class="ttc" id="amatrix_8c_html_a517e248a0faeb2c0a2e1f1b823b8cd3b"><div class="ttname"><a href="matrix_8c.html#a517e248a0faeb2c0a2e1f1b823b8cd3b">mat_create_fill</a></div><div class="ttdeci">matrix_t * mat_create_fill(size_t rows, size_t columns, double *elements)</div><div class="ttdoc">Creates a matrix and fills it.</div><div class="ttdef"><b>Definition:</b> <a href="matrix_8c_source.html#l00038">matrix.c:38</a></div></div>
 <div class="ttc" id="amatrix_8c_html_a631ff21351ba5ec31350fb5277605d3b"><div class="ttname"><a href="matrix_8c.html#a631ff21351ba5ec31350fb5277605d3b">mat_el_at</a></div><div class="ttdeci">double mat_el_at(matrix_t *mat, size_t i, size_t j)</div><div class="ttdoc">gets the elements at position i, j</div><div class="ttdef"><b>Definition:</b> <a href="matrix_8c_source.html#l00006">matrix.c:6</a></div></div>
 <div class="ttc" id="amatrix_8c_html_aa20fd2a5c773eda620ce98e2f121b687"><div class="ttname"><a href="matrix_8c.html#aa20fd2a5c773eda620ce98e2f121b687">matrix_free</a></div><div class="ttdeci">void matrix_free(matrix_t *mat)</div><div class="ttdoc">frees the matrix</div><div class="ttdef"><b>Definition:</b> <a href="matrix_8c_source.html#l00045">matrix.c:45</a></div></div>
-<div class="ttc" id="anetwork_8c_html_a49d5f5101cda3ffc8355a0237ee16709"><div class="ttname"><a href="network_8c.html#a49d5f5101cda3ffc8355a0237ee16709">compute_result</a></div><div class="ttdeci">matrix_t * compute_result(matrix_t *values, network_t *network)</div><div class="ttdoc">Computes the result of the input by the network.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00030">network.c:30</a></div></div>
-<div class="ttc" id="anetwork_8c_html_ab7de60cd0ad5a69e135b63d264018d1a"><div class="ttname"><a href="network_8c.html#ab7de60cd0ad5a69e135b63d264018d1a">network_free</a></div><div class="ttdeci">void network_free(network_t *net)</div><div class="ttdoc">Frees the allocated network.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00119">network.c:119</a></div></div>
-<div class="ttc" id="anetwork_8c_html_aba00189ea608835915fdd9f753c33fd4"><div class="ttname"><a href="network_8c.html#aba00189ea608835915fdd9f753c33fd4">network_generate</a></div><div class="ttdeci">network_t * network_generate(size_t *neuron_count, size_t size)</div><div class="ttdoc">Generates a network based on given neuron count.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00461">network.c:461</a></div></div>
-<div class="ttc" id="anetwork_8c_html_ac99789abdffa9915778914a50c1b4514"><div class="ttname"><a href="network_8c.html#ac99789abdffa9915778914a50c1b4514">network_train</a></div><div class="ttdeci">void network_train(network_t **pnet, matrix_t *inputs, matrix_t *target, double rate)</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00583">network.c:583</a></div></div>
+<div class="ttc" id="amatrix_8c_html_aad33a6577c7e2d732fdec25cac8022ac"><div class="ttname"><a href="matrix_8c.html#aad33a6577c7e2d732fdec25cac8022ac">mat_print</a></div><div class="ttdeci">void mat_print(matrix_t *mat)</div><div class="ttdoc">Prints the matrix.</div><div class="ttdef"><b>Definition:</b> <a href="matrix_8c_source.html#l00181">matrix.c:181</a></div></div>
+<div class="ttc" id="anetwork_8c_html_a49d5f5101cda3ffc8355a0237ee16709"><div class="ttname"><a href="network_8c.html#a49d5f5101cda3ffc8355a0237ee16709">compute_result</a></div><div class="ttdeci">matrix_t * compute_result(matrix_t *values, network_t *network)</div><div class="ttdoc">Computes the result of the input by the network.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00031">network.c:31</a></div></div>
+<div class="ttc" id="anetwork_8c_html_ab7de60cd0ad5a69e135b63d264018d1a"><div class="ttname"><a href="network_8c.html#ab7de60cd0ad5a69e135b63d264018d1a">network_free</a></div><div class="ttdeci">void network_free(network_t *net)</div><div class="ttdoc">Frees the allocated network.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00130">network.c:130</a></div></div>
+<div class="ttc" id="anetwork_8c_html_aba00189ea608835915fdd9f753c33fd4"><div class="ttname"><a href="network_8c.html#aba00189ea608835915fdd9f753c33fd4">network_generate</a></div><div class="ttdeci">network_t * network_generate(size_t *neuron_count, size_t size)</div><div class="ttdoc">Generates a network based on given neuron count.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00472">network.c:472</a></div></div>
+<div class="ttc" id="anetwork_8c_html_ac99789abdffa9915778914a50c1b4514"><div class="ttname"><a href="network_8c.html#ac99789abdffa9915778914a50c1b4514">network_train</a></div><div class="ttdeci">void network_train(network_t **pnet, matrix_t *inputs, matrix_t *target, double rate)</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00594">network.c:594</a></div></div>
 <div class="ttc" id="astructmatrix__t_html"><div class="ttname"><a href="structmatrix__t.html">matrix_t</a></div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00009">matrix.h:10</a></div></div>
 <div class="ttc" id="astructnetwork__t_html"><div class="ttname"><a href="structnetwork__t.html">network_t</a></div><div class="ttdoc">A struct representing a neural network.</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00079">network.h:80</a></div></div>
 </div><!-- fragment -->

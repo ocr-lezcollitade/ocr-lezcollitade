@@ -188,4 +188,14 @@ network_t *network_copy(network_t *old);
 void network_train(
     network_t **pnet, matrix_t *inputs, matrix_t *target, double rate);
 
+/**
+ *  \brief          Return the calculated output.
+ *  \fn             int network_get_output(matrix_t *outputs, double threshold)
+ *  \param outputs  The matrix of outputs given by the network.
+ *  \param threshold    The threshold starting from which the result will be
+ *  considered as valid.
+ *  \return         The calculated output or -1 if none above the threshold.
+ */
+int network_get_output(matrix_t *outputs, double threshold);
+
 #endif /* !UTILS_NETWORK_H */

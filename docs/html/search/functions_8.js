@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['win_0',['win',['../solver_8c.html#a96776fdbf6c9ceb8774e2ea643cf5b1a',1,'win(int grid[9][9]):&#160;solver.c'],['../solver_8h.html#a96776fdbf6c9ceb8774e2ea643cf5b1a',1,'win(int grid[9][9]):&#160;solver.c']]]
+  ['sign_0',['sign',['../function_8c.html#a0770694792334e6a69938e6a9364fbb9',1,'sign(double nb):&#160;function.c'],['../function_8h.html#a0770694792334e6a69938e6a9364fbb9',1,'sign(double nb):&#160;function.c']]],
+  ['solve_1',['solve',['../solver_8c.html#a34d8e6241d75827a5fbfeff56a349223',1,'solve(char *inputFile):&#160;solver.c'],['../solver_8h.html#a34d8e6241d75827a5fbfeff56a349223',1,'solve(char *inputFile):&#160;solver.c']]]
 ];

@@ -342,12 +342,16 @@ inline static int parse_neuron_line(
             }
             else if (c == '\0')
             {
-                result[index++] = value;
+                // result[index++] = value;
                 if (index < count)
                 {
-                    errx(1, "missing values at line %zu", *line);
+                    break;
+                    // errx(1, "missing values at line %zu", *line);
                 }
-                return 0;
+                else
+                {
+                    return 0;
+                }
             }
             else if (c == '\n')
             {
@@ -629,4 +633,23 @@ void network_train(
     free(deltas);
     network_free(*pnet);
     *pnet = trained;
+}
+
+int network_get_output(matrix_t *outputs, double threshold)
+{
+    int result = -1;
+    double old_value = 0;
+    for (size_t i = 0; i < outputs->rows; i++)
+    {
+        double val = mat_el_at(outputs, i, 0);
+        if (val < threshold)
+            continue;
+        if (val > old_value)
+        {
+            result = i;
+            old_value = val;
+        }
+    }
+
+    return result;
 }

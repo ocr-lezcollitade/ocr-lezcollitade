@@ -14,20 +14,23 @@ static double sigmoid_derivative(double x)
 
 double output_activation(double arg)
 {
-    return tanh(arg);
+    return sigmoid(arg);
 }
 
 double output_activation_derivative(double arg)
 {
-    return 1 - pow(tanh(arg), 2);
+    return sigmoid_derivative(arg);
 }
+
 double activation(double arg)
 {
+    // return tanh(arg);
     return sigmoid(arg);
 }
 
 double activation_derivative(double arg)
 {
+    // return 1 - pow(arg, 2);
     return sigmoid_derivative(arg);
 }
 
