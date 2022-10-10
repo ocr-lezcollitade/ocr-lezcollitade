@@ -34,10 +34,6 @@ void event_loop(SDL_Renderer* renderer, SDL_Texture* texture)
     }
 }
 
-// Loads an image in a surface.
-// The format of the surface is SDL_PIXELFORMAT_RGB888.
-//
-// path: Path of the image.
 SDL_Surface* load_image(const char* path)
 {
     SDL_Surface* temp_surface = IMG_Load(path);
@@ -49,6 +45,44 @@ SDL_Surface* load_image(const char* path)
     return surface;
 }
 
+SDL_Surface* rotate_from_dest(SDL_Surface* surface, int deg)
+{
+    Uint32* pixels = surface->pixels;
+
+    int w = surface->w;
+    int h = surface->h;
+
+    int len = surface->w * surface->h;
+
+    double angle = deg * M_PI / 180;
+    
+    int middle_x = surface->w / 2;
+    int middle_y = surface->h / 2;
+
+    int move_x = floor(cos(angle) * middle_x - sin(angle) * middle_y);
+    int move_y = floor(sin(angle) * middle_x + cos(angle) * middle_y);
+
+    SDL_Surface* new_surface = SDL_CreateRGBSurface(0, w, h, 32, 0, 0, 0, 0);
+
+    Uint32* new_pixels = new_surface->pixels;
+   
+    for (int i = 0; i < len; i++)
+    {
+        int x_d = i % w;
+        int y_d = i / w;
+
+        int x_s = floor(cos(-angle) * (x_d) - sin(-angle) * (y_d));
+        int y_s = floor(sin(-angle) * (x_d) + cos(-angle) * (y_d));
+
+        int i_s = y_s * w + x_s;
+
+        if (i_s >= 0 && i_s < len)
+            new_pixels[i] = pixels[i_s];
+    }
+
+    return new_surface;
+}
+
 int compute_coordinates(int index, int deg, int w, int move_x, int move_y)
 {
     int x0 = index % w;
@@ -56,8 +90,8 @@ int compute_coordinates(int index, int deg, int w, int move_x, int move_y)
 
     double angle = deg * M_PI / 180;
 
-    int x1 = floor(cos(angle) * x0 - sin(angle) * y0) + move_x;
-    int y1 = floor(sin(angle) * x0 + cos(angle) * y0) + move_y;
+    int x1 = floor(cos(angle) * x0 - sin(angle) * y0);
+    int y1 = floor(sin(angle) * x0 + cos(angle) * y0);
 
     int res = y1 * w + x1;
 
@@ -123,7 +157,7 @@ int main(int argc, char** argv)
 
     SDL_SetWindowSize(window, w, h);
 
-    SDL_Surface* new_surface = rotate(surface, 45);
+    SDL_Surface* new_surface = rotate_from_dest(surface, 45);
 
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, new_surface);
     if (texture == NULL)
