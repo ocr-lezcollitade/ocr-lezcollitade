@@ -4,10 +4,6 @@
 #include <stdio.h>
 #include <math.h>
 
-// Updates the display.
-//
-// renderer: Renderer to draw on.
-// texture: Texture that contains the image.
 void draw(SDL_Renderer* renderer, SDL_Texture* texture)
 {
      if (SDL_RenderCopy(renderer, texture, NULL, NULL) != 0)
@@ -16,11 +12,6 @@ void draw(SDL_Renderer* renderer, SDL_Texture* texture)
     SDL_RenderPresent(renderer);
 }
 
-// Event loop that calls the relevant event handler.
-//
-// renderer: Renderer to draw on.
-// colored: Texture that contains the colored image.
-// grayscale: Texture that contains the grayscale image.
 void event_loop(SDL_Renderer* renderer, SDL_Texture* texture)
 {
     draw(renderer, texture);
@@ -58,26 +49,32 @@ SDL_Surface* load_image(const char* path)
     return surface;
 }
 
-int compute_coordinates(int index, int deg, int w)
+int compute_coordinates(int index, int deg, int w, int move_x, int move_y)
 {
     int x0 = index % w;
     int y0 = index / w;
 
     double angle = deg * M_PI / 180;
 
-    int x1 = floor(cos(angle) * x0 - sin(angle) * y0) + 200;
-    int y1 = floor(sin(angle) * x0 + cos(angle) * y0) + 200;
+    int x1 = floor(cos(angle) * x0 - sin(angle) * y0) + move_x;
+    int y1 = floor(sin(angle) * x0 + cos(angle) * y0) + move_y;
 
     int res = y1 * w + x1;
 
     return res;
 }
 
-SDL_Surface* rotate(SDL_Surface* surface)
+SDL_Surface* rotate(SDL_Surface* surface, int rotation)
 {
     Uint32* pixels = surface->pixels;
 
     int len = surface->w * surface->h;
+
+    int middle_x = surface->w / 2;
+    int middle_y = surface->h / 2;
+
+    int move_x = middle_x - floor(cos(rotation * M_PI / 180) * middle_x - sin(rotation * M_PI / 180) * middle_y);
+    int move_y = middle_y - floor(sin(rotation * M_PI / 180) * middle_x + cos(rotation * M_PI / 180) * middle_y);
 
     int size;
 
@@ -92,7 +89,7 @@ SDL_Surface* rotate(SDL_Surface* surface)
 
     for (int i = 0; i < len; i++)
     {
-        int new_coords = compute_coordinates(i, 180, surface->w);
+        int new_coords = compute_coordinates(i, rotation, surface->w, move_x, move_y);
 
         if (new_coords < len && new_coords >= 0)
             new_pixels[new_coords] = pixels[i];
@@ -126,7 +123,7 @@ int main(int argc, char** argv)
 
     SDL_SetWindowSize(window, w, h);
 
-    SDL_Surface* new_surface = rotate(surface);
+    SDL_Surface* new_surface = rotate(surface, 45);
 
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, new_surface);
     if (texture == NULL)
