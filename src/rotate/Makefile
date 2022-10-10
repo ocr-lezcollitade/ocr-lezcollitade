@@ -19,5 +19,6 @@ rotate: rotate.o
 clean:
 	${RM} ${OBJ}
 	${RM} ${EXE}
+	${RM} *.bmp
 
 # END

@@ -111,6 +111,10 @@ int main(int argc, char** argv)
     if (texture == NULL)
         errx(EXIT_FAILURE, "%s", SDL_GetError());
 
+    if (SDL_SaveBMP(new_surface, "rotated.bmp") != 0)
+        errx(EXIT_FAILURE, "%s", SDL_GetError());
+
+    SDL_FreeSurface(new_surface);
     SDL_FreeSurface(surface);
 
     event_loop(renderer, texture);
