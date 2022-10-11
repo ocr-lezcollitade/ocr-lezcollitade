@@ -105,7 +105,9 @@ int main(int argc, char** argv)
 
     SDL_SetWindowSize(window, w, h);
 
-    SDL_Surface* new_surface = rotate_from_dest(surface, (argv[2][0] - '0') * 10 + argv[2][1] - '0');
+    int angle = atoi(argv[2]);
+
+    SDL_Surface* new_surface = rotate_from_dest(surface, angle);
 
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, new_surface);
     if (texture == NULL)
