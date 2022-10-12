@@ -4,37 +4,7 @@
 #include <stdio.h>
 #include <math.h>
 
-void draw(SDL_Renderer* renderer, SDL_Texture* texture)
-{
-     if (SDL_RenderCopy(renderer, texture, NULL, NULL) != 0)
-        errx(EXIT_FAILURE, "%s", SDL_GetError());
-
-    SDL_RenderPresent(renderer);
-}
-
-void event_loop(SDL_Renderer* renderer, SDL_Texture* texture)
-{
-    draw(renderer, texture);
-
-    SDL_Event event;
-
-    while (1)
-    {
-        SDL_WaitEvent(&event);
-
-        switch (event.type)
-        {
-             case SDL_QUIT:
-                return;
-
-            case SDL_WINDOWEVENT:
-                draw(renderer, texture);
-                break;
-        }
-    }
-}
-
-SDL_Surface* load_image(const char* path)
+static SDL_Surface* load_image(const char* path)
 {
     SDL_Surface* temp_surface = IMG_Load(path);
     if (temp_surface == NULL)
@@ -45,7 +15,7 @@ SDL_Surface* load_image(const char* path)
     return surface;
 }
 
-SDL_Surface* rotate_from_dest(SDL_Surface* surface, int deg)
+SDL_Surface* rotate_surface(SDL_Surface* surface, int deg)
 {
     Uint32* pixels = surface->pixels;
 
@@ -80,38 +50,36 @@ SDL_Surface* rotate_from_dest(SDL_Surface* surface, int deg)
     return new_surface;
 }
 
+void rotate_image(const char* file, int deg)
+{
+    if (SDL_Init(SDL_INIT_VIDEO) != 0)
+        errx(EXIT_FAILURE, "%s", SDL_GetError());
+
+    SDL_Surface* surface = load_image(file);
+
+    SDL_Surface* new_surface = rotate_surface(surface, deg);
+
+    if (SDL_SaveBMP(new_surface, "rotated.bmp") != 0)
+        errx(EXIT_FAILURE, "%s", SDL_GetError());
+
+    SDL_FreeSurface(new_surface);
+    SDL_FreeSurface(surface);
+    SDL_Quit();
+}
+
 int main(int argc, char** argv)
 {
-    // Checks the number of arguments.
     if (argc != 3)
         errx(EXIT_FAILURE, "Usage: ./rotate <file> <angle>");
 
     if (SDL_Init(SDL_INIT_VIDEO) != 0)
         errx(EXIT_FAILURE, "%s", SDL_GetError());
 
-    SDL_Window* window = SDL_CreateWindow("Rotation testing", 0, 0, 42, 42,
-            SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
-    if (window == NULL)
-        errx(EXIT_FAILURE, "%s", SDL_GetError());
-
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    if (renderer == NULL)
-        errx(EXIT_FAILURE, "%s", SDL_GetError());
-
     SDL_Surface* surface = load_image(argv[1]);
-
-    int w = surface->w;
-    int h = surface->h;
-
-    SDL_SetWindowSize(window, w, h);
 
     int angle = atoi(argv[2]);
 
-    SDL_Surface* new_surface = rotate_from_dest(surface, angle);
-
-    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, new_surface);
-    if (texture == NULL)
-        errx(EXIT_FAILURE, "%s", SDL_GetError());
+    SDL_Surface* new_surface = rotate_surface(surface, angle);
 
     if (SDL_SaveBMP(new_surface, "rotated.bmp") != 0)
         errx(EXIT_FAILURE, "%s", SDL_GetError());
@@ -119,11 +87,6 @@ int main(int argc, char** argv)
     SDL_FreeSurface(new_surface);
     SDL_FreeSurface(surface);
 
-    event_loop(renderer, texture);
-
-    SDL_DestroyTexture(texture);
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
     SDL_Quit();
 
     return EXIT_SUCCESS;
