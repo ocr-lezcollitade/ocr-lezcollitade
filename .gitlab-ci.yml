@@ -8,7 +8,7 @@ build-job:
   before_script:
     - |
       apk update 
-      apk add build-base make tree sdl2 sdl2_image pkgconfig
+      apk add build-base make tree pkgconfig sdl2-dev sdl2_image-dev
   script:
     - make clean
     - make build
@@ -21,6 +21,6 @@ unit_test:
   stage: test
   image: ubuntu:22.04
   before_script:
-    - apt-get update -y && apt-get install -y libcriterion-dev build-essential
+    - apt-get update -y && apt-get install -y libcriterion-dev build-essential libsdl2-dev libsdl2-image-dev
   script:
     - make test
