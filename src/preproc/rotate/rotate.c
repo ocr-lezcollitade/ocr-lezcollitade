@@ -13,10 +13,12 @@ static SDL_Surface* load_image(const char* path)
     SDL_Surface* surface =
         SDL_ConvertSurfaceFormat(temp_surface, SDL_PIXELFORMAT_RGB888, 0);
 
+    SDL_FreeSurface(temp_surface);
+
     return surface;
 }
 
-SDL_Surface* rotate_surface(SDL_Surface* surface, int deg)
+SDL_Surface* rotate_surface(SDL_Surface* surface, double deg)
 {
     Uint32* pixels = surface->pixels;
 
@@ -55,7 +57,7 @@ SDL_Surface* rotate_surface(SDL_Surface* surface, int deg)
     return new_surface;
 }
 
-void rotate_image(const char* file, int deg)
+void rotate_image(const char* file, double deg)
 {
     if (SDL_Init(SDL_INIT_VIDEO) != 0)
         errx(EXIT_FAILURE, "%s", SDL_GetError());
