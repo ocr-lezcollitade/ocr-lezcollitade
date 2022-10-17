@@ -7,8 +7,8 @@ build-job:
   stage: build
   before_script:
     - |
-      apk update
-      apk add build-base make tree
+      apk update 
+      apk add build-base make tree sdl2 sdl2_image pkgconfig
   script:
     - make clean
     - make build
