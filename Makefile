@@ -20,7 +20,7 @@ TEST_BINS=$(TEST_BIN)/utils/matrices/matrix_test $(TEST_BIN)/network/function_te
 
 SRC_DIR=./src
 
-SRC=main.c utils/mnist/loader.c utils/matrices/matrix.c solver/solver.c network/function.c network/network.c preproc/rotate/rotate.c
+SRC=main.c utils/mnist/loader.c utils/matrices/matrix.c solver/solver.c network/function.c network/network.c preproc/rotate/rotate.c preproc/sudoku_detection/sudoku_split.c
 
 OBJ_ROOT=./obj
 OBJ_DIR=$(OBJ_ROOT)/Release
