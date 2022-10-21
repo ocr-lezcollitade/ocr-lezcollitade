@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['neurons_0',['neurons',['../structlayer__t.html#a71e4f1a74c73f54b7ff2c40dc88c795e',1,'layer_t']]]
+  ['inputs_0',['inputs',['../structnetwork__t.html#af7a2fbc049a0fd2d5ad14f218658ca83',1,'network_t']]]
 ];

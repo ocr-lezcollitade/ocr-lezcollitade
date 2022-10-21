@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['output_5fsize_0',['OUTPUT_SIZE',['../loader_8c.html#a894874fce4252e840e2412fd1dbfa4ea',1,'loader.c']]]
+  ['data_0',['DATA',['../parser_8h.html#aad9ae913bdfab20dd94ad04ee2d5b045',1,'parser.h']]]
 ];

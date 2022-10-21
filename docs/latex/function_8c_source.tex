@@ -6,95 +6,124 @@
 \DoxyCodeLine{\Hypertarget{function_8c_source_l00002}00002 \textcolor{preprocessor}{\#include <stdlib.h>}}
 \DoxyCodeLine{\Hypertarget{function_8c_source_l00003}00003 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{function_8h}{function.h}}"{}}}
 \DoxyCodeLine{\Hypertarget{function_8c_source_l00004}00004 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00005}00005 \textcolor{keyword}{static} \textcolor{keywordtype}{double} sigmoid(\textcolor{keywordtype}{double} x)}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00006}00006 \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00007}00007     \textcolor{keywordflow}{return} 1 / (1 + exp(-\/x));}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00008}00008 \}}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00009}00009 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00010}00010 \textcolor{keyword}{static} \textcolor{keywordtype}{double} sigmoid\_derivative(\textcolor{keywordtype}{double} x)}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00011}00011 \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00012}00012     \textcolor{keywordflow}{return} x * (1 -\/ x);}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00013}00013 \}}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00014}00014 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00015}\mbox{\hyperlink{function_8c_a4d12a97f68909050581df67de609d271}{00015}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_a4d12a97f68909050581df67de609d271}{output\_activation}}(\textcolor{keywordtype}{double} arg)}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00016}00016 \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00017}00017     \textcolor{keywordflow}{return} tanh(arg);}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00018}00018 \}}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00019}00019 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00020}\mbox{\hyperlink{function_8c_a3ff7ec20a7d5c27aded664d1dae5a8e4}{00020}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_a3ff7ec20a7d5c27aded664d1dae5a8e4}{output\_activation\_derivative}}(\textcolor{keywordtype}{double} arg)}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00021}00021 \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00022}00022     \textcolor{keywordflow}{return} 1 -\/ pow(tanh(arg), 2);}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00023}00023 \}}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00024}\mbox{\hyperlink{function_8c_a312ab1be52b156fb23e9345424c0f2b9}{00024}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_a312ab1be52b156fb23e9345424c0f2b9}{activation}}(\textcolor{keywordtype}{double} arg)}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00025}00025 \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00026}00026     \textcolor{keywordflow}{return} sigmoid(arg);}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00027}00027 \}}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00028}00028 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00029}\mbox{\hyperlink{function_8c_ab6d7096342f96b308435d4c27ac905e6}{00029}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_ab6d7096342f96b308435d4c27ac905e6}{activation\_derivative}}(\textcolor{keywordtype}{double} arg)}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00030}00030 \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00031}00031     \textcolor{keywordflow}{return} sigmoid\_derivative(arg);}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00032}00032 \}}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00033}00033 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00034}\mbox{\hyperlink{function_8c_a9dc739a8f297a615beeed83b8b1de5c3}{00034}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_a9dc739a8f297a615beeed83b8b1de5c3}{cost}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *target, \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *output)}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00035}00035 \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00036}00036     \textcolor{keywordtype}{double} res = 0;}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00037}00037     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < target-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}}; i++)}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00038}00038     \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00039}00039         res += pow(\mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(target, i, 0) -\/ \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(output, i, 0), 2);}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00040}00040     \}}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00041}00041 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00042}00042     \textcolor{keywordflow}{return} res / 2;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00005}\mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{00005}} \textcolor{preprocessor}{\#define UNUSED(x) (void)(x)}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00007}00007 \textcolor{keyword}{static} \textcolor{keywordtype}{double} sigmoid(\textcolor{keywordtype}{double} x)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00008}00008 \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00009}00009     \textcolor{keywordflow}{return} 1 / (1 + exp(-\/x));}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00010}00010 \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00011}00011 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00012}00012 \textcolor{keyword}{static} \textcolor{keywordtype}{double} sigmoid\_derivative(\textcolor{keywordtype}{double} x)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00013}00013 \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00014}00014     \textcolor{keywordflow}{return} x * (1 -\/ x);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00015}00015 \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00017}00017 \textcolor{comment}{/*static double soft\_max(double arg, const network\_results\_t *res)}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00018}00018 \textcolor{comment}{\{}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00019}00019 \textcolor{comment}{    double quot = .0;}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00020}00020 \textcolor{comment}{    matrix\_t *outputs = res-\/>outputs[res-\/>network-\/>layer\_count];}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00021}00021 \textcolor{comment}{    for(size\_t i = 0; i < outputs-\/>columns; i++) \{}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00022}00022 \textcolor{comment}{        quot += exp(mat\_el\_at(outputs, i, 0));}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00023}00023 \textcolor{comment}{    \}}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00024}00024 \textcolor{comment}{    return exp(arg) / quot;}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00025}00025 \textcolor{comment}{\}*/}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00027}\mbox{\hyperlink{function_8c_a3ed531bdfcd5992c14d85145d3fa0398}{00027}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_a3ed531bdfcd5992c14d85145d3fa0398}{output\_activation}}(}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00028}00028     \textcolor{keywordtype}{size\_t} layer, \textcolor{keywordtype}{size\_t} neuron, \textcolor{keywordtype}{double} arg, \textcolor{keyword}{const} \mbox{\hyperlink{structnetwork__results__t}{network\_results\_t}} *res)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00029}00029 \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00030}00030     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(res);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00031}00031     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(layer);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00032}00032     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(neuron);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00033}00033     \textcolor{keywordflow}{return} sigmoid(arg);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00034}00034 \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00036}\mbox{\hyperlink{function_8c_a101ea70e3686c7903870b41ed3def5e5}{00036}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_a101ea70e3686c7903870b41ed3def5e5}{output\_activation\_derivative}}(}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00037}00037     \textcolor{keywordtype}{size\_t} layer, \textcolor{keywordtype}{size\_t} neuron, \textcolor{keywordtype}{double} arg, \textcolor{keyword}{const} \mbox{\hyperlink{structnetwork__results__t}{network\_results\_t}} *res)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00038}00038 \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00039}00039     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(res);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00040}00040     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(layer);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00041}00041     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(neuron);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00042}00042     \textcolor{keywordflow}{return} sigmoid\_derivative(arg);}
 \DoxyCodeLine{\Hypertarget{function_8c_source_l00043}00043 \}}
 \DoxyCodeLine{\Hypertarget{function_8c_source_l00044}00044 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00045}\mbox{\hyperlink{function_8c_ace36f4d417e611fd6e6d265b09066b89}{00045}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_ace36f4d417e611fd6e6d265b09066b89}{cost\_derivative}}(\textcolor{keywordtype}{double} target, \textcolor{keywordtype}{double} output)}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00046}00046 \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00047}00047     \textcolor{keywordflow}{return} output -\/ target;}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00048}00048 \}}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00049}00049 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00050}\mbox{\hyperlink{function_8c_ae26b6248510ebcfc65f48a62e8b01ba1}{00050}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_ae26b6248510ebcfc65f48a62e8b01ba1}{nb\_m1\_and\_1}}()}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00051}00051 \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00052}00052     \textcolor{keywordflow}{return} ((\textcolor{keywordtype}{double})rand() / (\textcolor{keywordtype}{double})((\textcolor{keywordtype}{unsigned})RAND\_MAX + 1)) * 2 -\/ 1;}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00053}00053 \}}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00054}00054 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00055}\mbox{\hyperlink{function_8c_a1422db7183b6193c878d7afb32cd60a6}{00055}} \textcolor{keywordtype}{int} \mbox{\hyperlink{function_8c_a1422db7183b6193c878d7afb32cd60a6}{index\_random}}(\textcolor{keywordtype}{int} count)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00045}\mbox{\hyperlink{function_8c_a20c645563b945ebc92fa419a56fcd967}{00045}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_a20c645563b945ebc92fa419a56fcd967}{activation}}(}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00046}00046     \textcolor{keywordtype}{size\_t} layer, \textcolor{keywordtype}{size\_t} neuron, \textcolor{keywordtype}{double} arg, \textcolor{keyword}{const} \mbox{\hyperlink{structnetwork__results__t}{network\_results\_t}} *res)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00047}00047 \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00048}00048     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(res);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00049}00049     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(layer);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00050}00050     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(neuron);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00051}00051     \textcolor{keywordflow}{return} sigmoid(arg);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00052}00052 \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00054}\mbox{\hyperlink{function_8c_a66d3161a60a298acbdcb3faa5287849a}{00054}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_a66d3161a60a298acbdcb3faa5287849a}{activation\_derivative}}(}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00055}00055     \textcolor{keywordtype}{size\_t} layer, \textcolor{keywordtype}{size\_t} neuron, \textcolor{keywordtype}{double} arg, \textcolor{keyword}{const} \mbox{\hyperlink{structnetwork__results__t}{network\_results\_t}} *res)}
 \DoxyCodeLine{\Hypertarget{function_8c_source_l00056}00056 \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00057}00057     \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})((((double)rand() / (double)(\textcolor{keywordtype}{unsigned})RAND\_MAX + 1))}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00058}00058                  * (double)count)}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00059}00059            -\/ count;}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00060}00060 \}}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00061}00061 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00062}\mbox{\hyperlink{function_8c_a5530f7da19de2bf4e3ab4b717824472c}{00062}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_a5530f7da19de2bf4e3ab4b717824472c}{normal}}(\textcolor{keywordtype}{double} z)}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00063}00063 \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00064}00064     \textcolor{keywordflow}{return} exp(-\/(z * z) / 2) / sqrt(2 * M\_PI);}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00065}00065 \}}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00066}00066 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00067}\mbox{\hyperlink{function_8c_a0770694792334e6a69938e6a9364fbb9}{00067}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_a0770694792334e6a69938e6a9364fbb9}{sign}}(\textcolor{keywordtype}{double} nb)}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00068}00068 \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00069}00069     \textcolor{keywordflow}{return} (nb > 0 ? 1 : -\/1);}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00070}00070 \}}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00071}00071 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00072}\mbox{\hyperlink{function_8c_ae6d5ccd297429cb956c9a4deb3d5daa8}{00072}} \textcolor{keywordtype}{double} *\mbox{\hyperlink{function_8c_ae6d5ccd297429cb956c9a4deb3d5daa8}{generate\_weights}}(\textcolor{keywordtype}{double} n)}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00073}00073 \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00074}00074     \textcolor{keywordtype}{size\_t} index = 0;}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00075}00075     \textcolor{keywordtype}{double} *values = (\textcolor{keywordtype}{double} *)malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{double}) * n);}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00076}00076     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = -\/n / 2; i < n / 2; i++)}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00077}00077     \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00078}00078         \textcolor{keywordtype}{double} nb = \mbox{\hyperlink{function_8c_a5530f7da19de2bf4e3ab4b717824472c}{normal}}(\mbox{\hyperlink{function_8c_ae26b6248510ebcfc65f48a62e8b01ba1}{nb\_m1\_and\_1}}() * 2) * \mbox{\hyperlink{function_8c_a0770694792334e6a69938e6a9364fbb9}{sign}}(i);}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00079}00079         values[index] = nb;}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00080}00080         index++;}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00081}00081     \}}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00082}00082 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00083}00083     \textcolor{comment}{// SHUFFLE}}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00084}00084 }
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00085}00085     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 100; i++)}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00086}00086     \{}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00087}00087         \textcolor{keywordtype}{int} i1 = \mbox{\hyperlink{function_8c_a1422db7183b6193c878d7afb32cd60a6}{index\_random}}(n);}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00088}00088         \textcolor{keywordtype}{int} i2 = \mbox{\hyperlink{function_8c_a1422db7183b6193c878d7afb32cd60a6}{index\_random}}(n);}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00089}00089         \textcolor{keywordtype}{double} temp = values[i1];}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00090}00090         values[i1] = values[i2];}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00091}00091         values[i2] = temp;}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00092}00092     \}}
-\DoxyCodeLine{\Hypertarget{function_8c_source_l00093}00093     \textcolor{keywordflow}{return} values;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00057}00057     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(res);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00058}00058     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(layer);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00059}00059     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(neuron);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00060}00060     \textcolor{keywordflow}{return} sigmoid\_derivative(arg);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00061}00061 \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00063}\mbox{\hyperlink{function_8c_a9dc739a8f297a615beeed83b8b1de5c3}{00063}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_a9dc739a8f297a615beeed83b8b1de5c3}{cost}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *target, \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *output)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00064}00064 \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00065}00065     \textcolor{keywordtype}{double} res = 0;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00066}00066     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < target-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}}; i++)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00067}00067     \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00068}00068         res += pow(\mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(target, i, 0) -\/ \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(output, i, 0), 2);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00069}00069     \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00070}00070 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00071}00071     \textcolor{keywordflow}{return} res / 2;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00072}00072 \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00073}00073 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00074}\mbox{\hyperlink{function_8c_ace36f4d417e611fd6e6d265b09066b89}{00074}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_ace36f4d417e611fd6e6d265b09066b89}{cost\_derivative}}(\textcolor{keywordtype}{double} target, \textcolor{keywordtype}{double} output)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00075}00075 \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00076}00076     \textcolor{keywordflow}{return} output -\/ target;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00077}00077 \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00078}00078 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00079}\mbox{\hyperlink{function_8c_ae26b6248510ebcfc65f48a62e8b01ba1}{00079}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_ae26b6248510ebcfc65f48a62e8b01ba1}{nb\_m1\_and\_1}}()}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00080}00080 \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00081}00081     \textcolor{keywordflow}{return} ((\textcolor{keywordtype}{double})rand() / (\textcolor{keywordtype}{double})((\textcolor{keywordtype}{unsigned})RAND\_MAX + 1)) * 2 -\/ 1;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00082}00082 \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00083}00083 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00084}\mbox{\hyperlink{function_8c_a1422db7183b6193c878d7afb32cd60a6}{00084}} \textcolor{keywordtype}{int} \mbox{\hyperlink{function_8c_a1422db7183b6193c878d7afb32cd60a6}{index\_random}}(\textcolor{keywordtype}{int} count)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00085}00085 \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00086}00086     \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})((((double)rand() / (double)(\textcolor{keywordtype}{unsigned})RAND\_MAX + 1))}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00087}00087                  * (double)count)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00088}00088            -\/ count;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00089}00089 \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00090}00090 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00091}\mbox{\hyperlink{function_8c_a5530f7da19de2bf4e3ab4b717824472c}{00091}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_a5530f7da19de2bf4e3ab4b717824472c}{normal}}(\textcolor{keywordtype}{double} z)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00092}00092 \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00093}00093     \textcolor{keywordflow}{return} exp(-\/(z * z) / 2) / sqrt(2 * M\_PI);}
 \DoxyCodeLine{\Hypertarget{function_8c_source_l00094}00094 \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00095}00095 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00096}\mbox{\hyperlink{function_8c_a0770694792334e6a69938e6a9364fbb9}{00096}} \textcolor{keywordtype}{double} \mbox{\hyperlink{function_8c_a0770694792334e6a69938e6a9364fbb9}{sign}}(\textcolor{keywordtype}{double} nb)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00097}00097 \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00098}00098     \textcolor{keywordflow}{return} (nb > 0 ? 1 : -\/1);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00099}00099 \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00100}00100 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00101}\mbox{\hyperlink{function_8c_ae6d5ccd297429cb956c9a4deb3d5daa8}{00101}} \textcolor{keywordtype}{double} *\mbox{\hyperlink{function_8c_ae6d5ccd297429cb956c9a4deb3d5daa8}{generate\_weights}}(\textcolor{keywordtype}{double} n)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00102}00102 \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00103}00103     \textcolor{keywordtype}{size\_t} index = 0;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00104}00104     \textcolor{keywordtype}{double} *values = (\textcolor{keywordtype}{double} *)malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{double}) * n);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00105}00105     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = -\/n / 2; i < n / 2; i++)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00106}00106     \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00107}00107         \textcolor{keywordtype}{double} nb = \mbox{\hyperlink{function_8c_a5530f7da19de2bf4e3ab4b717824472c}{normal}}(\mbox{\hyperlink{function_8c_ae26b6248510ebcfc65f48a62e8b01ba1}{nb\_m1\_and\_1}}() * 2) * \mbox{\hyperlink{function_8c_a0770694792334e6a69938e6a9364fbb9}{sign}}(i);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00108}00108         values[index] = nb;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00109}00109         index++;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00110}00110     \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00111}00111 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00112}00112     \textcolor{comment}{// SHUFFLE}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00113}00113 }
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00114}00114     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 100; i++)}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00115}00115     \{}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00116}00116         \textcolor{keywordtype}{int} i1 = \mbox{\hyperlink{function_8c_a1422db7183b6193c878d7afb32cd60a6}{index\_random}}(n);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00117}00117         \textcolor{keywordtype}{int} i2 = \mbox{\hyperlink{function_8c_a1422db7183b6193c878d7afb32cd60a6}{index\_random}}(n);}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00118}00118         \textcolor{keywordtype}{double} temp = values[i1];}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00119}00119         values[i1] = values[i2];}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00120}00120         values[i2] = temp;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00121}00121     \}}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00122}00122     \textcolor{keywordflow}{return} values;}
+\DoxyCodeLine{\Hypertarget{function_8c_source_l00123}00123 \}}
 
 \end{DoxyCode}

@@ -11,54 +11,95 @@
             errx(1, "%s: %s", function, message); \
     }
 
-matrix_t *compute_layer(
-    matrix_t *values, layer_t *layer, mat_transform_t activation)
+void compute_layer(network_results_t *results, layer_t *layer, size_t layeri)
 {
-    matrix_t *result = matrix_create(layer->count, 1, 0);
+    matrix_t *preactivation = matrix_create(layer->count, 1, 0);
+    matrix_t *values = results->outputs[layeri];
     for (size_t i = 0; i < layer->count; i++)
     {
         neuron_t *neuron = layer->neurons[i];
         matrix_t *tmp = mat_product(neuron->weights, values);
-        double postres = mat_el_at(tmp, 0, 0) + neuron->bias;
-        postres = activation(postres);
+        mat_set_el(preactivation, i, 0, mat_el_at(tmp, 0, 0));
         matrix_free(tmp);
-        mat_set_el(result, i, 0, postres);
     }
 
-    return result;
+    results->preactivation[layeri] = preactivation;
+
+    matrix_t *outputs = matrix_create(layer->count, 1, 0);
+    for (size_t i = 0; i < layer->count; i++)
+    {
+        double value = mat_el_at(preactivation, i, 0);
+        value = layer->activation(layeri, i, value, results);
+        mat_set_el(outputs, i, 0, value);
+    }
+
+    results->outputs[layeri + 1] = outputs;
 }
 
 matrix_t *compute_result(matrix_t *values, network_t *network)
 {
-    matrix_t *lastResults = mat_copy(values);
-    size_t i;
-    for (i = 0; i < network->layer_count - 1; i++)
-    {
-        layer_t *layer = network->layers[i];
-        matrix_t *tmp = compute_layer(lastResults, layer, activation);
-        matrix_free(lastResults);
-        lastResults = tmp;
-    }
-
-    layer_t *layer = network->layers[i];
-    matrix_t *tmp = compute_layer(lastResults, layer, output_activation);
-    matrix_free(lastResults);
-    lastResults = tmp;
-
-    return lastResults;
+    network_results_t *results = compute_result_with_save(values, network);
+    matrix_t *outputs = mat_copy(results->outputs[network->layer_count]);
+    results_free(results);
+    return outputs;
 }
 
-void compute_result_with_save(matrix_t **values, network_t *network)
+network_results_t *compute_result_with_save(
+    matrix_t *values, network_t *network)
 {
-    size_t i;
-    for (i = 0; i < network->layer_count - 1; i++)
+    network_results_t *results = results_create(network->layer_count);
+    results->network = network;
+    if (results == NULL)
+        return NULL;
+    results->outputs[0] = mat_copy(values);
+    for (size_t i = 0; i < network->layer_count; i++)
     {
         layer_t *layer = network->layers[i];
-        values[i + 1] = compute_layer(values[i], layer, activation);
+        compute_layer(results, layer, i);
     }
 
-    layer_t *layer = network->layers[i];
-    values[i + 1] = compute_layer(values[i], layer, output_activation);
+    return results;
+}
+
+network_results_t *results_create(size_t layer_count)
+{
+    network_results_t *res
+        = (network_results_t *)malloc(sizeof(network_results_t));
+    if (res == NULL)
+        return res;
+    res->preactivation = (matrix_t **)malloc(layer_count * sizeof(matrix_t *));
+    if (res->preactivation == NULL)
+    {
+        free(res);
+        return NULL;
+    }
+
+    res->outputs = (matrix_t **)malloc((layer_count + 1) * sizeof(matrix_t *));
+    if (res->outputs == NULL)
+    {
+        free(res->preactivation);
+        free(res);
+        return NULL;
+    }
+
+    return res;
+}
+
+void results_free(network_results_t *results)
+{
+    for (size_t i = 0; i < results->network->layer_count; i++)
+    {
+        matrix_free(results->preactivation[i]);
+    }
+
+    for (size_t i = 0; i <= results->network->layer_count; i++)
+    {
+        matrix_free(results->outputs[i]);
+    }
+
+    free(results->preactivation);
+    free(results->outputs);
+    free(results);
 }
 
 neuron_t *neuron_create(matrix_t *weights, double bias)
@@ -78,8 +119,8 @@ void neuron_free(neuron_t *neuron)
     free(neuron);
 }
 
-layer_t *layer_create_from_mat(
-    matrix_t **weights, double *biases, size_t count)
+layer_t *layer_create_from_mat(matrix_t **weights, double *biases,
+    size_t count, activation_t f, activation_t d)
 {
     layer_t *layer = (layer_t *)malloc(sizeof(layer_t));
     if (layer == NULL)
@@ -87,20 +128,28 @@ layer_t *layer_create_from_mat(
     layer->count = count;
     layer->neurons = (neuron_t **)malloc(count * sizeof(neuron_t *));
     if (layer->neurons == NULL)
+    {
+        free(layer);
         return NULL;
+    }
+    layer->activation = f;
+    layer->dactivation = d;
     for (size_t i = 0; i < count; i++)
         layer->neurons[i] = neuron_create(weights[i], biases[i]);
 
     return layer;
 }
 
-layer_t *layer_create(neuron_t **neurons, size_t count)
+layer_t *layer_create(
+    neuron_t **neurons, size_t count, activation_t f, activation_t d)
 {
     layer_t *layer = (layer_t *)malloc(sizeof(layer_t));
     if (layer == NULL)
         return NULL;
     layer->neurons = neurons;
     layer->count = count;
+    layer->activation = f;
+    layer->dactivation = d;
 
     return layer;
 }
@@ -411,7 +460,7 @@ network_t *network_load(const char *path)
             in_layer = 1;
             layers[layer_index] = layer_create(
                 (neuron_t **)malloc(neuron_count * sizeof(neuron_t *)),
-                neuron_count);
+                neuron_count, activation, activation_derivative);
         }
         else
         {
@@ -435,6 +484,9 @@ network_t *network_load(const char *path)
     }
     // close the file
     fclose(file);
+    layer_t *output_layer = res->layers[res->layer_count - 1];
+    output_layer->activation = output_activation;
+    output_layer->dactivation = output_activation_derivative;
     return res;
 }
 
@@ -485,7 +537,8 @@ network_t *network_generate(size_t *neuron_count, size_t size)
     {
         size_t n_count = neuron_count[i];
         neuron_t **neurons = (neuron_t **)malloc(n_count * sizeof(neuron_t *));
-        layer_t *layer = layer_create(neurons, n_count);
+        layer_t *layer = layer_create(
+            neurons, n_count, activation, activation_derivative);
         layers[i - 1] = layer;
         for (size_t ni = 0; ni < n_count; ni++)
         {
@@ -495,6 +548,10 @@ network_t *network_generate(size_t *neuron_count, size_t size)
         }
         weights = n_count;
     }
+
+    layer_t *out = res->layers[res->layer_count - 1];
+    out->activation = output_activation;
+    out->dactivation = output_activation_derivative;
 
     return res;
 }
@@ -513,7 +570,8 @@ static layer_t *layer_copy(layer_t *layer)
         neurons[i] = neuron_copy(layer->neurons[i]);
     }
 
-    return layer_create(neurons, layer->count);
+    return layer_create(
+        neurons, layer->count, layer->activation, layer->dactivation);
 }
 
 network_t *network_copy(network_t *old)
@@ -530,16 +588,18 @@ network_t *network_copy(network_t *old)
 }
 
 static double output_neuron_train(neuron_t *trained, neuron_t *old,
-    double rate, double target, double output, matrix_t *previous_result)
+    double rate, double target, double output, network_results_t *results,
+    size_t layeri, size_t neuroni, activation_t dactivation)
 {
-    double delta = cost_derivative(target, output)
-                   * output_activation_derivative(output);
+    matrix_t *previous_results = results->outputs[layeri];
 
+    double delta = cost_derivative(target, output)
+                   * dactivation(layeri, neuroni, output, results);
     trained->bias -= rate * delta;
     for (size_t i = 0; i < trained->weights->columns; i++)
     {
         double value = mat_el_at(old->weights, 0, i)
-                       - rate * delta * mat_el_at(previous_result, i, 0);
+                       - rate * delta * mat_el_at(previous_results, i, 0);
         mat_set_el(trained->weights, 0, i, value);
     }
 
@@ -547,8 +607,10 @@ static double output_neuron_train(neuron_t *trained, neuron_t *old,
 }
 
 static void compute_deltas(
-    matrix_t **outputs, network_t *old, matrix_t **deltas)
+    network_results_t *results, network_t *old, matrix_t **deltas)
 {
+
+    matrix_t **outputs = results->outputs;
 
     for (int i = old->layer_count - 2; i >= 0; i--)
     {
@@ -564,8 +626,8 @@ static void compute_deltas(
                 neuron_t *prev_neuron = prev_layer->neurons[k];
                 tmp_delta += mat_el_at(deltas[i + 1], k, 0)
                              * mat_el_at(prev_neuron->weights, 0, j)
-                             * activation_derivative(
-                                 mat_el_at(outputs[i + 1], j, 0));
+                             * layer->dactivation(i, j,
+                                 mat_el_at(outputs[i + 1], j, 0), results);
             }
             mat_set_el(delta, j, 0, tmp_delta);
         }
@@ -573,9 +635,10 @@ static void compute_deltas(
 }
 
 static void hidden_layer_train(
-    matrix_t **outputs, network_t *new, matrix_t **deltas, double rate)
+    network_results_t *results, network_t *new, matrix_t **deltas, double rate)
 {
 
+    matrix_t **outputs = results->outputs;
     for (int i = new->layer_count - 2; i >= 0; i--)
     {
         layer_t *layer = new->layers[i];
@@ -600,14 +663,11 @@ void network_train(
 {
     network_t *trained = network_copy(*pnet);
 
-    matrix_t **outputs
-        = (matrix_t **)malloc(((*pnet)->layer_count + 1) * sizeof(matrix_t *));
-    outputs[0] = inputs;
-
     matrix_t **deltas
         = (matrix_t **)malloc((*pnet)->layer_count * sizeof(matrix_t *));
 
-    compute_result_with_save(outputs, *pnet);
+    network_results_t *results = compute_result_with_save(inputs, *pnet);
+    matrix_t **outputs = results->outputs;
 
     size_t layer_i = trained->layer_count - 1;
     layer_t *trained_layer = trained->layers[layer_i];
@@ -617,19 +677,20 @@ void network_train(
     {
         double delta = output_neuron_train(trained_layer->neurons[ni],
             old_layer->neurons[ni], rate, mat_el_at(target, ni, 0),
-            mat_el_at(outputs[layer_i + 1], ni, 0), outputs[layer_i]);
+            mat_el_at(outputs[layer_i + 1], ni, 0), results, layer_i, ni,
+            old_layer->dactivation);
         mat_set_el(deltas[layer_i], ni, 0, delta);
     }
 
-    compute_deltas(outputs, *pnet, deltas);
-    hidden_layer_train(outputs, trained, deltas, rate);
+    compute_deltas(results, *pnet, deltas);
+    hidden_layer_train(results, trained, deltas, rate);
+
+    results_free(results);
 
     for (size_t i = 1; i <= trained->layer_count; i++)
     {
-        matrix_free(outputs[i]);
         matrix_free(deltas[i - 1]);
     }
-    free(outputs);
     free(deltas);
     network_free(*pnet);
     *pnet = trained;

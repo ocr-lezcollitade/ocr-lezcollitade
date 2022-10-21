@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['index_5frandom_0',['index_random',['../function_8c.html#a1422db7183b6193c878d7afb32cd60a6',1,'index_random(int count):&#160;function.c'],['../function_8h.html#a1422db7183b6193c878d7afb32cd60a6',1,'index_random(int count):&#160;function.c']]],
-  ['inputs_1',['inputs',['../structnetwork__t.html#af7a2fbc049a0fd2d5ad14f218658ca83',1,'network_t']]]
+  ['generate_0',['GENERATE',['../parser_8h.html#acf470cbbab24f2dfe963f889ba2231d1',1,'parser.h']]],
+  ['generate_5fweights_1',['generate_weights',['../function_8c.html#ae6d5ccd297429cb956c9a4deb3d5daa8',1,'generate_weights(double n):&#160;function.c'],['../function_8h.html#ae6d5ccd297429cb956c9a4deb3d5daa8',1,'generate_weights(double n):&#160;function.c']]]
 ];

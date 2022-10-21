@@ -22,7 +22,7 @@
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00018}00018     \}}
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00019}00019     \textcolor{keywordflow}{else}}
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00020}00020     \{}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00021}00021         \mbox{\hyperlink{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}{mat\_set\_el}}(inputs[readline], readchar -\/ 1, 0, value);}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00021}00021         \mbox{\hyperlink{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}{mat\_set\_el}}(inputs[readline], readchar -\/ 1, 0, value / 255.0);}
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00022}00022     \}}
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00023}00023 }
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00024}00024     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < 4; i++)}
@@ -31,7 +31,7 @@
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00027}00027     \}}
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00028}00028 \}}
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00029}00029 }
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00030}00030 \textcolor{keyword}{static} \textcolor{keywordtype}{int} load\_csv(FILE *file, \mbox{\hyperlink{structmatrix__t}{matrix\_t}} **inputs, \mbox{\hyperlink{structmatrix__t}{matrix\_t}} **expected,}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00030}00030 \textcolor{keyword}{static} \textcolor{keywordtype}{size\_t} load\_csv(FILE *file, \mbox{\hyperlink{structmatrix__t}{matrix\_t}} **inputs, \mbox{\hyperlink{structmatrix__t}{matrix\_t}} **expected,}
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00031}00031     \textcolor{keywordtype}{size\_t} start, \textcolor{keywordtype}{size\_t} length)}
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00032}00032 \{}
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00033}00033     \textcolor{keywordtype}{char} buffer[\mbox{\hyperlink{loader_8c_abd607f13447d238cfa36348ed8e5d383}{READ\_LENGTH}}];}
@@ -41,7 +41,7 @@
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00037}00037     \textcolor{keywordflow}{while} (readline < length)}
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00038}00038     \{}
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00039}00039         \textcolor{keywordflow}{if} (fgets(buffer, \mbox{\hyperlink{loader_8c_abd607f13447d238cfa36348ed8e5d383}{READ\_LENGTH}}, file) == NULL)}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00040}00040             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00040}00040             \textcolor{keywordflow}{return} readline;}
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00041}00041         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < \mbox{\hyperlink{loader_8c_abd607f13447d238cfa36348ed8e5d383}{READ\_LENGTH}}; i++)}
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00042}00042         \{}
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00043}00043             \textcolor{keywordtype}{char} c = buffer[i];}
@@ -84,50 +84,149 @@
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00080}00080         \}}
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00081}00081     \}}
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00082}00082 }
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00083}00083     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00083}00083     \textcolor{keywordflow}{return} readline;}
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00084}00084 \}}
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00085}00085 }
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00086}00086 \textcolor{keyword}{static} \textcolor{keywordtype}{void} init\_vectors(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **mat, \textcolor{keywordtype}{size\_t} count, \textcolor{keywordtype}{size\_t} length, \textcolor{keywordtype}{int} fill)}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00087}00087 \{}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00088}00088     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < count; i++)}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00089}00089     \{}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00090}00090         mat[i] = \mbox{\hyperlink{matrix_8c_a1d9b061fc8856e727f014c3266b7431d}{matrix\_create}}(length, 1, fill);}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00091}00091     \}}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00092}00092 \}}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00093}00093 }
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00094}\mbox{\hyperlink{loader_8c_a5732969f39cd8df18bbdc133bd6f70f2}{00094}} \textcolor{keywordtype}{int} \mbox{\hyperlink{loader_8c_a5732969f39cd8df18bbdc133bd6f70f2}{load\_mnist}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, \mbox{\hyperlink{structmatrix__t}{matrix\_t}} ***\_inputs, \mbox{\hyperlink{structmatrix__t}{matrix\_t}} ***\_expected,}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00095}00095     \textcolor{keywordtype}{size\_t} start, \textcolor{keywordtype}{size\_t} length, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *mode, \textcolor{keywordtype}{size\_t} inputsize,}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00096}00096     \textcolor{keywordtype}{size\_t} outputsize)}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00097}00097 \{}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00098}00098 }
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00099}00099     \textcolor{keywordflow}{if} (strcmp(mode, \mbox{\hyperlink{loader_8h_a3d8d65e2de4c173a15a05a5d5dda60b8}{CSV\_MODE}}) \&\& strcmp(mode, \mbox{\hyperlink{loader_8h_a399981b4dd18f0e6b9252badf307ce05}{BINARY\_MODE}}))}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00100}00100     \{}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00101}00101         \textcolor{keywordflow}{return} -\/1;}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00102}00102     \}}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00103}00103 }
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00104}00104     FILE *file = fopen(path, mode);}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00105}00105     \textcolor{keywordflow}{if} (file == NULL)}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00106}00106         \textcolor{keywordflow}{return} -\/1;}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00107}00107     *\_inputs = (\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **)malloc(length * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *));}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00108}00108     \textcolor{keywordflow}{if} (*\_inputs == NULL)}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00109}00109         \textcolor{keywordflow}{return} -\/1;}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00110}00110     init\_vectors(*\_inputs, length, inputsize, 0);}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00111}00111     *\_expected = (\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **)malloc(length * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *));}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00112}00112     \textcolor{keywordflow}{if} (*\_expected == NULL)}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00113}00113         \textcolor{keywordflow}{return} -\/1;}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00114}00114     init\_vectors(*\_expected, length, outputsize, 1);}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00115}00115 }
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00116}00116     \textcolor{keywordtype}{int} result;}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00117}00117     \textcolor{keywordflow}{if} (strcmp(mode, \mbox{\hyperlink{loader_8h_a3d8d65e2de4c173a15a05a5d5dda60b8}{CSV\_MODE}}) == 0)}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00118}00118     \{}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00119}00119         result = load\_csv(file, *\_inputs, *\_expected, start, length);}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00120}00120     \}}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00121}00121     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00086}00086 \textcolor{keyword}{static} \textcolor{keywordtype}{void} on\_number\_stop\_dynamic(\textcolor{keywordtype}{char} *number, \mbox{\hyperlink{structmatrix__t}{matrix\_t}} ***expected,}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00087}00087     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} ***inputs, \textcolor{keywordtype}{size\_t} readline, \textcolor{keywordtype}{size\_t} readchar, \textcolor{keywordtype}{size\_t} inputsize,}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00088}00088     \textcolor{keywordtype}{size\_t} outputsize)}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00089}00089 \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00090}00090     \textcolor{keywordtype}{int} value = atoi(number);}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00091}00091     \textcolor{keywordflow}{if} (readchar == 0)}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00092}00092     \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00093}00093         *expected = (\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **)realloc(}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00094}00094             *expected, (readline + 1) * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *));}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00095}00095         (*expected)[readline] = \mbox{\hyperlink{matrix_8c_a1d9b061fc8856e727f014c3266b7431d}{matrix\_create}}(outputsize, 1, 0);}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00096}00096         \mbox{\hyperlink{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}{mat\_set\_el}}((*expected)[readline], value, 0, 1);}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00097}00097     \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00098}00098     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00099}00099     \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00100}00100         \textcolor{keywordflow}{if} (readchar == 1)}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00101}00101         \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00102}00102             *inputs = (\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **)realloc(}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00103}00103                 *inputs, (readline + 1) * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *));}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00104}00104             (*inputs)[readline] = \mbox{\hyperlink{matrix_8c_a1d9b061fc8856e727f014c3266b7431d}{matrix\_create}}(inputsize, 1, 0);}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00105}00105         \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00106}00106         \mbox{\hyperlink{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}{mat\_set\_el}}((*inputs)[readline], readchar -\/ 1, 0, value / 255.0);}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00107}00107     \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00108}00108 }
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00109}00109     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < 4; i++)}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00110}00110     \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00111}00111         number[i] = 0;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00112}00112     \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00113}00113 \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00114}00114 \textcolor{keyword}{static} \textcolor{keywordtype}{size\_t} load\_csv\_dynamic(FILE *file, \mbox{\hyperlink{structmatrix__t}{matrix\_t}} ***inputs,}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00115}00115     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} ***expected, \textcolor{keywordtype}{size\_t} start, \textcolor{keywordtype}{size\_t} inputsize, \textcolor{keywordtype}{size\_t} outputsize)}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00116}00116 \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00117}00117     \textcolor{keywordtype}{char} buffer[\mbox{\hyperlink{loader_8c_abd607f13447d238cfa36348ed8e5d383}{READ\_LENGTH}}];}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00118}00118     \textcolor{keywordtype}{char} number[4] = \{\};}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00119}00119     \textcolor{keywordtype}{int} numberi = 0;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00120}00120     \textcolor{keywordtype}{size\_t} line = 0, readline = 0, readchar = 0;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00121}00121     \textcolor{keywordflow}{while} (1)}
 \DoxyCodeLine{\Hypertarget{loader_8c_source_l00122}00122     \{}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00123}00123         result = -\/1;}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00124}00124     \}}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00125}00125     fclose(file);}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00126}00126     \textcolor{keywordflow}{return} result;}
-\DoxyCodeLine{\Hypertarget{loader_8c_source_l00127}00127 \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00123}00123         \textcolor{keywordflow}{if} (fgets(buffer, \mbox{\hyperlink{loader_8c_abd607f13447d238cfa36348ed8e5d383}{READ\_LENGTH}}, file) == NULL)}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00124}00124             \textcolor{keywordflow}{return} readline;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00125}00125         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < \mbox{\hyperlink{loader_8c_abd607f13447d238cfa36348ed8e5d383}{READ\_LENGTH}}; i++)}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00126}00126         \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00127}00127             \textcolor{keywordtype}{char} c = buffer[i];}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00128}00128             \textcolor{keywordflow}{if} (line < start)}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00129}00129             \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00130}00130                 \textcolor{keywordflow}{if} (c == \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00131}00131                 \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00132}00132                     line++;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00133}00133                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00134}00134                 \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00135}00135                 \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00136}00136             \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00137}00137             \textcolor{keywordflow}{if} (c == \textcolor{charliteral}{','})}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00138}00138             \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00139}00139                 on\_number\_stop\_dynamic(number, expected, inputs, readline,}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00140}00140                     readchar, inputsize, outputsize);}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00141}00141                 readchar++;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00142}00142                 numberi = 0;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00143}00143             \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00144}00144             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (c == \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00145}00145             \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00146}00146                 on\_number\_stop\_dynamic(number, expected, inputs, readline,}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00147}00147                     readchar, inputsize, outputsize);}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00148}00148                 readchar = 0;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00149}00149                 readline++;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00150}00150                 numberi = 0;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00151}00151                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00152}00152             \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00153}00153             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (c >= \textcolor{charliteral}{'0'} \&\& c <= \textcolor{charliteral}{'9'})}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00154}00154             \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00155}00155                 number[numberi] = c;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00156}00156                 numberi++;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00157}00157             \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00158}00158             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (c == \textcolor{charliteral}{'\(\backslash\)0'})}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00159}00159             \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00160}00160                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00161}00161             \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00162}00162             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (c != \textcolor{charliteral}{'\(\backslash\)r'})}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00163}00163             \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00164}00164                 errx(-\/1, \textcolor{stringliteral}{"{}Unknown character \(\backslash\)'\%c\(\backslash\)'(\%d)"{}}, c, c);}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00165}00165             \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00166}00166         \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00167}00167     \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00168}00168 }
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00169}00169     \textcolor{keywordflow}{return} readline;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00170}00170 \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00171}00171 }
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00172}00172 \textcolor{keyword}{static} \textcolor{keywordtype}{void} init\_vectors(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **mat, \textcolor{keywordtype}{size\_t} count, \textcolor{keywordtype}{size\_t} length, \textcolor{keywordtype}{int} fill)}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00173}00173 \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00174}00174     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < count; i++)}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00175}00175     \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00176}00176         mat[i] = \mbox{\hyperlink{matrix_8c_a1d9b061fc8856e727f014c3266b7431d}{matrix\_create}}(length, 1, fill);}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00177}00177     \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00178}00178 \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00179}00179 }
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00180}\mbox{\hyperlink{loader_8c_acb5c9a1b62024f501998a223bcdb4aed}{00180}} \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{loader_8c_acb5c9a1b62024f501998a223bcdb4aed}{load\_mnist}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, \mbox{\hyperlink{structmatrix__t}{matrix\_t}} ***\_inputs, \mbox{\hyperlink{structmatrix__t}{matrix\_t}} ***\_expected,}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00181}00181     \textcolor{keywordtype}{size\_t} start, \textcolor{keywordtype}{size\_t} length, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *mode, \textcolor{keywordtype}{size\_t} inputsize,}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00182}00182     \textcolor{keywordtype}{size\_t} outputsize)}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00183}00183 \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00184}00184 }
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00185}00185     \textcolor{keywordflow}{if} (strcmp(mode, \mbox{\hyperlink{loader_8h_a3d8d65e2de4c173a15a05a5d5dda60b8}{CSV\_MODE}}) \&\& strcmp(mode, \mbox{\hyperlink{loader_8h_a399981b4dd18f0e6b9252badf307ce05}{BINARY\_MODE}}))}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00186}00186     \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00187}00187         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00188}00188     \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00189}00189 }
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00190}00190     FILE *file = fopen(path, mode);}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00191}00191     \textcolor{keywordflow}{if} (file == NULL)}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00192}00192         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00193}00193 }
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00194}00194     \textcolor{keywordflow}{if} (length == 0)}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00195}00195     \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00196}00196         *\_inputs = NULL;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00197}00197         *\_expected = NULL;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00198}00198         \textcolor{keywordflow}{if} (strcmp(mode, \mbox{\hyperlink{loader_8h_a3d8d65e2de4c173a15a05a5d5dda60b8}{CSV\_MODE}}) == 0)}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00199}00199             length = load\_csv\_dynamic(}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00200}00200                 file, \_inputs, \_expected, start, inputsize, outputsize);}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00201}00201         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00202}00202             length = 0;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00203}00203     \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00204}00204     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00205}00205     \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00206}00206         *\_inputs = (\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **)malloc(length * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *));}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00207}00207         \textcolor{keywordflow}{if} (*\_inputs == NULL)}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00208}00208             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00209}00209         *\_expected = (\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **)malloc(length * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *));}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00210}00210         \textcolor{keywordflow}{if} (*\_expected == NULL)}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00211}00211             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00212}00212         init\_vectors(*\_expected, length, outputsize, 1);}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00213}00213         init\_vectors(*\_inputs, length, inputsize, 0);}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00214}00214         \textcolor{keywordflow}{if} (strcmp(mode, \mbox{\hyperlink{loader_8h_a3d8d65e2de4c173a15a05a5d5dda60b8}{CSV\_MODE}}) == 0)}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00215}00215         \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00216}00216             length = load\_csv(file, *\_inputs, *\_expected, start, length);}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00217}00217         \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00218}00218         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00219}00219         \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00220}00220             length = 0;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00221}00221         \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00222}00222     \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00223}00223 }
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00224}00224     fclose(file);}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00225}00225     \textcolor{keywordflow}{return} length;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00226}00226 \}}
 
 \end{DoxyCode}

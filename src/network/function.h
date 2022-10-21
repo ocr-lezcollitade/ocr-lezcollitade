@@ -2,14 +2,19 @@
 #define UTILS_FUNCTION_H
 
 #include "../utils/matrices/matrix.h"
+#include "network.h"
 
-double activation(double arg);
+double activation(
+    size_t layer, size_t neuron, double arg, const network_results_t *results);
 
-double activation_derivative(double arg);
+double activation_derivative(
+    size_t layer, size_t neuron, double arg, const network_results_t *results);
 
-double output_activation(double arg);
+double output_activation(
+    size_t layer, size_t neuron, double arg, const network_results_t *results);
 
-double output_activation_derivative(double arg);
+double output_activation_derivative(
+    size_t layer, size_t neuron, double arg, const network_results_t *results);
 
 double cost(matrix_t *target, matrix_t *output);
 

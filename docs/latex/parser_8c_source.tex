@@ -1,0 +1,126 @@
+\hypertarget{parser_8c_source}{}\doxysection{parser.\+c}
+\label{parser_8c_source}\index{src/cli/parser.c@{src/cli/parser.c}}
+\mbox{\hyperlink{parser_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00001}00001 \textcolor{preprocessor}{\#include <err.h>}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00002}00002 \textcolor{preprocessor}{\#include <malloc.h>}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00003}00003 \textcolor{preprocessor}{\#include <string.h>}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00004}00004 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{parser_8h}{parser.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00005}00005 }
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00006}00006 \textcolor{keyword}{static} \mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}} create\_params(\textcolor{keywordtype}{size\_t} length)}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00007}00007 \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00008}00008     \mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}} res = (\mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}})malloc(length * \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char} *));}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00009}00009     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < length; i++)}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00010}00010     \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00011}00011         res[i] = NULL;}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00012}00012     \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00014}00014     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00015}00015 \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00017}00017 \textcolor{keyword}{static} \textcolor{keywordtype}{int} get\_next\_key(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *param)}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00018}00018 \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00019}00019     \textcolor{keywordtype}{int} nextkey = -\/1;}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00020}00020     \textcolor{keywordflow}{if} (strcmp(\textcolor{stringliteral}{"{}-\/i"{}}, param) == 0 || strcmp(\textcolor{stringliteral}{"{}-\/-\/input-\/network"{}}, param) == 0)}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00021}00021     \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00022}00022         nextkey = \mbox{\hyperlink{parser_8h_a4615540bab23a39df3ebc40011f34b08}{INPUT\_NETWORK}};}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00023}00023     \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00024}00024     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(\textcolor{stringliteral}{"{}-\/o"{}}, param) == 0 || strcmp(\textcolor{stringliteral}{"{}-\/-\/output"{}}, param) == 0)}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00025}00025     \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00026}00026         nextkey = \mbox{\hyperlink{parser_8h_a0bbb2b623b27fdae8210c686fbcfc698}{OUTPUT\_NETWORK}};}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00027}00027     \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00028}00028     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(\textcolor{stringliteral}{"{}-\/d"{}}, param) == 0 || strcmp(\textcolor{stringliteral}{"{}-\/-\/data"{}}, param) == 0)}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00029}00029     \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00030}00030         nextkey = \mbox{\hyperlink{parser_8h_aad9ae913bdfab20dd94ad04ee2d5b045}{DATA}};}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00031}00031     \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00032}00032     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(\textcolor{stringliteral}{"{}-\/-\/generate"{}}, param) == 0)}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00033}00033     \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00034}00034         nextkey = \mbox{\hyperlink{parser_8h_acf470cbbab24f2dfe963f889ba2231d1}{GENERATE}};}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00035}00035     \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00036}00036     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(\textcolor{stringliteral}{"{}-\/F"{}}, param) == 0 || strcmp(\textcolor{stringliteral}{"{}-\/-\/format"{}}, param) == 0)}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00037}00037     \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00038}00038         nextkey = \mbox{\hyperlink{parser_8h_ac8dc47e3b39c930caed4bfd05b4ba805}{FORMAT}};}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00039}00039     \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00040}00040     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(\textcolor{stringliteral}{"{}-\/-\/rate"{}}, param) == 0)}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00041}00041     \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00042}00042         nextkey = \mbox{\hyperlink{parser_8h_a8c9c014cf8fc2f648da41a5ba15893bc}{RATE}};}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00043}00043     \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00044}00044     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(\textcolor{stringliteral}{"{}-\/-\/iterations"{}}, param) == 0 || strcmp(\textcolor{stringliteral}{"{}-\/c"{}}, param) == 0)}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00045}00045     \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00046}00046         nextkey = \mbox{\hyperlink{parser_8h_aa9cc087d076e4fa101f8794a947bd01a}{ITERATIONS}};}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00047}00047     \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00048}00048     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(\textcolor{stringliteral}{"{}-\/-\/start"{}}, param) == 0)}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00049}00049     \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00050}00050         nextkey = \mbox{\hyperlink{parser_8h_a3018c7600b7bb9866400596a56a57af7}{START}};}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00051}00051     \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00052}00052     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(\textcolor{stringliteral}{"{}-\/-\/length"{}}, param) == 0)}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00053}00053     \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00054}00054         nextkey = \mbox{\hyperlink{parser_8h_a30362161c93e3f1a4ee4c673f535b5a8}{LENGTH}};}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00055}00055     \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00056}00056     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00057}00057     \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00058}00058         errx(-\/1, \textcolor{stringliteral}{"{}Unknown flag \%s"{}}, param);}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00059}00059     \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00060}00060     \textcolor{keywordflow}{return} nextkey;}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00061}00061 \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00063}00063 \textcolor{keyword}{static} \mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}} \_parse\_params(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv)}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00064}00064 \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00066}00066     \mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}} res = create\_params(\mbox{\hyperlink{parser_8h_a7e6d6cf4c9e13a726b5e0c5aad12e88e}{TRAIN\_PARAMETER\_SIZE}});}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00067}00067     \textcolor{keywordtype}{int} nextkey = -\/1;}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00068}00068     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < argc; i++)}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00069}00069     \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00070}00070         \textcolor{keywordtype}{char} *param = argv[i];}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00071}00071         \textcolor{keywordflow}{if} (nextkey == -\/1)}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00072}00072         \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00073}00073             nextkey = get\_next\_key(param);}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00074}00074         \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00075}00075         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00076}00076         \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00077}00077             res[nextkey] = param;}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00078}00078             nextkey = -\/1;}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00079}00079         \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00080}00080     \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00081}00081 }
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00082}00082     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00083}00083 \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00084}00084 }
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00085}\mbox{\hyperlink{parser_8c_ab2f489b7f919e61d84e74826ca0040de}{00085}} \mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}} \mbox{\hyperlink{parser_8c_ab2f489b7f919e61d84e74826ca0040de}{parse\_train\_params}}(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv)}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00086}00086 \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00087}00087     \mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}} params = \_parse\_params(argc, argv);}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00088}00088     \textcolor{comment}{// TODO : check parameters validity}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00089}00089     \textcolor{keywordflow}{return} params;}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00090}00090 \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00091}00091 }
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00092}\mbox{\hyperlink{parser_8c_ab2116d885ed230baeb9b20a83a672ea0}{00092}} \mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}} \mbox{\hyperlink{parser_8c_ab2116d885ed230baeb9b20a83a672ea0}{parse\_test\_params}}(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv)}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00093}00093 \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00094}00094 }
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00095}00095     \mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}} params = \_parse\_params(argc, argv);}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00096}00096     \textcolor{comment}{// TODO : check parameters validity}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00097}00097     \textcolor{keywordflow}{return} params;}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00098}00098 \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00099}00099 }
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00100}\mbox{\hyperlink{parser_8c_af33c60f53ba8a04782e03a8500c5d099}{00100}} \mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}} \mbox{\hyperlink{parser_8c_af33c60f53ba8a04782e03a8500c5d099}{parse\_params}}(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv, \textcolor{keywordtype}{char} *mode)}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00101}00101 \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00102}00102     \textcolor{keywordflow}{if} (argc < 2)}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00103}00103     \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00104}00104         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00105}00105     \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00106}00106 }
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00107}00107     \mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}} res = NULL;}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00108}00108     \textcolor{keywordtype}{char} *subcommand = argv[1];}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00109}00109     \textcolor{keywordflow}{if} (strcmp(subcommand, \textcolor{stringliteral}{"{}train"{}}) == 0)}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00110}00110     \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00111}00111         *mode = \mbox{\hyperlink{parser_8h_a9bfdcc2e01a085b81125cadcfe83cb66}{TRAIN\_MODE}};}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00112}00112         res = \mbox{\hyperlink{parser_8c_ab2f489b7f919e61d84e74826ca0040de}{parse\_train\_params}}(argc -\/ 2, argv + 2);}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00113}00113     \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00114}00114     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(subcommand, \textcolor{stringliteral}{"{}test"{}}) == 0)}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00115}00115     \{}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00116}00116         *mode = \mbox{\hyperlink{parser_8h_ab6d58cce6e97b6b549801e696ac9f4f6}{TEST\_MODE}};}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00117}00117         res = \mbox{\hyperlink{parser_8c_ab2116d885ed230baeb9b20a83a672ea0}{parse\_test\_params}}(argc -\/ 2, argv + 2);}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00118}00118     \}}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00119}00119     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{\Hypertarget{parser_8c_source_l00120}00120 \}}
+
+\end{DoxyCode}

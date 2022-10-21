@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['generate_5fweights_0',['generate_weights',['../function_8c.html#ae6d5ccd297429cb956c9a4deb3d5daa8',1,'generate_weights(double n):&#160;function.c'],['../function_8h.html#ae6d5ccd297429cb956c9a4deb3d5daa8',1,'generate_weights(double n):&#160;function.c']]]
+  ['format_0',['FORMAT',['../parser_8h.html#ac8dc47e3b39c930caed4bfd05b4ba805',1,'parser.h']]],
+  ['function_2ec_1',['function.c',['../function_8c.html',1,'']]],
+  ['function_2eh_2',['function.h',['../function_8h.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bias_0',['bias',['../structneuron__t.html#ad82dab1b1a60940e62e80270ad99a522',1,'neuron_t']]]
+  ['activation_0',['activation',['../structlayer__t.html#a986a66b0b385bcc14acea253eb4cddf4',1,'layer_t']]]
 ];

@@ -1,0 +1,33 @@
+\hypertarget{parser_8h_source}{}\doxysection{parser.\+h}
+\label{parser_8h_source}\index{src/cli/parser.h@{src/cli/parser.h}}
+\mbox{\hyperlink{parser_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00001}00001 \textcolor{preprocessor}{\#ifndef CLI\_PARSER\_H}}
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00002}00002 \textcolor{preprocessor}{\#define CLI\_PARSER\_H}}
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00004}\mbox{\hyperlink{parser_8h_a4615540bab23a39df3ebc40011f34b08}{00004}} \textcolor{preprocessor}{\#define INPUT\_NETWORK 0}}
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00005}\mbox{\hyperlink{parser_8h_aad9ae913bdfab20dd94ad04ee2d5b045}{00005}} \textcolor{preprocessor}{\#define DATA INPUT\_NETWORK + 1}}
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00006}\mbox{\hyperlink{parser_8h_ac8dc47e3b39c930caed4bfd05b4ba805}{00006}} \textcolor{preprocessor}{\#define FORMAT DATA + 1}}
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00007}\mbox{\hyperlink{parser_8h_acf470cbbab24f2dfe963f889ba2231d1}{00007}} \textcolor{preprocessor}{\#define GENERATE FORMAT + 1}}
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00008}\mbox{\hyperlink{parser_8h_a0bbb2b623b27fdae8210c686fbcfc698}{00008}} \textcolor{preprocessor}{\#define OUTPUT\_NETWORK GENERATE + 1}}
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00009}\mbox{\hyperlink{parser_8h_a8c9c014cf8fc2f648da41a5ba15893bc}{00009}} \textcolor{preprocessor}{\#define RATE OUTPUT\_NETWORK + 1}}
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00010}\mbox{\hyperlink{parser_8h_aa9cc087d076e4fa101f8794a947bd01a}{00010}} \textcolor{preprocessor}{\#define ITERATIONS RATE + 1}}
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00011}\mbox{\hyperlink{parser_8h_a3018c7600b7bb9866400596a56a57af7}{00011}} \textcolor{preprocessor}{\#define START ITERATIONS + 1}}
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00012}\mbox{\hyperlink{parser_8h_a30362161c93e3f1a4ee4c673f535b5a8}{00012}} \textcolor{preprocessor}{\#define LENGTH START + 1}}
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00014}\mbox{\hyperlink{parser_8h_a7e6d6cf4c9e13a726b5e0c5aad12e88e}{00014}} \textcolor{preprocessor}{\#define TRAIN\_PARAMETER\_SIZE LENGTH + 1}}
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00019}\mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{00019}} \textcolor{keyword}{typedef} \textcolor{keywordtype}{char} **\mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}};}
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00028}00028 \mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}} \mbox{\hyperlink{parser_8h_ab2f489b7f919e61d84e74826ca0040de}{parse\_train\_params}}(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv);}
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00037}00037 \mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}} \mbox{\hyperlink{parser_8h_ab2116d885ed230baeb9b20a83a672ea0}{parse\_test\_params}}(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv);}
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00039}\mbox{\hyperlink{parser_8h_a9bfdcc2e01a085b81125cadcfe83cb66}{00039}} \textcolor{preprocessor}{\#define TRAIN\_MODE 0}}
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00040}\mbox{\hyperlink{parser_8h_ab6d58cce6e97b6b549801e696ac9f4f6}{00040}} \textcolor{preprocessor}{\#define TEST\_MODE 1}}
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00050}00050 \mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}} \mbox{\hyperlink{parser_8h_af33c60f53ba8a04782e03a8500c5d099}{parse\_params}}(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv, \textcolor{keywordtype}{char} *mode);}
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00051}00051 }
+\DoxyCodeLine{\Hypertarget{parser_8h_source_l00052}00052 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !CLI\_PARSER\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}
