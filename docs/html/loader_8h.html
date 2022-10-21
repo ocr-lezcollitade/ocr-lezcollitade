@@ -85,8 +85,8 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a85cf0972d26d0ba6392732686850687c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="loader_8h.html#a85cf0972d26d0ba6392732686850687c">load_mnist</a> (const char *file, <a class="el" href="structmatrix__t.html">matrix_t</a> ***inputs, <a class="el" href="structmatrix__t.html">matrix_t</a> ***expected, size_t start, size_t length, const char *mode, size_t inputsize, size_t outputsize)</td></tr>
-<tr class="separator:a85cf0972d26d0ba6392732686850687c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22e9acd7bcdfe93ae43b91415fe1fe8f"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="loader_8h.html#a22e9acd7bcdfe93ae43b91415fe1fe8f">load_mnist</a> (const char *file, <a class="el" href="structmatrix__t.html">matrix_t</a> ***inputs, <a class="el" href="structmatrix__t.html">matrix_t</a> ***expected, size_t start, size_t length, const char *mode, size_t inputsize, size_t outputsize)</td></tr>
+<tr class="separator:a22e9acd7bcdfe93ae43b91415fe1fe8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a399981b4dd18f0e6b9252badf307ce05" name="a399981b4dd18f0e6b9252badf307ce05"></a>
@@ -122,14 +122,14 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a85cf0972d26d0ba6392732686850687c" name="a85cf0972d26d0ba6392732686850687c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a85cf0972d26d0ba6392732686850687c">&#9670;&nbsp;</a></span>load_mnist()</h2>
+<a id="a22e9acd7bcdfe93ae43b91415fe1fe8f" name="a22e9acd7bcdfe93ae43b91415fe1fe8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22e9acd7bcdfe93ae43b91415fe1fe8f">&#9670;&nbsp;</a></span>load_mnist()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int load_mnist </td>
+          <td class="memname">size_t load_mnist </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>file</em>, </td>
@@ -184,38 +184,51 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="loader_8c_source.html#l00094">94</a> of file <a class="el" href="loader_8c_source.html">loader.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   97</span>{</div>
-<div class="line"><span class="lineno">   98</span> </div>
-<div class="line"><span class="lineno">   99</span>    <span class="keywordflow">if</span> (strcmp(mode, <a class="code hl_define" href="loader_8h.html#a3d8d65e2de4c173a15a05a5d5dda60b8">CSV_MODE</a>) &amp;&amp; strcmp(mode, <a class="code hl_define" href="loader_8h.html#a399981b4dd18f0e6b9252badf307ce05">BINARY_MODE</a>))</div>
-<div class="line"><span class="lineno">  100</span>    {</div>
-<div class="line"><span class="lineno">  101</span>        <span class="keywordflow">return</span> -1;</div>
-<div class="line"><span class="lineno">  102</span>    }</div>
-<div class="line"><span class="lineno">  103</span> </div>
-<div class="line"><span class="lineno">  104</span>    FILE *file = fopen(path, mode);</div>
-<div class="line"><span class="lineno">  105</span>    <span class="keywordflow">if</span> (file == NULL)</div>
-<div class="line"><span class="lineno">  106</span>        <span class="keywordflow">return</span> -1;</div>
-<div class="line"><span class="lineno">  107</span>    *_inputs = (<a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> **)malloc(length * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> *));</div>
-<div class="line"><span class="lineno">  108</span>    <span class="keywordflow">if</span> (*_inputs == NULL)</div>
-<div class="line"><span class="lineno">  109</span>        <span class="keywordflow">return</span> -1;</div>
-<div class="line"><span class="lineno">  110</span>    init_vectors(*_inputs, length, inputsize, 0);</div>
-<div class="line"><span class="lineno">  111</span>    *_expected = (<a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> **)malloc(length * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> *));</div>
-<div class="line"><span class="lineno">  112</span>    <span class="keywordflow">if</span> (*_expected == NULL)</div>
-<div class="line"><span class="lineno">  113</span>        <span class="keywordflow">return</span> -1;</div>
-<div class="line"><span class="lineno">  114</span>    init_vectors(*_expected, length, outputsize, 1);</div>
-<div class="line"><span class="lineno">  115</span> </div>
-<div class="line"><span class="lineno">  116</span>    <span class="keywordtype">int</span> result;</div>
-<div class="line"><span class="lineno">  117</span>    <span class="keywordflow">if</span> (strcmp(mode, <a class="code hl_define" href="loader_8h.html#a3d8d65e2de4c173a15a05a5d5dda60b8">CSV_MODE</a>) == 0)</div>
-<div class="line"><span class="lineno">  118</span>    {</div>
-<div class="line"><span class="lineno">  119</span>        result = load_csv(file, *_inputs, *_expected, start, length);</div>
-<div class="line"><span class="lineno">  120</span>    }</div>
-<div class="line"><span class="lineno">  121</span>    <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  122</span>    {</div>
-<div class="line"><span class="lineno">  123</span>        result = -1;</div>
-<div class="line"><span class="lineno">  124</span>    }</div>
-<div class="line"><span class="lineno">  125</span>    fclose(file);</div>
-<div class="line"><span class="lineno">  126</span>    <span class="keywordflow">return</span> result;</div>
-<div class="line"><span class="lineno">  127</span>}</div>
+<p class="definition">Definition at line <a class="el" href="loader_8c_source.html#l00180">180</a> of file <a class="el" href="loader_8c_source.html">loader.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  183</span>{</div>
+<div class="line"><span class="lineno">  184</span> </div>
+<div class="line"><span class="lineno">  185</span>    <span class="keywordflow">if</span> (strcmp(mode, <a class="code hl_define" href="loader_8h.html#a3d8d65e2de4c173a15a05a5d5dda60b8">CSV_MODE</a>) &amp;&amp; strcmp(mode, <a class="code hl_define" href="loader_8h.html#a399981b4dd18f0e6b9252badf307ce05">BINARY_MODE</a>))</div>
+<div class="line"><span class="lineno">  186</span>    {</div>
+<div class="line"><span class="lineno">  187</span>        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  188</span>    }</div>
+<div class="line"><span class="lineno">  189</span> </div>
+<div class="line"><span class="lineno">  190</span>    FILE *file = fopen(path, mode);</div>
+<div class="line"><span class="lineno">  191</span>    <span class="keywordflow">if</span> (file == NULL)</div>
+<div class="line"><span class="lineno">  192</span>        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  193</span> </div>
+<div class="line"><span class="lineno">  194</span>    <span class="keywordflow">if</span> (length == 0)</div>
+<div class="line"><span class="lineno">  195</span>    {</div>
+<div class="line"><span class="lineno">  196</span>        *_inputs = NULL;</div>
+<div class="line"><span class="lineno">  197</span>        *_expected = NULL;</div>
+<div class="line"><span class="lineno">  198</span>        <span class="keywordflow">if</span> (strcmp(mode, <a class="code hl_define" href="loader_8h.html#a3d8d65e2de4c173a15a05a5d5dda60b8">CSV_MODE</a>) == 0)</div>
+<div class="line"><span class="lineno">  199</span>            length = load_csv_dynamic(</div>
+<div class="line"><span class="lineno">  200</span>                file, _inputs, _expected, start, inputsize, outputsize);</div>
+<div class="line"><span class="lineno">  201</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  202</span>            length = 0;</div>
+<div class="line"><span class="lineno">  203</span>    }</div>
+<div class="line"><span class="lineno">  204</span>    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  205</span>    {</div>
+<div class="line"><span class="lineno">  206</span>        *_inputs = (<a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> **)malloc(length * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> *));</div>
+<div class="line"><span class="lineno">  207</span>        <span class="keywordflow">if</span> (*_inputs == NULL)</div>
+<div class="line"><span class="lineno">  208</span>            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  209</span>        *_expected = (<a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> **)malloc(length * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> *));</div>
+<div class="line"><span class="lineno">  210</span>        <span class="keywordflow">if</span> (*_expected == NULL)</div>
+<div class="line"><span class="lineno">  211</span>            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  212</span>        init_vectors(*_expected, length, outputsize, 1);</div>
+<div class="line"><span class="lineno">  213</span>        init_vectors(*_inputs, length, inputsize, 0);</div>
+<div class="line"><span class="lineno">  214</span>        <span class="keywordflow">if</span> (strcmp(mode, <a class="code hl_define" href="loader_8h.html#a3d8d65e2de4c173a15a05a5d5dda60b8">CSV_MODE</a>) == 0)</div>
+<div class="line"><span class="lineno">  215</span>        {</div>
+<div class="line"><span class="lineno">  216</span>            length = load_csv(file, *_inputs, *_expected, start, length);</div>
+<div class="line"><span class="lineno">  217</span>        }</div>
+<div class="line"><span class="lineno">  218</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  219</span>        {</div>
+<div class="line"><span class="lineno">  220</span>            length = 0;</div>
+<div class="line"><span class="lineno">  221</span>        }</div>
+<div class="line"><span class="lineno">  222</span>    }</div>
+<div class="line"><span class="lineno">  223</span> </div>
+<div class="line"><span class="lineno">  224</span>    fclose(file);</div>
+<div class="line"><span class="lineno">  225</span>    <span class="keywordflow">return</span> length;</div>
+<div class="line"><span class="lineno">  226</span>}</div>
 <div class="ttc" id="aloader_8h_html_a399981b4dd18f0e6b9252badf307ce05"><div class="ttname"><a href="loader_8h.html#a399981b4dd18f0e6b9252badf307ce05">BINARY_MODE</a></div><div class="ttdeci">#define BINARY_MODE</div><div class="ttdef"><b>Definition:</b> <a href="loader_8h_source.html#l00006">loader.h:6</a></div></div>
 <div class="ttc" id="aloader_8h_html_a3d8d65e2de4c173a15a05a5d5dda60b8"><div class="ttname"><a href="loader_8h.html#a3d8d65e2de4c173a15a05a5d5dda60b8">CSV_MODE</a></div><div class="ttdeci">#define CSV_MODE</div><div class="ttdef"><b>Definition:</b> <a href="loader_8h_source.html#l00007">loader.h:7</a></div></div>
 <div class="ttc" id="astructmatrix__t_html"><div class="ttname"><a href="structmatrix__t.html">matrix_t</a></div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00009">matrix.h:10</a></div></div>

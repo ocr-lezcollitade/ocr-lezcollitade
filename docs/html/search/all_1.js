@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['activation_0',['activation',['../function_8c.html#a312ab1be52b156fb23e9345424c0f2b9',1,'activation(double arg):&#160;function.c'],['../function_8h.html#a312ab1be52b156fb23e9345424c0f2b9',1,'activation(double arg):&#160;function.c']]],
-  ['activation_5fderivative_1',['activation_derivative',['../function_8c.html#ab6d7096342f96b308435d4c27ac905e6',1,'activation_derivative(double arg):&#160;function.c'],['../function_8h.html#ab6d7096342f96b308435d4c27ac905e6',1,'activation_derivative(double arg):&#160;function.c']]],
-  ['allchecks_2',['allChecks',['../solver_8c.html#a29dce49f6d53b86d3bd65a83528fe33d',1,'allChecks(int grid[9][9]):&#160;solver.c'],['../solver_8h.html#a29dce49f6d53b86d3bd65a83528fe33d',1,'allChecks(int grid[9][9]):&#160;solver.c']]]
+  ['activation_0',['activation',['../structlayer__t.html#a986a66b0b385bcc14acea253eb4cddf4',1,'layer_t::activation()'],['../function_8c.html#a20c645563b945ebc92fa419a56fcd967',1,'activation(size_t layer, size_t neuron, double arg, const network_results_t *res):&#160;function.c'],['../function_8h.html#a2e8a36ff7bcee7203fe3b7b040eb8d7d',1,'activation(size_t layer, size_t neuron, double arg, const network_results_t *results):&#160;function.c']]],
+  ['activation_5fderivative_1',['activation_derivative',['../function_8c.html#a66d3161a60a298acbdcb3faa5287849a',1,'activation_derivative(size_t layer, size_t neuron, double arg, const network_results_t *res):&#160;function.c'],['../function_8h.html#a357e6cfa672e70f7d1b8ca131c8785f8',1,'activation_derivative(size_t layer, size_t neuron, double arg, const network_results_t *results):&#160;function.c']]],
+  ['activation_5ft_2',['activation_t',['../network_8h.html#a6810c4e04f629645d7ca6ea0f1100464',1,'network.h']]],
+  ['allchecks_3',['allChecks',['../solver_8c.html#a29dce49f6d53b86d3bd65a83528fe33d',1,'allChecks(int grid[9][9]):&#160;solver.c'],['../solver_8h.html#a29dce49f6d53b86d3bd65a83528fe33d',1,'allChecks(int grid[9][9]):&#160;solver.c']]]
 ];

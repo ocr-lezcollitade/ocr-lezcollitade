@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "function.h"
 
+#define UNUSED(x) (void)(x)
+
 static double sigmoid(double x)
 {
     return 1 / (1 + exp(-x));
@@ -12,25 +14,49 @@ static double sigmoid_derivative(double x)
     return x * (1 - x);
 }
 
-double output_activation(double arg)
+/*static double soft_max(double arg, const network_results_t *res)
 {
+    double quot = .0;
+    matrix_t *outputs = res->outputs[res->network->layer_count];
+    for(size_t i = 0; i < outputs->columns; i++) {
+        quot += exp(mat_el_at(outputs, i, 0));
+    }
+    return exp(arg) / quot;
+}*/
+
+double output_activation(
+    size_t layer, size_t neuron, double arg, const network_results_t *res)
+{
+    UNUSED(res);
+    UNUSED(layer);
+    UNUSED(neuron);
     return sigmoid(arg);
 }
 
-double output_activation_derivative(double arg)
+double output_activation_derivative(
+    size_t layer, size_t neuron, double arg, const network_results_t *res)
 {
+    UNUSED(res);
+    UNUSED(layer);
+    UNUSED(neuron);
     return sigmoid_derivative(arg);
 }
 
-double activation(double arg)
+double activation(
+    size_t layer, size_t neuron, double arg, const network_results_t *res)
 {
-    // return tanh(arg);
+    UNUSED(res);
+    UNUSED(layer);
+    UNUSED(neuron);
     return sigmoid(arg);
 }
 
-double activation_derivative(double arg)
+double activation_derivative(
+    size_t layer, size_t neuron, double arg, const network_results_t *res)
 {
-    // return 1 - pow(arg, 2);
+    UNUSED(res);
+    UNUSED(layer);
+    UNUSED(neuron);
     return sigmoid_derivative(arg);
 }
 

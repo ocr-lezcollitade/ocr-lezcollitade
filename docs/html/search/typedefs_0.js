@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mat_5ftransform_5ft_0',['mat_transform_t',['../matrix_8h.html#af967065ada73d6d2c06c01459e274435',1,'matrix.h']]]
+  ['activation_5ft_0',['activation_t',['../network_8h.html#a6810c4e04f629645d7ca6ea0f1100464',1,'network.h']]]
 ];

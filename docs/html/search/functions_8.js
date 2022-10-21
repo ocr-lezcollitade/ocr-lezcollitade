@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['sign_0',['sign',['../function_8c.html#a0770694792334e6a69938e6a9364fbb9',1,'sign(double nb):&#160;function.c'],['../function_8h.html#a0770694792334e6a69938e6a9364fbb9',1,'sign(double nb):&#160;function.c']]],
-  ['solve_1',['solve',['../solver_8c.html#a34d8e6241d75827a5fbfeff56a349223',1,'solve(char *inputFile):&#160;solver.c'],['../solver_8h.html#a34d8e6241d75827a5fbfeff56a349223',1,'solve(char *inputFile):&#160;solver.c']]]
+  ['parse_5fparams_0',['parse_params',['../parser_8c.html#af33c60f53ba8a04782e03a8500c5d099',1,'parse_params(int argc, char **argv, char *mode):&#160;parser.c'],['../parser_8h.html#af33c60f53ba8a04782e03a8500c5d099',1,'parse_params(int argc, char **argv, char *mode):&#160;parser.c']]],
+  ['parse_5ftest_5fparams_1',['parse_test_params',['../parser_8c.html#ab2116d885ed230baeb9b20a83a672ea0',1,'parse_test_params(int argc, char **argv):&#160;parser.c'],['../parser_8h.html#ab2116d885ed230baeb9b20a83a672ea0',1,'parse_test_params(int argc, char **argv):&#160;parser.c']]],
+  ['parse_5ftrain_5fparams_2',['parse_train_params',['../parser_8c.html#ab2f489b7f919e61d84e74826ca0040de',1,'parse_train_params(int argc, char **argv):&#160;parser.c'],['../parser_8h.html#ab2f489b7f919e61d84e74826ca0040de',1,'parse_train_params(int argc, char **argv):&#160;parser.c']]]
 ];

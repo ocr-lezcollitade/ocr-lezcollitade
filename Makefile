@@ -16,11 +16,14 @@ DEBUG_TARGET=$(DEBUG_TARGET_DIR)/Lezcollitade.debug
 
 TEST_DIR=./tests
 TEST_BIN=$(TEST_DIR)/bin
-TEST_BINS=$(TEST_BIN)/utils/matrices/matrix_test $(TEST_BIN)/network/function_test
+TEST_BINS=$(TEST_BIN)/utils/matrices/matrix_test\
+		  $(TEST_BIN)/network/function_test
 
 SRC_DIR=./src
 
-SRC=main.c utils/mnist/loader.c utils/matrices/matrix.c solver/solver.c network/function.c network/network.c preproc/rotate/rotate.c preproc/sudoku_detection/sudoku_split.c
+SRC=main.c cli/parser.c utils/mnist/loader.c utils/matrices/matrix.c\
+	solver/solver.c network/function.c network/network.c\
+	preproc/rotate/rotate.c preproc/sudoku_detection/sudoku_split.c
 
 OBJ_ROOT=./obj
 OBJ_DIR=$(OBJ_ROOT)/Release
