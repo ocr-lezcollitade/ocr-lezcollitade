@@ -33,7 +33,7 @@ OBJS=$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 DEBUG_OBJ_DIR=$(OBJ_ROOT)/Debug
 DEBUG_OBJS=$(addprefix $(DEBUG_OBJ_DIR)/, $(SRC:.c=.o))
 
-.PHONY: all prod debug clean build dbuild lib test docs
+.PHONY: all prod debug clean build dbuild lib test docs format
 
 all: prod debug
 
@@ -81,6 +81,9 @@ test: clean $(LIB) $(TEST_BINS)
 
 docs:
 	doxygen doxygen.conf
+
+format:
+	find ./src | grep -E "\.(c|h)$$" | xargs -I "{}" bash -c "clang-format -i {}"
 
 clean :
 	rm -rf $(OBJ_ROOT)

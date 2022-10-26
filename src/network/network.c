@@ -11,95 +11,93 @@
             errx(1, "%s: %s", function, message); \
     }
 
-void compute_layer(network_results_t *results, layer_t *layer, size_t layeri)
+network_results_t *results_create(size_t layer_count)
 {
-    matrix_t *preactivation = matrix_create(layer->count, 1, 0);
-    matrix_t *values = results->outputs[layeri];
-    for (size_t i = 0; i < layer->count; i++)
-    {
-        neuron_t *neuron = layer->neurons[i];
-        matrix_t *tmp = mat_product(neuron->weights, values);
-        mat_set_el(preactivation, i, 0, mat_el_at(tmp, 0, 0));
-        matrix_free(tmp);
-    }
-
-    results->preactivation[layeri] = preactivation;
-
-    matrix_t *outputs = matrix_create(layer->count, 1, 0);
-    for (size_t i = 0; i < layer->count; i++)
-    {
-        double value = mat_el_at(preactivation, i, 0);
-        value = layer->activation(layeri, i, value, results);
-        mat_set_el(outputs, i, 0, value);
-    }
-
-    results->outputs[layeri + 1] = outputs;
-}
-
-matrix_t *compute_result(matrix_t *values, network_t *network)
-{
-    network_results_t *results = compute_result_with_save(values, network);
-    matrix_t *outputs = mat_copy(results->outputs[network->layer_count]);
-    results_free(results);
-    return outputs;
-}
-
-network_results_t *compute_result_with_save(
-    matrix_t *values, network_t *network)
-{
-    network_results_t *results = results_create(network->layer_count);
-    results->network = network;
+    network_results_t *results
+        = (network_results_t *)malloc(sizeof(network_results_t));
     if (results == NULL)
         return NULL;
-    results->outputs[0] = mat_copy(values);
-    for (size_t i = 0; i < network->layer_count; i++)
+    results->preactivation
+        = (matrix_t **)calloc(layer_count, sizeof(matrix_t *));
+    if (results->preactivation == NULL)
     {
-        layer_t *layer = network->layers[i];
-        compute_layer(results, layer, i);
+        free(results);
+        return NULL;
+    }
+    results->outputs
+        = (matrix_t **)calloc(layer_count + 1, sizeof(matrix_t *));
+    if (results->outputs == NULL)
+    {
+        free(results->preactivation);
+        free(results);
+        return NULL;
     }
 
     return results;
-}
-
-network_results_t *results_create(size_t layer_count)
-{
-    network_results_t *res
-        = (network_results_t *)malloc(sizeof(network_results_t));
-    if (res == NULL)
-        return res;
-    res->preactivation = (matrix_t **)malloc(layer_count * sizeof(matrix_t *));
-    if (res->preactivation == NULL)
-    {
-        free(res);
-        return NULL;
-    }
-
-    res->outputs = (matrix_t **)malloc((layer_count + 1) * sizeof(matrix_t *));
-    if (res->outputs == NULL)
-    {
-        free(res->preactivation);
-        free(res);
-        return NULL;
-    }
-
-    return res;
 }
 
 void results_free(network_results_t *results)
 {
     for (size_t i = 0; i < results->network->layer_count; i++)
     {
-        matrix_free(results->preactivation[i]);
+        if (results->preactivation[i] != NULL)
+            matrix_free(results->preactivation[i]);
     }
-
     for (size_t i = 0; i <= results->network->layer_count; i++)
     {
-        matrix_free(results->outputs[i]);
+        if (results->outputs[i] != NULL)
+            matrix_free(results->outputs[i]);
     }
 
     free(results->preactivation);
     free(results->outputs);
     free(results);
+}
+
+void compute_layer(network_results_t *results, size_t layeri)
+{
+    layer_t *layer = results->network->layers[layeri];
+    matrix_t *values = results->outputs[layeri];
+    matrix_t *preactivation = matrix_create(layer->count, 1, 0);
+    for (size_t i = 0; i < layer->count; i++)
+    {
+        neuron_t *neuron = layer->neurons[i];
+        matrix_t *tmp = mat_product(neuron->weights, values);
+        double res = mat_el_at(tmp, 0, 0) + neuron->bias;
+        matrix_free(tmp);
+        mat_set_el(preactivation, i, 0, res);
+    }
+
+    results->preactivation[layeri] = preactivation;
+    matrix_t *outputs = matrix_create(layer->count, 1, 0);
+    for (size_t i = 0; i < layer->count; i++)
+    {
+        double res = layer->activation(
+            layeri, i, mat_el_at(preactivation, i, 0), results);
+        mat_set_el(outputs, i, 0, res);
+    }
+
+    results->outputs[layeri + 1] = outputs;
+}
+
+matrix_t *compute_results(matrix_t *values, network_t *network)
+{
+    matrix_t *last_results = mat_copy(values);
+    network_results_t *results = results_create(network->layer_count);
+    results->network = network;
+    results->outputs[0] = last_results;
+    compute_results_save(results, network);
+    matrix_t *res = mat_copy(results->outputs[network->layer_count]);
+    results_free(results);
+    return res;
+}
+
+void compute_results_save(network_results_t *results, network_t *network)
+{
+    for (size_t i = 0; i < network->layer_count; i++)
+    {
+        compute_layer(results, i);
+    }
 }
 
 neuron_t *neuron_create(matrix_t *weights, double bias)
@@ -663,11 +661,16 @@ void network_train(
 {
     network_t *trained = network_copy(*pnet);
 
+    network_results_t *results = results_create((*pnet)->layer_count);
+    results->network = *pnet;
+
+    matrix_t **outputs = results->outputs;
+    outputs[0] = mat_copy(inputs);
+
     matrix_t **deltas
         = (matrix_t **)malloc((*pnet)->layer_count * sizeof(matrix_t *));
 
-    network_results_t *results = compute_result_with_save(inputs, *pnet);
-    matrix_t **outputs = results->outputs;
+    compute_results_save(results, *pnet);
 
     size_t layer_i = trained->layer_count - 1;
     layer_t *trained_layer = trained->layers[layer_i];

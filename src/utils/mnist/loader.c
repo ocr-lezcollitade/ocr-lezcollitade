@@ -14,7 +14,8 @@ static void on_number_stop(char *number, matrix_t **expected,
     int value = atoi(number);
     if (readchar == 0)
     {
-        mat_set_el(expected[readline], readchar, 0, value);
+        // sets at position "value" the value 1
+        mat_set_el(expected[readline], value, 0, 1);
     }
     else
     {
@@ -90,10 +91,11 @@ static void on_number_stop_dynamic(char *number, matrix_t ***expected,
     int value = atoi(number);
     if (readchar == 0)
     {
+        // sets at position "value" the value 1
         *expected = (matrix_t **)realloc(
             *expected, (readline + 1) * sizeof(matrix_t *));
         (*expected)[readline] = matrix_create(outputsize, 1, 0);
-        mat_set_el((*expected)[readline], readchar, 0, value);
+        mat_set_el((*expected)[readline], value, 0, 1);
     }
     else
     {

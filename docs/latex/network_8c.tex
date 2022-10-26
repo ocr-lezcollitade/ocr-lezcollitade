@@ -15,23 +15,23 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{network_8c_a896d8fcc9b92669c48acea124a2dc665}{compute\+\_\+layer}} (\mbox{\hyperlink{structnetwork__results__t}{network\+\_\+results\+\_\+t}} $\ast$results, \mbox{\hyperlink{structlayer__t}{layer\+\_\+t}} $\ast$layer, size\+\_\+t layeri)
-\item 
-\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ \mbox{\hyperlink{network_8c_a49d5f5101cda3ffc8355a0237ee16709}{compute\+\_\+result}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$values, \mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$network)
-\begin{DoxyCompactList}\small\item\em Computes the result of the input by the network. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structnetwork__results__t}{network\+\_\+results\+\_\+t}} $\ast$ \mbox{\hyperlink{network_8c_aea236d7ffb8abfbca33448d7d4667a19}{compute\+\_\+result\+\_\+with\+\_\+save}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$values, \mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$network)
-\item 
 \mbox{\hyperlink{structnetwork__results__t}{network\+\_\+results\+\_\+t}} $\ast$ \mbox{\hyperlink{network_8c_a2915eb69be1db6dd406f986f8cb5c8c8}{results\+\_\+create}} (size\+\_\+t layer\+\_\+count)
 \begin{DoxyCompactList}\small\item\em Creates a network\+\_\+results struct. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{network_8c_a2512b64818030e2bafa25367611e3482}{results\+\_\+free}} (\mbox{\hyperlink{structnetwork__results__t}{network\+\_\+results\+\_\+t}} $\ast$results)
 \begin{DoxyCompactList}\small\item\em Frees the network results struct. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{network_8c_abc9d9011dc3fcf9fb76fee11a2b4ff49}{compute\+\_\+layer}} (\mbox{\hyperlink{structnetwork__results__t}{network\+\_\+results\+\_\+t}} $\ast$results, size\+\_\+t layeri)
+\item 
+\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ \mbox{\hyperlink{network_8c_a0deec64877feb7870914ededb0a09746}{compute\+\_\+results}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$values, \mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$network)
+\begin{DoxyCompactList}\small\item\em Computes the result of the input by the network. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{network_8c_a2d59c0e85a5fc82d69e0abe8a9efbf95}{compute\+\_\+results\+\_\+save}} (\mbox{\hyperlink{structnetwork__results__t}{network\+\_\+results\+\_\+t}} $\ast$results, \mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$network)
+\begin{DoxyCompactList}\small\item\em Computes the result while saving the result of each layers. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structneuron__t}{neuron\+\_\+t}} $\ast$ \mbox{\hyperlink{network_8c_aa706a2634d39e1b59182ab9a9403931c}{neuron\+\_\+create}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$weights, double bias)
 \begin{DoxyCompactList}\small\item\em Creates a neuron. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{network_8c_a634adde351458c2e8f8825c1816eeb43}{neuron\+\_\+free}} (\mbox{\hyperlink{structneuron__t}{neuron\+\_\+t}} $\ast$neuron)
 \begin{DoxyCompactList}\small\item\em Frees the allocated neuron. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structlayer__t}{layer\+\_\+t}} $\ast$ \mbox{\hyperlink{network_8c_a634822d192cc56422779767bd219c3b8}{layer\+\_\+create\+\_\+from\+\_\+mat}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$$\ast$weights, double $\ast$biases, size\+\_\+t count, \mbox{\hyperlink{network_8h_a6810c4e04f629645d7ca6ea0f1100464}{activation\+\_\+t}} f, \mbox{\hyperlink{network_8h_a6810c4e04f629645d7ca6ea0f1100464}{activation\+\_\+t}} d)
+\mbox{\hyperlink{structlayer__t}{layer\+\_\+t}} $\ast$ \mbox{\hyperlink{network_8c_a634822d192cc56422779767bd219c3b8}{layer\+\_\+create\+\_\+from\+\_\+mat}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$$\ast$weights, double $\ast$biases, size\+\_\+t count, \mbox{\hyperlink{network_8h_a9fc74fc4febb993e1505653405d9c188}{activation\+\_\+t}} f, \mbox{\hyperlink{network_8h_a9fc74fc4febb993e1505653405d9c188}{activation\+\_\+t}} d)
 \begin{DoxyCompactList}\small\item\em Creates filled layer from an array of weights, and an array of biases. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structlayer__t}{layer\+\_\+t}} $\ast$ \mbox{\hyperlink{network_8c_af907f46e11a20248505789278662b126}{layer\+\_\+create}} (\mbox{\hyperlink{structneuron__t}{neuron\+\_\+t}} $\ast$$\ast$neurons, size\+\_\+t count, \mbox{\hyperlink{network_8h_a6810c4e04f629645d7ca6ea0f1100464}{activation\+\_\+t}} f, \mbox{\hyperlink{network_8h_a6810c4e04f629645d7ca6ea0f1100464}{activation\+\_\+t}} d)
+\mbox{\hyperlink{structlayer__t}{layer\+\_\+t}} $\ast$ \mbox{\hyperlink{network_8c_af0be2bf2d994ad2892ce3bbd1650bcce}{layer\+\_\+create}} (\mbox{\hyperlink{structneuron__t}{neuron\+\_\+t}} $\ast$$\ast$neurons, size\+\_\+t count, \mbox{\hyperlink{network_8h_a9fc74fc4febb993e1505653405d9c188}{activation\+\_\+t}} f, \mbox{\hyperlink{network_8h_a9fc74fc4febb993e1505653405d9c188}{activation\+\_\+t}} d)
 \item 
 void \mbox{\hyperlink{network_8c_ac0e36ece7ab68f5333223ea9167938d9}{layer\+\_\+free}} (\mbox{\hyperlink{structlayer__t}{layer\+\_\+t}} $\ast$layer)
 \begin{DoxyCompactList}\small\item\em Frees an allocated layer. \end{DoxyCompactList}\item 
@@ -39,7 +39,7 @@ void \mbox{\hyperlink{network_8c_ac0e36ece7ab68f5333223ea9167938d9}{layer\+\_\+f
 \begin{DoxyCompactList}\small\item\em Creates a network from an array of layers. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{network_8c_ab7de60cd0ad5a69e135b63d264018d1a}{network\+\_\+free}} (\mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$net)
 \begin{DoxyCompactList}\small\item\em Frees the allocated network. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$ \mbox{\hyperlink{network_8c_aff2c78c834c05da6bc380e716f092141}{network\+\_\+load}} (const char $\ast$path)
+\mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$ \mbox{\hyperlink{network_8c_a71f0aa4f7efea3ff158a49342228bb80}{network\+\_\+load}} (const char $\ast$path)
 \begin{DoxyCompactList}\small\item\em Loads the network from a file. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{network_8c_aee995127aad46272ae3ddc5dfef07edc}{network\+\_\+save}} (const char $\ast$path, \mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$net)
 \begin{DoxyCompactList}\small\item\em Saves a network to a file. \end{DoxyCompactList}\item 
@@ -64,7 +64,7 @@ int \mbox{\hyperlink{network_8c_a338eaca7b062c45c2ddf651ec7bfb5ab}{network\+\_\+
 \begin{DoxyCode}{0}
 \DoxyCodeLine{    \{                                             \(\backslash\)}
 \DoxyCodeLine{        if (ptr == NULL)                          \(\backslash\)}
-\DoxyCodeLine{            errx(1, \textcolor{stringliteral}{"{}\%s: \%s"{}}, \textcolor{keyword}{function}, message); \(\backslash\)}
+\DoxyCodeLine{            errx(1, \textcolor{stringliteral}{"{}\%s: \%s"{}}, function, message); \(\backslash\)}
 \DoxyCodeLine{    \}}
 
 \end{DoxyCode}
@@ -74,7 +74,7 @@ checks if a pointer is null.
 
 
 
-Definition at line 8 of file network.\+c.
+Definition at line \mbox{\hyperlink{network_8c_source_l00008}{8}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
 
 \mbox{\Hypertarget{network_8c_abd607f13447d238cfa36348ed8e5d383}\label{network_8c_abd607f13447d238cfa36348ed8e5d383}} 
 \index{network.c@{network.c}!READ\_LENGTH@{READ\_LENGTH}}
@@ -84,53 +84,54 @@ Definition at line 8 of file network.\+c.
 
 
 
-Definition at line 190 of file network.\+c.
+Definition at line \mbox{\hyperlink{network_8c_source_l00188}{188}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
 
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{network_8c_a896d8fcc9b92669c48acea124a2dc665}\label{network_8c_a896d8fcc9b92669c48acea124a2dc665}} 
+\mbox{\Hypertarget{network_8c_abc9d9011dc3fcf9fb76fee11a2b4ff49}\label{network_8c_abc9d9011dc3fcf9fb76fee11a2b4ff49}} 
 \index{network.c@{network.c}!compute\_layer@{compute\_layer}}
 \index{compute\_layer@{compute\_layer}!network.c@{network.c}}
 \doxysubsubsection{\texorpdfstring{compute\_layer()}{compute\_layer()}}
-{\footnotesize\ttfamily void compute\+\_\+layer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structnetwork__results__t}{network\+\_\+results\+\_\+t}} $\ast$}]{results,  }\item[{\mbox{\hyperlink{structlayer__t}{layer\+\_\+t}} $\ast$}]{layer,  }\item[{size\+\_\+t}]{layeri }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void compute\+\_\+layer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structnetwork__results__t}{network\+\_\+results\+\_\+t}} $\ast$}]{results,  }\item[{size\+\_\+t}]{layeri }\end{DoxyParamCaption})}
 
 
 
-Definition at line 14 of file network.\+c.
+Definition at line \mbox{\hyperlink{network_8c_source_l00057}{57}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{15 \{}
-\DoxyCodeLine{16     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *preactivation = \mbox{\hyperlink{matrix_8c_a3af2b3bfa5fd2197cd616ceb76e6168f}{matrix\_create}}(layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}}, 1, 0);}
-\DoxyCodeLine{17     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *values = results-\/>\mbox{\hyperlink{structnetwork__results__t_a5f69d90d162ba6b0796d55d4de7bc97d}{outputs}}[layeri];}
-\DoxyCodeLine{18     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}}; i++)}
-\DoxyCodeLine{19     \{}
-\DoxyCodeLine{20         \mbox{\hyperlink{structneuron__t}{neuron\_t}} *neuron = layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[i];}
-\DoxyCodeLine{21         \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *tmp = \mbox{\hyperlink{matrix_8c_aec843b4f924ae1c524b4f3e3dcc0ceda}{mat\_product}}(neuron-\/>\mbox{\hyperlink{structneuron__t_a6182effa3a478564d7dcd7f9d856c029}{weights}}, values);}
-\DoxyCodeLine{22         \mbox{\hyperlink{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}{mat\_set\_el}}(preactivation, i, 0, \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(tmp, 0, 0));}
-\DoxyCodeLine{23         \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(tmp);}
-\DoxyCodeLine{24     \}}
-\DoxyCodeLine{25 }
-\DoxyCodeLine{26     results-\/>\mbox{\hyperlink{structnetwork__results__t_af7672c61fcb9cc66af09d166c98dfa0c}{preactivation}}[layeri] = preactivation;}
-\DoxyCodeLine{27 }
-\DoxyCodeLine{28     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *outputs = \mbox{\hyperlink{matrix_8c_a3af2b3bfa5fd2197cd616ceb76e6168f}{matrix\_create}}(layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}}, 1, 0);}
-\DoxyCodeLine{29     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}}; i++)}
-\DoxyCodeLine{30     \{}
-\DoxyCodeLine{31         \textcolor{keywordtype}{double} value = \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(preactivation, i, 0);}
-\DoxyCodeLine{32         value = layer-\/>\mbox{\hyperlink{structlayer__t_a986a66b0b385bcc14acea253eb4cddf4}{activation}}(layeri, i, value, results);}
-\DoxyCodeLine{33         \mbox{\hyperlink{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}{mat\_set\_el}}(outputs, i, 0, value);}
-\DoxyCodeLine{34     \}}
-\DoxyCodeLine{35 }
-\DoxyCodeLine{36     results-\/>\mbox{\hyperlink{structnetwork__results__t_a5f69d90d162ba6b0796d55d4de7bc97d}{outputs}}[layeri + 1] = outputs;}
-\DoxyCodeLine{37 \}}
+\DoxyCodeLine{00058 \{}
+\DoxyCodeLine{00059     \mbox{\hyperlink{structlayer__t}{layer\_t}} *layer = results-\/>\mbox{\hyperlink{structnetwork__results__t_a81f6c9388535caf11d916c99da211ed6}{network}}-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[layeri];}
+\DoxyCodeLine{00060     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *values = results-\/>\mbox{\hyperlink{structnetwork__results__t_a5f69d90d162ba6b0796d55d4de7bc97d}{outputs}}[layeri];}
+\DoxyCodeLine{00061     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *preactivation = \mbox{\hyperlink{matrix_8c_a1d9b061fc8856e727f014c3266b7431d}{matrix\_create}}(layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}}, 1, 0);}
+\DoxyCodeLine{00062     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}}; i++)}
+\DoxyCodeLine{00063     \{}
+\DoxyCodeLine{00064         \mbox{\hyperlink{structneuron__t}{neuron\_t}} *neuron = layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[i];}
+\DoxyCodeLine{00065         \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *tmp = \mbox{\hyperlink{matrix_8c_aec843b4f924ae1c524b4f3e3dcc0ceda}{mat\_product}}(neuron-\/>\mbox{\hyperlink{structneuron__t_a6182effa3a478564d7dcd7f9d856c029}{weights}}, values);}
+\DoxyCodeLine{00066         \textcolor{keywordtype}{double} res = \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(tmp, 0, 0) + neuron-\/>\mbox{\hyperlink{structneuron__t_ad82dab1b1a60940e62e80270ad99a522}{bias}};}
+\DoxyCodeLine{00067         \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(tmp);}
+\DoxyCodeLine{00068         \mbox{\hyperlink{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}{mat\_set\_el}}(preactivation, i, 0, res);}
+\DoxyCodeLine{00069     \}}
+\DoxyCodeLine{00070 }
+\DoxyCodeLine{00071     results-\/>\mbox{\hyperlink{structnetwork__results__t_af7672c61fcb9cc66af09d166c98dfa0c}{preactivation}}[layeri] = preactivation;}
+\DoxyCodeLine{00072     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *outputs = \mbox{\hyperlink{matrix_8c_a1d9b061fc8856e727f014c3266b7431d}{matrix\_create}}(layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}}, 1, 0);}
+\DoxyCodeLine{00073     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}}; i++)}
+\DoxyCodeLine{00074     \{}
+\DoxyCodeLine{00075         \textcolor{keywordtype}{double} res = layer-\/>\mbox{\hyperlink{structlayer__t_a986a66b0b385bcc14acea253eb4cddf4}{activation}}(}
+\DoxyCodeLine{00076             layeri, i, \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(preactivation, i, 0), results);}
+\DoxyCodeLine{00077         \mbox{\hyperlink{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}{mat\_set\_el}}(outputs, i, 0, res);}
+\DoxyCodeLine{00078     \}}
+\DoxyCodeLine{00079 }
+\DoxyCodeLine{00080     results-\/>\mbox{\hyperlink{structnetwork__results__t_a5f69d90d162ba6b0796d55d4de7bc97d}{outputs}}[layeri + 1] = outputs;}
+\DoxyCodeLine{00081 \}}
 
 \end{DoxyCode}
-\mbox{\Hypertarget{network_8c_a49d5f5101cda3ffc8355a0237ee16709}\label{network_8c_a49d5f5101cda3ffc8355a0237ee16709}} 
-\index{network.c@{network.c}!compute\_result@{compute\_result}}
-\index{compute\_result@{compute\_result}!network.c@{network.c}}
-\doxysubsubsection{\texorpdfstring{compute\_result()}{compute\_result()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ compute\+\_\+result (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{inputs,  }\item[{\mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$}]{network }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{network_8c_a0deec64877feb7870914ededb0a09746}\label{network_8c_a0deec64877feb7870914ededb0a09746}} 
+\index{network.c@{network.c}!compute\_results@{compute\_results}}
+\index{compute\_results@{compute\_results}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{compute\_results()}{compute\_results()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$ compute\+\_\+results (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{inputs,  }\item[{\mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$}]{network }\end{DoxyParamCaption})}
 
 
 
@@ -148,76 +149,83 @@ The column vector of the computed results.
 \end{DoxyReturn}
 
 
-Definition at line 39 of file network.\+c.
+Definition at line \mbox{\hyperlink{network_8c_source_l00083}{83}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{40 \{}
-\DoxyCodeLine{41     \mbox{\hyperlink{structnetwork__results__t}{network\_results\_t}} *results = \mbox{\hyperlink{network_8c_aea236d7ffb8abfbca33448d7d4667a19}{compute\_result\_with\_save}}(values, network);}
-\DoxyCodeLine{42     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *outputs = \mbox{\hyperlink{matrix_8c_ad4970f9c83f185813ab569266c4fd0de}{mat\_copy}}(results-\/>\mbox{\hyperlink{structnetwork__results__t_a5f69d90d162ba6b0796d55d4de7bc97d}{outputs}}[network-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}]);}
-\DoxyCodeLine{43     \mbox{\hyperlink{network_8c_a2512b64818030e2bafa25367611e3482}{results\_free}}(results);}
-\DoxyCodeLine{44     \textcolor{keywordflow}{return} outputs;}
-\DoxyCodeLine{45 \}}
+\DoxyCodeLine{00084 \{}
+\DoxyCodeLine{00085     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *last\_results = \mbox{\hyperlink{matrix_8c_ad4970f9c83f185813ab569266c4fd0de}{mat\_copy}}(values);}
+\DoxyCodeLine{00086     \mbox{\hyperlink{structnetwork__results__t}{network\_results\_t}} *results = \mbox{\hyperlink{network_8c_a2915eb69be1db6dd406f986f8cb5c8c8}{results\_create}}(network-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}});}
+\DoxyCodeLine{00087     results-\/>\mbox{\hyperlink{structnetwork__results__t_a81f6c9388535caf11d916c99da211ed6}{network}} = network;}
+\DoxyCodeLine{00088     results-\/>\mbox{\hyperlink{structnetwork__results__t_a5f69d90d162ba6b0796d55d4de7bc97d}{outputs}}[0] = last\_results;}
+\DoxyCodeLine{00089     \mbox{\hyperlink{network_8c_a2d59c0e85a5fc82d69e0abe8a9efbf95}{compute\_results\_save}}(results, network);}
+\DoxyCodeLine{00090     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *res = \mbox{\hyperlink{matrix_8c_ad4970f9c83f185813ab569266c4fd0de}{mat\_copy}}(results-\/>\mbox{\hyperlink{structnetwork__results__t_a5f69d90d162ba6b0796d55d4de7bc97d}{outputs}}[network-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}]);}
+\DoxyCodeLine{00091     \mbox{\hyperlink{network_8c_a2512b64818030e2bafa25367611e3482}{results\_free}}(results);}
+\DoxyCodeLine{00092     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{00093 \}}
 
 \end{DoxyCode}
-\mbox{\Hypertarget{network_8c_aea236d7ffb8abfbca33448d7d4667a19}\label{network_8c_aea236d7ffb8abfbca33448d7d4667a19}} 
-\index{network.c@{network.c}!compute\_result\_with\_save@{compute\_result\_with\_save}}
-\index{compute\_result\_with\_save@{compute\_result\_with\_save}!network.c@{network.c}}
-\doxysubsubsection{\texorpdfstring{compute\_result\_with\_save()}{compute\_result\_with\_save()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structnetwork__results__t}{network\+\_\+results\+\_\+t}}$\ast$ compute\+\_\+result\+\_\+with\+\_\+save (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{values,  }\item[{\mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$}]{network }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{network_8c_a2d59c0e85a5fc82d69e0abe8a9efbf95}\label{network_8c_a2d59c0e85a5fc82d69e0abe8a9efbf95}} 
+\index{network.c@{network.c}!compute\_results\_save@{compute\_results\_save}}
+\index{compute\_results\_save@{compute\_results\_save}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{compute\_results\_save()}{compute\_results\_save()}}
+{\footnotesize\ttfamily void compute\+\_\+results\+\_\+save (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structnetwork__results__t}{network\+\_\+results\+\_\+t}} $\ast$}]{results,  }\item[{\mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$}]{network }\end{DoxyParamCaption})}
 
 
 
-Definition at line 47 of file network.\+c.
+Computes the result while saving the result of each layers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em results} & The results struct. \\
+\hline
+{\em network} & The network to compute the results from. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{network_8c_source_l00095}{95}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{49 \{}
-\DoxyCodeLine{50     \mbox{\hyperlink{structnetwork__results__t}{network\_results\_t}} *results = \mbox{\hyperlink{network_8c_a2915eb69be1db6dd406f986f8cb5c8c8}{results\_create}}(network-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}});}
-\DoxyCodeLine{51     results-\/>\mbox{\hyperlink{structnetwork__results__t_a81f6c9388535caf11d916c99da211ed6}{network}} = network;}
-\DoxyCodeLine{52     \textcolor{keywordflow}{if} (results == NULL)}
-\DoxyCodeLine{53         \textcolor{keywordflow}{return} NULL;}
-\DoxyCodeLine{54     results-\/>\mbox{\hyperlink{structnetwork__results__t_a5f69d90d162ba6b0796d55d4de7bc97d}{outputs}}[0] = \mbox{\hyperlink{matrix_8c_ad4970f9c83f185813ab569266c4fd0de}{mat\_copy}}(values);}
-\DoxyCodeLine{55     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < network-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}; i++)}
-\DoxyCodeLine{56     \{}
-\DoxyCodeLine{57         \mbox{\hyperlink{structlayer__t}{layer\_t}} *layer = network-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[i];}
-\DoxyCodeLine{58         \mbox{\hyperlink{network_8c_a896d8fcc9b92669c48acea124a2dc665}{compute\_layer}}(results, layer, i);}
-\DoxyCodeLine{59     \}}
-\DoxyCodeLine{60 }
-\DoxyCodeLine{61     \textcolor{keywordflow}{return} results;}
-\DoxyCodeLine{62 \}}
+\DoxyCodeLine{00096 \{}
+\DoxyCodeLine{00097     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < network-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}; i++)}
+\DoxyCodeLine{00098     \{}
+\DoxyCodeLine{00099         \mbox{\hyperlink{network_8c_abc9d9011dc3fcf9fb76fee11a2b4ff49}{compute\_layer}}(results, i);}
+\DoxyCodeLine{00100     \}}
+\DoxyCodeLine{00101 \}}
 
 \end{DoxyCode}
-\mbox{\Hypertarget{network_8c_af907f46e11a20248505789278662b126}\label{network_8c_af907f46e11a20248505789278662b126}} 
+\mbox{\Hypertarget{network_8c_af0be2bf2d994ad2892ce3bbd1650bcce}\label{network_8c_af0be2bf2d994ad2892ce3bbd1650bcce}} 
 \index{network.c@{network.c}!layer\_create@{layer\_create}}
 \index{layer\_create@{layer\_create}!network.c@{network.c}}
 \doxysubsubsection{\texorpdfstring{layer\_create()}{layer\_create()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structlayer__t}{layer\+\_\+t}}$\ast$ layer\+\_\+create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structneuron__t}{neuron\+\_\+t}} $\ast$$\ast$}]{neurons,  }\item[{size\+\_\+t}]{count,  }\item[{\mbox{\hyperlink{network_8h_a6810c4e04f629645d7ca6ea0f1100464}{activation\+\_\+t}}}]{f,  }\item[{\mbox{\hyperlink{network_8h_a6810c4e04f629645d7ca6ea0f1100464}{activation\+\_\+t}}}]{d }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{structlayer__t}{layer\+\_\+t}} $\ast$ layer\+\_\+create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structneuron__t}{neuron\+\_\+t}} $\ast$$\ast$}]{neurons,  }\item[{size\+\_\+t}]{count,  }\item[{\mbox{\hyperlink{network_8h_a9fc74fc4febb993e1505653405d9c188}{activation\+\_\+t}}}]{f,  }\item[{\mbox{\hyperlink{network_8h_a9fc74fc4febb993e1505653405d9c188}{activation\+\_\+t}}}]{d }\end{DoxyParamCaption})}
 
 
 
-Definition at line 143 of file network.\+c.
+Definition at line \mbox{\hyperlink{network_8c_source_l00141}{141}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{145 \{}
-\DoxyCodeLine{146     \mbox{\hyperlink{structlayer__t}{layer\_t}} *layer = (\mbox{\hyperlink{structlayer__t}{layer\_t}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlayer__t}{layer\_t}}));}
-\DoxyCodeLine{147     \textcolor{keywordflow}{if} (layer == NULL)}
-\DoxyCodeLine{148         \textcolor{keywordflow}{return} NULL;}
-\DoxyCodeLine{149     layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}} = neurons;}
-\DoxyCodeLine{150     layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}} = count;}
-\DoxyCodeLine{151     layer-\/>\mbox{\hyperlink{structlayer__t_a986a66b0b385bcc14acea253eb4cddf4}{activation}} = f;}
-\DoxyCodeLine{152     layer-\/>\mbox{\hyperlink{structlayer__t_acacc7b95f0ad34a47555e40189aae7c0}{dactivation}} = d;}
-\DoxyCodeLine{153 }
-\DoxyCodeLine{154     \textcolor{keywordflow}{return} layer;}
-\DoxyCodeLine{155 \}}
+\DoxyCodeLine{00143 \{}
+\DoxyCodeLine{00144     \mbox{\hyperlink{structlayer__t}{layer\_t}} *layer = (\mbox{\hyperlink{structlayer__t}{layer\_t}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlayer__t}{layer\_t}}));}
+\DoxyCodeLine{00145     \textcolor{keywordflow}{if} (layer == NULL)}
+\DoxyCodeLine{00146         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00147     layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}} = neurons;}
+\DoxyCodeLine{00148     layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}} = count;}
+\DoxyCodeLine{00149     layer-\/>\mbox{\hyperlink{structlayer__t_a986a66b0b385bcc14acea253eb4cddf4}{activation}} = f;}
+\DoxyCodeLine{00150     layer-\/>\mbox{\hyperlink{structlayer__t_acacc7b95f0ad34a47555e40189aae7c0}{dactivation}} = d;}
+\DoxyCodeLine{00151 }
+\DoxyCodeLine{00152     \textcolor{keywordflow}{return} layer;}
+\DoxyCodeLine{00153 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{network_8c_a634822d192cc56422779767bd219c3b8}\label{network_8c_a634822d192cc56422779767bd219c3b8}} 
 \index{network.c@{network.c}!layer\_create\_from\_mat@{layer\_create\_from\_mat}}
 \index{layer\_create\_from\_mat@{layer\_create\_from\_mat}!network.c@{network.c}}
 \doxysubsubsection{\texorpdfstring{layer\_create\_from\_mat()}{layer\_create\_from\_mat()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structlayer__t}{layer\+\_\+t}} $\ast$ layer\+\_\+create\+\_\+from\+\_\+mat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$$\ast$}]{weights,  }\item[{double $\ast$}]{biases,  }\item[{size\+\_\+t}]{count,  }\item[{\mbox{\hyperlink{network_8h_a6810c4e04f629645d7ca6ea0f1100464}{activation\+\_\+t}}}]{f,  }\item[{\mbox{\hyperlink{network_8h_a6810c4e04f629645d7ca6ea0f1100464}{activation\+\_\+t}}}]{d }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{structlayer__t}{layer\+\_\+t}} $\ast$ layer\+\_\+create\+\_\+from\+\_\+mat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$$\ast$}]{weights,  }\item[{double $\ast$}]{biases,  }\item[{size\+\_\+t}]{count,  }\item[{\mbox{\hyperlink{network_8h_a9fc74fc4febb993e1505653405d9c188}{activation\+\_\+t}}}]{f,  }\item[{\mbox{\hyperlink{network_8h_a9fc74fc4febb993e1505653405d9c188}{activation\+\_\+t}}}]{d }\end{DoxyParamCaption})}
 
 
 
@@ -241,28 +249,28 @@ The created layer.
 \end{DoxyReturn}
 
 
-Definition at line 122 of file network.\+c.
+Definition at line \mbox{\hyperlink{network_8c_source_l00120}{120}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{124 \{}
-\DoxyCodeLine{125     \mbox{\hyperlink{structlayer__t}{layer\_t}} *layer = (\mbox{\hyperlink{structlayer__t}{layer\_t}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlayer__t}{layer\_t}}));}
-\DoxyCodeLine{126     \textcolor{keywordflow}{if} (layer == NULL)}
-\DoxyCodeLine{127         \textcolor{keywordflow}{return} NULL;}
-\DoxyCodeLine{128     layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}} = count;}
-\DoxyCodeLine{129     layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}} = (\mbox{\hyperlink{structneuron__t}{neuron\_t}} **)malloc(count * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structneuron__t}{neuron\_t}} *));}
-\DoxyCodeLine{130     \textcolor{keywordflow}{if} (layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}} == NULL)}
-\DoxyCodeLine{131     \{}
-\DoxyCodeLine{132         free(layer);}
-\DoxyCodeLine{133         \textcolor{keywordflow}{return} NULL;}
-\DoxyCodeLine{134     \}}
-\DoxyCodeLine{135     layer-\/>\mbox{\hyperlink{structlayer__t_a986a66b0b385bcc14acea253eb4cddf4}{activation}} = f;}
-\DoxyCodeLine{136     layer-\/>\mbox{\hyperlink{structlayer__t_acacc7b95f0ad34a47555e40189aae7c0}{dactivation}} = d;}
-\DoxyCodeLine{137     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < count; i++)}
-\DoxyCodeLine{138         layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[i] = \mbox{\hyperlink{network_8c_aa706a2634d39e1b59182ab9a9403931c}{neuron\_create}}(weights[i], biases[i]);}
-\DoxyCodeLine{139 }
-\DoxyCodeLine{140     \textcolor{keywordflow}{return} layer;}
-\DoxyCodeLine{141 \}}
+\DoxyCodeLine{00122 \{}
+\DoxyCodeLine{00123     \mbox{\hyperlink{structlayer__t}{layer\_t}} *layer = (\mbox{\hyperlink{structlayer__t}{layer\_t}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlayer__t}{layer\_t}}));}
+\DoxyCodeLine{00124     \textcolor{keywordflow}{if} (layer == NULL)}
+\DoxyCodeLine{00125         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00126     layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}} = count;}
+\DoxyCodeLine{00127     layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}} = (\mbox{\hyperlink{structneuron__t}{neuron\_t}} **)malloc(count * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structneuron__t}{neuron\_t}} *));}
+\DoxyCodeLine{00128     \textcolor{keywordflow}{if} (layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}} == NULL)}
+\DoxyCodeLine{00129     \{}
+\DoxyCodeLine{00130         free(layer);}
+\DoxyCodeLine{00131         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00132     \}}
+\DoxyCodeLine{00133     layer-\/>\mbox{\hyperlink{structlayer__t_a986a66b0b385bcc14acea253eb4cddf4}{activation}} = f;}
+\DoxyCodeLine{00134     layer-\/>\mbox{\hyperlink{structlayer__t_acacc7b95f0ad34a47555e40189aae7c0}{dactivation}} = d;}
+\DoxyCodeLine{00135     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < count; i++)}
+\DoxyCodeLine{00136         layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[i] = \mbox{\hyperlink{network_8c_aa706a2634d39e1b59182ab9a9403931c}{neuron\_create}}(weights[i], biases[i]);}
+\DoxyCodeLine{00137 }
+\DoxyCodeLine{00138     \textcolor{keywordflow}{return} layer;}
+\DoxyCodeLine{00139 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{network_8c_ac0e36ece7ab68f5333223ea9167938d9}\label{network_8c_ac0e36ece7ab68f5333223ea9167938d9}} 
@@ -282,19 +290,19 @@ Frees an allocated layer.
 \end{DoxyParams}
 
 
-Definition at line 157 of file network.\+c.
+Definition at line \mbox{\hyperlink{network_8c_source_l00155}{155}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{158 \{}
-\DoxyCodeLine{159     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}}; i++)}
-\DoxyCodeLine{160     \{}
-\DoxyCodeLine{161         \mbox{\hyperlink{network_8c_a634adde351458c2e8f8825c1816eeb43}{neuron\_free}}(layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[i]);}
-\DoxyCodeLine{162     \}}
-\DoxyCodeLine{163 }
-\DoxyCodeLine{164     free(layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}});}
-\DoxyCodeLine{165     free(layer);}
-\DoxyCodeLine{166 \}}
+\DoxyCodeLine{00156 \{}
+\DoxyCodeLine{00157     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}}; i++)}
+\DoxyCodeLine{00158     \{}
+\DoxyCodeLine{00159         \mbox{\hyperlink{network_8c_a634adde351458c2e8f8825c1816eeb43}{neuron\_free}}(layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[i]);}
+\DoxyCodeLine{00160     \}}
+\DoxyCodeLine{00161 }
+\DoxyCodeLine{00162     free(layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}});}
+\DoxyCodeLine{00163     free(layer);}
+\DoxyCodeLine{00164 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{network_8c_abef62369a77da828529fbf193f111ef7}\label{network_8c_abef62369a77da828529fbf193f111ef7}} 
@@ -317,21 +325,21 @@ The copied network.
 \end{DoxyReturn}
 
 
-Definition at line 577 of file network.\+c.
+Definition at line \mbox{\hyperlink{network_8c_source_l00575}{575}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{578 \{}
-\DoxyCodeLine{579     \mbox{\hyperlink{structlayer__t}{layer\_t}} **layers}
-\DoxyCodeLine{580         = (\mbox{\hyperlink{structlayer__t}{layer\_t}} **)malloc(old-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}} * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlayer__t}{layer\_t}} *));}
-\DoxyCodeLine{581     \mbox{\hyperlink{structnetwork__t}{network\_t}} *res = \mbox{\hyperlink{network_8c_ad7ec187320facb456542975fd39de56e}{network\_create}}(layers, old-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}, old-\/>\mbox{\hyperlink{structnetwork__t_af7a2fbc049a0fd2d5ad14f218658ca83}{inputs}});}
-\DoxyCodeLine{582     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < old-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}; i++)}
-\DoxyCodeLine{583     \{}
-\DoxyCodeLine{584         layers[i] = layer\_copy(old-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[i]);}
-\DoxyCodeLine{585     \}}
-\DoxyCodeLine{586 }
-\DoxyCodeLine{587     \textcolor{keywordflow}{return} res;}
-\DoxyCodeLine{588 \}}
+\DoxyCodeLine{00576 \{}
+\DoxyCodeLine{00577     \mbox{\hyperlink{structlayer__t}{layer\_t}} **layers}
+\DoxyCodeLine{00578         = (\mbox{\hyperlink{structlayer__t}{layer\_t}} **)malloc(old-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}} * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlayer__t}{layer\_t}} *));}
+\DoxyCodeLine{00579     \mbox{\hyperlink{structnetwork__t}{network\_t}} *res = \mbox{\hyperlink{network_8c_ad7ec187320facb456542975fd39de56e}{network\_create}}(layers, old-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}, old-\/>\mbox{\hyperlink{structnetwork__t_af7a2fbc049a0fd2d5ad14f218658ca83}{inputs}});}
+\DoxyCodeLine{00580     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < old-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}; i++)}
+\DoxyCodeLine{00581     \{}
+\DoxyCodeLine{00582         layers[i] = layer\_copy(old-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[i]);}
+\DoxyCodeLine{00583     \}}
+\DoxyCodeLine{00584 }
+\DoxyCodeLine{00585     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{00586 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{network_8c_ad7ec187320facb456542975fd39de56e}\label{network_8c_ad7ec187320facb456542975fd39de56e}} 
@@ -358,19 +366,19 @@ The created network.
 \end{DoxyReturn}
 
 
-Definition at line 168 of file network.\+c.
+Definition at line \mbox{\hyperlink{network_8c_source_l00166}{166}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{169 \{}
-\DoxyCodeLine{170     \mbox{\hyperlink{structnetwork__t}{network\_t}} *res = (\mbox{\hyperlink{structnetwork__t}{network\_t}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structnetwork__t}{network\_t}}));}
-\DoxyCodeLine{171     \textcolor{keywordflow}{if} (res == NULL)}
-\DoxyCodeLine{172         \textcolor{keywordflow}{return} NULL;}
-\DoxyCodeLine{173     res-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}} = layers;}
-\DoxyCodeLine{174     res-\/>\mbox{\hyperlink{structnetwork__t_af7a2fbc049a0fd2d5ad14f218658ca83}{inputs}} = inputs;}
-\DoxyCodeLine{175     res-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}} = layer\_count;}
-\DoxyCodeLine{176     \textcolor{keywordflow}{return} res;}
-\DoxyCodeLine{177 \}}
+\DoxyCodeLine{00167 \{}
+\DoxyCodeLine{00168     \mbox{\hyperlink{structnetwork__t}{network\_t}} *res = (\mbox{\hyperlink{structnetwork__t}{network\_t}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structnetwork__t}{network\_t}}));}
+\DoxyCodeLine{00169     \textcolor{keywordflow}{if} (res == NULL)}
+\DoxyCodeLine{00170         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00171     res-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}} = layers;}
+\DoxyCodeLine{00172     res-\/>\mbox{\hyperlink{structnetwork__t_af7a2fbc049a0fd2d5ad14f218658ca83}{inputs}} = inputs;}
+\DoxyCodeLine{00173     res-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}} = layer\_count;}
+\DoxyCodeLine{00174     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{00175 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{network_8c_ab7de60cd0ad5a69e135b63d264018d1a}\label{network_8c_ab7de60cd0ad5a69e135b63d264018d1a}} 
@@ -390,19 +398,19 @@ Frees the allocated network.
 \end{DoxyParams}
 
 
-Definition at line 179 of file network.\+c.
+Definition at line \mbox{\hyperlink{network_8c_source_l00177}{177}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{180 \{}
-\DoxyCodeLine{181     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < net-\/>layer\_count; i++)}
-\DoxyCodeLine{182     \{}
-\DoxyCodeLine{183         \mbox{\hyperlink{network_8c_ac0e36ece7ab68f5333223ea9167938d9}{layer\_free}}(net-\/>layers[i]);}
-\DoxyCodeLine{184     \}}
-\DoxyCodeLine{185 }
-\DoxyCodeLine{186     free(net-\/>layers);}
-\DoxyCodeLine{187     free(net);}
-\DoxyCodeLine{188 \}}
+\DoxyCodeLine{00178 \{}
+\DoxyCodeLine{00179     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < net-\/>layer\_count; i++)}
+\DoxyCodeLine{00180     \{}
+\DoxyCodeLine{00181         \mbox{\hyperlink{network_8c_ac0e36ece7ab68f5333223ea9167938d9}{layer\_free}}(net-\/>layers[i]);}
+\DoxyCodeLine{00182     \}}
+\DoxyCodeLine{00183 }
+\DoxyCodeLine{00184     free(net-\/>layers);}
+\DoxyCodeLine{00185     free(net);}
+\DoxyCodeLine{00186 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{network_8c_aba00189ea608835915fdd9f753c33fd4}\label{network_8c_aba00189ea608835915fdd9f753c33fd4}} 
@@ -427,39 +435,39 @@ The generated network.
 \end{DoxyReturn}
 
 
-Definition at line 528 of file network.\+c.
+Definition at line \mbox{\hyperlink{network_8c_source_l00526}{526}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{529 \{}
-\DoxyCodeLine{530     \textcolor{keywordflow}{if} (size < 2)}
-\DoxyCodeLine{531         \textcolor{keywordflow}{return} NULL;}
-\DoxyCodeLine{532     \mbox{\hyperlink{structlayer__t}{layer\_t}} **layers = (\mbox{\hyperlink{structlayer__t}{layer\_t}} **)malloc((size -\/ 1) * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlayer__t}{layer\_t}} *));}
-\DoxyCodeLine{533     \textcolor{keywordtype}{size\_t} weights = neuron\_count[0];}
-\DoxyCodeLine{534     \mbox{\hyperlink{structnetwork__t}{network\_t}} *res = \mbox{\hyperlink{network_8c_ad7ec187320facb456542975fd39de56e}{network\_create}}(layers, size -\/ 1, weights);}
-\DoxyCodeLine{535 }
-\DoxyCodeLine{536     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 1; i < size; i++)}
-\DoxyCodeLine{537     \{}
-\DoxyCodeLine{538         \textcolor{keywordtype}{size\_t} n\_count = neuron\_count[i];}
-\DoxyCodeLine{539         \mbox{\hyperlink{structneuron__t}{neuron\_t}} **neurons = (\mbox{\hyperlink{structneuron__t}{neuron\_t}} **)malloc(n\_count * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structneuron__t}{neuron\_t}} *));}
-\DoxyCodeLine{540         \mbox{\hyperlink{structlayer__t}{layer\_t}} *layer = \mbox{\hyperlink{network_8c_af907f46e11a20248505789278662b126}{layer\_create}}(}
-\DoxyCodeLine{541             neurons, n\_count, \mbox{\hyperlink{function_8c_a20c645563b945ebc92fa419a56fcd967}{activation}}, \mbox{\hyperlink{function_8c_a66d3161a60a298acbdcb3faa5287849a}{activation\_derivative}});}
-\DoxyCodeLine{542         layers[i -\/ 1] = layer;}
-\DoxyCodeLine{543         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} ni = 0; ni < n\_count; ni++)}
-\DoxyCodeLine{544         \{}
-\DoxyCodeLine{545             \textcolor{keywordtype}{double} *values = \mbox{\hyperlink{function_8c_ae6d5ccd297429cb956c9a4deb3d5daa8}{generate\_weights}}(weights + 1);}
-\DoxyCodeLine{546             layers[i -\/ 1]-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[ni] = parse\_results(values, weights);}
-\DoxyCodeLine{547             free(values);}
-\DoxyCodeLine{548         \}}
-\DoxyCodeLine{549         weights = n\_count;}
-\DoxyCodeLine{550     \}}
-\DoxyCodeLine{551 }
-\DoxyCodeLine{552     \mbox{\hyperlink{structlayer__t}{layer\_t}} *out = res-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[res-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}} -\/ 1];}
-\DoxyCodeLine{553     out-\/>\mbox{\hyperlink{structlayer__t_a986a66b0b385bcc14acea253eb4cddf4}{activation}} = \mbox{\hyperlink{function_8c_a3ed531bdfcd5992c14d85145d3fa0398}{output\_activation}};}
-\DoxyCodeLine{554     out-\/>\mbox{\hyperlink{structlayer__t_acacc7b95f0ad34a47555e40189aae7c0}{dactivation}} = \mbox{\hyperlink{function_8c_a101ea70e3686c7903870b41ed3def5e5}{output\_activation\_derivative}};}
-\DoxyCodeLine{555 }
-\DoxyCodeLine{556     \textcolor{keywordflow}{return} res;}
-\DoxyCodeLine{557 \}}
+\DoxyCodeLine{00527 \{}
+\DoxyCodeLine{00528     \textcolor{keywordflow}{if} (size < 2)}
+\DoxyCodeLine{00529         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00530     \mbox{\hyperlink{structlayer__t}{layer\_t}} **layers = (\mbox{\hyperlink{structlayer__t}{layer\_t}} **)malloc((size -\/ 1) * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlayer__t}{layer\_t}} *));}
+\DoxyCodeLine{00531     \textcolor{keywordtype}{size\_t} weights = neuron\_count[0];}
+\DoxyCodeLine{00532     \mbox{\hyperlink{structnetwork__t}{network\_t}} *res = \mbox{\hyperlink{network_8c_ad7ec187320facb456542975fd39de56e}{network\_create}}(layers, size -\/ 1, weights);}
+\DoxyCodeLine{00533 }
+\DoxyCodeLine{00534     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 1; i < size; i++)}
+\DoxyCodeLine{00535     \{}
+\DoxyCodeLine{00536         \textcolor{keywordtype}{size\_t} n\_count = neuron\_count[i];}
+\DoxyCodeLine{00537         \mbox{\hyperlink{structneuron__t}{neuron\_t}} **neurons = (\mbox{\hyperlink{structneuron__t}{neuron\_t}} **)malloc(n\_count * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structneuron__t}{neuron\_t}} *));}
+\DoxyCodeLine{00538         \mbox{\hyperlink{structlayer__t}{layer\_t}} *layer = \mbox{\hyperlink{network_8c_af0be2bf2d994ad2892ce3bbd1650bcce}{layer\_create}}(}
+\DoxyCodeLine{00539             neurons, n\_count, \mbox{\hyperlink{function_8c_a3cfe80ea8f08d3cb79fac7898f2f732f}{activation}}, \mbox{\hyperlink{function_8c_aadf5a2658d407fe312e061e9f92e7aff}{activation\_derivative}});}
+\DoxyCodeLine{00540         layers[i -\/ 1] = layer;}
+\DoxyCodeLine{00541         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} ni = 0; ni < n\_count; ni++)}
+\DoxyCodeLine{00542         \{}
+\DoxyCodeLine{00543             \textcolor{keywordtype}{double} *values = \mbox{\hyperlink{function_8c_ae6d5ccd297429cb956c9a4deb3d5daa8}{generate\_weights}}(weights + 1);}
+\DoxyCodeLine{00544             layers[i -\/ 1]-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[ni] = parse\_results(values, weights);}
+\DoxyCodeLine{00545             free(values);}
+\DoxyCodeLine{00546         \}}
+\DoxyCodeLine{00547         weights = n\_count;}
+\DoxyCodeLine{00548     \}}
+\DoxyCodeLine{00549 }
+\DoxyCodeLine{00550     \mbox{\hyperlink{structlayer__t}{layer\_t}} *out = res-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[res-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}} -\/ 1];}
+\DoxyCodeLine{00551     out-\/>\mbox{\hyperlink{structlayer__t_a986a66b0b385bcc14acea253eb4cddf4}{activation}} = \mbox{\hyperlink{function_8c_aad9426959fd01ef08b2da99d846dce0e}{output\_activation}};}
+\DoxyCodeLine{00552     out-\/>\mbox{\hyperlink{structlayer__t_acacc7b95f0ad34a47555e40189aae7c0}{dactivation}} = \mbox{\hyperlink{function_8c_acc76e8527c5c41125cffaee537a0068d}{output\_activation\_derivative}};}
+\DoxyCodeLine{00553 }
+\DoxyCodeLine{00554     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{00555 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{network_8c_a338eaca7b062c45c2ddf651ec7bfb5ab}\label{network_8c_a338eaca7b062c45c2ddf651ec7bfb5ab}} 
@@ -484,34 +492,34 @@ The calculated output or -\/1 if none above the threshold.
 \end{DoxyReturn}
 
 
-Definition at line 699 of file network.\+c.
+Definition at line \mbox{\hyperlink{network_8c_source_l00702}{702}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{700 \{}
-\DoxyCodeLine{701     \textcolor{keywordtype}{int} result = -\/1;}
-\DoxyCodeLine{702     \textcolor{keywordtype}{double} old\_value = 0;}
-\DoxyCodeLine{703     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < outputs-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}}; i++)}
-\DoxyCodeLine{704     \{}
-\DoxyCodeLine{705         \textcolor{keywordtype}{double} val = \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(outputs, i, 0);}
-\DoxyCodeLine{706         \textcolor{keywordflow}{if} (val < threshold)}
-\DoxyCodeLine{707             \textcolor{keywordflow}{continue};}
-\DoxyCodeLine{708         \textcolor{keywordflow}{if} (val > old\_value)}
-\DoxyCodeLine{709         \{}
-\DoxyCodeLine{710             result = i;}
-\DoxyCodeLine{711             old\_value = val;}
-\DoxyCodeLine{712         \}}
-\DoxyCodeLine{713     \}}
-\DoxyCodeLine{714 }
-\DoxyCodeLine{715     \textcolor{keywordflow}{return} result;}
-\DoxyCodeLine{716 \}}
+\DoxyCodeLine{00703 \{}
+\DoxyCodeLine{00704     \textcolor{keywordtype}{int} result = -\/1;}
+\DoxyCodeLine{00705     \textcolor{keywordtype}{double} old\_value = 0;}
+\DoxyCodeLine{00706     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < outputs-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}}; i++)}
+\DoxyCodeLine{00707     \{}
+\DoxyCodeLine{00708         \textcolor{keywordtype}{double} val = \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(outputs, i, 0);}
+\DoxyCodeLine{00709         \textcolor{keywordflow}{if} (val < threshold)}
+\DoxyCodeLine{00710             \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00711         \textcolor{keywordflow}{if} (val > old\_value)}
+\DoxyCodeLine{00712         \{}
+\DoxyCodeLine{00713             result = i;}
+\DoxyCodeLine{00714             old\_value = val;}
+\DoxyCodeLine{00715         \}}
+\DoxyCodeLine{00716     \}}
+\DoxyCodeLine{00717 }
+\DoxyCodeLine{00718     \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{00719 \}}
 
 \end{DoxyCode}
-\mbox{\Hypertarget{network_8c_aff2c78c834c05da6bc380e716f092141}\label{network_8c_aff2c78c834c05da6bc380e716f092141}} 
+\mbox{\Hypertarget{network_8c_a71f0aa4f7efea3ff158a49342228bb80}\label{network_8c_a71f0aa4f7efea3ff158a49342228bb80}} 
 \index{network.c@{network.c}!network\_load@{network\_load}}
 \index{network\_load@{network\_load}!network.c@{network.c}}
 \doxysubsubsection{\texorpdfstring{network\_load()}{network\_load()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structnetwork__t}{network\+\_\+t}}$\ast$ network\+\_\+load (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{structnetwork__t}{network\+\_\+t}} $\ast$ network\+\_\+load (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file }\end{DoxyParamCaption})}
 
 
 
@@ -527,67 +535,67 @@ The loaded network. The file format\+: The file will start with two comma-\/sepa
 \end{DoxyReturn}
 
 
-Definition at line 434 of file network.\+c.
+Definition at line \mbox{\hyperlink{network_8c_source_l00432}{432}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{435 \{}
-\DoxyCodeLine{436     \textcolor{comment}{// open the file}}
-\DoxyCodeLine{437     FILE *file = fopen(path, \textcolor{stringliteral}{"{}r"{}});}
-\DoxyCodeLine{438     \mbox{\hyperlink{network_8c_a28a631a46550a13bbf48635953aafcbd}{CHK}}(file, \textcolor{stringliteral}{"{}network\_load"{}}, \textcolor{stringliteral}{"{}could not open file"{}});}
-\DoxyCodeLine{439 }
-\DoxyCodeLine{440     \textcolor{keywordtype}{size\_t} layer\_count, weight\_count, neuron\_count = 0;}
-\DoxyCodeLine{441     \textcolor{keywordtype}{size\_t} neuron\_index = 0, layer\_index = 0;}
-\DoxyCodeLine{442     \textcolor{keywordtype}{int} in\_layer = 0;}
-\DoxyCodeLine{443     \textcolor{keywordtype}{size\_t} line = 0;}
-\DoxyCodeLine{444     \textcolor{keywordtype}{int} alive = parse\_header(file, \&layer\_count, \&neuron\_count, \&line);}
-\DoxyCodeLine{445     line++;}
-\DoxyCodeLine{446     \textcolor{keywordflow}{if} (!alive)}
-\DoxyCodeLine{447         \textcolor{keywordflow}{return} NULL;}
-\DoxyCodeLine{448 }
-\DoxyCodeLine{449     \mbox{\hyperlink{structlayer__t}{layer\_t}} **layers = (\mbox{\hyperlink{structlayer__t}{layer\_t}} **)malloc(layer\_count * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlayer__t}{layer\_t}} *));}
-\DoxyCodeLine{450     \mbox{\hyperlink{structnetwork__t}{network\_t}} *res = \mbox{\hyperlink{network_8c_ad7ec187320facb456542975fd39de56e}{network\_create}}(layers, layer\_count, neuron\_count);}
-\DoxyCodeLine{451     \textcolor{keywordtype}{double} *values;}
-\DoxyCodeLine{452     \textcolor{keywordflow}{while} (layer\_index < layer\_count)}
-\DoxyCodeLine{453     \{}
-\DoxyCodeLine{454         \textcolor{keywordflow}{if} (!in\_layer)}
-\DoxyCodeLine{455         \{}
-\DoxyCodeLine{456             weight\_count = neuron\_count;}
-\DoxyCodeLine{457             alive = parse\_layer\_header(file, \&neuron\_count, \&line);}
-\DoxyCodeLine{458             line++;}
-\DoxyCodeLine{459             neuron\_index = 0;}
-\DoxyCodeLine{460             in\_layer = 1;}
-\DoxyCodeLine{461             layers[layer\_index] = \mbox{\hyperlink{network_8c_af907f46e11a20248505789278662b126}{layer\_create}}(}
-\DoxyCodeLine{462                 (\mbox{\hyperlink{structneuron__t}{neuron\_t}} **)malloc(neuron\_count * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structneuron__t}{neuron\_t}} *)),}
-\DoxyCodeLine{463                 neuron\_count, \mbox{\hyperlink{function_8c_a20c645563b945ebc92fa419a56fcd967}{activation}}, \mbox{\hyperlink{function_8c_a66d3161a60a298acbdcb3faa5287849a}{activation\_derivative}});}
-\DoxyCodeLine{464         \}}
-\DoxyCodeLine{465         \textcolor{keywordflow}{else}}
-\DoxyCodeLine{466         \{}
-\DoxyCodeLine{467             \textcolor{keywordflow}{if} (neuron\_count == neuron\_index)}
-\DoxyCodeLine{468             \{}
-\DoxyCodeLine{469                 in\_layer = 0;}
-\DoxyCodeLine{470                 layer\_index++;}
-\DoxyCodeLine{471             \}}
-\DoxyCodeLine{472             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{473             \{}
-\DoxyCodeLine{474                 values = (\textcolor{keywordtype}{double} *)malloc((weight\_count + 1) * \textcolor{keyword}{sizeof}(double));}
-\DoxyCodeLine{475                 alive}
-\DoxyCodeLine{476                     = parse\_neuron\_line(file, values, weight\_count + 1, \&line);}
-\DoxyCodeLine{477                 line++;}
-\DoxyCodeLine{478                 layers[layer\_index]-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[neuron\_index]}
-\DoxyCodeLine{479                     = parse\_results(values, weight\_count);}
-\DoxyCodeLine{480                 free(values);}
-\DoxyCodeLine{481                 neuron\_index++;}
-\DoxyCodeLine{482             \}}
-\DoxyCodeLine{483         \}}
-\DoxyCodeLine{484     \}}
-\DoxyCodeLine{485     \textcolor{comment}{// close the file}}
-\DoxyCodeLine{486     fclose(file);}
-\DoxyCodeLine{487     \mbox{\hyperlink{structlayer__t}{layer\_t}} *output\_layer = res-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[res-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}} -\/ 1];}
-\DoxyCodeLine{488     output\_layer-\/>\mbox{\hyperlink{structlayer__t_a986a66b0b385bcc14acea253eb4cddf4}{activation}} = \mbox{\hyperlink{function_8c_a3ed531bdfcd5992c14d85145d3fa0398}{output\_activation}};}
-\DoxyCodeLine{489     output\_layer-\/>\mbox{\hyperlink{structlayer__t_acacc7b95f0ad34a47555e40189aae7c0}{dactivation}} = \mbox{\hyperlink{function_8c_a101ea70e3686c7903870b41ed3def5e5}{output\_activation\_derivative}};}
-\DoxyCodeLine{490     \textcolor{keywordflow}{return} res;}
-\DoxyCodeLine{491 \}}
+\DoxyCodeLine{00433 \{}
+\DoxyCodeLine{00434     \textcolor{comment}{// open the file}}
+\DoxyCodeLine{00435     FILE *file = fopen(path, \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{00436     \mbox{\hyperlink{network_8c_a28a631a46550a13bbf48635953aafcbd}{CHK}}(file, \textcolor{stringliteral}{"{}network\_load"{}}, \textcolor{stringliteral}{"{}could not open file"{}});}
+\DoxyCodeLine{00437 }
+\DoxyCodeLine{00438     \textcolor{keywordtype}{size\_t} layer\_count, weight\_count, neuron\_count = 0;}
+\DoxyCodeLine{00439     \textcolor{keywordtype}{size\_t} neuron\_index = 0, layer\_index = 0;}
+\DoxyCodeLine{00440     \textcolor{keywordtype}{int} in\_layer = 0;}
+\DoxyCodeLine{00441     \textcolor{keywordtype}{size\_t} line = 0;}
+\DoxyCodeLine{00442     \textcolor{keywordtype}{int} alive = parse\_header(file, \&layer\_count, \&neuron\_count, \&line);}
+\DoxyCodeLine{00443     line++;}
+\DoxyCodeLine{00444     \textcolor{keywordflow}{if} (!alive)}
+\DoxyCodeLine{00445         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00446 }
+\DoxyCodeLine{00447     \mbox{\hyperlink{structlayer__t}{layer\_t}} **layers = (\mbox{\hyperlink{structlayer__t}{layer\_t}} **)malloc(layer\_count * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlayer__t}{layer\_t}} *));}
+\DoxyCodeLine{00448     \mbox{\hyperlink{structnetwork__t}{network\_t}} *res = \mbox{\hyperlink{network_8c_ad7ec187320facb456542975fd39de56e}{network\_create}}(layers, layer\_count, neuron\_count);}
+\DoxyCodeLine{00449     \textcolor{keywordtype}{double} *values;}
+\DoxyCodeLine{00450     \textcolor{keywordflow}{while} (layer\_index < layer\_count)}
+\DoxyCodeLine{00451     \{}
+\DoxyCodeLine{00452         \textcolor{keywordflow}{if} (!in\_layer)}
+\DoxyCodeLine{00453         \{}
+\DoxyCodeLine{00454             weight\_count = neuron\_count;}
+\DoxyCodeLine{00455             alive = parse\_layer\_header(file, \&neuron\_count, \&line);}
+\DoxyCodeLine{00456             line++;}
+\DoxyCodeLine{00457             neuron\_index = 0;}
+\DoxyCodeLine{00458             in\_layer = 1;}
+\DoxyCodeLine{00459             layers[layer\_index] = \mbox{\hyperlink{network_8c_af0be2bf2d994ad2892ce3bbd1650bcce}{layer\_create}}(}
+\DoxyCodeLine{00460                 (\mbox{\hyperlink{structneuron__t}{neuron\_t}} **)malloc(neuron\_count * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structneuron__t}{neuron\_t}} *)),}
+\DoxyCodeLine{00461                 neuron\_count, \mbox{\hyperlink{function_8c_a3cfe80ea8f08d3cb79fac7898f2f732f}{activation}}, \mbox{\hyperlink{function_8c_aadf5a2658d407fe312e061e9f92e7aff}{activation\_derivative}});}
+\DoxyCodeLine{00462         \}}
+\DoxyCodeLine{00463         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00464         \{}
+\DoxyCodeLine{00465             \textcolor{keywordflow}{if} (neuron\_count == neuron\_index)}
+\DoxyCodeLine{00466             \{}
+\DoxyCodeLine{00467                 in\_layer = 0;}
+\DoxyCodeLine{00468                 layer\_index++;}
+\DoxyCodeLine{00469             \}}
+\DoxyCodeLine{00470             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00471             \{}
+\DoxyCodeLine{00472                 values = (\textcolor{keywordtype}{double} *)malloc((weight\_count + 1) * \textcolor{keyword}{sizeof}(double));}
+\DoxyCodeLine{00473                 alive}
+\DoxyCodeLine{00474                     = parse\_neuron\_line(file, values, weight\_count + 1, \&line);}
+\DoxyCodeLine{00475                 line++;}
+\DoxyCodeLine{00476                 layers[layer\_index]-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[neuron\_index]}
+\DoxyCodeLine{00477                     = parse\_results(values, weight\_count);}
+\DoxyCodeLine{00478                 free(values);}
+\DoxyCodeLine{00479                 neuron\_index++;}
+\DoxyCodeLine{00480             \}}
+\DoxyCodeLine{00481         \}}
+\DoxyCodeLine{00482     \}}
+\DoxyCodeLine{00483     \textcolor{comment}{// close the file}}
+\DoxyCodeLine{00484     fclose(file);}
+\DoxyCodeLine{00485     \mbox{\hyperlink{structlayer__t}{layer\_t}} *output\_layer = res-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[res-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}} -\/ 1];}
+\DoxyCodeLine{00486     output\_layer-\/>\mbox{\hyperlink{structlayer__t_a986a66b0b385bcc14acea253eb4cddf4}{activation}} = \mbox{\hyperlink{function_8c_aad9426959fd01ef08b2da99d846dce0e}{output\_activation}};}
+\DoxyCodeLine{00487     output\_layer-\/>\mbox{\hyperlink{structlayer__t_acacc7b95f0ad34a47555e40189aae7c0}{dactivation}} = \mbox{\hyperlink{function_8c_acc76e8527c5c41125cffaee537a0068d}{output\_activation\_derivative}};}
+\DoxyCodeLine{00488     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{00489 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{network_8c_aee995127aad46272ae3ddc5dfef07edc}\label{network_8c_aee995127aad46272ae3ddc5dfef07edc}} 
@@ -609,23 +617,23 @@ Saves a network to a file.
 \end{DoxyParams}
 
 
-Definition at line 513 of file network.\+c.
+Definition at line \mbox{\hyperlink{network_8c_source_l00511}{511}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{514 \{}
-\DoxyCodeLine{515     FILE *file = fopen(path, \textcolor{stringliteral}{"{}w"{}});}
-\DoxyCodeLine{516     \mbox{\hyperlink{network_8c_a28a631a46550a13bbf48635953aafcbd}{CHK}}(file, \textcolor{stringliteral}{"{}network\_save"{}}, \textcolor{stringliteral}{"{}could not open file"{}});}
-\DoxyCodeLine{517     fprintf(file, \textcolor{stringliteral}{"{}\%zu, \%zu\(\backslash\)n"{}}, net-\/>layer\_count, net-\/>inputs);}
-\DoxyCodeLine{518     \textcolor{keywordtype}{size\_t} weight\_count = net-\/>inputs;}
-\DoxyCodeLine{519     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < net-\/>layer\_count; i++)}
-\DoxyCodeLine{520     \{}
-\DoxyCodeLine{521         fprintf(file, \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
-\DoxyCodeLine{522         layer\_save(file, net-\/>layers[i], weight\_count);}
-\DoxyCodeLine{523         weight\_count = net-\/>layers[i]-\/>count;}
-\DoxyCodeLine{524     \}}
-\DoxyCodeLine{525     fclose(file);}
-\DoxyCodeLine{526 \}}
+\DoxyCodeLine{00512 \{}
+\DoxyCodeLine{00513     FILE *file = fopen(path, \textcolor{stringliteral}{"{}w"{}});}
+\DoxyCodeLine{00514     \mbox{\hyperlink{network_8c_a28a631a46550a13bbf48635953aafcbd}{CHK}}(file, \textcolor{stringliteral}{"{}network\_save"{}}, \textcolor{stringliteral}{"{}could not open file"{}});}
+\DoxyCodeLine{00515     fprintf(file, \textcolor{stringliteral}{"{}\%zu, \%zu\(\backslash\)n"{}}, net-\/>layer\_count, net-\/>inputs);}
+\DoxyCodeLine{00516     \textcolor{keywordtype}{size\_t} weight\_count = net-\/>inputs;}
+\DoxyCodeLine{00517     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < net-\/>layer\_count; i++)}
+\DoxyCodeLine{00518     \{}
+\DoxyCodeLine{00519         fprintf(file, \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00520         layer\_save(file, net-\/>layers[i], weight\_count);}
+\DoxyCodeLine{00521         weight\_count = net-\/>layers[i]-\/>count;}
+\DoxyCodeLine{00522     \}}
+\DoxyCodeLine{00523     fclose(file);}
+\DoxyCodeLine{00524 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{network_8c_ac99789abdffa9915778914a50c1b4514}\label{network_8c_ac99789abdffa9915778914a50c1b4514}} 
@@ -636,45 +644,50 @@ Definition at line 513 of file network.\+c.
 
 
 
-Definition at line 661 of file network.\+c.
+Definition at line \mbox{\hyperlink{network_8c_source_l00659}{659}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{663 \{}
-\DoxyCodeLine{664     \mbox{\hyperlink{structnetwork__t}{network\_t}} *trained = \mbox{\hyperlink{network_8c_abef62369a77da828529fbf193f111ef7}{network\_copy}}(*pnet);}
-\DoxyCodeLine{665 }
-\DoxyCodeLine{666     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} **deltas}
-\DoxyCodeLine{667         = (\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **)malloc((*pnet)-\/>layer\_count * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *));}
-\DoxyCodeLine{668 }
-\DoxyCodeLine{669     \mbox{\hyperlink{structnetwork__results__t}{network\_results\_t}} *results = \mbox{\hyperlink{network_8c_aea236d7ffb8abfbca33448d7d4667a19}{compute\_result\_with\_save}}(inputs, *pnet);}
-\DoxyCodeLine{670     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} **outputs = results-\/>\mbox{\hyperlink{structnetwork__results__t_a5f69d90d162ba6b0796d55d4de7bc97d}{outputs}};}
-\DoxyCodeLine{671 }
-\DoxyCodeLine{672     \textcolor{keywordtype}{size\_t} layer\_i = trained-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}} -\/ 1;}
-\DoxyCodeLine{673     \mbox{\hyperlink{structlayer__t}{layer\_t}} *trained\_layer = trained-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[layer\_i];}
-\DoxyCodeLine{674     \mbox{\hyperlink{structlayer__t}{layer\_t}} *old\_layer = (*pnet)-\/>layers[layer\_i];}
-\DoxyCodeLine{675     deltas[layer\_i] = \mbox{\hyperlink{matrix_8c_a3af2b3bfa5fd2197cd616ceb76e6168f}{matrix\_create}}(trained\_layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}}, 1, 0);}
-\DoxyCodeLine{676     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} ni = 0; ni < trained\_layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}}; ni++)}
-\DoxyCodeLine{677     \{}
-\DoxyCodeLine{678         \textcolor{keywordtype}{double} delta = output\_neuron\_train(trained\_layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[ni],}
-\DoxyCodeLine{679             old\_layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[ni], rate, \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(target, ni, 0),}
-\DoxyCodeLine{680             \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(outputs[layer\_i + 1], ni, 0), results, layer\_i, ni,}
-\DoxyCodeLine{681             old\_layer-\/>\mbox{\hyperlink{structlayer__t_acacc7b95f0ad34a47555e40189aae7c0}{dactivation}});}
-\DoxyCodeLine{682         \mbox{\hyperlink{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}{mat\_set\_el}}(deltas[layer\_i], ni, 0, delta);}
-\DoxyCodeLine{683     \}}
-\DoxyCodeLine{684 }
-\DoxyCodeLine{685     compute\_deltas(results, *pnet, deltas);}
-\DoxyCodeLine{686     hidden\_layer\_train(results, trained, deltas, rate);}
-\DoxyCodeLine{687 }
-\DoxyCodeLine{688     \mbox{\hyperlink{network_8c_a2512b64818030e2bafa25367611e3482}{results\_free}}(results);}
-\DoxyCodeLine{689 }
-\DoxyCodeLine{690     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 1; i <= trained-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}; i++)}
-\DoxyCodeLine{691     \{}
-\DoxyCodeLine{692         \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(deltas[i -\/ 1]);}
-\DoxyCodeLine{693     \}}
-\DoxyCodeLine{694     free(deltas);}
-\DoxyCodeLine{695     \mbox{\hyperlink{network_8c_ab7de60cd0ad5a69e135b63d264018d1a}{network\_free}}(*pnet);}
-\DoxyCodeLine{696     *pnet = trained;}
-\DoxyCodeLine{697 \}}
+\DoxyCodeLine{00661 \{}
+\DoxyCodeLine{00662     \mbox{\hyperlink{structnetwork__t}{network\_t}} *trained = \mbox{\hyperlink{network_8c_abef62369a77da828529fbf193f111ef7}{network\_copy}}(*pnet);}
+\DoxyCodeLine{00663 }
+\DoxyCodeLine{00664     \mbox{\hyperlink{structnetwork__results__t}{network\_results\_t}} *results = \mbox{\hyperlink{network_8c_a2915eb69be1db6dd406f986f8cb5c8c8}{results\_create}}((*pnet)-\/>layer\_count);}
+\DoxyCodeLine{00665     results-\/>\mbox{\hyperlink{structnetwork__results__t_a81f6c9388535caf11d916c99da211ed6}{network}} = *pnet;}
+\DoxyCodeLine{00666 }
+\DoxyCodeLine{00667     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} **outputs = results-\/>\mbox{\hyperlink{structnetwork__results__t_a5f69d90d162ba6b0796d55d4de7bc97d}{outputs}};}
+\DoxyCodeLine{00668     outputs[0] = \mbox{\hyperlink{matrix_8c_ad4970f9c83f185813ab569266c4fd0de}{mat\_copy}}(inputs);}
+\DoxyCodeLine{00669 }
+\DoxyCodeLine{00670     \mbox{\hyperlink{structmatrix__t}{matrix\_t}} **deltas}
+\DoxyCodeLine{00671         = (\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **)malloc((*pnet)-\/>layer\_count * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *));}
+\DoxyCodeLine{00672 }
+\DoxyCodeLine{00673     \mbox{\hyperlink{network_8c_a2d59c0e85a5fc82d69e0abe8a9efbf95}{compute\_results\_save}}(results, *pnet);}
+\DoxyCodeLine{00674 }
+\DoxyCodeLine{00675     \textcolor{keywordtype}{size\_t} layer\_i = trained-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}} -\/ 1;}
+\DoxyCodeLine{00676     \mbox{\hyperlink{structlayer__t}{layer\_t}} *trained\_layer = trained-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[layer\_i];}
+\DoxyCodeLine{00677     \mbox{\hyperlink{structlayer__t}{layer\_t}} *old\_layer = (*pnet)-\/>layers[layer\_i];}
+\DoxyCodeLine{00678     deltas[layer\_i] = \mbox{\hyperlink{matrix_8c_a1d9b061fc8856e727f014c3266b7431d}{matrix\_create}}(trained\_layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}}, 1, 0);}
+\DoxyCodeLine{00679     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} ni = 0; ni < trained\_layer-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}}; ni++)}
+\DoxyCodeLine{00680     \{}
+\DoxyCodeLine{00681         \textcolor{keywordtype}{double} delta = output\_neuron\_train(trained\_layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[ni],}
+\DoxyCodeLine{00682             old\_layer-\/>\mbox{\hyperlink{structlayer__t_a71e4f1a74c73f54b7ff2c40dc88c795e}{neurons}}[ni], rate, \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(target, ni, 0),}
+\DoxyCodeLine{00683             \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(outputs[layer\_i + 1], ni, 0), results, layer\_i, ni,}
+\DoxyCodeLine{00684             old\_layer-\/>\mbox{\hyperlink{structlayer__t_acacc7b95f0ad34a47555e40189aae7c0}{dactivation}});}
+\DoxyCodeLine{00685         \mbox{\hyperlink{matrix_8c_a0e411263cdaaa67eae166d067996f5b6}{mat\_set\_el}}(deltas[layer\_i], ni, 0, delta);}
+\DoxyCodeLine{00686     \}}
+\DoxyCodeLine{00687 }
+\DoxyCodeLine{00688     compute\_deltas(results, *pnet, deltas);}
+\DoxyCodeLine{00689     hidden\_layer\_train(results, trained, deltas, rate);}
+\DoxyCodeLine{00690 }
+\DoxyCodeLine{00691     \mbox{\hyperlink{network_8c_a2512b64818030e2bafa25367611e3482}{results\_free}}(results);}
+\DoxyCodeLine{00692 }
+\DoxyCodeLine{00693     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 1; i <= trained-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}; i++)}
+\DoxyCodeLine{00694     \{}
+\DoxyCodeLine{00695         \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(deltas[i -\/ 1]);}
+\DoxyCodeLine{00696     \}}
+\DoxyCodeLine{00697     free(deltas);}
+\DoxyCodeLine{00698     \mbox{\hyperlink{network_8c_ab7de60cd0ad5a69e135b63d264018d1a}{network\_free}}(*pnet);}
+\DoxyCodeLine{00699     *pnet = trained;}
+\DoxyCodeLine{00700 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{network_8c_aa706a2634d39e1b59182ab9a9403931c}\label{network_8c_aa706a2634d39e1b59182ab9a9403931c}} 
@@ -699,19 +712,19 @@ The instantiated neuron.
 \end{DoxyReturn}
 
 
-Definition at line 105 of file network.\+c.
+Definition at line \mbox{\hyperlink{network_8c_source_l00103}{103}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{106 \{}
-\DoxyCodeLine{107     \mbox{\hyperlink{structneuron__t}{neuron\_t}} *neuron = (\mbox{\hyperlink{structneuron__t}{neuron\_t}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structneuron__t}{neuron\_t}}));}
-\DoxyCodeLine{108     \textcolor{keywordflow}{if} (neuron == NULL)}
-\DoxyCodeLine{109         \textcolor{keywordflow}{return} NULL;}
-\DoxyCodeLine{110     neuron-\/>\mbox{\hyperlink{structneuron__t_a6182effa3a478564d7dcd7f9d856c029}{weights}} = weights;}
-\DoxyCodeLine{111     neuron-\/>\mbox{\hyperlink{structneuron__t_ad82dab1b1a60940e62e80270ad99a522}{bias}} = bias;}
-\DoxyCodeLine{112 }
-\DoxyCodeLine{113     \textcolor{keywordflow}{return} neuron;}
-\DoxyCodeLine{114 \}}
+\DoxyCodeLine{00104 \{}
+\DoxyCodeLine{00105     \mbox{\hyperlink{structneuron__t}{neuron\_t}} *neuron = (\mbox{\hyperlink{structneuron__t}{neuron\_t}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structneuron__t}{neuron\_t}}));}
+\DoxyCodeLine{00106     \textcolor{keywordflow}{if} (neuron == NULL)}
+\DoxyCodeLine{00107         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00108     neuron-\/>\mbox{\hyperlink{structneuron__t_a6182effa3a478564d7dcd7f9d856c029}{weights}} = weights;}
+\DoxyCodeLine{00109     neuron-\/>\mbox{\hyperlink{structneuron__t_ad82dab1b1a60940e62e80270ad99a522}{bias}} = bias;}
+\DoxyCodeLine{00110 }
+\DoxyCodeLine{00111     \textcolor{keywordflow}{return} neuron;}
+\DoxyCodeLine{00112 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{network_8c_a634adde351458c2e8f8825c1816eeb43}\label{network_8c_a634adde351458c2e8f8825c1816eeb43}} 
@@ -731,14 +744,14 @@ Frees the allocated neuron.
 \end{DoxyParams}
 
 
-Definition at line 116 of file network.\+c.
+Definition at line \mbox{\hyperlink{network_8c_source_l00114}{114}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{117 \{}
-\DoxyCodeLine{118     \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(neuron-\/>\mbox{\hyperlink{structneuron__t_a6182effa3a478564d7dcd7f9d856c029}{weights}});}
-\DoxyCodeLine{119     free(neuron);}
-\DoxyCodeLine{120 \}}
+\DoxyCodeLine{00115 \{}
+\DoxyCodeLine{00116     \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(neuron-\/>\mbox{\hyperlink{structneuron__t_a6182effa3a478564d7dcd7f9d856c029}{weights}});}
+\DoxyCodeLine{00117     free(neuron);}
+\DoxyCodeLine{00118 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{network_8c_a2915eb69be1db6dd406f986f8cb5c8c8}\label{network_8c_a2915eb69be1db6dd406f986f8cb5c8c8}} 
@@ -761,32 +774,33 @@ The created structure.
 \end{DoxyReturn}
 
 
-Definition at line 64 of file network.\+c.
+Definition at line \mbox{\hyperlink{network_8c_source_l00014}{14}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{65 \{}
-\DoxyCodeLine{66     \mbox{\hyperlink{structnetwork__results__t}{network\_results\_t}} *res}
-\DoxyCodeLine{67         = (\mbox{\hyperlink{structnetwork__results__t}{network\_results\_t}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structnetwork__results__t}{network\_results\_t}}));}
-\DoxyCodeLine{68     \textcolor{keywordflow}{if} (res == NULL)}
-\DoxyCodeLine{69         \textcolor{keywordflow}{return} res;}
-\DoxyCodeLine{70     res-\/>\mbox{\hyperlink{structnetwork__results__t_af7672c61fcb9cc66af09d166c98dfa0c}{preactivation}} = (\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **)malloc(layer\_count * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *));}
-\DoxyCodeLine{71     \textcolor{keywordflow}{if} (res-\/>\mbox{\hyperlink{structnetwork__results__t_af7672c61fcb9cc66af09d166c98dfa0c}{preactivation}} == NULL)}
-\DoxyCodeLine{72     \{}
-\DoxyCodeLine{73         free(res);}
-\DoxyCodeLine{74         \textcolor{keywordflow}{return} NULL;}
-\DoxyCodeLine{75     \}}
-\DoxyCodeLine{76 }
-\DoxyCodeLine{77     res-\/>\mbox{\hyperlink{structnetwork__results__t_a5f69d90d162ba6b0796d55d4de7bc97d}{outputs}} = (\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **)malloc((layer\_count + 1) * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *));}
-\DoxyCodeLine{78     \textcolor{keywordflow}{if} (res-\/>\mbox{\hyperlink{structnetwork__results__t_a5f69d90d162ba6b0796d55d4de7bc97d}{outputs}} == NULL)}
-\DoxyCodeLine{79     \{}
-\DoxyCodeLine{80         free(res-\/>\mbox{\hyperlink{structnetwork__results__t_af7672c61fcb9cc66af09d166c98dfa0c}{preactivation}});}
-\DoxyCodeLine{81         free(res);}
-\DoxyCodeLine{82         \textcolor{keywordflow}{return} NULL;}
-\DoxyCodeLine{83     \}}
-\DoxyCodeLine{84 }
-\DoxyCodeLine{85     \textcolor{keywordflow}{return} res;}
-\DoxyCodeLine{86 \}}
+\DoxyCodeLine{00015 \{}
+\DoxyCodeLine{00016     \mbox{\hyperlink{structnetwork__results__t}{network\_results\_t}} *results}
+\DoxyCodeLine{00017         = (\mbox{\hyperlink{structnetwork__results__t}{network\_results\_t}} *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structnetwork__results__t}{network\_results\_t}}));}
+\DoxyCodeLine{00018     \textcolor{keywordflow}{if} (results == NULL)}
+\DoxyCodeLine{00019         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00020     results-\/>\mbox{\hyperlink{structnetwork__results__t_af7672c61fcb9cc66af09d166c98dfa0c}{preactivation}}}
+\DoxyCodeLine{00021         = (\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **)calloc(layer\_count, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *));}
+\DoxyCodeLine{00022     \textcolor{keywordflow}{if} (results-\/>\mbox{\hyperlink{structnetwork__results__t_af7672c61fcb9cc66af09d166c98dfa0c}{preactivation}} == NULL)}
+\DoxyCodeLine{00023     \{}
+\DoxyCodeLine{00024         free(results);}
+\DoxyCodeLine{00025         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00026     \}}
+\DoxyCodeLine{00027     results-\/>\mbox{\hyperlink{structnetwork__results__t_a5f69d90d162ba6b0796d55d4de7bc97d}{outputs}}}
+\DoxyCodeLine{00028         = (\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **)calloc(layer\_count + 1, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *));}
+\DoxyCodeLine{00029     \textcolor{keywordflow}{if} (results-\/>\mbox{\hyperlink{structnetwork__results__t_a5f69d90d162ba6b0796d55d4de7bc97d}{outputs}} == NULL)}
+\DoxyCodeLine{00030     \{}
+\DoxyCodeLine{00031         free(results-\/>\mbox{\hyperlink{structnetwork__results__t_af7672c61fcb9cc66af09d166c98dfa0c}{preactivation}});}
+\DoxyCodeLine{00032         free(results);}
+\DoxyCodeLine{00033         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00034     \}}
+\DoxyCodeLine{00035 }
+\DoxyCodeLine{00036     \textcolor{keywordflow}{return} results;}
+\DoxyCodeLine{00037 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{network_8c_a2512b64818030e2bafa25367611e3482}\label{network_8c_a2512b64818030e2bafa25367611e3482}} 
@@ -806,24 +820,25 @@ Frees the network results struct.
 \end{DoxyParams}
 
 
-Definition at line 88 of file network.\+c.
+Definition at line \mbox{\hyperlink{network_8c_source_l00039}{39}} of file \mbox{\hyperlink{network_8c_source}{network.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{89 \{}
-\DoxyCodeLine{90     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < results-\/>\mbox{\hyperlink{structnetwork__results__t_a81f6c9388535caf11d916c99da211ed6}{network}}-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}; i++)}
-\DoxyCodeLine{91     \{}
-\DoxyCodeLine{92         \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(results-\/>\mbox{\hyperlink{structnetwork__results__t_af7672c61fcb9cc66af09d166c98dfa0c}{preactivation}}[i]);}
-\DoxyCodeLine{93     \}}
-\DoxyCodeLine{94 }
-\DoxyCodeLine{95     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i <= results-\/>\mbox{\hyperlink{structnetwork__results__t_a81f6c9388535caf11d916c99da211ed6}{network}}-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}; i++)}
-\DoxyCodeLine{96     \{}
-\DoxyCodeLine{97         \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(results-\/>\mbox{\hyperlink{structnetwork__results__t_a5f69d90d162ba6b0796d55d4de7bc97d}{outputs}}[i]);}
-\DoxyCodeLine{98     \}}
-\DoxyCodeLine{99 }
-\DoxyCodeLine{100     free(results-\/>\mbox{\hyperlink{structnetwork__results__t_af7672c61fcb9cc66af09d166c98dfa0c}{preactivation}});}
-\DoxyCodeLine{101     free(results-\/>\mbox{\hyperlink{structnetwork__results__t_a5f69d90d162ba6b0796d55d4de7bc97d}{outputs}});}
-\DoxyCodeLine{102     free(results);}
-\DoxyCodeLine{103 \}}
+\DoxyCodeLine{00040 \{}
+\DoxyCodeLine{00041     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < results-\/>\mbox{\hyperlink{structnetwork__results__t_a81f6c9388535caf11d916c99da211ed6}{network}}-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}; i++)}
+\DoxyCodeLine{00042     \{}
+\DoxyCodeLine{00043         \textcolor{keywordflow}{if} (results-\/>\mbox{\hyperlink{structnetwork__results__t_af7672c61fcb9cc66af09d166c98dfa0c}{preactivation}}[i] != NULL)}
+\DoxyCodeLine{00044             \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(results-\/>\mbox{\hyperlink{structnetwork__results__t_af7672c61fcb9cc66af09d166c98dfa0c}{preactivation}}[i]);}
+\DoxyCodeLine{00045     \}}
+\DoxyCodeLine{00046     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i <= results-\/>\mbox{\hyperlink{structnetwork__results__t_a81f6c9388535caf11d916c99da211ed6}{network}}-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}}; i++)}
+\DoxyCodeLine{00047     \{}
+\DoxyCodeLine{00048         \textcolor{keywordflow}{if} (results-\/>\mbox{\hyperlink{structnetwork__results__t_a5f69d90d162ba6b0796d55d4de7bc97d}{outputs}}[i] != NULL)}
+\DoxyCodeLine{00049             \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(results-\/>\mbox{\hyperlink{structnetwork__results__t_a5f69d90d162ba6b0796d55d4de7bc97d}{outputs}}[i]);}
+\DoxyCodeLine{00050     \}}
+\DoxyCodeLine{00051 }
+\DoxyCodeLine{00052     free(results-\/>\mbox{\hyperlink{structnetwork__results__t_af7672c61fcb9cc66af09d166c98dfa0c}{preactivation}});}
+\DoxyCodeLine{00053     free(results-\/>\mbox{\hyperlink{structnetwork__results__t_a5f69d90d162ba6b0796d55d4de7bc97d}{outputs}});}
+\DoxyCodeLine{00054     free(results);}
+\DoxyCodeLine{00055 \}}
 
 \end{DoxyCode}

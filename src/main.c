@@ -210,7 +210,7 @@ int main(int argc, char **argv)
         size_t succeeded = 0, tests = 0;
         for (size_t j = 0; j < length && keep_running; j++)
         {
-            matrix_t *res = compute_result(inputs[j], net);
+            matrix_t *res = compute_results(inputs[j], net);
             int out = network_get_output(res, 0);
             int ex = network_get_output(outputs[j], 0);
             matrix_free(res);

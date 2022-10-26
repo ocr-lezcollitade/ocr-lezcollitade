@@ -14,36 +14,60 @@ static double sigmoid_derivative(double x)
     return x * (1 - x);
 }
 
-/*static double soft_max(double arg, const network_results_t *res)
+static double soft_max(size_t layeri, size_t neuron, network_results_t *res)
 {
-    double quot = .0;
-    matrix_t *outputs = res->outputs[res->network->layer_count];
-    for(size_t i = 0; i < outputs->columns; i++) {
-        quot += exp(mat_el_at(outputs, i, 0));
+    layer_t *layer = res->network->layers[layeri];
+    double sum = 0, value = 0;
+    double *cache;
+    if (neuron == 0)
+    {
+        cache = (double *)calloc(layer->count + 1, sizeof(double));
+        for (size_t i = 0; i < layer->count; i++)
+        {
+            double e = exp(mat_el_at(res->preactivation[layeri], i, 0));
+            cache[i + 1] = e;
+            sum += e;
+        }
+        cache[0] = sum;
+        res->cache = cache;
+        value = cache[neuron + 1];
     }
-    return exp(arg) / quot;
-}*/
+    else
+    {
+        cache = (double *)res->cache;
+        value = cache[neuron + 1];
+        sum = cache[0];
+        if (neuron == layer->count - 1)
+        {
+            free(cache);
+        }
+    }
+    return value / sum;
+}
+
+static double soft_max_derivative(double arg)
+{
+    return arg * (1 - arg);
+}
 
 double output_activation(
-    size_t layer, size_t neuron, double arg, const network_results_t *res)
+    size_t layer, size_t neuron, double arg, network_results_t *res)
 {
-    UNUSED(res);
-    UNUSED(layer);
-    UNUSED(neuron);
-    return sigmoid(arg);
+    UNUSED(arg);
+    return soft_max(layer, neuron, res);
 }
 
 double output_activation_derivative(
-    size_t layer, size_t neuron, double arg, const network_results_t *res)
+    size_t layer, size_t neuron, double arg, network_results_t *res)
 {
     UNUSED(res);
     UNUSED(layer);
     UNUSED(neuron);
-    return sigmoid_derivative(arg);
+    return soft_max_derivative(arg);
 }
 
 double activation(
-    size_t layer, size_t neuron, double arg, const network_results_t *res)
+    size_t layer, size_t neuron, double arg, network_results_t *res)
 {
     UNUSED(res);
     UNUSED(layer);
@@ -52,7 +76,7 @@ double activation(
 }
 
 double activation_derivative(
-    size_t layer, size_t neuron, double arg, const network_results_t *res)
+    size_t layer, size_t neuron, double arg, network_results_t *res)
 {
     UNUSED(res);
     UNUSED(layer);
