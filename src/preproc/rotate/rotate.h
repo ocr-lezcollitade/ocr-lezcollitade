@@ -8,7 +8,7 @@
  * \param deg The angle of the rotation
  * \return A new rotated surface
  */
-SDL_Surface* rotate_surface(SDL_Surface* surface, double deg);
+SDL_Surface *rotate_surface(SDL_Surface *surface, double deg);
 
 /**
  * \brief Creates a rotated clone (res.png) of a given image
@@ -16,4 +16,6 @@ SDL_Surface* rotate_surface(SDL_Surface* surface, double deg);
  * \param file The path to the image to the rotate
  * \param deg The angle of the rotation
  */
-void rotate_image(const char* file, double deg);
+void rotate_image(const char *file, double deg);
+
+#endif

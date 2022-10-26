@@ -34,7 +34,7 @@ int \mbox{\hyperlink{main_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc
 
 
 
-Definition at line \mbox{\hyperlink{main_8c_source_l00126}{126}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+Definition at line 126 of file main.\+c.
 
 \mbox{\Hypertarget{main_8c_a86d500a34c624c2cae56bc25a31b12f3}\label{main_8c_a86d500a34c624c2cae56bc25a31b12f3}} 
 \index{main.c@{main.c}!UNUSED@{UNUSED}}
@@ -44,7 +44,7 @@ Definition at line \mbox{\hyperlink{main_8c_source_l00126}{126}} of file \mbox{\
 
 
 
-Definition at line \mbox{\hyperlink{main_8c_source_l00013}{13}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+Definition at line 13 of file main.\+c.
 
 
 
@@ -57,102 +57,102 @@ Definition at line \mbox{\hyperlink{main_8c_source_l00013}{13}} of file \mbox{\h
 
 
 
-Definition at line \mbox{\hyperlink{main_8c_source_l00143}{143}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+Definition at line 143 of file main.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00144 \{}
-\DoxyCodeLine{00145     \mbox{\hyperlink{main_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(print\_params);}
-\DoxyCodeLine{00146     \textcolor{keywordtype}{char} mode;}
-\DoxyCodeLine{00147     \mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}} params = \mbox{\hyperlink{parser_8c_af33c60f53ba8a04782e03a8500c5d099}{parse\_params}}(argc, argv, \&mode);}
-\DoxyCodeLine{00148     \textcolor{keywordflow}{if} (params == NULL)}
-\DoxyCodeLine{00149     \{}
-\DoxyCodeLine{00150         errx(-\/1, \textcolor{stringliteral}{"{}missing subcommand"{}});}
-\DoxyCodeLine{00151     \}}
-\DoxyCodeLine{00152 }
-\DoxyCodeLine{00153     signal(SIGINT, int\_handler);}
-\DoxyCodeLine{00154     \textcolor{keywordflow}{if} (mode == \mbox{\hyperlink{parser_8h_a9bfdcc2e01a085b81125cadcfe83cb66}{TRAIN\_MODE}})}
-\DoxyCodeLine{00155     \{}
-\DoxyCodeLine{00156         \mbox{\hyperlink{structnetwork__t}{network\_t}} *net = get\_train\_network(params);}
-\DoxyCodeLine{00157         \mbox{\hyperlink{structmatrix__t}{matrix\_t}} **inputs;}
-\DoxyCodeLine{00158         \mbox{\hyperlink{structmatrix__t}{matrix\_t}} **outputs;}
-\DoxyCodeLine{00159         \textcolor{keywordtype}{size\_t} length = load\_train\_data(params, \&inputs, \&outputs, net-\/>\mbox{\hyperlink{structnetwork__t_af7a2fbc049a0fd2d5ad14f218658ca83}{inputs}},}
-\DoxyCodeLine{00160             net-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[net-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}} -\/ 1]-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}});}
-\DoxyCodeLine{00161 }
-\DoxyCodeLine{00162         \textcolor{keywordtype}{size\_t} iterations = 0;}
-\DoxyCodeLine{00163         \textcolor{keywordflow}{if} (params[\mbox{\hyperlink{parser_8h_aa9cc087d076e4fa101f8794a947bd01a}{ITERATIONS}}] == NULL}
-\DoxyCodeLine{00164             || sscanf(params[\mbox{\hyperlink{parser_8h_aa9cc087d076e4fa101f8794a947bd01a}{ITERATIONS}}], \textcolor{stringliteral}{"{}\%zu"{}}, \&iterations) == 0)}
-\DoxyCodeLine{00165         \{}
-\DoxyCodeLine{00166             iterations = 0;}
-\DoxyCodeLine{00167         \}}
-\DoxyCodeLine{00168         \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00169         \{}
-\DoxyCodeLine{00170             keep\_running = 0;}
-\DoxyCodeLine{00171         \}}
-\DoxyCodeLine{00172         printf(\textcolor{stringliteral}{"{}starting the training\(\backslash\)n"{}});}
-\DoxyCodeLine{00173 }
-\DoxyCodeLine{00174         \textcolor{keywordtype}{double} rate = get\_rate(params);}
-\DoxyCodeLine{00175         \textcolor{keywordtype}{int} running = keep\_running || iterations > 0;}
-\DoxyCodeLine{00176         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; running; i++)}
-\DoxyCodeLine{00177         \{}
-\DoxyCodeLine{00178             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} j = 0; j < length \&\& (running); j++)}
-\DoxyCodeLine{00179             \{}
-\DoxyCodeLine{00180                 \mbox{\hyperlink{network_8c_ac99789abdffa9915778914a50c1b4514}{network\_train}}(\&net, inputs[j], outputs[j], rate);}
-\DoxyCodeLine{00181                 running = keep\_running || i < iterations;}
-\DoxyCodeLine{00182             \}}
-\DoxyCodeLine{00183             printf(\textcolor{stringliteral}{"{}iteration \%zu\(\backslash\)n"{}}, i + 1);}
-\DoxyCodeLine{00184         \}}
-\DoxyCodeLine{00185 }
-\DoxyCodeLine{00186         printf(\textcolor{stringliteral}{"{}saving to \%s\(\backslash\)n"{}}, params[\mbox{\hyperlink{parser_8h_a0bbb2b623b27fdae8210c686fbcfc698}{OUTPUT\_NETWORK}}]);}
-\DoxyCodeLine{00187         \mbox{\hyperlink{network_8c_aee995127aad46272ae3ddc5dfef07edc}{network\_save}}(params[\mbox{\hyperlink{parser_8h_a0bbb2b623b27fdae8210c686fbcfc698}{OUTPUT\_NETWORK}}], net);}
-\DoxyCodeLine{00188         \mbox{\hyperlink{network_8c_ab7de60cd0ad5a69e135b63d264018d1a}{network\_free}}(net);}
-\DoxyCodeLine{00189         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < length; i++)}
-\DoxyCodeLine{00190         \{}
-\DoxyCodeLine{00191             \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(inputs[i]);}
-\DoxyCodeLine{00192             \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(outputs[i]);}
-\DoxyCodeLine{00193         \}}
-\DoxyCodeLine{00194 }
-\DoxyCodeLine{00195         free(inputs);}
-\DoxyCodeLine{00196         free(outputs);}
-\DoxyCodeLine{00197         free(params);}
-\DoxyCodeLine{00198     \}}
-\DoxyCodeLine{00199     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (mode == \mbox{\hyperlink{parser_8h_ab6d58cce6e97b6b549801e696ac9f4f6}{TEST\_MODE}})}
-\DoxyCodeLine{00200     \{}
-\DoxyCodeLine{00201 }
-\DoxyCodeLine{00202         \mbox{\hyperlink{structnetwork__t}{network\_t}} *net = get\_train\_network(params);}
-\DoxyCodeLine{00203         \mbox{\hyperlink{structmatrix__t}{matrix\_t}} **inputs;}
-\DoxyCodeLine{00204         \mbox{\hyperlink{structmatrix__t}{matrix\_t}} **outputs;}
-\DoxyCodeLine{00205         \textcolor{keywordtype}{size\_t} length = load\_train\_data(params, \&inputs, \&outputs, net-\/>\mbox{\hyperlink{structnetwork__t_af7a2fbc049a0fd2d5ad14f218658ca83}{inputs}},}
-\DoxyCodeLine{00206             net-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[net-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}} -\/ 1]-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}});}
-\DoxyCodeLine{00207 }
-\DoxyCodeLine{00208         printf(\textcolor{stringliteral}{"{}starting the test\(\backslash\)n"{}});}
-\DoxyCodeLine{00209 }
-\DoxyCodeLine{00210         \textcolor{keywordtype}{size\_t} succeeded = 0, tests = 0;}
-\DoxyCodeLine{00211         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} j = 0; j < length \&\& keep\_running; j++)}
-\DoxyCodeLine{00212         \{}
-\DoxyCodeLine{00213             \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *res = \mbox{\hyperlink{network_8c_a49d5f5101cda3ffc8355a0237ee16709}{compute\_result}}(inputs[j], net);}
-\DoxyCodeLine{00214             \textcolor{keywordtype}{int} out = \mbox{\hyperlink{network_8c_a338eaca7b062c45c2ddf651ec7bfb5ab}{network\_get\_output}}(res, 0);}
-\DoxyCodeLine{00215             \textcolor{keywordtype}{int} ex = \mbox{\hyperlink{network_8c_a338eaca7b062c45c2ddf651ec7bfb5ab}{network\_get\_output}}(outputs[j], 0);}
-\DoxyCodeLine{00216             \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(res);}
-\DoxyCodeLine{00217             \textcolor{keywordflow}{if} (out == ex)}
-\DoxyCodeLine{00218                 succeeded++;}
-\DoxyCodeLine{00219             tests++;}
-\DoxyCodeLine{00220         \}}
-\DoxyCodeLine{00221         printf(\textcolor{stringliteral}{"{}rate: \%.2f\%c\(\backslash\)n"{}}, 100.0 * succeeded / (\textcolor{keywordtype}{double})tests, \textcolor{charliteral}{'\%'});}
-\DoxyCodeLine{00222 }
-\DoxyCodeLine{00223         \mbox{\hyperlink{network_8c_ab7de60cd0ad5a69e135b63d264018d1a}{network\_free}}(net);}
-\DoxyCodeLine{00224         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < length; i++)}
-\DoxyCodeLine{00225         \{}
-\DoxyCodeLine{00226             \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(inputs[i]);}
-\DoxyCodeLine{00227             \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(outputs[i]);}
-\DoxyCodeLine{00228         \}}
-\DoxyCodeLine{00229 }
-\DoxyCodeLine{00230         free(inputs);}
-\DoxyCodeLine{00231         free(outputs);}
-\DoxyCodeLine{00232         free(params);}
-\DoxyCodeLine{00233     \}}
-\DoxyCodeLine{00234 }
-\DoxyCodeLine{00235     \textcolor{keywordflow}{return} 0;}
-\DoxyCodeLine{00236 \}}
+\DoxyCodeLine{144 \{}
+\DoxyCodeLine{145     \mbox{\hyperlink{main_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(print\_params);}
+\DoxyCodeLine{146     \textcolor{keywordtype}{char} mode;}
+\DoxyCodeLine{147     \mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}} params = \mbox{\hyperlink{parser_8c_af33c60f53ba8a04782e03a8500c5d099}{parse\_params}}(argc, argv, \&mode);}
+\DoxyCodeLine{148     \textcolor{keywordflow}{if} (params == NULL)}
+\DoxyCodeLine{149     \{}
+\DoxyCodeLine{150         errx(-\/1, \textcolor{stringliteral}{"{}missing subcommand"{}});}
+\DoxyCodeLine{151     \}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153     signal(SIGINT, int\_handler);}
+\DoxyCodeLine{154     \textcolor{keywordflow}{if} (mode == \mbox{\hyperlink{parser_8h_a9bfdcc2e01a085b81125cadcfe83cb66}{TRAIN\_MODE}})}
+\DoxyCodeLine{155     \{}
+\DoxyCodeLine{156         \mbox{\hyperlink{structnetwork__t}{network\_t}} *net = get\_train\_network(params);}
+\DoxyCodeLine{157         \mbox{\hyperlink{structmatrix__t}{matrix\_t}} **inputs;}
+\DoxyCodeLine{158         \mbox{\hyperlink{structmatrix__t}{matrix\_t}} **outputs;}
+\DoxyCodeLine{159         \textcolor{keywordtype}{size\_t} length = load\_train\_data(params, \&inputs, \&outputs, net-\/>\mbox{\hyperlink{structnetwork__t_af7a2fbc049a0fd2d5ad14f218658ca83}{inputs}},}
+\DoxyCodeLine{160             net-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[net-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}} -\/ 1]-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}});}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162         \textcolor{keywordtype}{size\_t} iterations = 0;}
+\DoxyCodeLine{163         \textcolor{keywordflow}{if} (params[\mbox{\hyperlink{parser_8h_aa9cc087d076e4fa101f8794a947bd01a}{ITERATIONS}}] == NULL}
+\DoxyCodeLine{164             || sscanf(params[\mbox{\hyperlink{parser_8h_aa9cc087d076e4fa101f8794a947bd01a}{ITERATIONS}}], \textcolor{stringliteral}{"{}\%zu"{}}, \&iterations) == 0)}
+\DoxyCodeLine{165         \{}
+\DoxyCodeLine{166             iterations = 0;}
+\DoxyCodeLine{167         \}}
+\DoxyCodeLine{168         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{169         \{}
+\DoxyCodeLine{170             keep\_running = 0;}
+\DoxyCodeLine{171         \}}
+\DoxyCodeLine{172         printf(\textcolor{stringliteral}{"{}starting the training\(\backslash\)n"{}});}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174         \textcolor{keywordtype}{double} rate = get\_rate(params);}
+\DoxyCodeLine{175         \textcolor{keywordtype}{int} running = keep\_running || iterations > 0;}
+\DoxyCodeLine{176         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; running; i++)}
+\DoxyCodeLine{177         \{}
+\DoxyCodeLine{178             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} j = 0; j < length \&\& (running); j++)}
+\DoxyCodeLine{179             \{}
+\DoxyCodeLine{180                 \mbox{\hyperlink{network_8c_ac99789abdffa9915778914a50c1b4514}{network\_train}}(\&net, inputs[j], outputs[j], rate);}
+\DoxyCodeLine{181                 running = keep\_running || i < iterations;}
+\DoxyCodeLine{182             \}}
+\DoxyCodeLine{183             printf(\textcolor{stringliteral}{"{}iteration \%zu\(\backslash\)n"{}}, i + 1);}
+\DoxyCodeLine{184         \}}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186         printf(\textcolor{stringliteral}{"{}saving to \%s\(\backslash\)n"{}}, params[\mbox{\hyperlink{parser_8h_a0bbb2b623b27fdae8210c686fbcfc698}{OUTPUT\_NETWORK}}]);}
+\DoxyCodeLine{187         \mbox{\hyperlink{network_8c_aee995127aad46272ae3ddc5dfef07edc}{network\_save}}(params[\mbox{\hyperlink{parser_8h_a0bbb2b623b27fdae8210c686fbcfc698}{OUTPUT\_NETWORK}}], net);}
+\DoxyCodeLine{188         \mbox{\hyperlink{network_8c_ab7de60cd0ad5a69e135b63d264018d1a}{network\_free}}(net);}
+\DoxyCodeLine{189         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < length; i++)}
+\DoxyCodeLine{190         \{}
+\DoxyCodeLine{191             \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(inputs[i]);}
+\DoxyCodeLine{192             \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(outputs[i]);}
+\DoxyCodeLine{193         \}}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195         free(inputs);}
+\DoxyCodeLine{196         free(outputs);}
+\DoxyCodeLine{197         free(params);}
+\DoxyCodeLine{198     \}}
+\DoxyCodeLine{199     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (mode == \mbox{\hyperlink{parser_8h_ab6d58cce6e97b6b549801e696ac9f4f6}{TEST\_MODE}})}
+\DoxyCodeLine{200     \{}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202         \mbox{\hyperlink{structnetwork__t}{network\_t}} *net = get\_train\_network(params);}
+\DoxyCodeLine{203         \mbox{\hyperlink{structmatrix__t}{matrix\_t}} **inputs;}
+\DoxyCodeLine{204         \mbox{\hyperlink{structmatrix__t}{matrix\_t}} **outputs;}
+\DoxyCodeLine{205         \textcolor{keywordtype}{size\_t} length = load\_train\_data(params, \&inputs, \&outputs, net-\/>\mbox{\hyperlink{structnetwork__t_af7a2fbc049a0fd2d5ad14f218658ca83}{inputs}},}
+\DoxyCodeLine{206             net-\/>\mbox{\hyperlink{structnetwork__t_abc9801a33bc441d67a87fac3b603ae87}{layers}}[net-\/>\mbox{\hyperlink{structnetwork__t_ad5fc71e5df50072d2c5a9ebfb28c7636}{layer\_count}} -\/ 1]-\/>\mbox{\hyperlink{structlayer__t_a79cee7069a84d7440d56779ba2c073fb}{count}});}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{208         printf(\textcolor{stringliteral}{"{}starting the test\(\backslash\)n"{}});}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210         \textcolor{keywordtype}{size\_t} succeeded = 0, tests = 0;}
+\DoxyCodeLine{211         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} j = 0; j < length \&\& keep\_running; j++)}
+\DoxyCodeLine{212         \{}
+\DoxyCodeLine{213             \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *res = \mbox{\hyperlink{network_8c_a49d5f5101cda3ffc8355a0237ee16709}{compute\_result}}(inputs[j], net);}
+\DoxyCodeLine{214             \textcolor{keywordtype}{int} out = \mbox{\hyperlink{network_8c_a338eaca7b062c45c2ddf651ec7bfb5ab}{network\_get\_output}}(res, 0);}
+\DoxyCodeLine{215             \textcolor{keywordtype}{int} ex = \mbox{\hyperlink{network_8c_a338eaca7b062c45c2ddf651ec7bfb5ab}{network\_get\_output}}(outputs[j], 0);}
+\DoxyCodeLine{216             \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(res);}
+\DoxyCodeLine{217             \textcolor{keywordflow}{if} (out == ex)}
+\DoxyCodeLine{218                 succeeded++;}
+\DoxyCodeLine{219             tests++;}
+\DoxyCodeLine{220         \}}
+\DoxyCodeLine{221         printf(\textcolor{stringliteral}{"{}rate: \%.2f\%c\(\backslash\)n"{}}, 100.0 * succeeded / (\textcolor{keywordtype}{double})tests, \textcolor{charliteral}{'\%'});}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{223         \mbox{\hyperlink{network_8c_ab7de60cd0ad5a69e135b63d264018d1a}{network\_free}}(net);}
+\DoxyCodeLine{224         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < length; i++)}
+\DoxyCodeLine{225         \{}
+\DoxyCodeLine{226             \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(inputs[i]);}
+\DoxyCodeLine{227             \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(outputs[i]);}
+\DoxyCodeLine{228         \}}
+\DoxyCodeLine{229 }
+\DoxyCodeLine{230         free(inputs);}
+\DoxyCodeLine{231         free(outputs);}
+\DoxyCodeLine{232         free(params);}
+\DoxyCodeLine{233     \}}
+\DoxyCodeLine{234 }
+\DoxyCodeLine{235     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{236 \}}
 
 \end{DoxyCode}

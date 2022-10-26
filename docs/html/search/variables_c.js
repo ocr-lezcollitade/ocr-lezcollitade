@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['weights_0',['weights',['../structneuron__t.html#a6182effa3a478564d7dcd7f9d856c029',1,'neuron_t']]]
+  ['thres_253',['thres',['../sudoku__split_8c.html#a7fb6298338d6337fbc0889a2eea1dffd',1,'sudoku_split.c']]]
 ];

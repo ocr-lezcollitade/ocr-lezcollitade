@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['loader_2ec_0',['loader.c',['../loader_8c.html',1,'']]],
-  ['loader_2eh_1',['loader.h',['../loader_8h.html',1,'']]]
+  ['function_2ec_148',['function.c',['../function_8c.html',1,'']]],
+  ['function_2eh_149',['function.h',['../function_8h.html',1,'']]]
 ];

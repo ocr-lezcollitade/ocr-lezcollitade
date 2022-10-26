@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['network_2ec_0',['network.c',['../network_8c.html',1,'']]],
-  ['network_2eh_1',['network.h',['../network_8h.html',1,'']]]
+  ['main_2ec_152',['main.c',['../main_8c.html',1,'']]],
+  ['matrix_2ec_153',['matrix.c',['../matrix_8c.html',1,'']]],
+  ['matrix_2eh_154',['matrix.h',['../matrix_8h.html',1,'']]]
 ];
