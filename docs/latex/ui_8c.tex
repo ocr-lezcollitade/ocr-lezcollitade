@@ -1,0 +1,223 @@
+\hypertarget{ui_8c}{}\doxysection{src/ui/ui.c File Reference}
+\label{ui_8c}\index{src/ui/ui.c@{src/ui/ui.c}}
+{\ttfamily \#include $<$SDL2/\+SDL.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL\+\_\+image.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$gtk/gtk.\+h$>$}\newline
+{\ttfamily \#include $<$gtk/gtkx.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../preproc/rotate/rotate.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ui_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{ui_8c_a865331bfb243d8f0a5692459a3f0ab62}{on\+\_\+button\+\_\+clicked}} (Gtk\+Button $\ast$b)
+\item 
+void \mbox{\hyperlink{ui_8c_a3709d19e6f81b383a77fee4c87c690e0}{on\+\_\+lrotate\+\_\+clicked}} (Gtk\+Button $\ast$b)
+\item 
+void \mbox{\hyperlink{ui_8c_adecf7a412b89e972867041319179d435}{on\+\_\+rrotate\+\_\+clicked}} (Gtk\+Button $\ast$b)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Gtk\+Widget $\ast$ \mbox{\hyperlink{ui_8c_a3d346c08cf2d67c388caabffb412b293}{window}}
+\item 
+Gtk\+Widget $\ast$ \mbox{\hyperlink{ui_8c_ac85082e9f78a3675283b82a9d48052b5}{fixed}}
+\item 
+Gtk\+Widget $\ast$ \mbox{\hyperlink{ui_8c_afccae668050e84bedbca7672a87032b9}{button}}
+\item 
+Gtk\+Widget $\ast$ \mbox{\hyperlink{ui_8c_ad53c154a0a2663edc2976c3e6e843cb2}{label}}
+\item 
+Gtk\+Builder $\ast$ \mbox{\hyperlink{ui_8c_afa501dbb63ae6077ac8db76b560de42b}{builder}}
+\item 
+Gtk\+Widget $\ast$ \mbox{\hyperlink{ui_8c_a2e26d6c88d31da9665b1ecd49f369317}{image}}
+\item 
+Gtk\+Widget $\ast$ \mbox{\hyperlink{ui_8c_a35bbeb8114541492732687f126741f3d}{lrotate}}
+\item 
+int \mbox{\hyperlink{ui_8c_a2b174cfb62c7f343a1ed1cda3a372e38}{rotation}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ui_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{ui_8c_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{ui.c@{ui.c}!main@{main}}
+\index{main@{main}!ui.c@{ui.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 25 of file ui.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     gtk\_init(\&argc, \&argv);}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30     \mbox{\hyperlink{ui_8c_afa501dbb63ae6077ac8db76b560de42b}{builder}} = gtk\_builder\_new\_from\_file(\textcolor{stringliteral}{"{}ui.glade"{}});}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32     \mbox{\hyperlink{ui_8c_a3d346c08cf2d67c388caabffb412b293}{window}} = GTK\_WIDGET(gtk\_builder\_get\_object(\mbox{\hyperlink{ui_8c_afa501dbb63ae6077ac8db76b560de42b}{builder}}, \textcolor{stringliteral}{"{}window"{}}));}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34     g\_signal\_connect(\mbox{\hyperlink{ui_8c_a3d346c08cf2d67c388caabffb412b293}{window}}, \textcolor{stringliteral}{"{}destroy"{}}, G\_CALLBACK(gtk\_main\_quit), NULL);}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36     gtk\_builder\_connect\_signals(\mbox{\hyperlink{ui_8c_afa501dbb63ae6077ac8db76b560de42b}{builder}}, NULL);}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38     \mbox{\hyperlink{ui_8c_ac85082e9f78a3675283b82a9d48052b5}{fixed}} = GTK\_WIDGET(gtk\_builder\_get\_object(\mbox{\hyperlink{ui_8c_afa501dbb63ae6077ac8db76b560de42b}{builder}}, \textcolor{stringliteral}{"{}fixed"{}}));}
+\DoxyCodeLine{39     \mbox{\hyperlink{ui_8c_afccae668050e84bedbca7672a87032b9}{button}} = GTK\_WIDGET(gtk\_builder\_get\_object(\mbox{\hyperlink{ui_8c_afa501dbb63ae6077ac8db76b560de42b}{builder}}, \textcolor{stringliteral}{"{}button"{}}));}
+\DoxyCodeLine{40     \mbox{\hyperlink{ui_8c_ad53c154a0a2663edc2976c3e6e843cb2}{label}} = GTK\_WIDGET(gtk\_builder\_get\_object(\mbox{\hyperlink{ui_8c_afa501dbb63ae6077ac8db76b560de42b}{builder}}, \textcolor{stringliteral}{"{}label"{}}));}
+\DoxyCodeLine{41     \mbox{\hyperlink{ui_8c_a2e26d6c88d31da9665b1ecd49f369317}{image}} = GTK\_WIDGET(gtk\_builder\_get\_object(\mbox{\hyperlink{ui_8c_afa501dbb63ae6077ac8db76b560de42b}{builder}}, \textcolor{stringliteral}{"{}image"{}}));}
+\DoxyCodeLine{42     \mbox{\hyperlink{ui_8c_a35bbeb8114541492732687f126741f3d}{lrotate}} = GTK\_WIDGET(gtk\_builder\_get\_object(\mbox{\hyperlink{ui_8c_afa501dbb63ae6077ac8db76b560de42b}{builder}}, \textcolor{stringliteral}{"{}lrotate"{}}));}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     gtk\_widget\_show(\mbox{\hyperlink{ui_8c_a3d346c08cf2d67c388caabffb412b293}{window}});}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     gtk\_main();}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48     \textcolor{keywordflow}{return} EXIT\_SUCCESS;}
+\DoxyCodeLine{49 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ui_8c_a865331bfb243d8f0a5692459a3f0ab62}\label{ui_8c_a865331bfb243d8f0a5692459a3f0ab62}} 
+\index{ui.c@{ui.c}!on\_button\_clicked@{on\_button\_clicked}}
+\index{on\_button\_clicked@{on\_button\_clicked}!ui.c@{ui.c}}
+\doxysubsubsection{\texorpdfstring{on\_button\_clicked()}{on\_button\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+button\+\_\+clicked (\begin{DoxyParamCaption}\item[{Gtk\+Button $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Definition at line 51 of file ui.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{52 \{}
+\DoxyCodeLine{53     gtk\_label\_set\_text(GTK\_LABEL(\mbox{\hyperlink{ui_8c_ad53c154a0a2663edc2976c3e6e843cb2}{label}}), (\textcolor{keyword}{const} gchar *)\textcolor{stringliteral}{"{}Hello World"{}});}
+\DoxyCodeLine{54 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ui_8c_a3709d19e6f81b383a77fee4c87c690e0}\label{ui_8c_a3709d19e6f81b383a77fee4c87c690e0}} 
+\index{ui.c@{ui.c}!on\_lrotate\_clicked@{on\_lrotate\_clicked}}
+\index{on\_lrotate\_clicked@{on\_lrotate\_clicked}!ui.c@{ui.c}}
+\doxysubsubsection{\texorpdfstring{on\_lrotate\_clicked()}{on\_lrotate\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+lrotate\+\_\+clicked (\begin{DoxyParamCaption}\item[{Gtk\+Button $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Definition at line 56 of file ui.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{57 \{}
+\DoxyCodeLine{58     \mbox{\hyperlink{ui_8c_a2b174cfb62c7f343a1ed1cda3a372e38}{rotation}} -\/= 5;}
+\DoxyCodeLine{59     \mbox{\hyperlink{rotate_8c_abaff7e12c98b996f3b2acfcd53f88f38}{rotate\_image}}(\textcolor{stringliteral}{"{}test.jpg"{}}, (\textcolor{keywordtype}{double})\mbox{\hyperlink{ui_8c_a2b174cfb62c7f343a1ed1cda3a372e38}{rotation}});}
+\DoxyCodeLine{60     gtk\_image\_set\_from\_file(GTK\_IMAGE(\mbox{\hyperlink{ui_8c_a2e26d6c88d31da9665b1ecd49f369317}{image}}), (\textcolor{keyword}{const} gchar *)\textcolor{stringliteral}{"{}res.png"{}});}
+\DoxyCodeLine{61 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ui_8c_adecf7a412b89e972867041319179d435}\label{ui_8c_adecf7a412b89e972867041319179d435}} 
+\index{ui.c@{ui.c}!on\_rrotate\_clicked@{on\_rrotate\_clicked}}
+\index{on\_rrotate\_clicked@{on\_rrotate\_clicked}!ui.c@{ui.c}}
+\doxysubsubsection{\texorpdfstring{on\_rrotate\_clicked()}{on\_rrotate\_clicked()}}
+{\footnotesize\ttfamily void on\+\_\+rrotate\+\_\+clicked (\begin{DoxyParamCaption}\item[{Gtk\+Button $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Definition at line 63 of file ui.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{64 \{}
+\DoxyCodeLine{65     \mbox{\hyperlink{ui_8c_a2b174cfb62c7f343a1ed1cda3a372e38}{rotation}} += 5;}
+\DoxyCodeLine{66     \mbox{\hyperlink{rotate_8c_abaff7e12c98b996f3b2acfcd53f88f38}{rotate\_image}}(\textcolor{stringliteral}{"{}test.jpg"{}}, (\textcolor{keywordtype}{double})\mbox{\hyperlink{ui_8c_a2b174cfb62c7f343a1ed1cda3a372e38}{rotation}});}
+\DoxyCodeLine{67     gtk\_image\_set\_from\_file(GTK\_IMAGE(\mbox{\hyperlink{ui_8c_a2e26d6c88d31da9665b1ecd49f369317}{image}}), (\textcolor{keyword}{const} gchar *)\textcolor{stringliteral}{"{}res.png"{}});}
+\DoxyCodeLine{68 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{ui_8c_afa501dbb63ae6077ac8db76b560de42b}\label{ui_8c_afa501dbb63ae6077ac8db76b560de42b}} 
+\index{ui.c@{ui.c}!builder@{builder}}
+\index{builder@{builder}!ui.c@{ui.c}}
+\doxysubsubsection{\texorpdfstring{builder}{builder}}
+{\footnotesize\ttfamily Gtk\+Builder$\ast$ builder}
+
+
+
+Definition at line 20 of file ui.\+c.
+
+\mbox{\Hypertarget{ui_8c_afccae668050e84bedbca7672a87032b9}\label{ui_8c_afccae668050e84bedbca7672a87032b9}} 
+\index{ui.c@{ui.c}!button@{button}}
+\index{button@{button}!ui.c@{ui.c}}
+\doxysubsubsection{\texorpdfstring{button}{button}}
+{\footnotesize\ttfamily Gtk\+Widget$\ast$ button}
+
+
+
+Definition at line 18 of file ui.\+c.
+
+\mbox{\Hypertarget{ui_8c_ac85082e9f78a3675283b82a9d48052b5}\label{ui_8c_ac85082e9f78a3675283b82a9d48052b5}} 
+\index{ui.c@{ui.c}!fixed@{fixed}}
+\index{fixed@{fixed}!ui.c@{ui.c}}
+\doxysubsubsection{\texorpdfstring{fixed}{fixed}}
+{\footnotesize\ttfamily Gtk\+Widget$\ast$ fixed}
+
+
+
+Definition at line 17 of file ui.\+c.
+
+\mbox{\Hypertarget{ui_8c_a2e26d6c88d31da9665b1ecd49f369317}\label{ui_8c_a2e26d6c88d31da9665b1ecd49f369317}} 
+\index{ui.c@{ui.c}!image@{image}}
+\index{image@{image}!ui.c@{ui.c}}
+\doxysubsubsection{\texorpdfstring{image}{image}}
+{\footnotesize\ttfamily Gtk\+Widget$\ast$ image}
+
+
+
+Definition at line 21 of file ui.\+c.
+
+\mbox{\Hypertarget{ui_8c_ad53c154a0a2663edc2976c3e6e843cb2}\label{ui_8c_ad53c154a0a2663edc2976c3e6e843cb2}} 
+\index{ui.c@{ui.c}!label@{label}}
+\index{label@{label}!ui.c@{ui.c}}
+\doxysubsubsection{\texorpdfstring{label}{label}}
+{\footnotesize\ttfamily Gtk\+Widget$\ast$ label}
+
+
+
+Definition at line 19 of file ui.\+c.
+
+\mbox{\Hypertarget{ui_8c_a35bbeb8114541492732687f126741f3d}\label{ui_8c_a35bbeb8114541492732687f126741f3d}} 
+\index{ui.c@{ui.c}!lrotate@{lrotate}}
+\index{lrotate@{lrotate}!ui.c@{ui.c}}
+\doxysubsubsection{\texorpdfstring{lrotate}{lrotate}}
+{\footnotesize\ttfamily Gtk\+Widget$\ast$ lrotate}
+
+
+
+Definition at line 22 of file ui.\+c.
+
+\mbox{\Hypertarget{ui_8c_a2b174cfb62c7f343a1ed1cda3a372e38}\label{ui_8c_a2b174cfb62c7f343a1ed1cda3a372e38}} 
+\index{ui.c@{ui.c}!rotation@{rotation}}
+\index{rotation@{rotation}!ui.c@{ui.c}}
+\doxysubsubsection{\texorpdfstring{rotation}{rotation}}
+{\footnotesize\ttfamily int rotation = 0}
+
+
+
+Definition at line 23 of file ui.\+c.
+
+\mbox{\Hypertarget{ui_8c_a3d346c08cf2d67c388caabffb412b293}\label{ui_8c_a3d346c08cf2d67c388caabffb412b293}} 
+\index{ui.c@{ui.c}!window@{window}}
+\index{window@{window}!ui.c@{ui.c}}
+\doxysubsubsection{\texorpdfstring{window}{window}}
+{\footnotesize\ttfamily Gtk\+Widget$\ast$ window}
+
+
+
+Definition at line 16 of file ui.\+c.
+

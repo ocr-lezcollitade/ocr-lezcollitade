@@ -32,7 +32,7 @@ int \mbox{\hyperlink{sudoku__split_8c_a7fb6298338d6337fbc0889a2eea1dffd}{thres}}
 
 
 
-Definition at line \mbox{\hyperlink{sudoku__split_8c_source_l00007}{7}} of file \mbox{\hyperlink{sudoku__split_8c_source}{sudoku\+\_\+split.\+c}}.
+Definition at line 7 of file sudoku\+\_\+split.\+c.
 
 
 
@@ -56,26 +56,26 @@ splits the sudoku grid into 81 squares
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{sudoku__split_8c_source_l00440}{440}} of file \mbox{\hyperlink{sudoku__split_8c_source}{sudoku\+\_\+split.\+c}}.
+Definition at line 440 of file sudoku\+\_\+split.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00441 \{}
-\DoxyCodeLine{00442     \textcolor{comment}{// Initializes the SDL.}}
-\DoxyCodeLine{00443     \textcolor{keywordflow}{if} (SDL\_Init(SDL\_INIT\_VIDEO) != 0)}
-\DoxyCodeLine{00444         errx(EXIT\_FAILURE, \textcolor{stringliteral}{"{}\%s"{}}, SDL\_GetError());}
-\DoxyCodeLine{00445 }
-\DoxyCodeLine{00446     SDL\_Surface *surface = load\_image(black\_white);}
-\DoxyCodeLine{00447     SDL\_Surface *sudoku = load\_image(grayscale);}
-\DoxyCodeLine{00448 }
-\DoxyCodeLine{00449     line\_detection(surface, sudoku);}
-\DoxyCodeLine{00450 }
-\DoxyCodeLine{00451     \textcolor{comment}{// IMG\_SavePNG(surface, "{}hough.png"{});}}
-\DoxyCodeLine{00452     SDL\_FreeSurface(surface);}
-\DoxyCodeLine{00453 }
-\DoxyCodeLine{00454     \textcolor{comment}{// Destroys the objects.}}
-\DoxyCodeLine{00455     SDL\_Quit();}
-\DoxyCodeLine{00456 \}}
+\DoxyCodeLine{441 \{}
+\DoxyCodeLine{442     \textcolor{comment}{// Initializes the SDL.}}
+\DoxyCodeLine{443     \textcolor{keywordflow}{if} (SDL\_Init(SDL\_INIT\_VIDEO) != 0)}
+\DoxyCodeLine{444         errx(EXIT\_FAILURE, \textcolor{stringliteral}{"{}\%s"{}}, SDL\_GetError());}
+\DoxyCodeLine{445 }
+\DoxyCodeLine{446     SDL\_Surface *surface = load\_image(black\_white);}
+\DoxyCodeLine{447     SDL\_Surface *sudoku = load\_image(grayscale);}
+\DoxyCodeLine{448 }
+\DoxyCodeLine{449     line\_detection(surface, sudoku);}
+\DoxyCodeLine{450 }
+\DoxyCodeLine{451     \textcolor{comment}{// IMG\_SavePNG(surface, "{}hough.png"{});}}
+\DoxyCodeLine{452     SDL\_FreeSurface(surface);}
+\DoxyCodeLine{453 }
+\DoxyCodeLine{454     \textcolor{comment}{// Destroys the objects.}}
+\DoxyCodeLine{455     SDL\_Quit();}
+\DoxyCodeLine{456 \}}
 
 \end{DoxyCode}
 
@@ -89,5 +89,5 @@ Definition at line \mbox{\hyperlink{sudoku__split_8c_source_l00440}{440}} of fil
 
 
 
-Definition at line \mbox{\hyperlink{sudoku__split_8c_source_l00009}{9}} of file \mbox{\hyperlink{sudoku__split_8c_source}{sudoku\+\_\+split.\+c}}.
+Definition at line 9 of file sudoku\+\_\+split.\+c.
 

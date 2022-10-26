@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rows_0',['rows',['../structmatrix__t.html#a9620f15b4416ec1830196db9ec904fc5',1,'matrix_t']]]
+  ['preactivation_250',['preactivation',['../structnetwork__results__t.html#af7672c61fcb9cc66af09d166c98dfa0c',1,'network_results_t']]]
 ];
