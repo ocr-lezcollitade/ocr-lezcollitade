@@ -1,0 +1,189 @@
+\hypertarget{color__removal_8c_source}{}\doxysection{color\+\_\+removal.\+c}
+\label{color__removal_8c_source}\index{src/preproc/color\_removal/color\_removal.c@{src/preproc/color\_removal/color\_removal.c}}
+\mbox{\hyperlink{color__removal_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00001}00001 \textcolor{preprocessor}{\#include <SDL2/SDL.h>}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00002}00002 \textcolor{preprocessor}{\#include <SDL2/SDL\_image.h>}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00003}00003 \textcolor{preprocessor}{\#include <err.h>}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00004}00004 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{color__removal_8h}{color\_removal.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00005}00005 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00006}00006 \textcolor{keyword}{static} Uint32 pixel\_to\_grayscale(Uint32 pixel\_color, SDL\_Surface *surface)}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00007}00007 \{}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00008}00008     Uint8 r, g, b;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00009}00009     SDL\_GetRGB(pixel\_color, surface-\/>format, \&r, \&g, \&b);}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00011}00011     Uint8 average = floor(0.299 * r + 0.587 * g + 0.114 * b);}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00013}00013     r = average;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00014}00014     g = average;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00015}00015     b = average;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00017}00017     Uint32 color = SDL\_MapRGB(surface-\/>format, r, g, b);}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00019}00019     \textcolor{keywordflow}{return} color;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00020}00020 \}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00022}\mbox{\hyperlink{color__removal_8c_a916836517383411ed420677f40cc2dcd}{00022}} \textcolor{keywordtype}{void} \mbox{\hyperlink{color__removal_8c_a916836517383411ed420677f40cc2dcd}{surface\_to\_grayscale}}(SDL\_Surface *surface)}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00023}00023 \{}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00024}00024     Uint32 *pixels = surface-\/>pixels;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00026}00026     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < (surface-\/>w * surface-\/>h); i++)}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00027}00027         pixels[i] = pixel\_to\_grayscale(pixels[i], surface);}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00028}00028 \}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00030}00030 \textcolor{keyword}{static} Uint32 pixel\_to\_binary(}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00031}00031     Uint32 pixel\_color, SDL\_Surface *surface, \textcolor{keywordtype}{int} threshold)}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00032}00032 \{}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00033}00033     Uint8 r, g, b;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00034}00034     SDL\_GetRGB(pixel\_color, surface-\/>format, \&r, \&g, \&b);}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00036}00036     Uint8 average = 0.299 * r + 0.587 * g + 0.114 * b;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00038}00038     \textcolor{keywordflow}{if} (average > threshold)}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00039}00039         r = g = b = 0;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00040}00040     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00041}00041         r = g = b = 255;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00043}00043     Uint32 color = SDL\_MapRGB(surface-\/>format, r, g, b);}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00045}00045     \textcolor{keywordflow}{return} color;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00046}00046 \}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00047}00047 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00048}\mbox{\hyperlink{color__removal_8c_a24fa3688a16d996344575681ae988134}{00048}} \textcolor{keywordtype}{void} \mbox{\hyperlink{color__removal_8c_a24fa3688a16d996344575681ae988134}{surface\_to\_binary}}(SDL\_Surface *surface, \textcolor{keywordtype}{int} threshold)}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00049}00049 \{}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00050}00050     Uint32 *pixels = surface-\/>pixels;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00051}00051 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00052}00052     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < (surface-\/>w * surface-\/>h); i++)}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00053}00053         pixels[i] = pixel\_to\_binary(pixels[i], surface, threshold);}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00054}00054 \}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00056}00056 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00057}00057 \textcolor{comment}{void print\_histo(int histo[])}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00058}00058 \textcolor{comment}{\{}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00059}00059 \textcolor{comment}{    for (int i = 0; i < 256; i++)}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00060}00060 \textcolor{comment}{    \{}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00061}00061 \textcolor{comment}{        int n = histo[i];}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00062}00062 \textcolor{comment}{        printf("{}\%i "{}, i);}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00063}00063 \textcolor{comment}{        for (int j = 0; j < n/42; j++)}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00064}00064 \textcolor{comment}{            printf("{}*"{});}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00065}00065 \textcolor{comment}{        printf("{}\(\backslash\)n"{});}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00066}00066 \textcolor{comment}{    \}}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00067}00067 \textcolor{comment}{\}}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00068}00068 \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00069}00069 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00070}00070 \textcolor{keyword}{static} \textcolor{keywordtype}{void} fill\_histo(SDL\_Surface *surface, \textcolor{keywordtype}{int} histo[])}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00071}00071 \{}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00072}00072     Uint32 *pixels = surface-\/>pixels;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00073}00073 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00074}00074     Uint8 r, g, b;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00076}00076     \textcolor{keywordtype}{int} length = surface-\/>w * surface-\/>h;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00077}00077     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < length; i++)}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00078}00078     \{}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00079}00079         SDL\_GetRGB(pixels[i], surface-\/>format, \&r, \&g, \&b);}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00080}00080 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00081}00081         \textcolor{keywordtype}{int} gray = floor(0.299 * r + 0.587 * g + 0.114 * b);}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00082}00082 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00083}00083         histo[gray] = histo[gray] + 1;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00084}00084     \}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00085}00085 \}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00086}00086 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00087}\mbox{\hyperlink{color__removal_8c_a1dffa7e09981c4705e52c62f79ad57b1}{00087}} \textcolor{keywordtype}{int} \mbox{\hyperlink{color__removal_8c_a1dffa7e09981c4705e52c62f79ad57b1}{otsu}}(SDL\_Surface *surface)}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00088}00088 \{}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00089}00089     \textcolor{keywordtype}{int} histo[256] = \{0\};}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00090}00090     fill\_histo(surface, histo);}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00091}00091 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00092}00092     \textcolor{keywordtype}{int} total = surface-\/>w * surface-\/>h;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00093}00093     \textcolor{keywordtype}{int} level = 0;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00094}00094     \textcolor{keywordtype}{double} sumB = 0, max = 0, sum = 0, wB = 0;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00095}00095     \textcolor{keywordtype}{double} wF, mean\_F;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00096}00096 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00097}00097     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 256; i++)}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00098}00098         sum += i * histo[i];}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00099}00099 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00100}00100     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 1; i < 200; i++)}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00101}00101     \{}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00102}00102         wF = total -\/ wB;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00103}00103         \textcolor{keywordflow}{if} (wB > 0 \&\& wF > 0)}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00104}00104         \{}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00105}00105             mean\_F = (sum -\/ sumB) / wF;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00106}00106             \textcolor{keywordtype}{double} val}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00107}00107                 = wB * wF * ((sumB / wB) -\/ mean\_F) * ((sumB / wB) -\/ mean\_F);}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00108}00108             \textcolor{keywordflow}{if} (val >= max)}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00109}00109             \{}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00110}00110                 level = i;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00111}00111                 max = val;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00112}00112             \}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00113}00113         \}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00114}00114         wB += histo[i];}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00115}00115         sumB = sumB + (i -\/ 1) * histo[i];}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00116}00116     \}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00117}00117 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00118}00118     \textcolor{keywordflow}{return} level;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00119}00119 \}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00120}00120 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00121}00121 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00122}00122 \textcolor{comment}{    median 3x3}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00123}00123 \textcolor{comment}{    int kernel[] =}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00124}00124 \textcolor{comment}{        \{1, 1, 1,}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00125}00125 \textcolor{comment}{         1, 1, 1,}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00126}00126 \textcolor{comment}{         1, 1, 1\};}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00127}00127 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00128}00128 \textcolor{comment}{    gaussian 3x3}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00129}00129 \textcolor{comment}{    int kernel[] =}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00130}00130 \textcolor{comment}{        \{1, 2, 1,}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00131}00131 \textcolor{comment}{         2, 4, 2,}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00132}00132 \textcolor{comment}{         1, 2, 1\};}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00133}00133 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00134}00134 \textcolor{comment}{    gaussian 5x5}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00135}00135 \textcolor{comment}{    int kernel[] =}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00136}00136 \textcolor{comment}{        \{1, 4, 7, 4, 1,}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00137}00137 \textcolor{comment}{         4, 16, 26, 16, 4,}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00138}00138 \textcolor{comment}{         7, 26, 41, 26, 7,}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00139}00139 \textcolor{comment}{         4, 16, 26, 16, 4,}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00140}00140 \textcolor{comment}{         1, 4, 7, 4, 1\};}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00141}00141 \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00142}\mbox{\hyperlink{color__removal_8c_a017c197cebef5a7b13cbb4a418ca3ede}{00142}} SDL\_Surface *\mbox{\hyperlink{color__removal_8c_a017c197cebef5a7b13cbb4a418ca3ede}{blur}}(SDL\_Surface *surface)}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00143}00143 \{}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00144}00144     \textcolor{keywordtype}{int} kernel[] = \{1, 2, 1, 2, 4, 2, 1, 2, 1\};}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00145}00145     \textcolor{keywordtype}{int} size = 3;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00146}00146 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00147}00147     SDL\_Surface *new\_surface}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00148}00148         = SDL\_CreateRGBSurface(0, surface-\/>w, surface-\/>h, 32, 0, 0, 0, 0);}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00149}00149 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00150}00150     Uint32 *pixels = surface-\/>pixels;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00151}00151     Uint32 *new\_pixels = new\_surface-\/>pixels;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00152}00152     Uint8 r, g, b;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00153}00153 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00154}00154     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} x = 0; x < surface-\/>w; x++)}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00155}00155         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} y = 0; y < surface-\/>h; y++)}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00156}00156         \{}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00157}00157             \textcolor{keywordtype}{int} shift = size / 2;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00158}00158             \textcolor{keywordtype}{int} weight = 0, sum = 0, ki = 0;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00159}00159 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00160}00160             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} s\_x = shift -\/ size; s\_x < shift; s\_x++)}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00161}00161                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} s\_y = shift -\/ size; s\_y < shift; s\_y++)}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00162}00162                 \{}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00163}00163                     \textcolor{keywordtype}{int} coord = (y + s\_y) * surface-\/>w + x + s\_x;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00164}00164                     if (coord >= 0)}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00165}00165                     \{}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00166}00166                         SDL\_GetRGB(pixels[coord], surface-\/>format, \&r, \&g, \&b);}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00167}00167 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00168}00168                         sum += kernel[ki]}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00169}00169                                * floor(0.299 * r + 0.587 * g + 0.114 * b);}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00170}00170                         weight += kernel[ki];}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00171}00171                     \}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00172}00172                     ki++;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00173}00173                 \}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00174}00174 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00175}00175             \textcolor{keywordtype}{int} coord = y * surface-\/>w + x;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00176}00176             \textcolor{keywordtype}{int} c = sum / weight;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00177}00177 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00178}00178             Uint32 color = SDL\_MapRGB(surface-\/>format, c, c, c);}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00179}00179             new\_pixels[coord] = color;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00180}00180         \}}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00181}00181 }
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00182}00182     \textcolor{keywordflow}{return} new\_surface;}
+\DoxyCodeLine{\Hypertarget{color__removal_8c_source_l00183}00183 \}}
+
+\end{DoxyCode}

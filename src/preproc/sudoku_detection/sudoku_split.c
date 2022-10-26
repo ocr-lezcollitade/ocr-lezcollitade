@@ -18,7 +18,8 @@ static SDL_Surface *load_image(const char *path)
     if (tmp == NULL)
         errx(EXIT_FAILURE, "%s", SDL_GetError());
 
-    SDL_Surface *surface = SDL_ConvertSurfaceFormat(tmp, SDL_PIXELFORMAT_RGB888, 0);
+    SDL_Surface *surface
+        = SDL_ConvertSurfaceFormat(tmp, SDL_PIXELFORMAT_RGB888, 0);
     SDL_FreeSurface(tmp);
 
     if (surface == NULL)

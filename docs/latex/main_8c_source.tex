@@ -214,7 +214,7 @@
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00210}00210         \textcolor{keywordtype}{size\_t} succeeded = 0, tests = 0;}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00211}00211         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} j = 0; j < length \&\& keep\_running; j++)}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00212}00212         \{}
-\DoxyCodeLine{\Hypertarget{main_8c_source_l00213}00213             \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *res = \mbox{\hyperlink{network_8c_a49d5f5101cda3ffc8355a0237ee16709}{compute\_result}}(inputs[j], net);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00213}00213             \mbox{\hyperlink{structmatrix__t}{matrix\_t}} *res = \mbox{\hyperlink{network_8c_a0deec64877feb7870914ededb0a09746}{compute\_results}}(inputs[j], net);}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00214}00214             \textcolor{keywordtype}{int} out = \mbox{\hyperlink{network_8c_a338eaca7b062c45c2ddf651ec7bfb5ab}{network\_get\_output}}(res, 0);}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00215}00215             \textcolor{keywordtype}{int} ex = \mbox{\hyperlink{network_8c_a338eaca7b062c45c2ddf651ec7bfb5ab}{network\_get\_output}}(outputs[j], 0);}
 \DoxyCodeLine{\Hypertarget{main_8c_source_l00216}00216             \mbox{\hyperlink{matrix_8c_aa20fd2a5c773eda620ce98e2f121b687}{matrix\_free}}(res);}

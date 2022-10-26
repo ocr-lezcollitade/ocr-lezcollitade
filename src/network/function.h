@@ -5,16 +5,16 @@
 #include "network.h"
 
 double activation(
-    size_t layer, size_t neuron, double arg, const network_results_t *results);
+    size_t layer, size_t neuron, double arg, network_results_t *results);
 
 double activation_derivative(
-    size_t layer, size_t neuron, double arg, const network_results_t *results);
+    size_t layer, size_t neuron, double arg, network_results_t *results);
 
 double output_activation(
-    size_t layer, size_t neuron, double arg, const network_results_t *results);
+    size_t layer, size_t neuron, double arg, network_results_t *results);
 
 double output_activation_derivative(
-    size_t layer, size_t neuron, double arg, const network_results_t *results);
+    size_t layer, size_t neuron, double arg, network_results_t *results);
 
 double cost(matrix_t *target, matrix_t *output);
 

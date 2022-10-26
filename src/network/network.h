@@ -14,8 +14,8 @@ typedef struct network_results_t network_results_t;
  *  \param input    The value of the neuron before the activation function.
  *  \param results  The network_results_structures.
  */
-typedef double (*activation_t)(size_t layer, size_t neuron, double input,
-    const network_results_t *results);
+typedef double (*activation_t)(
+    size_t layer, size_t neuron, double input, network_results_t *results);
 /**
  *  \brief          A struct representing a neuron in the network.
  *  \struct         neuron_t
@@ -63,6 +63,8 @@ struct network_results_t
     matrix_t **preactivation;
     /*! The values of all layers before the actvation function. */
     network_t *network; /*! The linked network */
+
+    void *cache; /*! cached data to be used accross function calls */
 };
 
 /**
@@ -185,21 +187,31 @@ void network_free(network_t *network);
  *  \fn             void compute_layer(matrix_t *results, layer_t *layer
  *  mat_transform_t activation)
  *  \param inputs   The column vector of inputs from the previous layer.
- *  \param layer    The layer to compute.
  *  \param layeri   The index of the layer.
  *  \return         The column vector of outputs.
  */
-void compute_layer(network_results_t *results, layer_t *layer, size_t layeri);
+void compute_layer(network_results_t *results, size_t layeri);
 
 /**
  *  \brief          Computes the result of the input by the network.
- *  \fn             matrix_t *compute_result(matrix_t *inputs,
+ *  \fn             matrix_t *compute_results(matrix_t *inputs,
  *                                              network_t *network)
  *  \param inputs   The column vector of the values.
  *  \param network  The network to apply the values to.
  *  \return         The column vector of the computed results.
  */
-matrix_t *compute_result(matrix_t *values, network_t *network);
+matrix_t *compute_results(matrix_t *values, network_t *network);
+
+/**
+ *  \brief          Computes the result while saving the result of each layers.
+ *  \fn             void compute_results_save(
+ *      network_results_t *results,
+ *      network_t *network
+ *  )
+ *  \param results  The results struct.
+ *  \param network  The network to compute the results from.
+ */
+void compute_results_save(network_results_t *results, network_t *network);
 
 /**
  *  \brief          Create a deep copied network.
@@ -221,17 +233,6 @@ void network_train(
  *  \return         The calculated output or -1 if none above the threshold.
  */
 int network_get_output(matrix_t *outputs, double threshold);
-
-/**
- *  \brief          Computes the result while saving the result of each layers.
- *  \fn             matrix_t *compute_result_with_save(
- *      network_results_t *results,
- *      network_t *network
- *  )
- *  \param results  The results of the network.
- */
-network_results_t *compute_result_with_save(
-    matrix_t *inputs, network_t *network);
 
 /**
  *  \brief          Creates a network_results struct.
