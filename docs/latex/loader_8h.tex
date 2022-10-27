@@ -24,7 +24,7 @@ size\+\_\+t \mbox{\hyperlink{loader_8h_a22e9acd7bcdfe93ae43b91415fe1fe8f}{load\+
 
 
 
-Definition at line \mbox{\hyperlink{loader_8h_source_l00006}{6}} of file \mbox{\hyperlink{loader_8h_source}{loader.\+h}}.
+Definition at line 6 of file loader.\+h.
 
 \mbox{\Hypertarget{loader_8h_a3d8d65e2de4c173a15a05a5d5dda60b8}\label{loader_8h_a3d8d65e2de4c173a15a05a5d5dda60b8}} 
 \index{loader.h@{loader.h}!CSV\_MODE@{CSV\_MODE}}
@@ -34,7 +34,7 @@ Definition at line \mbox{\hyperlink{loader_8h_source_l00006}{6}} of file \mbox{\
 
 
 
-Definition at line \mbox{\hyperlink{loader_8h_source_l00007}{7}} of file \mbox{\hyperlink{loader_8h_source}{loader.\+h}}.
+Definition at line 7 of file loader.\+h.
 
 
 
@@ -47,53 +47,53 @@ Definition at line \mbox{\hyperlink{loader_8h_source_l00007}{7}} of file \mbox{\
 
 
 
-Definition at line \mbox{\hyperlink{loader_8c_source_l00182}{182}} of file \mbox{\hyperlink{loader_8c_source}{loader.\+c}}.
+Definition at line 182 of file loader.\+c.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00185 \{}
-\DoxyCodeLine{00186 }
-\DoxyCodeLine{00187     \textcolor{keywordflow}{if} (strcmp(mode, \mbox{\hyperlink{loader_8h_a3d8d65e2de4c173a15a05a5d5dda60b8}{CSV\_MODE}}) \&\& strcmp(mode, \mbox{\hyperlink{loader_8h_a399981b4dd18f0e6b9252badf307ce05}{BINARY\_MODE}}))}
-\DoxyCodeLine{00188     \{}
-\DoxyCodeLine{00189         \textcolor{keywordflow}{return} 0;}
-\DoxyCodeLine{00190     \}}
-\DoxyCodeLine{00191 }
-\DoxyCodeLine{00192     FILE *file = fopen(path, mode);}
-\DoxyCodeLine{00193     \textcolor{keywordflow}{if} (file == NULL)}
-\DoxyCodeLine{00194         \textcolor{keywordflow}{return} 0;}
-\DoxyCodeLine{00195 }
-\DoxyCodeLine{00196     \textcolor{keywordflow}{if} (length == 0)}
-\DoxyCodeLine{00197     \{}
-\DoxyCodeLine{00198         *\_inputs = NULL;}
-\DoxyCodeLine{00199         *\_expected = NULL;}
-\DoxyCodeLine{00200         \textcolor{keywordflow}{if} (strcmp(mode, \mbox{\hyperlink{loader_8h_a3d8d65e2de4c173a15a05a5d5dda60b8}{CSV\_MODE}}) == 0)}
-\DoxyCodeLine{00201             length = load\_csv\_dynamic(}
-\DoxyCodeLine{00202                 file, \_inputs, \_expected, start, inputsize, outputsize);}
-\DoxyCodeLine{00203         \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00204             length = 0;}
-\DoxyCodeLine{00205     \}}
-\DoxyCodeLine{00206     \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00207     \{}
-\DoxyCodeLine{00208         *\_inputs = (\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **)malloc(length * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *));}
-\DoxyCodeLine{00209         \textcolor{keywordflow}{if} (*\_inputs == NULL)}
-\DoxyCodeLine{00210             \textcolor{keywordflow}{return} 0;}
-\DoxyCodeLine{00211         *\_expected = (\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **)malloc(length * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *));}
-\DoxyCodeLine{00212         \textcolor{keywordflow}{if} (*\_expected == NULL)}
-\DoxyCodeLine{00213             \textcolor{keywordflow}{return} 0;}
-\DoxyCodeLine{00214         init\_vectors(*\_expected, length, outputsize, 1);}
-\DoxyCodeLine{00215         init\_vectors(*\_inputs, length, inputsize, 0);}
-\DoxyCodeLine{00216         \textcolor{keywordflow}{if} (strcmp(mode, \mbox{\hyperlink{loader_8h_a3d8d65e2de4c173a15a05a5d5dda60b8}{CSV\_MODE}}) == 0)}
-\DoxyCodeLine{00217         \{}
-\DoxyCodeLine{00218             length = load\_csv(file, *\_inputs, *\_expected, start, length);}
-\DoxyCodeLine{00219         \}}
-\DoxyCodeLine{00220         \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00221         \{}
-\DoxyCodeLine{00222             length = 0;}
-\DoxyCodeLine{00223         \}}
-\DoxyCodeLine{00224     \}}
-\DoxyCodeLine{00225 }
-\DoxyCodeLine{00226     fclose(file);}
-\DoxyCodeLine{00227     \textcolor{keywordflow}{return} length;}
-\DoxyCodeLine{00228 \}}
+\DoxyCodeLine{185 \{}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187     \textcolor{keywordflow}{if} (strcmp(mode, \mbox{\hyperlink{loader_8h_a3d8d65e2de4c173a15a05a5d5dda60b8}{CSV\_MODE}}) \&\& strcmp(mode, \mbox{\hyperlink{loader_8h_a399981b4dd18f0e6b9252badf307ce05}{BINARY\_MODE}}))}
+\DoxyCodeLine{188     \{}
+\DoxyCodeLine{189         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{190     \}}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192     FILE *file = fopen(path, mode);}
+\DoxyCodeLine{193     \textcolor{keywordflow}{if} (file == NULL)}
+\DoxyCodeLine{194         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196     \textcolor{keywordflow}{if} (length == 0)}
+\DoxyCodeLine{197     \{}
+\DoxyCodeLine{198         *\_inputs = NULL;}
+\DoxyCodeLine{199         *\_expected = NULL;}
+\DoxyCodeLine{200         \textcolor{keywordflow}{if} (strcmp(mode, \mbox{\hyperlink{loader_8h_a3d8d65e2de4c173a15a05a5d5dda60b8}{CSV\_MODE}}) == 0)}
+\DoxyCodeLine{201             length = load\_csv\_dynamic(}
+\DoxyCodeLine{202                 file, \_inputs, \_expected, start, inputsize, outputsize);}
+\DoxyCodeLine{203         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{204             length = 0;}
+\DoxyCodeLine{205     \}}
+\DoxyCodeLine{206     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{207     \{}
+\DoxyCodeLine{208         *\_inputs = (\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **)malloc(length * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *));}
+\DoxyCodeLine{209         \textcolor{keywordflow}{if} (*\_inputs == NULL)}
+\DoxyCodeLine{210             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{211         *\_expected = (\mbox{\hyperlink{structmatrix__t}{matrix\_t}} **)malloc(length * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}} *));}
+\DoxyCodeLine{212         \textcolor{keywordflow}{if} (*\_expected == NULL)}
+\DoxyCodeLine{213             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{214         init\_vectors(*\_expected, length, outputsize, 1);}
+\DoxyCodeLine{215         init\_vectors(*\_inputs, length, inputsize, 0);}
+\DoxyCodeLine{216         \textcolor{keywordflow}{if} (strcmp(mode, \mbox{\hyperlink{loader_8h_a3d8d65e2de4c173a15a05a5d5dda60b8}{CSV\_MODE}}) == 0)}
+\DoxyCodeLine{217         \{}
+\DoxyCodeLine{218             length = load\_csv(file, *\_inputs, *\_expected, start, length);}
+\DoxyCodeLine{219         \}}
+\DoxyCodeLine{220         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{221         \{}
+\DoxyCodeLine{222             length = 0;}
+\DoxyCodeLine{223         \}}
+\DoxyCodeLine{224     \}}
+\DoxyCodeLine{225 }
+\DoxyCodeLine{226     fclose(file);}
+\DoxyCodeLine{227     \textcolor{keywordflow}{return} length;}
+\DoxyCodeLine{228 \}}
 
 \end{DoxyCode}
