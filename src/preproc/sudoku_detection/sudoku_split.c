@@ -161,6 +161,57 @@ static void remove_border(SDL_Surface *surface, size_t w, size_t h)
             pixels[j * w + i] = SDL_MapRGB(format, 0, 0, 0);
 }
 
+static void average(size_t i, size_t j, double ratio_h, double ratio_w,
+    size_t w, SDL_PixelFormat *format, Uint32 *pixels, int *avr, int *avg,
+    int *avb)
+{
+    *avr = 0;
+    *avg = 0;
+    *avb = 0;
+    size_t count = 0;
+    for (size_t x = 0; x < (size_t)ratio_w; x++)
+        for (size_t y = 0; y < (size_t)ratio_h; y++)
+        {
+            Uint8 r, g, b;
+            SDL_GetRGB(pixels[(size_t)((j + y) * ratio_h) * w
+                              + (size_t)((i + x) * ratio_w)],
+                format, &r, &g, &b);
+            *avr += r;
+            *avg += g;
+            *avb += b;
+            count++;
+        }
+    *avr = floor(*avr / count);
+    *avg = floor(*avg / count);
+    *avb = floor(*avb / count);
+}
+
+SDL_Surface *scale_down(
+    SDL_Surface *surface, size_t w, size_t h, size_t new_w, size_t new_h)
+{
+    SDL_Surface *output
+        = SDL_CreateRGBSurface(0, (int)new_w, (int)new_h, 32, 0, 0, 0, 0);
+
+    SDL_PixelFormat *format = surface->format;
+    SDL_PixelFormat *format_output = output->format;
+
+    Uint32 *pixels = surface->pixels;
+    Uint32 *pixels_output = output->pixels;
+
+    double ratio_h = ((double)h / new_h);
+    double ratio_w = ((double)w / new_w);
+
+    for (size_t j = 0; j < new_h; j++)
+        for (size_t i = 0; i < new_w; i++)
+        {
+            int r, g, b;
+            average(i, j, ratio_h, ratio_w, w, format, pixels, &r, &g, &b);
+            pixels_output[j * new_w + i] = SDL_MapRGB(format_output, r, g, b);
+        }
+
+    return output;
+}
+
 static void square(SDL_Surface *surface, size_t x1, size_t y1, size_t x2,
     size_t y2, size_t name)
 {
@@ -191,14 +242,16 @@ static void square(SDL_Surface *surface, size_t x1, size_t y1, size_t x2,
     }
 
     remove_border(output, x2 - x1, y2 - y1);
+    SDL_Surface *final = scale_down(output, x2 - x1, y2 - y1, 28, 28);
 
     SDL_UnlockSurface(surface);
     SDL_UnlockSurface(output);
+    SDL_FreeSurface(output);
 
     char out[10];
     snprintf(out, 7, "%zu.png", name);
-    IMG_SavePNG(output, out);
-    SDL_FreeSurface(output);
+    IMG_SavePNG(final, out);
+    SDL_FreeSurface(final);
 }
 
 static void cut_squares(matrix_t *inter, SDL_Surface *surface, size_t len)
@@ -449,9 +502,8 @@ void sudoku_split(char *black_white, char *grayscale)
 
     line_detection(surface, sudoku);
 
-    // IMG_SavePNG(surface, "hough.png");
     SDL_FreeSurface(surface);
+    SDL_FreeSurface(sudoku);
 
-    // Destroys the objects.
     SDL_Quit();
 }
