@@ -22,7 +22,7 @@ void pixel_to_grayscale(
     SDL_GetRGB(pixel_color, format, &r, &g, &b);
     Uint8 average = 0.3 * r + 0.59 * g + 0.11 * b;
     double val = (double)average / 255.0;
-    values[i] = val <= 0.5 ? 1 - val : 0.0;
+    values[i] = val >= 0.5 ? val : 0.0;
 }
 
 double *surface_to_grayscale_img(SDL_Surface *surface)
