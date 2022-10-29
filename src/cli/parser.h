@@ -10,8 +10,11 @@
 #define ITERATIONS RATE + 1
 #define START ITERATIONS + 1
 #define LENGTH START + 1
+#define OUTPUT_ACTIVATION LENGTH + 1
+#define ACTIVATION OUTPUT_ACTIVATION + 1
+#define VERBOSE ACTIVATION + 1
 
-#define TRAIN_PARAMETER_SIZE LENGTH + 1
+#define TRAIN_PARAMETER_SIZE VERBOSE + 1
 
 /**
  *  \brief      A hash table of params.

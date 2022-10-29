@@ -14,8 +14,11 @@ static void on_number_stop(char *number, matrix_t **expected,
     int value = atoi(number);
     if (readchar == 0)
     {
-        // sets at position "value" the value 1
-        mat_set_el(expected[readline], value, 0, 1);
+        if (value >= 0)
+        {
+            // sets at position "value" the value 1
+            mat_set_el(expected[readline], value, 0, 1);
+        }
     }
     else
     {
@@ -65,7 +68,7 @@ static size_t load_csv(FILE *file, matrix_t **inputs, matrix_t **expected,
                 numberi = 0;
                 break;
             }
-            else if (c >= '0' && c <= '9')
+            else if ((c >= '0' && c <= '9') || (readchar == 0 && c == '-'))
             {
                 number[numberi] = c;
                 numberi++;
@@ -95,7 +98,10 @@ static void on_number_stop_dynamic(char *number, matrix_t ***expected,
         *expected = (matrix_t **)realloc(
             *expected, (readline + 1) * sizeof(matrix_t *));
         (*expected)[readline] = matrix_create(outputsize, 1, 0);
-        mat_set_el((*expected)[readline], value, 0, 1);
+        if (value >= 0)
+        {
+            mat_set_el((*expected)[readline], value, 0, 1);
+        }
     }
     else
     {
@@ -152,7 +158,7 @@ static size_t load_csv_dynamic(FILE *file, matrix_t ***inputs,
                 numberi = 0;
                 break;
             }
-            else if (c >= '0' && c <= '9')
+            else if ((c >= '0' && c <= '9') || (readchar == 0 && c == '-'))
             {
                 number[numberi] = c;
                 numberi++;

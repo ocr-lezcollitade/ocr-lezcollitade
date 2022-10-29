@@ -72,7 +72,7 @@ void compute_layer(network_results_t *results, size_t layeri)
     matrix_t *outputs = matrix_create(layer->count, 1, 0);
     for (size_t i = 0; i < layer->count; i++)
     {
-        double res = layer->activation(
+        double res = layer->act.activation(
             layeri, i, mat_el_at(preactivation, i, 0), results);
         mat_set_el(outputs, i, 0, res);
     }
@@ -117,8 +117,8 @@ void neuron_free(neuron_t *neuron)
     free(neuron);
 }
 
-layer_t *layer_create_from_mat(matrix_t **weights, double *biases,
-    size_t count, activation_t f, activation_t d)
+layer_t *layer_create_from_mat(
+    matrix_t **weights, double *biases, size_t count, layer_activation_t act)
 {
     layer_t *layer = (layer_t *)malloc(sizeof(layer_t));
     if (layer == NULL)
@@ -130,24 +130,21 @@ layer_t *layer_create_from_mat(matrix_t **weights, double *biases,
         free(layer);
         return NULL;
     }
-    layer->activation = f;
-    layer->dactivation = d;
+    layer->act = act;
     for (size_t i = 0; i < count; i++)
         layer->neurons[i] = neuron_create(weights[i], biases[i]);
 
     return layer;
 }
 
-layer_t *layer_create(
-    neuron_t **neurons, size_t count, activation_t f, activation_t d)
+layer_t *layer_create(neuron_t **neurons, size_t count, layer_activation_t act)
 {
     layer_t *layer = (layer_t *)malloc(sizeof(layer_t));
     if (layer == NULL)
         return NULL;
     layer->neurons = neurons;
     layer->count = count;
-    layer->activation = f;
-    layer->dactivation = d;
+    layer->act = act;
 
     return layer;
 }
@@ -293,14 +290,16 @@ inline static int parse_header(
 }
 
 inline static int parse_layer_header(
-    FILE *file, size_t *neuron_count, size_t *line)
+    FILE *file, size_t *neuron_count, size_t *line, char **activation_name)
 {
 
     char buffer[READ_LENGTH];
 
     size_t value = 0;
     int in_number = 0;
-    size_t index = 0;
+    size_t index = 0, element = 0, res_size = 1;
+    char *res = (char *)malloc(sizeof(char));
+    CHK(res, "parse_layer_header", "res could not be allocated");
     while (1)
     {
         if (fgets(buffer, READ_LENGTH, file) == NULL)
@@ -308,10 +307,20 @@ inline static int parse_layer_header(
         for (size_t i = 0; i < READ_LENGTH; i++, index++)
         {
             char c = buffer[i];
-            if (c >= '0' && c <= '9')
+            if (c >= '0' && c <= '9' && element == 0)
             {
                 in_number = 1;
                 value = parseSize(value, c);
+            }
+            else if (c == ',')
+            {
+                element++;
+            }
+            else if (element == 1 && c >= 'a' && c <= 'z')
+            {
+                res = (char *)realloc(res, (++res_size) * sizeof(char));
+                CHK(res, "parse_layer_header", "res could not be allocated");
+                res[res_size - 2] = c;
             }
             else if (c == '\n')
             {
@@ -322,11 +331,15 @@ inline static int parse_layer_header(
                     break;
                 }
                 *neuron_count = value;
+                *activation_name = res;
+                res[res_size - 1] = '\0';
                 return 1;
             }
             else if (c == '\0')
             {
                 *neuron_count = value;
+                *activation_name = res;
+                res[res_size - 1] = '\0';
                 return 0;
             }
             else if (c != ' ')
@@ -447,18 +460,23 @@ network_t *network_load(const char *path)
     layer_t **layers = (layer_t **)malloc(layer_count * sizeof(layer_t *));
     network_t *res = network_create(layers, layer_count, neuron_count);
     double *values;
+    char *activation_name = NULL;
     while (layer_index < layer_count)
     {
         if (!in_layer)
         {
             weight_count = neuron_count;
-            alive = parse_layer_header(file, &neuron_count, &line);
+            alive = parse_layer_header(
+                file, &neuron_count, &line, &activation_name);
+            layer_activation_t act = get_layer_activation(activation_name);
+            if (activation_name != NULL)
+                free(activation_name);
             line++;
             neuron_index = 0;
             in_layer = 1;
             layers[layer_index] = layer_create(
                 (neuron_t **)malloc(neuron_count * sizeof(neuron_t *)),
-                neuron_count, activation, activation_derivative);
+                neuron_count, act);
         }
         else
         {
@@ -482,9 +500,6 @@ network_t *network_load(const char *path)
     }
     // close the file
     fclose(file);
-    layer_t *output_layer = res->layers[res->layer_count - 1];
-    output_layer->activation = output_activation;
-    output_layer->dactivation = output_activation_derivative;
     return res;
 }
 
@@ -501,7 +516,7 @@ static inline void neuron_save(
 static inline void layer_save(FILE *file, layer_t *layer, size_t weight_count)
 {
 
-    fprintf(file, "%zu\n", layer->count);
+    fprintf(file, "%zu,%s\n", layer->count, layer->act.name);
     for (size_t i = 0; i < layer->count; i++)
     {
         neuron_save(file, layer->neurons[i], weight_count);
@@ -523,7 +538,8 @@ void network_save(const char *path, network_t *net)
     fclose(file);
 }
 
-network_t *network_generate(size_t *neuron_count, size_t size)
+network_t *network_generate(size_t *neuron_count, size_t size,
+    layer_activation_t hidden_activation, layer_activation_t output_activation)
 {
     if (size < 2)
         return NULL;
@@ -535,8 +551,7 @@ network_t *network_generate(size_t *neuron_count, size_t size)
     {
         size_t n_count = neuron_count[i];
         neuron_t **neurons = (neuron_t **)malloc(n_count * sizeof(neuron_t *));
-        layer_t *layer = layer_create(
-            neurons, n_count, activation, activation_derivative);
+        layer_t *layer = layer_create(neurons, n_count, hidden_activation);
         layers[i - 1] = layer;
         for (size_t ni = 0; ni < n_count; ni++)
         {
@@ -548,8 +563,7 @@ network_t *network_generate(size_t *neuron_count, size_t size)
     }
 
     layer_t *out = res->layers[res->layer_count - 1];
-    out->activation = output_activation;
-    out->dactivation = output_activation_derivative;
+    out->act = output_activation;
 
     return res;
 }
@@ -568,8 +582,7 @@ static layer_t *layer_copy(layer_t *layer)
         neurons[i] = neuron_copy(layer->neurons[i]);
     }
 
-    return layer_create(
-        neurons, layer->count, layer->activation, layer->dactivation);
+    return layer_create(neurons, layer->count, layer->act);
 }
 
 network_t *network_copy(network_t *old)
@@ -624,7 +637,7 @@ static void compute_deltas(
                 neuron_t *prev_neuron = prev_layer->neurons[k];
                 tmp_delta += mat_el_at(deltas[i + 1], k, 0)
                              * mat_el_at(prev_neuron->weights, 0, j)
-                             * layer->dactivation(i, j,
+                             * layer->act.dactivation(i, j,
                                  mat_el_at(outputs[i + 1], j, 0), results);
             }
             mat_set_el(delta, j, 0, tmp_delta);
@@ -681,7 +694,7 @@ void network_train(
         double delta = output_neuron_train(trained_layer->neurons[ni],
             old_layer->neurons[ni], rate, mat_el_at(target, ni, 0),
             mat_el_at(outputs[layer_i + 1], ni, 0), results, layer_i, ni,
-            old_layer->dactivation);
+            old_layer->act.dactivation);
         mat_set_el(deltas[layer_i], ni, 0, delta);
     }
 

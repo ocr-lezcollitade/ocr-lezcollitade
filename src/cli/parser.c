@@ -14,7 +14,7 @@ static params_t create_params(size_t length)
     return res;
 }
 
-static int get_next_key(const char *param)
+static int get_next_key(const char *param, params_t params)
 {
     int nextkey = -1;
     if (strcmp("-i", param) == 0 || strcmp("--input-network", param) == 0)
@@ -53,6 +53,19 @@ static int get_next_key(const char *param)
     {
         nextkey = LENGTH;
     }
+    else if (strcmp("--activation", param) == 0)
+    {
+        nextkey = ACTIVATION;
+    }
+    else if (strcmp("--output-activation", param) == 0)
+    {
+        nextkey = OUTPUT_ACTIVATION;
+    }
+    else if (strcmp("--verbose", param) == 0 || strcmp("-v", param) == 0)
+    {
+        params[VERBOSE] = (char *)0x1;
+        nextkey = -1;
+    }
     else
     {
         errx(-1, "Unknown flag %s", param);
@@ -70,7 +83,7 @@ static params_t _parse_params(int argc, char **argv)
         char *param = argv[i];
         if (nextkey == -1)
         {
-            nextkey = get_next_key(param);
+            nextkey = get_next_key(param, res);
         }
         else
         {

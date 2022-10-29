@@ -1,7 +1,8 @@
 CC=gcc
-BASE_FLAGS=-Wall -Werror -Wextra -c `pkg-config --cflags sdl2 SDL2_image`
+
+BASE_FLAGS=-Wall -Wextra -c `pkg-config --cflags sdl2 SDL2_image`
 CFLAGS=$(BASE_FLAGS) -O3
-DFLAGS=$(BASE_FLAGS) -O0 -g -fsanitize=address
+DFLAGS=$(BASE_FLAGS) -Werror -O0 -g -fsanitize=address
 
 LD=gcc
 LDFLAGS=-lm
