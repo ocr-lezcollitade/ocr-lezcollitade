@@ -40,30 +40,30 @@ The hash table of params.
 \end{DoxyReturn}
 
 
-Definition at line 100 of file parser.\+c.
+Definition at line \mbox{\hyperlink{parser_8c_source_l00100}{100}} of file \mbox{\hyperlink{parser_8c_source}{parser.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{101 \{}
-\DoxyCodeLine{102     \textcolor{keywordflow}{if} (argc < 2)}
-\DoxyCodeLine{103     \{}
-\DoxyCodeLine{104         \textcolor{keywordflow}{return} NULL;}
-\DoxyCodeLine{105     \}}
-\DoxyCodeLine{106 }
-\DoxyCodeLine{107     \mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}} res = NULL;}
-\DoxyCodeLine{108     \textcolor{keywordtype}{char} *subcommand = argv[1];}
-\DoxyCodeLine{109     \textcolor{keywordflow}{if} (strcmp(subcommand, \textcolor{stringliteral}{"{}train"{}}) == 0)}
-\DoxyCodeLine{110     \{}
-\DoxyCodeLine{111         *mode = \mbox{\hyperlink{parser_8h_a9bfdcc2e01a085b81125cadcfe83cb66}{TRAIN\_MODE}};}
-\DoxyCodeLine{112         res = \mbox{\hyperlink{parser_8c_ab2f489b7f919e61d84e74826ca0040de}{parse\_train\_params}}(argc -\/ 2, argv + 2);}
-\DoxyCodeLine{113     \}}
-\DoxyCodeLine{114     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(subcommand, \textcolor{stringliteral}{"{}test"{}}) == 0)}
-\DoxyCodeLine{115     \{}
-\DoxyCodeLine{116         *mode = \mbox{\hyperlink{parser_8h_ab6d58cce6e97b6b549801e696ac9f4f6}{TEST\_MODE}};}
-\DoxyCodeLine{117         res = \mbox{\hyperlink{parser_8c_ab2116d885ed230baeb9b20a83a672ea0}{parse\_test\_params}}(argc -\/ 2, argv + 2);}
-\DoxyCodeLine{118     \}}
-\DoxyCodeLine{119     \textcolor{keywordflow}{return} res;}
-\DoxyCodeLine{120 \}}
+\DoxyCodeLine{00101 \{}
+\DoxyCodeLine{00102     \textcolor{keywordflow}{if} (argc < 2)}
+\DoxyCodeLine{00103     \{}
+\DoxyCodeLine{00104         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{00105     \}}
+\DoxyCodeLine{00106 }
+\DoxyCodeLine{00107     \mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}} res = NULL;}
+\DoxyCodeLine{00108     \textcolor{keywordtype}{char} *subcommand = argv[1];}
+\DoxyCodeLine{00109     \textcolor{keywordflow}{if} (strcmp(subcommand, \textcolor{stringliteral}{"{}train"{}}) == 0)}
+\DoxyCodeLine{00110     \{}
+\DoxyCodeLine{00111         *mode = \mbox{\hyperlink{parser_8h_a9bfdcc2e01a085b81125cadcfe83cb66}{TRAIN\_MODE}};}
+\DoxyCodeLine{00112         res = \mbox{\hyperlink{parser_8c_ab2f489b7f919e61d84e74826ca0040de}{parse\_train\_params}}(argc -\/ 2, argv + 2);}
+\DoxyCodeLine{00113     \}}
+\DoxyCodeLine{00114     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(subcommand, \textcolor{stringliteral}{"{}test"{}}) == 0)}
+\DoxyCodeLine{00115     \{}
+\DoxyCodeLine{00116         *mode = \mbox{\hyperlink{parser_8h_ab6d58cce6e97b6b549801e696ac9f4f6}{TEST\_MODE}};}
+\DoxyCodeLine{00117         res = \mbox{\hyperlink{parser_8c_ab2116d885ed230baeb9b20a83a672ea0}{parse\_test\_params}}(argc -\/ 2, argv + 2);}
+\DoxyCodeLine{00118     \}}
+\DoxyCodeLine{00119     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{00120 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{parser_8c_ab2116d885ed230baeb9b20a83a672ea0}\label{parser_8c_ab2116d885ed230baeb9b20a83a672ea0}} 
@@ -88,16 +88,16 @@ The parameters hash table.
 \end{DoxyReturn}
 
 
-Definition at line 92 of file parser.\+c.
+Definition at line \mbox{\hyperlink{parser_8c_source_l00092}{92}} of file \mbox{\hyperlink{parser_8c_source}{parser.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{93 \{}
-\DoxyCodeLine{94 }
-\DoxyCodeLine{95     \mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}} params = \_parse\_params(argc, argv);}
-\DoxyCodeLine{96     \textcolor{comment}{// TODO : check parameters validity}}
-\DoxyCodeLine{97     \textcolor{keywordflow}{return} params;}
-\DoxyCodeLine{98 \}}
+\DoxyCodeLine{00093 \{}
+\DoxyCodeLine{00094 }
+\DoxyCodeLine{00095     \mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}} params = \_parse\_params(argc, argv);}
+\DoxyCodeLine{00096     \textcolor{comment}{// TODO : check parameters validity}}
+\DoxyCodeLine{00097     \textcolor{keywordflow}{return} params;}
+\DoxyCodeLine{00098 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{parser_8c_ab2f489b7f919e61d84e74826ca0040de}\label{parser_8c_ab2f489b7f919e61d84e74826ca0040de}} 
@@ -122,14 +122,14 @@ The hash table of params.
 \end{DoxyReturn}
 
 
-Definition at line 85 of file parser.\+c.
+Definition at line \mbox{\hyperlink{parser_8c_source_l00085}{85}} of file \mbox{\hyperlink{parser_8c_source}{parser.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{86 \{}
-\DoxyCodeLine{87     \mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}} params = \_parse\_params(argc, argv);}
-\DoxyCodeLine{88     \textcolor{comment}{// TODO : check parameters validity}}
-\DoxyCodeLine{89     \textcolor{keywordflow}{return} params;}
-\DoxyCodeLine{90 \}}
+\DoxyCodeLine{00086 \{}
+\DoxyCodeLine{00087     \mbox{\hyperlink{parser_8h_a956c158032da3a69086ec31168c991ba}{params\_t}} params = \_parse\_params(argc, argv);}
+\DoxyCodeLine{00088     \textcolor{comment}{// TODO : check parameters validity}}
+\DoxyCodeLine{00089     \textcolor{keywordflow}{return} params;}
+\DoxyCodeLine{00090 \}}
 
 \end{DoxyCode}
