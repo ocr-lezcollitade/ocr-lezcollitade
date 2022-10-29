@@ -11,9 +11,9 @@ static Uint32 pixel_to_gray(Uint32 pixel_color, SDL_Surface *surface)
 
     Uint8 average = floor(0.299 * r + 0.587 * g + 0.114 * b);
 
-    r = average;
-    g = average;
-    b = average;
+    r = 255 - average;
+    g = 255 - average;
+    b = 255 - average;
 
     Uint32 color = SDL_MapRGB(surface->format, r, g, b);
 

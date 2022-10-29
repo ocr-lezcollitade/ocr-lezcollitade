@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>OCR-Lezcollitade: Main Page</title>
+<title>OCR-Lezcollitade: OCR-Lezcollitade</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -60,11 +60,112 @@ $(function() {
 </iframe>
 </div>
 
-<div class="header">
+<div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">OCR-Lezcollitade Documentation</div>  </div>
+<div class="title">OCR-Lezcollitade </div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p><a class="anchor" id="md_MAIN"></a> </p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+The CLI</h1>
+<h2><a class="anchor" id="autotoc_md2"></a>
+Subcommands</h2>
+<h3><a class="anchor" id="autotoc_md3"></a>
+train</h3>
+<ul>
+<li>Loading network.</li>
+</ul>
+<blockquote class="doxtable">
+<p><code>--generate &lt;string&gt;</code> </p>
+</blockquote>
+<p>Generates a neural network based on string. The string should be in the form of "&lt;input-neurons&gt;,&lt;neurons-layer-1&gt;,...,&lt;output-neurons&gt;".</p>
+<p><em>Example: <code>Lezcollitade train --generate "2,2,1"</code></em> generates a network with 2 inputs, 1 hidden layer of 2 neurons, and 1 output neuron.</p>
+<blockquote class="doxtable">
+<p><code>--input-network|-i &lt;file&gt;</code> </p>
+</blockquote>
+<p>Loads a network from a file. If the file doesn't exist, an error will be raised.</p>
+<p><em>NB: Either <code>--generate</code> or <code>--input-network</code> are required.</em></p>
+<blockquote class="doxtable">
+<p><code>--output-activation &lt;sigmoid|softmax&gt; (default: sigmoid)</code> </p>
+</blockquote>
+<p>The default activation function for the output layer.</p>
+<blockquote class="doxtable">
+<p><code>--activation &lt;sigmoid|softmax&gt; (default: sigmoid)</code> </p>
+</blockquote>
+<p>The default activation function for the hidden layers.</p>
+<p><em>NB: The activation functions are saved within the network, thus only valid when <code>--generate</code> is used. Otherwise, the functions will be loaded from the network file.</em></p>
+<ul>
+<li>Output.</li>
+</ul>
+<blockquote class="doxtable">
+<p><code>--output-network|-o &lt;file&gt;</code> </p>
+</blockquote>
+<p>Once the training is done, outputs the network to given file, and creates it if the file does not exist.</p>
+<ul>
+<li>Data.</li>
+</ul>
+<blockquote class="doxtable">
+<p><code>--data &lt;file&gt; (required)</code> </p>
+</blockquote>
+<p>Loads data from a file based on the format. If the file does not exist, an error is raised.</p>
+<blockquote class="doxtable">
+<p><code>--format &lt;csv|bin&gt; (required)</code> </p>
+</blockquote>
+<p>The format of the data.</p>
+<p>The <code>csv</code> format should be written as each line containing an entry, and containing as first value the index of the neuron expected to be fired (-1 if none), and the value of each input from 0 to 255 included.</p>
+<p><em>Example: xor training data</em> </p><div class="fragment"><div class="line">-1,0,0</div>
+<div class="line">-1,1,1</div>
+<div class="line">0,1,0</div>
+<div class="line">0,0,1</div>
+</div><!-- fragment --><p> The bin format is as of now not functional...</p>
+<blockquote class="doxtable">
+<p><code>--length &lt;int&gt; (default: -1)</code> </p>
+</blockquote>
+<p>The number of line to be read in the file. If not specified (or -1), all the file up to the end will be loaded.</p>
+<blockquote class="doxtable">
+<p><code>--start &lt;int&gt; (default: 0)</code> </p>
+</blockquote>
+<p>The number of lines the loader should start at. If none specified, lines will be loaded from line 0.</p>
+<ul>
+<li>Training parameters.</li>
+</ul>
+<blockquote class="doxtable">
+<p><code>--iterations &lt;int&gt;</code> </p>
+</blockquote>
+<p>The number of iterations to run the data set on the network. If none specified, the training will go on until <code>sigstop</code> is raised.</p>
+<blockquote class="doxtable">
+<p><code>--rate &lt;float&gt; (default: 0.1)</code> </p>
+</blockquote>
+<p>The learning rate. If none specified, the default learning rate will apply. <em>Warning: Using an oversized learning rate can cause double overflow thus causing the neural network to contain <code>nan</code> values.</em></p>
+<blockquote class="doxtable">
+<p><em>Example:</em> `Lezcollitade train &ndash;generate "784,30,10" &ndash;output-network "./output.net" &ndash;data "./mnist_train_data.csv" &ndash;format csv &ndash;rate 0.01 &ndash;start 1 &ndash;output-activation softmax &ndash;iterations 100` </p>
+</blockquote>
+<p>Creates a new neural network with 784 inputs, 30 neurons in the hidden layer, and 10 outputs, saved in "./output.net" and trained 100 times on the data of <code>./mnist_train_data</code>, except the first line (which is ususally the header in a csv file) and whose output layer activaiton function is the <code>soft max</code> function.</p>
+<blockquote class="doxtable">
+<p><em>Example:</em> `Lezcollitade train &ndash;input-network "./output.net" &ndash;output-network "./output.net" &ndash;data "./mnist_train_data.csv" &ndash;format csv &ndash;start 1 &ndash;iterations 10` </p>
+</blockquote>
+<p>Loads the neural network in "./output.net", trains it 10 times over all the lines of <code>./mnist_train_data.csv</code> except the first line, and saves it back to "./output.net".</p>
+<h3><a class="anchor" id="autotoc_md4"></a>
+Test</h3>
+<blockquote class="doxtable">
+<p><code>--generate &lt;string&gt;</code> </p>
+</blockquote>
+<blockquote class="doxtable">
+<p><code>--input-network|-i &lt;file&gt;</code> </p>
+</blockquote>
+<p><em>See Train</em></p>
+<blockquote class="doxtable">
+<p><code>--data &lt;file&gt;</code> </p>
+</blockquote>
+<blockquote class="doxtable">
+<p><code>--format &lt;csv|bin&gt;</code> </p>
+</blockquote>
+<p><em>See Train</em></p>
+<blockquote class="doxtable">
+<p><em>Example:</em> <code>Lezcollitade test --input-network "./output.net" --data "./mnist_test_data.csv" --format csv --start 1</code> </p>
+</blockquote>
+<p>Tests the performances of the network contained in "./output.net" over all the lines of <code>./mnist_test_data.csv</code> except the first line. </p>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -78,13 +78,13 @@ $(function() {
 Functions</h2></td></tr>
 <tr class="memitem:a0f5cf56b1be0cad23718cd903bfb997b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sudoku__split_8h.html#a0f5cf56b1be0cad23718cd903bfb997b">sudoku_split</a> (char *black_white, char *grayscale, char *path)</td></tr>
 <tr class="separator:a0f5cf56b1be0cad23718cd903bfb997b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21932b2cbb9e399aa8f21e22dd4c9fb9"><td class="memItemLeft" align="right" valign="top">SDL_Surface *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sudoku__split_8h.html#a21932b2cbb9e399aa8f21e22dd4c9fb9">scale_down</a> (SDL_Surface *surface, size_t w, size_t h, size_t new_w, size_t new_h)</td></tr>
-<tr class="memdesc:a21932b2cbb9e399aa8f21e22dd4c9fb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">scales down a surfacewant to scale down  <a href="sudoku__split_8h.html#a21932b2cbb9e399aa8f21e22dd4c9fb9">More...</a><br /></td></tr>
-<tr class="separator:a21932b2cbb9e399aa8f21e22dd4c9fb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae733b98b561a19802cf06f705578e8fe"><td class="memItemLeft" align="right" valign="top">SDL_Surface *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sudoku__split_8h.html#ae733b98b561a19802cf06f705578e8fe">scale_down</a> (SDL_Surface *surface, size_t w, size_t h, size_t new_w, size_t new_h, int b_w)</td></tr>
+<tr class="memdesc:ae733b98b561a19802cf06f705578e8fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">scales down a surface  <a href="sudoku__split_8h.html#ae733b98b561a19802cf06f705578e8fe">More...</a><br /></td></tr>
+<tr class="separator:ae733b98b561a19802cf06f705578e8fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a21932b2cbb9e399aa8f21e22dd4c9fb9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a21932b2cbb9e399aa8f21e22dd4c9fb9">&#9670;&nbsp;</a></span>scale_down()</h2>
+<a id="ae733b98b561a19802cf06f705578e8fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae733b98b561a19802cf06f705578e8fe">&#9670;&nbsp;</a></span>scale_down()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -117,7 +117,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>new_h</em>&#160;</td>
+          <td class="paramname"><em>new_h</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>b_w</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -127,11 +133,13 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>scales down a surfacewant to scale down </p>
+<p>scales down a surface </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">w,h</td><td>the width and height of the original surface</td></tr>
+    <tr><td class="paramname">surface</td><td>the surface we want to scale down </td></tr>
+    <tr><td class="paramname">w,h</td><td>the width and height of the original surface </td></tr>
     <tr><td class="paramname">new_w,new_h</td><td>the width and height of the surface we want </td></tr>
+    <tr><td class="paramname">b_w</td><td>boolean indicating if we want a black and white output </td></tr>
   </table>
   </dd>
 </dl>
@@ -155,11 +163,19 @@ Functions</h2></td></tr>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        {</div>
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            <span class="keywordtype">int</span> r, g, b;</div>
 <div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;            average(i, j, ratio_h, ratio_w, w, format, pixels, &amp;r, &amp;g, &amp;b);</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            pixels_output[j * new_w + i] = SDL_MapRGB(format_output, r, g, b);</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        }</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <span class="keywordflow">return</span> output;</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;}</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            <span class="keywordflow">if</span> (b_w)</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            {</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;                <span class="keywordtype">int</span> value = (r + g + b &lt; 382 ? 0 : 765);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                pixels_output[j * new_w + i]</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                    = SDL_MapRGB(format_output, value, value, value);</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;            }</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                pixels_output[j * new_w + i]</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                    = SDL_MapRGB(format_output, r, g, b);</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        }</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="keywordflow">return</span> output;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -195,24 +211,24 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sudoku__split_8c_source.html#l00496">496</a> of file <a class="el" href="sudoku__split_8c_source.html">sudoku_split.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;{</div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;    <span class="comment">// Initializes the SDL.</span></div>
-<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;    <span class="keywordflow">if</span> (SDL_Init(SDL_INIT_VIDEO) != 0)</div>
-<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;        errx(EXIT_FAILURE, <span class="stringliteral">&quot;%s&quot;</span>, SDL_GetError());</div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160; </div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;    SDL_Surface *surface = load_image(black_white);</div>
-<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;    SDL_Surface *sudoku = load_image(grayscale);</div>
-<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160; </div>
-<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;    strcpy(<a class="code" href="sudoku__split_8c.html#a2b514ad37427cfded82f3e194418f1bf">save_path</a>, path);</div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160; </div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;    line_detection(surface, sudoku);</div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160; </div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;    SDL_FreeSurface(surface);</div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;    SDL_FreeSurface(sudoku);</div>
-<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160; </div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;    SDL_Quit();</div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="sudoku__split_8c_source.html#l00537">537</a> of file <a class="el" href="sudoku__split_8c_source.html">sudoku_split.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;{</div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;    <span class="comment">// Initializes the SDL.</span></div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;    <span class="keywordflow">if</span> (SDL_Init(SDL_INIT_VIDEO) != 0)</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;        errx(EXIT_FAILURE, <span class="stringliteral">&quot;%s&quot;</span>, SDL_GetError());</div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160; </div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;    SDL_Surface *b_w = load_image(black_white);</div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;    SDL_Surface *gray = load_image(grayscale);</div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160; </div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;    strcpy(<a class="code" href="sudoku__split_8c.html#a2b514ad37427cfded82f3e194418f1bf">save_path</a>, path);</div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160; </div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;    line_detection(b_w, gray);</div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160; </div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;    SDL_FreeSurface(b_w);</div>
+<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;    SDL_FreeSurface(gray);</div>
+<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160; </div>
+<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;    SDL_Quit();</div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;}</div>
 <div class="ttc" id="asudoku__split_8c_html_a2b514ad37427cfded82f3e194418f1bf"><div class="ttname"><a href="sudoku__split_8c.html#a2b514ad37427cfded82f3e194418f1bf">save_path</a></div><div class="ttdeci">char save_path[30]</div><div class="ttdef"><b>Definition:</b> <a href="sudoku__split_8c_source.html#l00010">sudoku_split.c:10</a></div></div>
 </div><!-- fragment -->
 </div>
