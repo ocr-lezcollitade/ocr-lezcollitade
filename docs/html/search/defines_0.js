@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['binary_5fmode_0',['BINARY_MODE',['../mnist_2loader_8h.html#a399981b4dd18f0e6b9252badf307ce05',1,'loader.h']]]
+  ['activation_0',['ACTIVATION',['../parser_8h.html#aaae493966290c7a352604ac37768dc52',1,'parser.h']]]
 ];

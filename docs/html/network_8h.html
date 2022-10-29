@@ -79,6 +79,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlayer__activation__t.html">layer_activation_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The struct containing all info required about the activation function.  <a href="structlayer__activation__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structneuron__t.html">neuron_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A struct representing a neuron in the network.  <a href="structneuron__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -108,20 +111,18 @@ Functions</h2></td></tr>
 <tr class="memitem:a634adde351458c2e8f8825c1816eeb43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8h.html#a634adde351458c2e8f8825c1816eeb43">neuron_free</a> (<a class="el" href="structneuron__t.html">neuron_t</a> *neuron)</td></tr>
 <tr class="memdesc:a634adde351458c2e8f8825c1816eeb43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the allocated neuron.  <a href="network_8h.html#a634adde351458c2e8f8825c1816eeb43">More...</a><br /></td></tr>
 <tr class="separator:a634adde351458c2e8f8825c1816eeb43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a634822d192cc56422779767bd219c3b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structlayer__t.html">layer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8h.html#a634822d192cc56422779767bd219c3b8">layer_create_from_mat</a> (<a class="el" href="structmatrix__t.html">matrix_t</a> **weights, double *biases, size_t count, <a class="el" href="network_8h.html#a9fc74fc4febb993e1505653405d9c188">activation_t</a> f, <a class="el" href="network_8h.html#a9fc74fc4febb993e1505653405d9c188">activation_t</a> d)</td></tr>
-<tr class="memdesc:a634822d192cc56422779767bd219c3b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates filled layer from an array of weights, and an array of biases.  <a href="network_8h.html#a634822d192cc56422779767bd219c3b8">More...</a><br /></td></tr>
-<tr class="separator:a634822d192cc56422779767bd219c3b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0be2bf2d994ad2892ce3bbd1650bcce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structlayer__t.html">layer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8h.html#af0be2bf2d994ad2892ce3bbd1650bcce">layer_create</a> (<a class="el" href="structneuron__t.html">neuron_t</a> **neurons, size_t count, <a class="el" href="network_8h.html#a9fc74fc4febb993e1505653405d9c188">activation_t</a> f, <a class="el" href="network_8h.html#a9fc74fc4febb993e1505653405d9c188">activation_t</a> d)</td></tr>
-<tr class="separator:af0be2bf2d994ad2892ce3bbd1650bcce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad37b33816473105a629044cce37b7550"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structlayer__t.html">layer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8h.html#ad37b33816473105a629044cce37b7550">layer_create_from_mat</a> (<a class="el" href="structmatrix__t.html">matrix_t</a> **weights, double *biases, size_t count, <a class="el" href="structlayer__activation__t.html">layer_activation_t</a> act)</td></tr>
+<tr class="separator:ad37b33816473105a629044cce37b7550"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a41f7b99e30fed21f72cd24b68d1cd3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structlayer__t.html">layer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8h.html#a5a41f7b99e30fed21f72cd24b68d1cd3">layer_create</a> (<a class="el" href="structneuron__t.html">neuron_t</a> **neurons, size_t count, <a class="el" href="structlayer__activation__t.html">layer_activation_t</a> act)</td></tr>
+<tr class="separator:a5a41f7b99e30fed21f72cd24b68d1cd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0e36ece7ab68f5333223ea9167938d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8h.html#ac0e36ece7ab68f5333223ea9167938d9">layer_free</a> (<a class="el" href="structlayer__t.html">layer_t</a> *layer)</td></tr>
 <tr class="memdesc:ac0e36ece7ab68f5333223ea9167938d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees an allocated layer.  <a href="network_8h.html#ac0e36ece7ab68f5333223ea9167938d9">More...</a><br /></td></tr>
 <tr class="separator:ac0e36ece7ab68f5333223ea9167938d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7ec187320facb456542975fd39de56e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structnetwork__t.html">network_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8h.html#ad7ec187320facb456542975fd39de56e">network_create</a> (<a class="el" href="structlayer__t.html">layer_t</a> **layers, size_t layer_count, size_t inputs)</td></tr>
 <tr class="memdesc:ad7ec187320facb456542975fd39de56e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a network from an array of layers.  <a href="network_8h.html#ad7ec187320facb456542975fd39de56e">More...</a><br /></td></tr>
 <tr class="separator:ad7ec187320facb456542975fd39de56e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6cea4b6d29301dd8feecd3db3a22e74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structnetwork__t.html">network_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8h.html#ab6cea4b6d29301dd8feecd3db3a22e74">network_generate</a> (size_t *neurons, size_t size)</td></tr>
-<tr class="memdesc:ab6cea4b6d29301dd8feecd3db3a22e74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a network based on given neuron count.  <a href="network_8h.html#ab6cea4b6d29301dd8feecd3db3a22e74">More...</a><br /></td></tr>
-<tr class="separator:ab6cea4b6d29301dd8feecd3db3a22e74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cde5bd336c7baa291bef5ddce33c600"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structnetwork__t.html">network_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8h.html#a4cde5bd336c7baa291bef5ddce33c600">network_generate</a> (size_t *neurons, size_t size, <a class="el" href="structlayer__activation__t.html">layer_activation_t</a> hidden_activation, <a class="el" href="structlayer__activation__t.html">layer_activation_t</a> output_activation)</td></tr>
+<tr class="separator:a4cde5bd336c7baa291bef5ddce33c600"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b66b0f05d89a6c97711273d511444e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structnetwork__t.html">network_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8h.html#a7b66b0f05d89a6c97711273d511444e4">network_load</a> (const char *file)</td></tr>
 <tr class="memdesc:a7b66b0f05d89a6c97711273d511444e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the network from a file.  <a href="network_8h.html#a7b66b0f05d89a6c97711273d511444e4">More...</a><br /></td></tr>
 <tr class="separator:a7b66b0f05d89a6c97711273d511444e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -243,7 +244,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   72</span>    <a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> *outputs = <a class="code hl_function" href="matrix_8c.html#a1d9b061fc8856e727f014c3266b7431d">matrix_create</a>(layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a79cee7069a84d7440d56779ba2c073fb">count</a>, 1, 0);</div>
 <div class="line"><span class="lineno">   73</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a79cee7069a84d7440d56779ba2c073fb">count</a>; i++)</div>
 <div class="line"><span class="lineno">   74</span>    {</div>
-<div class="line"><span class="lineno">   75</span>        <span class="keywordtype">double</span> res = layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a986a66b0b385bcc14acea253eb4cddf4">activation</a>(</div>
+<div class="line"><span class="lineno">   75</span>        <span class="keywordtype">double</span> res = layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a72eace5d9e629f95ee55a7928df69ea0">act</a>.<a class="code hl_variable" href="structlayer__activation__t.html#a14a5daa6f1bc5557bb39cdd732205934">activation</a>(</div>
 <div class="line"><span class="lineno">   76</span>            layeri, i, <a class="code hl_function" href="matrix_8c.html#a631ff21351ba5ec31350fb5277605d3b">mat_el_at</a>(preactivation, i, 0), results);</div>
 <div class="line"><span class="lineno">   77</span>        <a class="code hl_function" href="matrix_8c.html#a0e411263cdaaa67eae166d067996f5b6">mat_set_el</a>(outputs, i, 0, res);</div>
 <div class="line"><span class="lineno">   78</span>    }</div>
@@ -255,18 +256,19 @@ Functions</h2></td></tr>
 <div class="ttc" id="amatrix_8c_html_a631ff21351ba5ec31350fb5277605d3b"><div class="ttname"><a href="matrix_8c.html#a631ff21351ba5ec31350fb5277605d3b">mat_el_at</a></div><div class="ttdeci">double mat_el_at(matrix_t *mat, size_t i, size_t j)</div><div class="ttdoc">gets the elements at position i, j</div><div class="ttdef"><b>Definition:</b> <a href="matrix_8c_source.html#l00006">matrix.c:6</a></div></div>
 <div class="ttc" id="amatrix_8c_html_aa20fd2a5c773eda620ce98e2f121b687"><div class="ttname"><a href="matrix_8c.html#aa20fd2a5c773eda620ce98e2f121b687">matrix_free</a></div><div class="ttdeci">void matrix_free(matrix_t *mat)</div><div class="ttdoc">frees the matrix</div><div class="ttdef"><b>Definition:</b> <a href="matrix_8c_source.html#l00045">matrix.c:45</a></div></div>
 <div class="ttc" id="amatrix_8c_html_aec843b4f924ae1c524b4f3e3dcc0ceda"><div class="ttname"><a href="matrix_8c.html#aec843b4f924ae1c524b4f3e3dcc0ceda">mat_product</a></div><div class="ttdeci">matrix_t * mat_product(matrix_t *A, matrix_t *B)</div><div class="ttdoc">Performs the dot product on 2 matrix_t structures.</div><div class="ttdef"><b>Definition:</b> <a href="matrix_8c_source.html#l00051">matrix.c:51</a></div></div>
-<div class="ttc" id="astructlayer__t_html"><div class="ttname"><a href="structlayer__t.html">layer_t</a></div><div class="ttdoc">A struct representing a layer in the network.</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00034">network.h:35</a></div></div>
-<div class="ttc" id="astructlayer__t_html_a71e4f1a74c73f54b7ff2c40dc88c795e"><div class="ttname"><a href="structlayer__t.html#a71e4f1a74c73f54b7ff2c40dc88c795e">layer_t::neurons</a></div><div class="ttdeci">neuron_t ** neurons</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00036">network.h:36</a></div></div>
-<div class="ttc" id="astructlayer__t_html_a79cee7069a84d7440d56779ba2c073fb"><div class="ttname"><a href="structlayer__t.html#a79cee7069a84d7440d56779ba2c073fb">layer_t::count</a></div><div class="ttdeci">size_t count</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00037">network.h:37</a></div></div>
-<div class="ttc" id="astructlayer__t_html_a986a66b0b385bcc14acea253eb4cddf4"><div class="ttname"><a href="structlayer__t.html#a986a66b0b385bcc14acea253eb4cddf4">layer_t::activation</a></div><div class="ttdeci">activation_t activation</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00038">network.h:38</a></div></div>
+<div class="ttc" id="astructlayer__activation__t_html_a14a5daa6f1bc5557bb39cdd732205934"><div class="ttname"><a href="structlayer__activation__t.html#a14a5daa6f1bc5557bb39cdd732205934">layer_activation_t::activation</a></div><div class="ttdeci">activation_t activation</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00027">network.h:27</a></div></div>
+<div class="ttc" id="astructlayer__t_html"><div class="ttname"><a href="structlayer__t.html">layer_t</a></div><div class="ttdoc">A struct representing a layer in the network.</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00046">network.h:47</a></div></div>
+<div class="ttc" id="astructlayer__t_html_a71e4f1a74c73f54b7ff2c40dc88c795e"><div class="ttname"><a href="structlayer__t.html#a71e4f1a74c73f54b7ff2c40dc88c795e">layer_t::neurons</a></div><div class="ttdeci">neuron_t ** neurons</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00048">network.h:48</a></div></div>
+<div class="ttc" id="astructlayer__t_html_a72eace5d9e629f95ee55a7928df69ea0"><div class="ttname"><a href="structlayer__t.html#a72eace5d9e629f95ee55a7928df69ea0">layer_t::act</a></div><div class="ttdeci">layer_activation_t act</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00050">network.h:50</a></div></div>
+<div class="ttc" id="astructlayer__t_html_a79cee7069a84d7440d56779ba2c073fb"><div class="ttname"><a href="structlayer__t.html#a79cee7069a84d7440d56779ba2c073fb">layer_t::count</a></div><div class="ttdeci">size_t count</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00049">network.h:49</a></div></div>
 <div class="ttc" id="astructmatrix__t_html"><div class="ttname"><a href="structmatrix__t.html">matrix_t</a></div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00009">matrix.h:10</a></div></div>
-<div class="ttc" id="astructnetwork__results__t_html_a5f69d90d162ba6b0796d55d4de7bc97d"><div class="ttname"><a href="structnetwork__results__t.html#a5f69d90d162ba6b0796d55d4de7bc97d">network_results_t::outputs</a></div><div class="ttdeci">matrix_t ** outputs</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00060">network.h:60</a></div></div>
-<div class="ttc" id="astructnetwork__results__t_html_a81f6c9388535caf11d916c99da211ed6"><div class="ttname"><a href="structnetwork__results__t.html#a81f6c9388535caf11d916c99da211ed6">network_results_t::network</a></div><div class="ttdeci">network_t * network</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00065">network.h:65</a></div></div>
-<div class="ttc" id="astructnetwork__results__t_html_af7672c61fcb9cc66af09d166c98dfa0c"><div class="ttname"><a href="structnetwork__results__t.html#af7672c61fcb9cc66af09d166c98dfa0c">network_results_t::preactivation</a></div><div class="ttdeci">matrix_t ** preactivation</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00063">network.h:63</a></div></div>
-<div class="ttc" id="astructnetwork__t_html_abc9801a33bc441d67a87fac3b603ae87"><div class="ttname"><a href="structnetwork__t.html#abc9801a33bc441d67a87fac3b603ae87">network_t::layers</a></div><div class="ttdeci">layer_t ** layers</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00049">network.h:49</a></div></div>
-<div class="ttc" id="astructneuron__t_html"><div class="ttname"><a href="structneuron__t.html">neuron_t</a></div><div class="ttdoc">A struct representing a neuron in the network.</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00023">network.h:24</a></div></div>
-<div class="ttc" id="astructneuron__t_html_a6182effa3a478564d7dcd7f9d856c029"><div class="ttname"><a href="structneuron__t.html#a6182effa3a478564d7dcd7f9d856c029">neuron_t::weights</a></div><div class="ttdeci">matrix_t * weights</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00025">network.h:25</a></div></div>
-<div class="ttc" id="astructneuron__t_html_ad82dab1b1a60940e62e80270ad99a522"><div class="ttname"><a href="structneuron__t.html#ad82dab1b1a60940e62e80270ad99a522">neuron_t::bias</a></div><div class="ttdeci">double bias</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00027">network.h:27</a></div></div>
+<div class="ttc" id="astructnetwork__results__t_html_a5f69d90d162ba6b0796d55d4de7bc97d"><div class="ttname"><a href="structnetwork__results__t.html#a5f69d90d162ba6b0796d55d4de7bc97d">network_results_t::outputs</a></div><div class="ttdeci">matrix_t ** outputs</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00071">network.h:71</a></div></div>
+<div class="ttc" id="astructnetwork__results__t_html_a81f6c9388535caf11d916c99da211ed6"><div class="ttname"><a href="structnetwork__results__t.html#a81f6c9388535caf11d916c99da211ed6">network_results_t::network</a></div><div class="ttdeci">network_t * network</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00076">network.h:76</a></div></div>
+<div class="ttc" id="astructnetwork__results__t_html_af7672c61fcb9cc66af09d166c98dfa0c"><div class="ttname"><a href="structnetwork__results__t.html#af7672c61fcb9cc66af09d166c98dfa0c">network_results_t::preactivation</a></div><div class="ttdeci">matrix_t ** preactivation</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00074">network.h:74</a></div></div>
+<div class="ttc" id="astructnetwork__t_html_abc9801a33bc441d67a87fac3b603ae87"><div class="ttname"><a href="structnetwork__t.html#abc9801a33bc441d67a87fac3b603ae87">network_t::layers</a></div><div class="ttdeci">layer_t ** layers</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00060">network.h:60</a></div></div>
+<div class="ttc" id="astructneuron__t_html"><div class="ttname"><a href="structneuron__t.html">neuron_t</a></div><div class="ttdoc">A struct representing a neuron in the network.</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00035">network.h:36</a></div></div>
+<div class="ttc" id="astructneuron__t_html_a6182effa3a478564d7dcd7f9d856c029"><div class="ttname"><a href="structneuron__t.html#a6182effa3a478564d7dcd7f9d856c029">neuron_t::weights</a></div><div class="ttdeci">matrix_t * weights</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00037">network.h:37</a></div></div>
+<div class="ttc" id="astructneuron__t_html_ad82dab1b1a60940e62e80270ad99a522"><div class="ttname"><a href="structneuron__t.html#ad82dab1b1a60940e62e80270ad99a522">neuron_t::bias</a></div><div class="ttdeci">double bias</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00039">network.h:39</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -321,8 +323,8 @@ Functions</h2></td></tr>
 <div class="ttc" id="anetwork_8c_html_a2512b64818030e2bafa25367611e3482"><div class="ttname"><a href="network_8c.html#a2512b64818030e2bafa25367611e3482">results_free</a></div><div class="ttdeci">void results_free(network_results_t *results)</div><div class="ttdoc">Frees the network results struct.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00039">network.c:39</a></div></div>
 <div class="ttc" id="anetwork_8c_html_a2915eb69be1db6dd406f986f8cb5c8c8"><div class="ttname"><a href="network_8c.html#a2915eb69be1db6dd406f986f8cb5c8c8">results_create</a></div><div class="ttdeci">network_results_t * results_create(size_t layer_count)</div><div class="ttdoc">Creates a network_results struct.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00014">network.c:14</a></div></div>
 <div class="ttc" id="anetwork_8c_html_a2d59c0e85a5fc82d69e0abe8a9efbf95"><div class="ttname"><a href="network_8c.html#a2d59c0e85a5fc82d69e0abe8a9efbf95">compute_results_save</a></div><div class="ttdeci">void compute_results_save(network_results_t *results, network_t *network)</div><div class="ttdoc">Computes the result while saving the result of each layers.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00095">network.c:95</a></div></div>
-<div class="ttc" id="astructnetwork__results__t_html"><div class="ttname"><a href="structnetwork__results__t.html">network_results_t</a></div><div class="ttdoc">The results of the network.</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00058">network.h:59</a></div></div>
-<div class="ttc" id="astructnetwork__t_html_ad5fc71e5df50072d2c5a9ebfb28c7636"><div class="ttname"><a href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">network_t::layer_count</a></div><div class="ttdeci">size_t layer_count</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00050">network.h:50</a></div></div>
+<div class="ttc" id="astructnetwork__results__t_html"><div class="ttname"><a href="structnetwork__results__t.html">network_results_t</a></div><div class="ttdoc">The results of the network.</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00069">network.h:70</a></div></div>
+<div class="ttc" id="astructnetwork__t_html_ad5fc71e5df50072d2c5a9ebfb28c7636"><div class="ttname"><a href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">network_t::layer_count</a></div><div class="ttdeci">size_t layer_count</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00061">network.h:61</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -372,8 +374,8 @@ Functions</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="af0be2bf2d994ad2892ce3bbd1650bcce" name="af0be2bf2d994ad2892ce3bbd1650bcce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0be2bf2d994ad2892ce3bbd1650bcce">&#9670;&nbsp;</a></span>layer_create()</h2>
+<a id="a5a41f7b99e30fed21f72cd24b68d1cd3" name="a5a41f7b99e30fed21f72cd24b68d1cd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a41f7b99e30fed21f72cd24b68d1cd3">&#9670;&nbsp;</a></span>layer_create()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -393,14 +395,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="network_8h.html#a9fc74fc4febb993e1505653405d9c188">activation_t</a>&#160;</td>
-          <td class="paramname"><em>f</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="network_8h.html#a9fc74fc4febb993e1505653405d9c188">activation_t</a>&#160;</td>
-          <td class="paramname"><em>d</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structlayer__activation__t.html">layer_activation_t</a>&#160;</td>
+          <td class="paramname"><em>act</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -410,24 +406,22 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="network_8c_source.html#l00141">141</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  143</span>{</div>
-<div class="line"><span class="lineno">  144</span>    <a class="code hl_struct" href="structlayer__t.html">layer_t</a> *layer = (<a class="code hl_struct" href="structlayer__t.html">layer_t</a> *)malloc(<span class="keyword">sizeof</span>(<a class="code hl_struct" href="structlayer__t.html">layer_t</a>));</div>
-<div class="line"><span class="lineno">  145</span>    <span class="keywordflow">if</span> (layer == NULL)</div>
-<div class="line"><span class="lineno">  146</span>        <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><span class="lineno">  147</span>    layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a71e4f1a74c73f54b7ff2c40dc88c795e">neurons</a> = neurons;</div>
-<div class="line"><span class="lineno">  148</span>    layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a79cee7069a84d7440d56779ba2c073fb">count</a> = count;</div>
-<div class="line"><span class="lineno">  149</span>    layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a986a66b0b385bcc14acea253eb4cddf4">activation</a> = f;</div>
-<div class="line"><span class="lineno">  150</span>    layer-&gt;<a class="code hl_variable" href="structlayer__t.html#acacc7b95f0ad34a47555e40189aae7c0">dactivation</a> = d;</div>
-<div class="line"><span class="lineno">  151</span> </div>
-<div class="line"><span class="lineno">  152</span>    <span class="keywordflow">return</span> layer;</div>
-<div class="line"><span class="lineno">  153</span>}</div>
-<div class="ttc" id="astructlayer__t_html_acacc7b95f0ad34a47555e40189aae7c0"><div class="ttname"><a href="structlayer__t.html#acacc7b95f0ad34a47555e40189aae7c0">layer_t::dactivation</a></div><div class="ttdeci">activation_t dactivation</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00039">network.h:39</a></div></div>
+<p class="definition">Definition at line <a class="el" href="network_8c_source.html#l00140">140</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  141</span>{</div>
+<div class="line"><span class="lineno">  142</span>    <a class="code hl_struct" href="structlayer__t.html">layer_t</a> *layer = (<a class="code hl_struct" href="structlayer__t.html">layer_t</a> *)malloc(<span class="keyword">sizeof</span>(<a class="code hl_struct" href="structlayer__t.html">layer_t</a>));</div>
+<div class="line"><span class="lineno">  143</span>    <span class="keywordflow">if</span> (layer == NULL)</div>
+<div class="line"><span class="lineno">  144</span>        <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><span class="lineno">  145</span>    layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a71e4f1a74c73f54b7ff2c40dc88c795e">neurons</a> = neurons;</div>
+<div class="line"><span class="lineno">  146</span>    layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a79cee7069a84d7440d56779ba2c073fb">count</a> = count;</div>
+<div class="line"><span class="lineno">  147</span>    layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a72eace5d9e629f95ee55a7928df69ea0">act</a> = act;</div>
+<div class="line"><span class="lineno">  148</span> </div>
+<div class="line"><span class="lineno">  149</span>    <span class="keywordflow">return</span> layer;</div>
+<div class="line"><span class="lineno">  150</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a634822d192cc56422779767bd219c3b8" name="a634822d192cc56422779767bd219c3b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a634822d192cc56422779767bd219c3b8">&#9670;&nbsp;</a></span>layer_create_from_mat()</h2>
+<a id="ad37b33816473105a629044cce37b7550" name="ad37b33816473105a629044cce37b7550"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad37b33816473105a629044cce37b7550">&#9670;&nbsp;</a></span>layer_create_from_mat()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -453,14 +447,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="network_8h.html#a9fc74fc4febb993e1505653405d9c188">activation_t</a>&#160;</td>
-          <td class="paramname"><em>f</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="network_8h.html#a9fc74fc4febb993e1505653405d9c188">activation_t</a>&#160;</td>
-          <td class="paramname"><em>d</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structlayer__activation__t.html">layer_activation_t</a>&#160;</td>
+          <td class="paramname"><em>act</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -469,19 +457,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Creates filled layer from an array of weights, and an array of biases. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">weights</td><td>The array of weights for each neuron in the layer. </td></tr>
-    <tr><td class="paramname">biases</td><td>The array of biases for each neuron in the layer. </td></tr>
-    <tr><td class="paramname">count</td><td>The number of elements to be created, hence the size of weights and biases. </td></tr>
-    <tr><td class="paramname">f</td><td>The activation function. </td></tr>
-    <tr><td class="paramname">d</td><td>The derivative of the activation function. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The created layer. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="network_8c_source.html#l00120">120</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  122</span>{</div>
@@ -495,13 +470,12 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  130</span>        free(layer);</div>
 <div class="line"><span class="lineno">  131</span>        <span class="keywordflow">return</span> NULL;</div>
 <div class="line"><span class="lineno">  132</span>    }</div>
-<div class="line"><span class="lineno">  133</span>    layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a986a66b0b385bcc14acea253eb4cddf4">activation</a> = f;</div>
-<div class="line"><span class="lineno">  134</span>    layer-&gt;<a class="code hl_variable" href="structlayer__t.html#acacc7b95f0ad34a47555e40189aae7c0">dactivation</a> = d;</div>
-<div class="line"><span class="lineno">  135</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; count; i++)</div>
-<div class="line"><span class="lineno">  136</span>        layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a71e4f1a74c73f54b7ff2c40dc88c795e">neurons</a>[i] = <a class="code hl_function" href="network_8c.html#aa706a2634d39e1b59182ab9a9403931c">neuron_create</a>(weights[i], biases[i]);</div>
-<div class="line"><span class="lineno">  137</span> </div>
-<div class="line"><span class="lineno">  138</span>    <span class="keywordflow">return</span> layer;</div>
-<div class="line"><span class="lineno">  139</span>}</div>
+<div class="line"><span class="lineno">  133</span>    layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a72eace5d9e629f95ee55a7928df69ea0">act</a> = act;</div>
+<div class="line"><span class="lineno">  134</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; count; i++)</div>
+<div class="line"><span class="lineno">  135</span>        layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a71e4f1a74c73f54b7ff2c40dc88c795e">neurons</a>[i] = <a class="code hl_function" href="network_8c.html#aa706a2634d39e1b59182ab9a9403931c">neuron_create</a>(weights[i], biases[i]);</div>
+<div class="line"><span class="lineno">  136</span> </div>
+<div class="line"><span class="lineno">  137</span>    <span class="keywordflow">return</span> layer;</div>
+<div class="line"><span class="lineno">  138</span>}</div>
 <div class="ttc" id="anetwork_8c_html_aa706a2634d39e1b59182ab9a9403931c"><div class="ttname"><a href="network_8c.html#aa706a2634d39e1b59182ab9a9403931c">neuron_create</a></div><div class="ttdeci">neuron_t * neuron_create(matrix_t *weights, double bias)</div><div class="ttdoc">Creates a neuron.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00103">network.c:103</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -530,16 +504,16 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="network_8c_source.html#l00155">155</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  156</span>{</div>
-<div class="line"><span class="lineno">  157</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a79cee7069a84d7440d56779ba2c073fb">count</a>; i++)</div>
-<div class="line"><span class="lineno">  158</span>    {</div>
-<div class="line"><span class="lineno">  159</span>        <a class="code hl_function" href="network_8c.html#a634adde351458c2e8f8825c1816eeb43">neuron_free</a>(layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a71e4f1a74c73f54b7ff2c40dc88c795e">neurons</a>[i]);</div>
-<div class="line"><span class="lineno">  160</span>    }</div>
-<div class="line"><span class="lineno">  161</span> </div>
-<div class="line"><span class="lineno">  162</span>    free(layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a71e4f1a74c73f54b7ff2c40dc88c795e">neurons</a>);</div>
-<div class="line"><span class="lineno">  163</span>    free(layer);</div>
-<div class="line"><span class="lineno">  164</span>}</div>
+<p class="definition">Definition at line <a class="el" href="network_8c_source.html#l00152">152</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  153</span>{</div>
+<div class="line"><span class="lineno">  154</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a79cee7069a84d7440d56779ba2c073fb">count</a>; i++)</div>
+<div class="line"><span class="lineno">  155</span>    {</div>
+<div class="line"><span class="lineno">  156</span>        <a class="code hl_function" href="network_8c.html#a634adde351458c2e8f8825c1816eeb43">neuron_free</a>(layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a71e4f1a74c73f54b7ff2c40dc88c795e">neurons</a>[i]);</div>
+<div class="line"><span class="lineno">  157</span>    }</div>
+<div class="line"><span class="lineno">  158</span> </div>
+<div class="line"><span class="lineno">  159</span>    free(layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a71e4f1a74c73f54b7ff2c40dc88c795e">neurons</a>);</div>
+<div class="line"><span class="lineno">  160</span>    free(layer);</div>
+<div class="line"><span class="lineno">  161</span>}</div>
 <div class="ttc" id="anetwork_8c_html_a634adde351458c2e8f8825c1816eeb43"><div class="ttname"><a href="network_8c.html#a634adde351458c2e8f8825c1816eeb43">neuron_free</a></div><div class="ttdeci">void neuron_free(neuron_t *neuron)</div><div class="ttdoc">Frees the allocated neuron.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00114">network.c:114</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -569,21 +543,21 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The copied network. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="network_8c_source.html#l00575">575</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  576</span>{</div>
-<div class="line"><span class="lineno">  577</span>    <a class="code hl_struct" href="structlayer__t.html">layer_t</a> **layers</div>
-<div class="line"><span class="lineno">  578</span>        = (<a class="code hl_struct" href="structlayer__t.html">layer_t</a> **)malloc(old-&gt;<a class="code hl_variable" href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">layer_count</a> * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structlayer__t.html">layer_t</a> *));</div>
-<div class="line"><span class="lineno">  579</span>    <a class="code hl_struct" href="structnetwork__t.html">network_t</a> *res = <a class="code hl_function" href="network_8c.html#ad7ec187320facb456542975fd39de56e">network_create</a>(layers, old-&gt;<a class="code hl_variable" href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">layer_count</a>, old-&gt;<a class="code hl_variable" href="structnetwork__t.html#af7a2fbc049a0fd2d5ad14f218658ca83">inputs</a>);</div>
-<div class="line"><span class="lineno">  580</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; old-&gt;<a class="code hl_variable" href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">layer_count</a>; i++)</div>
-<div class="line"><span class="lineno">  581</span>    {</div>
-<div class="line"><span class="lineno">  582</span>        layers[i] = layer_copy(old-&gt;<a class="code hl_variable" href="structnetwork__t.html#abc9801a33bc441d67a87fac3b603ae87">layers</a>[i]);</div>
-<div class="line"><span class="lineno">  583</span>    }</div>
-<div class="line"><span class="lineno">  584</span> </div>
-<div class="line"><span class="lineno">  585</span>    <span class="keywordflow">return</span> res;</div>
-<div class="line"><span class="lineno">  586</span>}</div>
-<div class="ttc" id="anetwork_8c_html_ad7ec187320facb456542975fd39de56e"><div class="ttname"><a href="network_8c.html#ad7ec187320facb456542975fd39de56e">network_create</a></div><div class="ttdeci">network_t * network_create(layer_t **layers, size_t layer_count, size_t inputs)</div><div class="ttdoc">Creates a network from an array of layers.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00166">network.c:166</a></div></div>
-<div class="ttc" id="astructnetwork__t_html"><div class="ttname"><a href="structnetwork__t.html">network_t</a></div><div class="ttdoc">A struct representing a neural network.</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00047">network.h:48</a></div></div>
-<div class="ttc" id="astructnetwork__t_html_af7a2fbc049a0fd2d5ad14f218658ca83"><div class="ttname"><a href="structnetwork__t.html#af7a2fbc049a0fd2d5ad14f218658ca83">network_t::inputs</a></div><div class="ttdeci">size_t inputs</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00051">network.h:51</a></div></div>
+<p class="definition">Definition at line <a class="el" href="network_8c_source.html#l00588">588</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  589</span>{</div>
+<div class="line"><span class="lineno">  590</span>    <a class="code hl_struct" href="structlayer__t.html">layer_t</a> **layers</div>
+<div class="line"><span class="lineno">  591</span>        = (<a class="code hl_struct" href="structlayer__t.html">layer_t</a> **)malloc(old-&gt;<a class="code hl_variable" href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">layer_count</a> * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structlayer__t.html">layer_t</a> *));</div>
+<div class="line"><span class="lineno">  592</span>    <a class="code hl_struct" href="structnetwork__t.html">network_t</a> *res = <a class="code hl_function" href="network_8c.html#ad7ec187320facb456542975fd39de56e">network_create</a>(layers, old-&gt;<a class="code hl_variable" href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">layer_count</a>, old-&gt;<a class="code hl_variable" href="structnetwork__t.html#af7a2fbc049a0fd2d5ad14f218658ca83">inputs</a>);</div>
+<div class="line"><span class="lineno">  593</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; old-&gt;<a class="code hl_variable" href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">layer_count</a>; i++)</div>
+<div class="line"><span class="lineno">  594</span>    {</div>
+<div class="line"><span class="lineno">  595</span>        layers[i] = layer_copy(old-&gt;<a class="code hl_variable" href="structnetwork__t.html#abc9801a33bc441d67a87fac3b603ae87">layers</a>[i]);</div>
+<div class="line"><span class="lineno">  596</span>    }</div>
+<div class="line"><span class="lineno">  597</span> </div>
+<div class="line"><span class="lineno">  598</span>    <span class="keywordflow">return</span> res;</div>
+<div class="line"><span class="lineno">  599</span>}</div>
+<div class="ttc" id="anetwork_8c_html_ad7ec187320facb456542975fd39de56e"><div class="ttname"><a href="network_8c.html#ad7ec187320facb456542975fd39de56e">network_create</a></div><div class="ttdeci">network_t * network_create(layer_t **layers, size_t layer_count, size_t inputs)</div><div class="ttdoc">Creates a network from an array of layers.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00163">network.c:163</a></div></div>
+<div class="ttc" id="astructnetwork__t_html"><div class="ttname"><a href="structnetwork__t.html">network_t</a></div><div class="ttdoc">A struct representing a neural network.</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00058">network.h:59</a></div></div>
+<div class="ttc" id="astructnetwork__t_html_af7a2fbc049a0fd2d5ad14f218658ca83"><div class="ttname"><a href="structnetwork__t.html#af7a2fbc049a0fd2d5ad14f218658ca83">network_t::inputs</a></div><div class="ttdeci">size_t inputs</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00062">network.h:62</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -630,16 +604,16 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The created network. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="network_8c_source.html#l00166">166</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  167</span>{</div>
-<div class="line"><span class="lineno">  168</span>    <a class="code hl_struct" href="structnetwork__t.html">network_t</a> *res = (<a class="code hl_struct" href="structnetwork__t.html">network_t</a> *)malloc(<span class="keyword">sizeof</span>(<a class="code hl_struct" href="structnetwork__t.html">network_t</a>));</div>
-<div class="line"><span class="lineno">  169</span>    <span class="keywordflow">if</span> (res == NULL)</div>
-<div class="line"><span class="lineno">  170</span>        <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><span class="lineno">  171</span>    res-&gt;<a class="code hl_variable" href="structnetwork__t.html#abc9801a33bc441d67a87fac3b603ae87">layers</a> = layers;</div>
-<div class="line"><span class="lineno">  172</span>    res-&gt;<a class="code hl_variable" href="structnetwork__t.html#af7a2fbc049a0fd2d5ad14f218658ca83">inputs</a> = inputs;</div>
-<div class="line"><span class="lineno">  173</span>    res-&gt;<a class="code hl_variable" href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">layer_count</a> = layer_count;</div>
-<div class="line"><span class="lineno">  174</span>    <span class="keywordflow">return</span> res;</div>
-<div class="line"><span class="lineno">  175</span>}</div>
+<p class="definition">Definition at line <a class="el" href="network_8c_source.html#l00163">163</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  164</span>{</div>
+<div class="line"><span class="lineno">  165</span>    <a class="code hl_struct" href="structnetwork__t.html">network_t</a> *res = (<a class="code hl_struct" href="structnetwork__t.html">network_t</a> *)malloc(<span class="keyword">sizeof</span>(<a class="code hl_struct" href="structnetwork__t.html">network_t</a>));</div>
+<div class="line"><span class="lineno">  166</span>    <span class="keywordflow">if</span> (res == NULL)</div>
+<div class="line"><span class="lineno">  167</span>        <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><span class="lineno">  168</span>    res-&gt;<a class="code hl_variable" href="structnetwork__t.html#abc9801a33bc441d67a87fac3b603ae87">layers</a> = layers;</div>
+<div class="line"><span class="lineno">  169</span>    res-&gt;<a class="code hl_variable" href="structnetwork__t.html#af7a2fbc049a0fd2d5ad14f218658ca83">inputs</a> = inputs;</div>
+<div class="line"><span class="lineno">  170</span>    res-&gt;<a class="code hl_variable" href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">layer_count</a> = layer_count;</div>
+<div class="line"><span class="lineno">  171</span>    <span class="keywordflow">return</span> res;</div>
+<div class="line"><span class="lineno">  172</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -667,22 +641,22 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="network_8c_source.html#l00177">177</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  178</span>{</div>
-<div class="line"><span class="lineno">  179</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; net-&gt;<a class="code hl_variable" href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">layer_count</a>; i++)</div>
-<div class="line"><span class="lineno">  180</span>    {</div>
-<div class="line"><span class="lineno">  181</span>        <a class="code hl_function" href="network_8c.html#ac0e36ece7ab68f5333223ea9167938d9">layer_free</a>(net-&gt;<a class="code hl_variable" href="structnetwork__t.html#abc9801a33bc441d67a87fac3b603ae87">layers</a>[i]);</div>
-<div class="line"><span class="lineno">  182</span>    }</div>
-<div class="line"><span class="lineno">  183</span> </div>
-<div class="line"><span class="lineno">  184</span>    free(net-&gt;<a class="code hl_variable" href="structnetwork__t.html#abc9801a33bc441d67a87fac3b603ae87">layers</a>);</div>
-<div class="line"><span class="lineno">  185</span>    free(net);</div>
-<div class="line"><span class="lineno">  186</span>}</div>
-<div class="ttc" id="anetwork_8c_html_ac0e36ece7ab68f5333223ea9167938d9"><div class="ttname"><a href="network_8c.html#ac0e36ece7ab68f5333223ea9167938d9">layer_free</a></div><div class="ttdeci">void layer_free(layer_t *layer)</div><div class="ttdoc">Frees an allocated layer.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00155">network.c:155</a></div></div>
+<p class="definition">Definition at line <a class="el" href="network_8c_source.html#l00174">174</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  175</span>{</div>
+<div class="line"><span class="lineno">  176</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; net-&gt;<a class="code hl_variable" href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">layer_count</a>; i++)</div>
+<div class="line"><span class="lineno">  177</span>    {</div>
+<div class="line"><span class="lineno">  178</span>        <a class="code hl_function" href="network_8c.html#ac0e36ece7ab68f5333223ea9167938d9">layer_free</a>(net-&gt;<a class="code hl_variable" href="structnetwork__t.html#abc9801a33bc441d67a87fac3b603ae87">layers</a>[i]);</div>
+<div class="line"><span class="lineno">  179</span>    }</div>
+<div class="line"><span class="lineno">  180</span> </div>
+<div class="line"><span class="lineno">  181</span>    free(net-&gt;<a class="code hl_variable" href="structnetwork__t.html#abc9801a33bc441d67a87fac3b603ae87">layers</a>);</div>
+<div class="line"><span class="lineno">  182</span>    free(net);</div>
+<div class="line"><span class="lineno">  183</span>}</div>
+<div class="ttc" id="anetwork_8c_html_ac0e36ece7ab68f5333223ea9167938d9"><div class="ttname"><a href="network_8c.html#ac0e36ece7ab68f5333223ea9167938d9">layer_free</a></div><div class="ttdeci">void layer_free(layer_t *layer)</div><div class="ttdoc">Frees an allocated layer.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00152">network.c:152</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="ab6cea4b6d29301dd8feecd3db3a22e74" name="ab6cea4b6d29301dd8feecd3db3a22e74"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab6cea4b6d29301dd8feecd3db3a22e74">&#9670;&nbsp;</a></span>network_generate()</h2>
+<a id="a4cde5bd336c7baa291bef5ddce33c600" name="a4cde5bd336c7baa291bef5ddce33c600"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cde5bd336c7baa291bef5ddce33c600">&#9670;&nbsp;</a></span>network_generate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -691,13 +665,25 @@ Functions</h2></td></tr>
           <td class="memname"><a class="el" href="structnetwork__t.html">network_t</a> * network_generate </td>
           <td>(</td>
           <td class="paramtype">size_t *&#160;</td>
-          <td class="paramname"><em>neuron_count</em>, </td>
+          <td class="paramname"><em>neurons</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>size</em>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structlayer__activation__t.html">layer_activation_t</a>&#160;</td>
+          <td class="paramname"><em>hidden_activation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structlayer__activation__t.html">layer_activation_t</a>&#160;</td>
+          <td class="paramname"><em>output_activation</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -707,52 +693,36 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Generates a network based on given neuron count. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">neurons</td><td>An array containing the number of neurons at each layer including input layer.</td></tr>
-    <tr><td class="paramname">size</td><td>The length of the array, hence the number of layers plus the input layer. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The generated network. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="network_8c_source.html#l00526">526</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  527</span>{</div>
-<div class="line"><span class="lineno">  528</span>    <span class="keywordflow">if</span> (size &lt; 2)</div>
-<div class="line"><span class="lineno">  529</span>        <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><span class="lineno">  530</span>    <a class="code hl_struct" href="structlayer__t.html">layer_t</a> **layers = (<a class="code hl_struct" href="structlayer__t.html">layer_t</a> **)malloc((size - 1) * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structlayer__t.html">layer_t</a> *));</div>
-<div class="line"><span class="lineno">  531</span>    <span class="keywordtype">size_t</span> weights = neuron_count[0];</div>
-<div class="line"><span class="lineno">  532</span>    <a class="code hl_struct" href="structnetwork__t.html">network_t</a> *res = <a class="code hl_function" href="network_8c.html#ad7ec187320facb456542975fd39de56e">network_create</a>(layers, size - 1, weights);</div>
-<div class="line"><span class="lineno">  533</span> </div>
-<div class="line"><span class="lineno">  534</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 1; i &lt; size; i++)</div>
-<div class="line"><span class="lineno">  535</span>    {</div>
-<div class="line"><span class="lineno">  536</span>        <span class="keywordtype">size_t</span> n_count = neuron_count[i];</div>
-<div class="line"><span class="lineno">  537</span>        <a class="code hl_struct" href="structneuron__t.html">neuron_t</a> **neurons = (<a class="code hl_struct" href="structneuron__t.html">neuron_t</a> **)malloc(n_count * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structneuron__t.html">neuron_t</a> *));</div>
-<div class="line"><span class="lineno">  538</span>        <a class="code hl_struct" href="structlayer__t.html">layer_t</a> *layer = <a class="code hl_function" href="network_8c.html#af0be2bf2d994ad2892ce3bbd1650bcce">layer_create</a>(</div>
-<div class="line"><span class="lineno">  539</span>            neurons, n_count, <a class="code hl_function" href="function_8c.html#a3cfe80ea8f08d3cb79fac7898f2f732f">activation</a>, <a class="code hl_function" href="function_8c.html#aadf5a2658d407fe312e061e9f92e7aff">activation_derivative</a>);</div>
-<div class="line"><span class="lineno">  540</span>        layers[i - 1] = layer;</div>
-<div class="line"><span class="lineno">  541</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> ni = 0; ni &lt; n_count; ni++)</div>
-<div class="line"><span class="lineno">  542</span>        {</div>
-<div class="line"><span class="lineno">  543</span>            <span class="keywordtype">double</span> *values = <a class="code hl_function" href="function_8c.html#ae6d5ccd297429cb956c9a4deb3d5daa8">generate_weights</a>(weights + 1);</div>
-<div class="line"><span class="lineno">  544</span>            layers[i - 1]-&gt;<a class="code hl_variable" href="structlayer__t.html#a71e4f1a74c73f54b7ff2c40dc88c795e">neurons</a>[ni] = parse_results(values, weights);</div>
-<div class="line"><span class="lineno">  545</span>            free(values);</div>
-<div class="line"><span class="lineno">  546</span>        }</div>
-<div class="line"><span class="lineno">  547</span>        weights = n_count;</div>
-<div class="line"><span class="lineno">  548</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="network_8c_source.html#l00541">541</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  543</span>{</div>
+<div class="line"><span class="lineno">  544</span>    <span class="keywordflow">if</span> (size &lt; 2)</div>
+<div class="line"><span class="lineno">  545</span>        <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><span class="lineno">  546</span>    <a class="code hl_struct" href="structlayer__t.html">layer_t</a> **layers = (<a class="code hl_struct" href="structlayer__t.html">layer_t</a> **)malloc((size - 1) * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structlayer__t.html">layer_t</a> *));</div>
+<div class="line"><span class="lineno">  547</span>    <span class="keywordtype">size_t</span> weights = neuron_count[0];</div>
+<div class="line"><span class="lineno">  548</span>    <a class="code hl_struct" href="structnetwork__t.html">network_t</a> *res = <a class="code hl_function" href="network_8c.html#ad7ec187320facb456542975fd39de56e">network_create</a>(layers, size - 1, weights);</div>
 <div class="line"><span class="lineno">  549</span> </div>
-<div class="line"><span class="lineno">  550</span>    <a class="code hl_struct" href="structlayer__t.html">layer_t</a> *out = res-&gt;<a class="code hl_variable" href="structnetwork__t.html#abc9801a33bc441d67a87fac3b603ae87">layers</a>[res-&gt;<a class="code hl_variable" href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">layer_count</a> - 1];</div>
-<div class="line"><span class="lineno">  551</span>    out-&gt;<a class="code hl_variable" href="structlayer__t.html#a986a66b0b385bcc14acea253eb4cddf4">activation</a> = <a class="code hl_function" href="function_8c.html#aad9426959fd01ef08b2da99d846dce0e">output_activation</a>;</div>
-<div class="line"><span class="lineno">  552</span>    out-&gt;<a class="code hl_variable" href="structlayer__t.html#acacc7b95f0ad34a47555e40189aae7c0">dactivation</a> = <a class="code hl_function" href="function_8c.html#acc76e8527c5c41125cffaee537a0068d">output_activation_derivative</a>;</div>
-<div class="line"><span class="lineno">  553</span> </div>
-<div class="line"><span class="lineno">  554</span>    <span class="keywordflow">return</span> res;</div>
-<div class="line"><span class="lineno">  555</span>}</div>
-<div class="ttc" id="afunction_8c_html_a3cfe80ea8f08d3cb79fac7898f2f732f"><div class="ttname"><a href="function_8c.html#a3cfe80ea8f08d3cb79fac7898f2f732f">activation</a></div><div class="ttdeci">double activation(size_t layer, size_t neuron, double arg, network_results_t *res)</div><div class="ttdef"><b>Definition:</b> <a href="function_8c_source.html#l00069">function.c:69</a></div></div>
-<div class="ttc" id="afunction_8c_html_aad9426959fd01ef08b2da99d846dce0e"><div class="ttname"><a href="function_8c.html#aad9426959fd01ef08b2da99d846dce0e">output_activation</a></div><div class="ttdeci">double output_activation(size_t layer, size_t neuron, double arg, network_results_t *res)</div><div class="ttdef"><b>Definition:</b> <a href="function_8c_source.html#l00053">function.c:53</a></div></div>
-<div class="ttc" id="afunction_8c_html_aadf5a2658d407fe312e061e9f92e7aff"><div class="ttname"><a href="function_8c.html#aadf5a2658d407fe312e061e9f92e7aff">activation_derivative</a></div><div class="ttdeci">double activation_derivative(size_t layer, size_t neuron, double arg, network_results_t *res)</div><div class="ttdef"><b>Definition:</b> <a href="function_8c_source.html#l00078">function.c:78</a></div></div>
-<div class="ttc" id="afunction_8c_html_acc76e8527c5c41125cffaee537a0068d"><div class="ttname"><a href="function_8c.html#acc76e8527c5c41125cffaee537a0068d">output_activation_derivative</a></div><div class="ttdeci">double output_activation_derivative(size_t layer, size_t neuron, double arg, network_results_t *res)</div><div class="ttdef"><b>Definition:</b> <a href="function_8c_source.html#l00060">function.c:60</a></div></div>
-<div class="ttc" id="afunction_8c_html_ae6d5ccd297429cb956c9a4deb3d5daa8"><div class="ttname"><a href="function_8c.html#ae6d5ccd297429cb956c9a4deb3d5daa8">generate_weights</a></div><div class="ttdeci">double * generate_weights(double n)</div><div class="ttdoc">Returns a double pointer with values following normal distribution; of element for the distribution.</div><div class="ttdef"><b>Definition:</b> <a href="function_8c_source.html#l00125">function.c:125</a></div></div>
-<div class="ttc" id="anetwork_8c_html_af0be2bf2d994ad2892ce3bbd1650bcce"><div class="ttname"><a href="network_8c.html#af0be2bf2d994ad2892ce3bbd1650bcce">layer_create</a></div><div class="ttdeci">layer_t * layer_create(neuron_t **neurons, size_t count, activation_t f, activation_t d)</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00141">network.c:141</a></div></div>
+<div class="line"><span class="lineno">  550</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 1; i &lt; size; i++)</div>
+<div class="line"><span class="lineno">  551</span>    {</div>
+<div class="line"><span class="lineno">  552</span>        <span class="keywordtype">size_t</span> n_count = neuron_count[i];</div>
+<div class="line"><span class="lineno">  553</span>        <a class="code hl_struct" href="structneuron__t.html">neuron_t</a> **neurons = (<a class="code hl_struct" href="structneuron__t.html">neuron_t</a> **)malloc(n_count * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structneuron__t.html">neuron_t</a> *));</div>
+<div class="line"><span class="lineno">  554</span>        <a class="code hl_struct" href="structlayer__t.html">layer_t</a> *layer = <a class="code hl_function" href="network_8c.html#a5a41f7b99e30fed21f72cd24b68d1cd3">layer_create</a>(neurons, n_count, hidden_activation);</div>
+<div class="line"><span class="lineno">  555</span>        layers[i - 1] = layer;</div>
+<div class="line"><span class="lineno">  556</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> ni = 0; ni &lt; n_count; ni++)</div>
+<div class="line"><span class="lineno">  557</span>        {</div>
+<div class="line"><span class="lineno">  558</span>            <span class="keywordtype">double</span> *values = <a class="code hl_function" href="function_8c.html#ae6d5ccd297429cb956c9a4deb3d5daa8">generate_weights</a>(weights + 1);</div>
+<div class="line"><span class="lineno">  559</span>            layers[i - 1]-&gt;<a class="code hl_variable" href="structlayer__t.html#a71e4f1a74c73f54b7ff2c40dc88c795e">neurons</a>[ni] = parse_results(values, weights);</div>
+<div class="line"><span class="lineno">  560</span>            free(values);</div>
+<div class="line"><span class="lineno">  561</span>        }</div>
+<div class="line"><span class="lineno">  562</span>        weights = n_count;</div>
+<div class="line"><span class="lineno">  563</span>    }</div>
+<div class="line"><span class="lineno">  564</span> </div>
+<div class="line"><span class="lineno">  565</span>    <a class="code hl_struct" href="structlayer__t.html">layer_t</a> *out = res-&gt;<a class="code hl_variable" href="structnetwork__t.html#abc9801a33bc441d67a87fac3b603ae87">layers</a>[res-&gt;<a class="code hl_variable" href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">layer_count</a> - 1];</div>
+<div class="line"><span class="lineno">  566</span>    out-&gt;<a class="code hl_variable" href="structlayer__t.html#a72eace5d9e629f95ee55a7928df69ea0">act</a> = output_activation;</div>
+<div class="line"><span class="lineno">  567</span> </div>
+<div class="line"><span class="lineno">  568</span>    <span class="keywordflow">return</span> res;</div>
+<div class="line"><span class="lineno">  569</span>}</div>
+<div class="ttc" id="afunction_8c_html_ae6d5ccd297429cb956c9a4deb3d5daa8"><div class="ttname"><a href="function_8c.html#ae6d5ccd297429cb956c9a4deb3d5daa8">generate_weights</a></div><div class="ttdeci">double * generate_weights(double n)</div><div class="ttdoc">Returns a double pointer with values following normal distribution; of element for the distribution.</div><div class="ttdef"><b>Definition:</b> <a href="function_8c_source.html#l00127">function.c:127</a></div></div>
+<div class="ttc" id="anetwork_8c_html_a5a41f7b99e30fed21f72cd24b68d1cd3"><div class="ttname"><a href="network_8c.html#a5a41f7b99e30fed21f72cd24b68d1cd3">layer_create</a></div><div class="ttdeci">layer_t * layer_create(neuron_t **neurons, size_t count, layer_activation_t act)</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00140">network.c:140</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -792,24 +762,24 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The calculated output or -1 if none above the threshold. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="network_8c_source.html#l00702">702</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  703</span>{</div>
-<div class="line"><span class="lineno">  704</span>    <span class="keywordtype">int</span> result = -1;</div>
-<div class="line"><span class="lineno">  705</span>    <span class="keywordtype">double</span> old_value = 0;</div>
-<div class="line"><span class="lineno">  706</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; outputs-&gt;<a class="code hl_variable" href="structmatrix__t.html#a9620f15b4416ec1830196db9ec904fc5">rows</a>; i++)</div>
-<div class="line"><span class="lineno">  707</span>    {</div>
-<div class="line"><span class="lineno">  708</span>        <span class="keywordtype">double</span> val = <a class="code hl_function" href="matrix_8c.html#a631ff21351ba5ec31350fb5277605d3b">mat_el_at</a>(outputs, i, 0);</div>
-<div class="line"><span class="lineno">  709</span>        <span class="keywordflow">if</span> (val &lt; threshold)</div>
-<div class="line"><span class="lineno">  710</span>            <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  711</span>        <span class="keywordflow">if</span> (val &gt; old_value)</div>
-<div class="line"><span class="lineno">  712</span>        {</div>
-<div class="line"><span class="lineno">  713</span>            result = i;</div>
-<div class="line"><span class="lineno">  714</span>            old_value = val;</div>
-<div class="line"><span class="lineno">  715</span>        }</div>
-<div class="line"><span class="lineno">  716</span>    }</div>
-<div class="line"><span class="lineno">  717</span> </div>
-<div class="line"><span class="lineno">  718</span>    <span class="keywordflow">return</span> result;</div>
-<div class="line"><span class="lineno">  719</span>}</div>
+<p class="definition">Definition at line <a class="el" href="network_8c_source.html#l00715">715</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  716</span>{</div>
+<div class="line"><span class="lineno">  717</span>    <span class="keywordtype">int</span> result = -1;</div>
+<div class="line"><span class="lineno">  718</span>    <span class="keywordtype">double</span> old_value = 0;</div>
+<div class="line"><span class="lineno">  719</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; outputs-&gt;<a class="code hl_variable" href="structmatrix__t.html#a9620f15b4416ec1830196db9ec904fc5">rows</a>; i++)</div>
+<div class="line"><span class="lineno">  720</span>    {</div>
+<div class="line"><span class="lineno">  721</span>        <span class="keywordtype">double</span> val = <a class="code hl_function" href="matrix_8c.html#a631ff21351ba5ec31350fb5277605d3b">mat_el_at</a>(outputs, i, 0);</div>
+<div class="line"><span class="lineno">  722</span>        <span class="keywordflow">if</span> (val &lt; threshold)</div>
+<div class="line"><span class="lineno">  723</span>            <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  724</span>        <span class="keywordflow">if</span> (val &gt; old_value)</div>
+<div class="line"><span class="lineno">  725</span>        {</div>
+<div class="line"><span class="lineno">  726</span>            result = i;</div>
+<div class="line"><span class="lineno">  727</span>            old_value = val;</div>
+<div class="line"><span class="lineno">  728</span>        }</div>
+<div class="line"><span class="lineno">  729</span>    }</div>
+<div class="line"><span class="lineno">  730</span> </div>
+<div class="line"><span class="lineno">  731</span>    <span class="keywordflow">return</span> result;</div>
+<div class="line"><span class="lineno">  732</span>}</div>
 <div class="ttc" id="astructmatrix__t_html_a9620f15b4416ec1830196db9ec904fc5"><div class="ttname"><a href="structmatrix__t.html#a9620f15b4416ec1830196db9ec904fc5">matrix_t::rows</a></div><div class="ttdeci">size_t rows</div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00012">matrix.h:12</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -839,65 +809,69 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The loaded network. The file format: The file will start with two comma-separated integer indicating the number of layers and the number of input neurons. Each layer will start by the number of neurons in the layer. Then each neuron information will be seperated by a newline char. Neuron format: &lt;weight1&gt;, ... , &lt;weightn&gt;, &lt;bias&gt; Example for xor network with random biases and weights: 2,2 # The number of layers and the number of input neurons. 2 # The number of neurons in layer 1 1,1,-0.5 # neuron 1,1 weights are [1, 1] and the bias is -0.5 -1,-1,1.5 1 # The number of neurons in layer 2 1, 1, 0.5 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="network_8c_source.html#l00432">432</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  433</span>{</div>
-<div class="line"><span class="lineno">  434</span>    <span class="comment">// open the file</span></div>
-<div class="line"><span class="lineno">  435</span>    FILE *file = fopen(path, <span class="stringliteral">&quot;r&quot;</span>);</div>
-<div class="line"><span class="lineno">  436</span>    <a class="code hl_define" href="network_8c.html#a28a631a46550a13bbf48635953aafcbd">CHK</a>(file, <span class="stringliteral">&quot;network_load&quot;</span>, <span class="stringliteral">&quot;could not open file&quot;</span>);</div>
-<div class="line"><span class="lineno">  437</span> </div>
-<div class="line"><span class="lineno">  438</span>    <span class="keywordtype">size_t</span> layer_count, weight_count, neuron_count = 0;</div>
-<div class="line"><span class="lineno">  439</span>    <span class="keywordtype">size_t</span> neuron_index = 0, layer_index = 0;</div>
-<div class="line"><span class="lineno">  440</span>    <span class="keywordtype">int</span> in_layer = 0;</div>
-<div class="line"><span class="lineno">  441</span>    <span class="keywordtype">size_t</span> line = 0;</div>
-<div class="line"><span class="lineno">  442</span>    <span class="keywordtype">int</span> alive = parse_header(file, &amp;layer_count, &amp;neuron_count, &amp;line);</div>
-<div class="line"><span class="lineno">  443</span>    line++;</div>
-<div class="line"><span class="lineno">  444</span>    <span class="keywordflow">if</span> (!alive)</div>
-<div class="line"><span class="lineno">  445</span>        <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><span class="lineno">  446</span> </div>
-<div class="line"><span class="lineno">  447</span>    <a class="code hl_struct" href="structlayer__t.html">layer_t</a> **layers = (<a class="code hl_struct" href="structlayer__t.html">layer_t</a> **)malloc(layer_count * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structlayer__t.html">layer_t</a> *));</div>
-<div class="line"><span class="lineno">  448</span>    <a class="code hl_struct" href="structnetwork__t.html">network_t</a> *res = <a class="code hl_function" href="network_8c.html#ad7ec187320facb456542975fd39de56e">network_create</a>(layers, layer_count, neuron_count);</div>
-<div class="line"><span class="lineno">  449</span>    <span class="keywordtype">double</span> *values;</div>
-<div class="line"><span class="lineno">  450</span>    <span class="keywordflow">while</span> (layer_index &lt; layer_count)</div>
-<div class="line"><span class="lineno">  451</span>    {</div>
-<div class="line"><span class="lineno">  452</span>        <span class="keywordflow">if</span> (!in_layer)</div>
-<div class="line"><span class="lineno">  453</span>        {</div>
-<div class="line"><span class="lineno">  454</span>            weight_count = neuron_count;</div>
-<div class="line"><span class="lineno">  455</span>            alive = parse_layer_header(file, &amp;neuron_count, &amp;line);</div>
-<div class="line"><span class="lineno">  456</span>            line++;</div>
-<div class="line"><span class="lineno">  457</span>            neuron_index = 0;</div>
-<div class="line"><span class="lineno">  458</span>            in_layer = 1;</div>
-<div class="line"><span class="lineno">  459</span>            layers[layer_index] = <a class="code hl_function" href="network_8c.html#af0be2bf2d994ad2892ce3bbd1650bcce">layer_create</a>(</div>
-<div class="line"><span class="lineno">  460</span>                (<a class="code hl_struct" href="structneuron__t.html">neuron_t</a> **)malloc(neuron_count * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structneuron__t.html">neuron_t</a> *)),</div>
-<div class="line"><span class="lineno">  461</span>                neuron_count, <a class="code hl_function" href="function_8c.html#a3cfe80ea8f08d3cb79fac7898f2f732f">activation</a>, <a class="code hl_function" href="function_8c.html#aadf5a2658d407fe312e061e9f92e7aff">activation_derivative</a>);</div>
-<div class="line"><span class="lineno">  462</span>        }</div>
-<div class="line"><span class="lineno">  463</span>        <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  464</span>        {</div>
-<div class="line"><span class="lineno">  465</span>            <span class="keywordflow">if</span> (neuron_count == neuron_index)</div>
-<div class="line"><span class="lineno">  466</span>            {</div>
-<div class="line"><span class="lineno">  467</span>                in_layer = 0;</div>
-<div class="line"><span class="lineno">  468</span>                layer_index++;</div>
-<div class="line"><span class="lineno">  469</span>            }</div>
-<div class="line"><span class="lineno">  470</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  471</span>            {</div>
-<div class="line"><span class="lineno">  472</span>                values = (<span class="keywordtype">double</span> *)malloc((weight_count + 1) * <span class="keyword">sizeof</span>(double));</div>
-<div class="line"><span class="lineno">  473</span>                alive</div>
-<div class="line"><span class="lineno">  474</span>                    = parse_neuron_line(file, values, weight_count + 1, &amp;line);</div>
-<div class="line"><span class="lineno">  475</span>                line++;</div>
-<div class="line"><span class="lineno">  476</span>                layers[layer_index]-&gt;<a class="code hl_variable" href="structlayer__t.html#a71e4f1a74c73f54b7ff2c40dc88c795e">neurons</a>[neuron_index]</div>
-<div class="line"><span class="lineno">  477</span>                    = parse_results(values, weight_count);</div>
-<div class="line"><span class="lineno">  478</span>                free(values);</div>
-<div class="line"><span class="lineno">  479</span>                neuron_index++;</div>
-<div class="line"><span class="lineno">  480</span>            }</div>
-<div class="line"><span class="lineno">  481</span>        }</div>
-<div class="line"><span class="lineno">  482</span>    }</div>
-<div class="line"><span class="lineno">  483</span>    <span class="comment">// close the file</span></div>
-<div class="line"><span class="lineno">  484</span>    fclose(file);</div>
-<div class="line"><span class="lineno">  485</span>    <a class="code hl_struct" href="structlayer__t.html">layer_t</a> *output_layer = res-&gt;<a class="code hl_variable" href="structnetwork__t.html#abc9801a33bc441d67a87fac3b603ae87">layers</a>[res-&gt;<a class="code hl_variable" href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">layer_count</a> - 1];</div>
-<div class="line"><span class="lineno">  486</span>    output_layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a986a66b0b385bcc14acea253eb4cddf4">activation</a> = <a class="code hl_function" href="function_8c.html#aad9426959fd01ef08b2da99d846dce0e">output_activation</a>;</div>
-<div class="line"><span class="lineno">  487</span>    output_layer-&gt;<a class="code hl_variable" href="structlayer__t.html#acacc7b95f0ad34a47555e40189aae7c0">dactivation</a> = <a class="code hl_function" href="function_8c.html#acc76e8527c5c41125cffaee537a0068d">output_activation_derivative</a>;</div>
-<div class="line"><span class="lineno">  488</span>    <span class="keywordflow">return</span> res;</div>
-<div class="line"><span class="lineno">  489</span>}</div>
+<p class="definition">Definition at line <a class="el" href="network_8c_source.html#l00445">445</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  446</span>{</div>
+<div class="line"><span class="lineno">  447</span>    <span class="comment">// open the file</span></div>
+<div class="line"><span class="lineno">  448</span>    FILE *file = fopen(path, <span class="stringliteral">&quot;r&quot;</span>);</div>
+<div class="line"><span class="lineno">  449</span>    <a class="code hl_define" href="network_8c.html#a28a631a46550a13bbf48635953aafcbd">CHK</a>(file, <span class="stringliteral">&quot;network_load&quot;</span>, <span class="stringliteral">&quot;could not open file&quot;</span>);</div>
+<div class="line"><span class="lineno">  450</span> </div>
+<div class="line"><span class="lineno">  451</span>    <span class="keywordtype">size_t</span> layer_count, weight_count, neuron_count = 0;</div>
+<div class="line"><span class="lineno">  452</span>    <span class="keywordtype">size_t</span> neuron_index = 0, layer_index = 0;</div>
+<div class="line"><span class="lineno">  453</span>    <span class="keywordtype">int</span> in_layer = 0;</div>
+<div class="line"><span class="lineno">  454</span>    <span class="keywordtype">size_t</span> line = 0;</div>
+<div class="line"><span class="lineno">  455</span>    <span class="keywordtype">int</span> alive = parse_header(file, &amp;layer_count, &amp;neuron_count, &amp;line);</div>
+<div class="line"><span class="lineno">  456</span>    line++;</div>
+<div class="line"><span class="lineno">  457</span>    <span class="keywordflow">if</span> (!alive)</div>
+<div class="line"><span class="lineno">  458</span>        <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><span class="lineno">  459</span> </div>
+<div class="line"><span class="lineno">  460</span>    <a class="code hl_struct" href="structlayer__t.html">layer_t</a> **layers = (<a class="code hl_struct" href="structlayer__t.html">layer_t</a> **)malloc(layer_count * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structlayer__t.html">layer_t</a> *));</div>
+<div class="line"><span class="lineno">  461</span>    <a class="code hl_struct" href="structnetwork__t.html">network_t</a> *res = <a class="code hl_function" href="network_8c.html#ad7ec187320facb456542975fd39de56e">network_create</a>(layers, layer_count, neuron_count);</div>
+<div class="line"><span class="lineno">  462</span>    <span class="keywordtype">double</span> *values;</div>
+<div class="line"><span class="lineno">  463</span>    <span class="keywordtype">char</span> *activation_name = NULL;</div>
+<div class="line"><span class="lineno">  464</span>    <span class="keywordflow">while</span> (layer_index &lt; layer_count)</div>
+<div class="line"><span class="lineno">  465</span>    {</div>
+<div class="line"><span class="lineno">  466</span>        <span class="keywordflow">if</span> (!in_layer)</div>
+<div class="line"><span class="lineno">  467</span>        {</div>
+<div class="line"><span class="lineno">  468</span>            weight_count = neuron_count;</div>
+<div class="line"><span class="lineno">  469</span>            alive = parse_layer_header(</div>
+<div class="line"><span class="lineno">  470</span>                file, &amp;neuron_count, &amp;line, &amp;activation_name);</div>
+<div class="line"><span class="lineno">  471</span>            <a class="code hl_struct" href="structlayer__activation__t.html">layer_activation_t</a> act = <a class="code hl_function" href="function_8c.html#ad931f594da43f54930f55a70a1370d5e">get_layer_activation</a>(activation_name);</div>
+<div class="line"><span class="lineno">  472</span>            <span class="keywordflow">if</span> (activation_name != NULL)</div>
+<div class="line"><span class="lineno">  473</span>                free(activation_name);</div>
+<div class="line"><span class="lineno">  474</span>            line++;</div>
+<div class="line"><span class="lineno">  475</span>            neuron_index = 0;</div>
+<div class="line"><span class="lineno">  476</span>            in_layer = 1;</div>
+<div class="line"><span class="lineno">  477</span>            layers[layer_index] = <a class="code hl_function" href="network_8c.html#a5a41f7b99e30fed21f72cd24b68d1cd3">layer_create</a>(</div>
+<div class="line"><span class="lineno">  478</span>                (<a class="code hl_struct" href="structneuron__t.html">neuron_t</a> **)malloc(neuron_count * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structneuron__t.html">neuron_t</a> *)),</div>
+<div class="line"><span class="lineno">  479</span>                neuron_count, act);</div>
+<div class="line"><span class="lineno">  480</span>        }</div>
+<div class="line"><span class="lineno">  481</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  482</span>        {</div>
+<div class="line"><span class="lineno">  483</span>            <span class="keywordflow">if</span> (neuron_count == neuron_index)</div>
+<div class="line"><span class="lineno">  484</span>            {</div>
+<div class="line"><span class="lineno">  485</span>                in_layer = 0;</div>
+<div class="line"><span class="lineno">  486</span>                layer_index++;</div>
+<div class="line"><span class="lineno">  487</span>            }</div>
+<div class="line"><span class="lineno">  488</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  489</span>            {</div>
+<div class="line"><span class="lineno">  490</span>                values = (<span class="keywordtype">double</span> *)malloc((weight_count + 1) * <span class="keyword">sizeof</span>(double));</div>
+<div class="line"><span class="lineno">  491</span>                alive</div>
+<div class="line"><span class="lineno">  492</span>                    = parse_neuron_line(file, values, weight_count + 1, &amp;line);</div>
+<div class="line"><span class="lineno">  493</span>                line++;</div>
+<div class="line"><span class="lineno">  494</span>                layers[layer_index]-&gt;<a class="code hl_variable" href="structlayer__t.html#a71e4f1a74c73f54b7ff2c40dc88c795e">neurons</a>[neuron_index]</div>
+<div class="line"><span class="lineno">  495</span>                    = parse_results(values, weight_count);</div>
+<div class="line"><span class="lineno">  496</span>                free(values);</div>
+<div class="line"><span class="lineno">  497</span>                neuron_index++;</div>
+<div class="line"><span class="lineno">  498</span>            }</div>
+<div class="line"><span class="lineno">  499</span>        }</div>
+<div class="line"><span class="lineno">  500</span>    }</div>
+<div class="line"><span class="lineno">  501</span>    <span class="comment">// close the file</span></div>
+<div class="line"><span class="lineno">  502</span>    fclose(file);</div>
+<div class="line"><span class="lineno">  503</span>    <span class="keywordflow">return</span> res;</div>
+<div class="line"><span class="lineno">  504</span>}</div>
+<div class="ttc" id="afunction_8c_html_ad931f594da43f54930f55a70a1370d5e"><div class="ttname"><a href="function_8c.html#ad931f594da43f54930f55a70a1370d5e">get_layer_activation</a></div><div class="ttdeci">layer_activation_t get_layer_activation(const char *name)</div><div class="ttdef"><b>Definition:</b> <a href="function_8c_source.html#l00074">function.c:74</a></div></div>
 <div class="ttc" id="anetwork_8c_html_a28a631a46550a13bbf48635953aafcbd"><div class="ttname"><a href="network_8c.html#a28a631a46550a13bbf48635953aafcbd">CHK</a></div><div class="ttdeci">#define CHK(ptr, function, message)</div><div class="ttdoc">checks if a pointer is null.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00008">network.c:8</a></div></div>
+<div class="ttc" id="astructlayer__activation__t_html"><div class="ttname"><a href="structlayer__activation__t.html">layer_activation_t</a></div><div class="ttdoc">The struct containing all info required about the activation function.</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00025">network.h:26</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -936,20 +910,20 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="network_8c_source.html#l00511">511</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  512</span>{</div>
-<div class="line"><span class="lineno">  513</span>    FILE *file = fopen(path, <span class="stringliteral">&quot;w&quot;</span>);</div>
-<div class="line"><span class="lineno">  514</span>    <a class="code hl_define" href="network_8c.html#a28a631a46550a13bbf48635953aafcbd">CHK</a>(file, <span class="stringliteral">&quot;network_save&quot;</span>, <span class="stringliteral">&quot;could not open file&quot;</span>);</div>
-<div class="line"><span class="lineno">  515</span>    fprintf(file, <span class="stringliteral">&quot;%zu, %zu\n&quot;</span>, net-&gt;<a class="code hl_variable" href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">layer_count</a>, net-&gt;<a class="code hl_variable" href="structnetwork__t.html#af7a2fbc049a0fd2d5ad14f218658ca83">inputs</a>);</div>
-<div class="line"><span class="lineno">  516</span>    <span class="keywordtype">size_t</span> weight_count = net-&gt;<a class="code hl_variable" href="structnetwork__t.html#af7a2fbc049a0fd2d5ad14f218658ca83">inputs</a>;</div>
-<div class="line"><span class="lineno">  517</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; net-&gt;<a class="code hl_variable" href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">layer_count</a>; i++)</div>
-<div class="line"><span class="lineno">  518</span>    {</div>
-<div class="line"><span class="lineno">  519</span>        fprintf(file, <span class="stringliteral">&quot;\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  520</span>        layer_save(file, net-&gt;<a class="code hl_variable" href="structnetwork__t.html#abc9801a33bc441d67a87fac3b603ae87">layers</a>[i], weight_count);</div>
-<div class="line"><span class="lineno">  521</span>        weight_count = net-&gt;<a class="code hl_variable" href="structnetwork__t.html#abc9801a33bc441d67a87fac3b603ae87">layers</a>[i]-&gt;<a class="code hl_variable" href="structlayer__t.html#a79cee7069a84d7440d56779ba2c073fb">count</a>;</div>
-<div class="line"><span class="lineno">  522</span>    }</div>
-<div class="line"><span class="lineno">  523</span>    fclose(file);</div>
-<div class="line"><span class="lineno">  524</span>}</div>
+<p class="definition">Definition at line <a class="el" href="network_8c_source.html#l00526">526</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  527</span>{</div>
+<div class="line"><span class="lineno">  528</span>    FILE *file = fopen(path, <span class="stringliteral">&quot;w&quot;</span>);</div>
+<div class="line"><span class="lineno">  529</span>    <a class="code hl_define" href="network_8c.html#a28a631a46550a13bbf48635953aafcbd">CHK</a>(file, <span class="stringliteral">&quot;network_save&quot;</span>, <span class="stringliteral">&quot;could not open file&quot;</span>);</div>
+<div class="line"><span class="lineno">  530</span>    fprintf(file, <span class="stringliteral">&quot;%zu, %zu\n&quot;</span>, net-&gt;<a class="code hl_variable" href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">layer_count</a>, net-&gt;<a class="code hl_variable" href="structnetwork__t.html#af7a2fbc049a0fd2d5ad14f218658ca83">inputs</a>);</div>
+<div class="line"><span class="lineno">  531</span>    <span class="keywordtype">size_t</span> weight_count = net-&gt;<a class="code hl_variable" href="structnetwork__t.html#af7a2fbc049a0fd2d5ad14f218658ca83">inputs</a>;</div>
+<div class="line"><span class="lineno">  532</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; net-&gt;<a class="code hl_variable" href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">layer_count</a>; i++)</div>
+<div class="line"><span class="lineno">  533</span>    {</div>
+<div class="line"><span class="lineno">  534</span>        fprintf(file, <span class="stringliteral">&quot;\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  535</span>        layer_save(file, net-&gt;<a class="code hl_variable" href="structnetwork__t.html#abc9801a33bc441d67a87fac3b603ae87">layers</a>[i], weight_count);</div>
+<div class="line"><span class="lineno">  536</span>        weight_count = net-&gt;<a class="code hl_variable" href="structnetwork__t.html#abc9801a33bc441d67a87fac3b603ae87">layers</a>[i]-&gt;<a class="code hl_variable" href="structlayer__t.html#a79cee7069a84d7440d56779ba2c073fb">count</a>;</div>
+<div class="line"><span class="lineno">  537</span>    }</div>
+<div class="line"><span class="lineno">  538</span>    fclose(file);</div>
+<div class="line"><span class="lineno">  539</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -991,49 +965,50 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="network_8c_source.html#l00659">659</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  661</span>{</div>
-<div class="line"><span class="lineno">  662</span>    <a class="code hl_struct" href="structnetwork__t.html">network_t</a> *trained = <a class="code hl_function" href="network_8c.html#abef62369a77da828529fbf193f111ef7">network_copy</a>(*pnet);</div>
-<div class="line"><span class="lineno">  663</span> </div>
-<div class="line"><span class="lineno">  664</span>    <a class="code hl_struct" href="structnetwork__results__t.html">network_results_t</a> *results = <a class="code hl_function" href="network_8c.html#a2915eb69be1db6dd406f986f8cb5c8c8">results_create</a>((*pnet)-&gt;layer_count);</div>
-<div class="line"><span class="lineno">  665</span>    results-&gt;<a class="code hl_variable" href="structnetwork__results__t.html#a81f6c9388535caf11d916c99da211ed6">network</a> = *pnet;</div>
-<div class="line"><span class="lineno">  666</span> </div>
-<div class="line"><span class="lineno">  667</span>    <a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> **outputs = results-&gt;<a class="code hl_variable" href="structnetwork__results__t.html#a5f69d90d162ba6b0796d55d4de7bc97d">outputs</a>;</div>
-<div class="line"><span class="lineno">  668</span>    outputs[0] = <a class="code hl_function" href="matrix_8c.html#ad4970f9c83f185813ab569266c4fd0de">mat_copy</a>(inputs);</div>
-<div class="line"><span class="lineno">  669</span> </div>
-<div class="line"><span class="lineno">  670</span>    <a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> **deltas</div>
-<div class="line"><span class="lineno">  671</span>        = (<a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> **)malloc((*pnet)-&gt;layer_count * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> *));</div>
-<div class="line"><span class="lineno">  672</span> </div>
-<div class="line"><span class="lineno">  673</span>    <a class="code hl_function" href="network_8c.html#a2d59c0e85a5fc82d69e0abe8a9efbf95">compute_results_save</a>(results, *pnet);</div>
-<div class="line"><span class="lineno">  674</span> </div>
-<div class="line"><span class="lineno">  675</span>    <span class="keywordtype">size_t</span> layer_i = trained-&gt;<a class="code hl_variable" href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">layer_count</a> - 1;</div>
-<div class="line"><span class="lineno">  676</span>    <a class="code hl_struct" href="structlayer__t.html">layer_t</a> *trained_layer = trained-&gt;<a class="code hl_variable" href="structnetwork__t.html#abc9801a33bc441d67a87fac3b603ae87">layers</a>[layer_i];</div>
-<div class="line"><span class="lineno">  677</span>    <a class="code hl_struct" href="structlayer__t.html">layer_t</a> *old_layer = (*pnet)-&gt;layers[layer_i];</div>
-<div class="line"><span class="lineno">  678</span>    deltas[layer_i] = <a class="code hl_function" href="matrix_8c.html#a1d9b061fc8856e727f014c3266b7431d">matrix_create</a>(trained_layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a79cee7069a84d7440d56779ba2c073fb">count</a>, 1, 0);</div>
-<div class="line"><span class="lineno">  679</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> ni = 0; ni &lt; trained_layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a79cee7069a84d7440d56779ba2c073fb">count</a>; ni++)</div>
-<div class="line"><span class="lineno">  680</span>    {</div>
-<div class="line"><span class="lineno">  681</span>        <span class="keywordtype">double</span> delta = output_neuron_train(trained_layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a71e4f1a74c73f54b7ff2c40dc88c795e">neurons</a>[ni],</div>
-<div class="line"><span class="lineno">  682</span>            old_layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a71e4f1a74c73f54b7ff2c40dc88c795e">neurons</a>[ni], rate, <a class="code hl_function" href="matrix_8c.html#a631ff21351ba5ec31350fb5277605d3b">mat_el_at</a>(target, ni, 0),</div>
-<div class="line"><span class="lineno">  683</span>            <a class="code hl_function" href="matrix_8c.html#a631ff21351ba5ec31350fb5277605d3b">mat_el_at</a>(outputs[layer_i + 1], ni, 0), results, layer_i, ni,</div>
-<div class="line"><span class="lineno">  684</span>            old_layer-&gt;<a class="code hl_variable" href="structlayer__t.html#acacc7b95f0ad34a47555e40189aae7c0">dactivation</a>);</div>
-<div class="line"><span class="lineno">  685</span>        <a class="code hl_function" href="matrix_8c.html#a0e411263cdaaa67eae166d067996f5b6">mat_set_el</a>(deltas[layer_i], ni, 0, delta);</div>
-<div class="line"><span class="lineno">  686</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="network_8c_source.html#l00672">672</a> of file <a class="el" href="network_8c_source.html">network.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  674</span>{</div>
+<div class="line"><span class="lineno">  675</span>    <a class="code hl_struct" href="structnetwork__t.html">network_t</a> *trained = <a class="code hl_function" href="network_8c.html#abef62369a77da828529fbf193f111ef7">network_copy</a>(*pnet);</div>
+<div class="line"><span class="lineno">  676</span> </div>
+<div class="line"><span class="lineno">  677</span>    <a class="code hl_struct" href="structnetwork__results__t.html">network_results_t</a> *results = <a class="code hl_function" href="network_8c.html#a2915eb69be1db6dd406f986f8cb5c8c8">results_create</a>((*pnet)-&gt;layer_count);</div>
+<div class="line"><span class="lineno">  678</span>    results-&gt;<a class="code hl_variable" href="structnetwork__results__t.html#a81f6c9388535caf11d916c99da211ed6">network</a> = *pnet;</div>
+<div class="line"><span class="lineno">  679</span> </div>
+<div class="line"><span class="lineno">  680</span>    <a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> **outputs = results-&gt;<a class="code hl_variable" href="structnetwork__results__t.html#a5f69d90d162ba6b0796d55d4de7bc97d">outputs</a>;</div>
+<div class="line"><span class="lineno">  681</span>    outputs[0] = <a class="code hl_function" href="matrix_8c.html#ad4970f9c83f185813ab569266c4fd0de">mat_copy</a>(inputs);</div>
+<div class="line"><span class="lineno">  682</span> </div>
+<div class="line"><span class="lineno">  683</span>    <a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> **deltas</div>
+<div class="line"><span class="lineno">  684</span>        = (<a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> **)malloc((*pnet)-&gt;layer_count * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structmatrix__t.html">matrix_t</a> *));</div>
+<div class="line"><span class="lineno">  685</span> </div>
+<div class="line"><span class="lineno">  686</span>    <a class="code hl_function" href="network_8c.html#a2d59c0e85a5fc82d69e0abe8a9efbf95">compute_results_save</a>(results, *pnet);</div>
 <div class="line"><span class="lineno">  687</span> </div>
-<div class="line"><span class="lineno">  688</span>    compute_deltas(results, *pnet, deltas);</div>
-<div class="line"><span class="lineno">  689</span>    hidden_layer_train(results, trained, deltas, rate);</div>
-<div class="line"><span class="lineno">  690</span> </div>
-<div class="line"><span class="lineno">  691</span>    <a class="code hl_function" href="network_8c.html#a2512b64818030e2bafa25367611e3482">results_free</a>(results);</div>
-<div class="line"><span class="lineno">  692</span> </div>
-<div class="line"><span class="lineno">  693</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 1; i &lt;= trained-&gt;<a class="code hl_variable" href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">layer_count</a>; i++)</div>
-<div class="line"><span class="lineno">  694</span>    {</div>
-<div class="line"><span class="lineno">  695</span>        <a class="code hl_function" href="matrix_8c.html#aa20fd2a5c773eda620ce98e2f121b687">matrix_free</a>(deltas[i - 1]);</div>
-<div class="line"><span class="lineno">  696</span>    }</div>
-<div class="line"><span class="lineno">  697</span>    free(deltas);</div>
-<div class="line"><span class="lineno">  698</span>    <a class="code hl_function" href="network_8c.html#ab7de60cd0ad5a69e135b63d264018d1a">network_free</a>(*pnet);</div>
-<div class="line"><span class="lineno">  699</span>    *pnet = trained;</div>
-<div class="line"><span class="lineno">  700</span>}</div>
-<div class="ttc" id="anetwork_8c_html_ab7de60cd0ad5a69e135b63d264018d1a"><div class="ttname"><a href="network_8c.html#ab7de60cd0ad5a69e135b63d264018d1a">network_free</a></div><div class="ttdeci">void network_free(network_t *net)</div><div class="ttdoc">Frees the allocated network.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00177">network.c:177</a></div></div>
-<div class="ttc" id="anetwork_8c_html_abef62369a77da828529fbf193f111ef7"><div class="ttname"><a href="network_8c.html#abef62369a77da828529fbf193f111ef7">network_copy</a></div><div class="ttdeci">network_t * network_copy(network_t *old)</div><div class="ttdoc">Create a deep copied network.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00575">network.c:575</a></div></div>
+<div class="line"><span class="lineno">  688</span>    <span class="keywordtype">size_t</span> layer_i = trained-&gt;<a class="code hl_variable" href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">layer_count</a> - 1;</div>
+<div class="line"><span class="lineno">  689</span>    <a class="code hl_struct" href="structlayer__t.html">layer_t</a> *trained_layer = trained-&gt;<a class="code hl_variable" href="structnetwork__t.html#abc9801a33bc441d67a87fac3b603ae87">layers</a>[layer_i];</div>
+<div class="line"><span class="lineno">  690</span>    <a class="code hl_struct" href="structlayer__t.html">layer_t</a> *old_layer = (*pnet)-&gt;layers[layer_i];</div>
+<div class="line"><span class="lineno">  691</span>    deltas[layer_i] = <a class="code hl_function" href="matrix_8c.html#a1d9b061fc8856e727f014c3266b7431d">matrix_create</a>(trained_layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a79cee7069a84d7440d56779ba2c073fb">count</a>, 1, 0);</div>
+<div class="line"><span class="lineno">  692</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> ni = 0; ni &lt; trained_layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a79cee7069a84d7440d56779ba2c073fb">count</a>; ni++)</div>
+<div class="line"><span class="lineno">  693</span>    {</div>
+<div class="line"><span class="lineno">  694</span>        <span class="keywordtype">double</span> delta = output_neuron_train(trained_layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a71e4f1a74c73f54b7ff2c40dc88c795e">neurons</a>[ni],</div>
+<div class="line"><span class="lineno">  695</span>            old_layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a71e4f1a74c73f54b7ff2c40dc88c795e">neurons</a>[ni], rate, <a class="code hl_function" href="matrix_8c.html#a631ff21351ba5ec31350fb5277605d3b">mat_el_at</a>(target, ni, 0),</div>
+<div class="line"><span class="lineno">  696</span>            <a class="code hl_function" href="matrix_8c.html#a631ff21351ba5ec31350fb5277605d3b">mat_el_at</a>(outputs[layer_i + 1], ni, 0), results, layer_i, ni,</div>
+<div class="line"><span class="lineno">  697</span>            old_layer-&gt;<a class="code hl_variable" href="structlayer__t.html#a72eace5d9e629f95ee55a7928df69ea0">act</a>.<a class="code hl_variable" href="structlayer__activation__t.html#ac933697580c26185d9f1895e8db40931">dactivation</a>);</div>
+<div class="line"><span class="lineno">  698</span>        <a class="code hl_function" href="matrix_8c.html#a0e411263cdaaa67eae166d067996f5b6">mat_set_el</a>(deltas[layer_i], ni, 0, delta);</div>
+<div class="line"><span class="lineno">  699</span>    }</div>
+<div class="line"><span class="lineno">  700</span> </div>
+<div class="line"><span class="lineno">  701</span>    compute_deltas(results, *pnet, deltas);</div>
+<div class="line"><span class="lineno">  702</span>    hidden_layer_train(results, trained, deltas, rate);</div>
+<div class="line"><span class="lineno">  703</span> </div>
+<div class="line"><span class="lineno">  704</span>    <a class="code hl_function" href="network_8c.html#a2512b64818030e2bafa25367611e3482">results_free</a>(results);</div>
+<div class="line"><span class="lineno">  705</span> </div>
+<div class="line"><span class="lineno">  706</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 1; i &lt;= trained-&gt;<a class="code hl_variable" href="structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636">layer_count</a>; i++)</div>
+<div class="line"><span class="lineno">  707</span>    {</div>
+<div class="line"><span class="lineno">  708</span>        <a class="code hl_function" href="matrix_8c.html#aa20fd2a5c773eda620ce98e2f121b687">matrix_free</a>(deltas[i - 1]);</div>
+<div class="line"><span class="lineno">  709</span>    }</div>
+<div class="line"><span class="lineno">  710</span>    free(deltas);</div>
+<div class="line"><span class="lineno">  711</span>    <a class="code hl_function" href="network_8c.html#ab7de60cd0ad5a69e135b63d264018d1a">network_free</a>(*pnet);</div>
+<div class="line"><span class="lineno">  712</span>    *pnet = trained;</div>
+<div class="line"><span class="lineno">  713</span>}</div>
+<div class="ttc" id="anetwork_8c_html_ab7de60cd0ad5a69e135b63d264018d1a"><div class="ttname"><a href="network_8c.html#ab7de60cd0ad5a69e135b63d264018d1a">network_free</a></div><div class="ttdeci">void network_free(network_t *net)</div><div class="ttdoc">Frees the allocated network.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00174">network.c:174</a></div></div>
+<div class="ttc" id="anetwork_8c_html_abef62369a77da828529fbf193f111ef7"><div class="ttname"><a href="network_8c.html#abef62369a77da828529fbf193f111ef7">network_copy</a></div><div class="ttdeci">network_t * network_copy(network_t *old)</div><div class="ttdoc">Create a deep copied network.</div><div class="ttdef"><b>Definition:</b> <a href="network_8c_source.html#l00588">network.c:588</a></div></div>
+<div class="ttc" id="astructlayer__activation__t_html_ac933697580c26185d9f1895e8db40931"><div class="ttname"><a href="structlayer__activation__t.html#ac933697580c26185d9f1895e8db40931">layer_activation_t::dactivation</a></div><div class="ttdeci">activation_t dactivation</div><div class="ttdef"><b>Definition:</b> <a href="network_8h_source.html#l00028">network.h:28</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>

@@ -75,10 +75,10 @@ $(function() {
 <code>#include &lt;SDL2/SDL_image.h&gt;</code><br />
 <code>#include &lt;dirent.h&gt;</code><br />
 <code>#include &lt;err.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="img__loader_2loader_8h_source.html">loader.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="network_8h_source.html">../../network/network.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="solver_8h_source.html">../../solver/solver.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="matrix_8h_source.html">../matrices/matrix.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="img__loader_2loader_8h_source.html">loader.h</a>&quot;</code><br />
 </div>
 <p><a href="img__loader_2loader_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -88,10 +88,10 @@ Functions</h2></td></tr>
 <tr class="memdesc:aa94630c00e1f24be513946e50ccdb0e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads an image into a surface with SDL.  <a href="img__loader_2loader_8c.html#aa94630c00e1f24be513946e50ccdb0e4">More...</a><br /></td></tr>
 <tr class="separator:aa94630c00e1f24be513946e50ccdb0e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb9117756e7a54f8ffcee98327b324c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="img__loader_2loader_8c.html#afb9117756e7a54f8ffcee98327b324c9">pixel_to_grayscale</a> (Uint32 pixel_color, SDL_PixelFormat *format, double *values, size_t i)</td></tr>
-<tr class="memdesc:afb9117756e7a54f8ffcee98327b324c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a pixel into a grayscale value and stores it into a list.  <a href="img__loader_2loader_8c.html#afb9117756e7a54f8ffcee98327b324c9">More...</a><br /></td></tr>
+<tr class="memdesc:afb9117756e7a54f8ffcee98327b324c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a pixel into a grayscale value and stores it into a listformat The format of the image.  <a href="img__loader_2loader_8c.html#afb9117756e7a54f8ffcee98327b324c9">More...</a><br /></td></tr>
 <tr class="separator:afb9117756e7a54f8ffcee98327b324c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5863b570c49c3fcba3c949409defae0e"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="img__loader_2loader_8c.html#a5863b570c49c3fcba3c949409defae0e">surface_to_grayscale_img</a> (SDL_Surface *surface)</td></tr>
-<tr class="memdesc:a5863b570c49c3fcba3c949409defae0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a surface into grayscale an return all the values of each pixels.  <a href="img__loader_2loader_8c.html#a5863b570c49c3fcba3c949409defae0e">More...</a><br /></td></tr>
+<tr class="memdesc:a5863b570c49c3fcba3c949409defae0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a surface into grayscale an return all the values of each pixels surface The image surface.  <a href="img__loader_2loader_8c.html#a5863b570c49c3fcba3c949409defae0e">More...</a><br /></td></tr>
 <tr class="separator:a5863b570c49c3fcba3c949409defae0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab80f33f81b0c0163335770182c60dcda"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="img__loader_2loader_8c.html#ab80f33f81b0c0163335770182c60dcda">convert</a> (char *img_path, char *net_path, char *grid_path, int mode)</td></tr>
 <tr class="memdesc:ab80f33f81b0c0163335770182c60dcda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert images according to the mode.  <a href="img__loader_2loader_8c.html#ab80f33f81b0c0163335770182c60dcda">More...</a><br /></td></tr>
@@ -150,24 +150,24 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if gone well, error otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="img__loader_2loader_8c_source.html#l00197">197</a> of file <a class="el" href="img__loader_2loader_8c_source.html">loader.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  198</span>{</div>
-<div class="line"><span class="lineno">  199</span> </div>
-<div class="line"><span class="lineno">  200</span>    <span class="keywordflow">if</span> (SDL_Init(SDL_INIT_VIDEO) != 0)</div>
-<div class="line"><span class="lineno">  201</span>        errx(EXIT_FAILURE, <span class="stringliteral">&quot;%s&quot;</span>, SDL_GetError());</div>
+<p class="definition">Definition at line <a class="el" href="img__loader_2loader_8c_source.html#l00200">200</a> of file <a class="el" href="img__loader_2loader_8c_source.html">loader.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  201</span>{</div>
 <div class="line"><span class="lineno">  202</span> </div>
-<div class="line"><span class="lineno">  203</span>    <span class="keywordflow">if</span> (mode == <a class="code hl_define" href="img__loader_2loader_8h.html#a39336e579575641618c5ba63855d10e0">SINGLE_IMAGE</a>)</div>
-<div class="line"><span class="lineno">  204</span>    {</div>
-<div class="line"><span class="lineno">  205</span>        <span class="keywordflow">return</span> convert_single(img_path, net_path);</div>
-<div class="line"><span class="lineno">  206</span>    }</div>
-<div class="line"><span class="lineno">  207</span> </div>
-<div class="line"><span class="lineno">  208</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (mode == <a class="code hl_define" href="img__loader_2loader_8h.html#ac7c0b099ecd758709f31bfb602a7b6de">MULTI_IMAGE</a>)</div>
-<div class="line"><span class="lineno">  209</span>    {</div>
-<div class="line"><span class="lineno">  210</span>        <span class="keywordflow">return</span> convert_multi(img_path,net_path,grid_path);</div>
-<div class="line"><span class="lineno">  211</span>    }</div>
-<div class="line"><span class="lineno">  212</span> </div>
-<div class="line"><span class="lineno">  213</span>    errx(1, <span class="stringliteral">&quot;Unvalid mode&quot;</span>);</div>
-<div class="line"><span class="lineno">  214</span>}</div>
+<div class="line"><span class="lineno">  203</span>    <span class="keywordflow">if</span> (SDL_Init(SDL_INIT_VIDEO) != 0)</div>
+<div class="line"><span class="lineno">  204</span>        errx(EXIT_FAILURE, <span class="stringliteral">&quot;%s&quot;</span>, SDL_GetError());</div>
+<div class="line"><span class="lineno">  205</span> </div>
+<div class="line"><span class="lineno">  206</span>    <span class="keywordflow">if</span> (mode == <a class="code hl_define" href="img__loader_2loader_8h.html#a39336e579575641618c5ba63855d10e0">SINGLE_IMAGE</a>)</div>
+<div class="line"><span class="lineno">  207</span>    {</div>
+<div class="line"><span class="lineno">  208</span>        <span class="keywordflow">return</span> convert_single(img_path, net_path);</div>
+<div class="line"><span class="lineno">  209</span>    }</div>
+<div class="line"><span class="lineno">  210</span> </div>
+<div class="line"><span class="lineno">  211</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (mode == <a class="code hl_define" href="img__loader_2loader_8h.html#ac7c0b099ecd758709f31bfb602a7b6de">MULTI_IMAGE</a>)</div>
+<div class="line"><span class="lineno">  212</span>    {</div>
+<div class="line"><span class="lineno">  213</span>        <span class="keywordflow">return</span> convert_multi(img_path, net_path, grid_path);</div>
+<div class="line"><span class="lineno">  214</span>    }</div>
+<div class="line"><span class="lineno">  215</span> </div>
+<div class="line"><span class="lineno">  216</span>    errx(1, <span class="stringliteral">&quot;Unvalid mode&quot;</span>);</div>
+<div class="line"><span class="lineno">  217</span>}</div>
 <div class="ttc" id="aimg__loader_2loader_8h_html_a39336e579575641618c5ba63855d10e0"><div class="ttname"><a href="img__loader_2loader_8h.html#a39336e579575641618c5ba63855d10e0">SINGLE_IMAGE</a></div><div class="ttdeci">#define SINGLE_IMAGE</div><div class="ttdef"><b>Definition:</b> <a href="img__loader_2loader_8h_source.html#l00006">loader.h:6</a></div></div>
 <div class="ttc" id="aimg__loader_2loader_8h_html_ac7c0b099ecd758709f31bfb602a7b6de"><div class="ttname"><a href="img__loader_2loader_8h.html#ac7c0b099ecd758709f31bfb602a7b6de">MULTI_IMAGE</a></div><div class="ttdeci">#define MULTI_IMAGE</div><div class="ttdef"><b>Definition:</b> <a href="img__loader_2loader_8h_source.html#l00007">loader.h:7</a></div></div>
 </div><!-- fragment -->
@@ -247,11 +247,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Convert a pixel into a grayscale value and stores it into a list. </p>
+<p>Convert a pixel into a grayscale value and stores it into a listformat The format of the image. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pixel_color</td><td>The rgb value of the pixel </td></tr>
-    <tr><td class="paramname">format</td><td>The format of the image </td></tr>
     <tr><td class="paramname">values</td><td>The array to stores the pixels </td></tr>
     <tr><td class="paramname">i</td><td>The index of the pixel </td></tr>
   </table>
@@ -285,13 +283,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Convert a surface into grayscale an return all the values of each pixels. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">surface</td><td>The image surface </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Convert a surface into grayscale an return all the values of each pixels surface The image surface. </p>
 <dl class="section return"><dt>Returns</dt><dd>An double arrays of the values in grayscale of each pixels </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="img__loader_2loader_8c_source.html#l00028">28</a> of file <a class="el" href="img__loader_2loader_8c_source.html">loader.c</a>.</p>
@@ -309,7 +301,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   40</span>    }</div>
 <div class="line"><span class="lineno">   41</span>    <span class="keywordflow">return</span> values;</div>
 <div class="line"><span class="lineno">   42</span>}</div>
-<div class="ttc" id="aimg__loader_2loader_8c_html_afb9117756e7a54f8ffcee98327b324c9"><div class="ttname"><a href="img__loader_2loader_8c.html#afb9117756e7a54f8ffcee98327b324c9">pixel_to_grayscale</a></div><div class="ttdeci">void pixel_to_grayscale(Uint32 pixel_color, SDL_PixelFormat *format, double *values, size_t i)</div><div class="ttdoc">Convert a pixel into a grayscale value and stores it into a list.</div><div class="ttdef"><b>Definition:</b> <a href="img__loader_2loader_8c_source.html#l00018">loader.c:18</a></div></div>
+<div class="ttc" id="aimg__loader_2loader_8c_html_afb9117756e7a54f8ffcee98327b324c9"><div class="ttname"><a href="img__loader_2loader_8c.html#afb9117756e7a54f8ffcee98327b324c9">pixel_to_grayscale</a></div><div class="ttdeci">void pixel_to_grayscale(Uint32 pixel_color, SDL_PixelFormat *format, double *values, size_t i)</div><div class="ttdoc">Convert a pixel into a grayscale value and stores it into a listformat The format of the image.</div><div class="ttdef"><b>Definition:</b> <a href="img__loader_2loader_8c_source.html#l00018">loader.c:18</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>

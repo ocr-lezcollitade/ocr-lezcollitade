@@ -1,21 +1,33 @@
 #include <math.h>
 #include <stdlib.h>
+#include <string.h>
 #include "function.h"
 
 #define UNUSED(x) (void)(x)
 
-static double sigmoid(double x)
+static double sigmoid(
+    size_t layer, size_t neuron, double x, network_results_t *res)
 {
+    UNUSED(layer);
+    UNUSED(neuron);
+    UNUSED(res);
     return 1 / (1 + exp(-x));
 }
 
-static double sigmoid_derivative(double x)
+static double sigmoid_derivative(
+    size_t layer, size_t neuron, double x, network_results_t *res)
 {
+
+    UNUSED(layer);
+    UNUSED(neuron);
+    UNUSED(res);
     return x * (1 - x);
 }
 
-static double soft_max(size_t layeri, size_t neuron, network_results_t *res)
+static double soft_max(
+    size_t layeri, size_t neuron, double arg, network_results_t *res)
 {
+    UNUSED(arg);
     layer_t *layer = res->network->layers[layeri];
     double sum = 0, value = 0;
     double *cache;
@@ -37,51 +49,41 @@ static double soft_max(size_t layeri, size_t neuron, network_results_t *res)
         cache = (double *)res->cache;
         value = cache[neuron + 1];
         sum = cache[0];
-        if (neuron == layer->count - 1)
-        {
-            free(cache);
-        }
+    }
+
+    if (neuron == layer->count - 1)
+    {
+        free(res->cache);
+        res->cache = NULL;
     }
     return value / sum;
 }
 
-static double soft_max_derivative(double arg)
+static double soft_max_derivative(
+    size_t layer, size_t neuron, double arg, network_results_t *res)
 {
+    UNUSED(layer);
+    UNUSED(neuron);
+    UNUSED(res);
     return arg * (1 - arg);
 }
 
-double output_activation(
-    size_t layer, size_t neuron, double arg, network_results_t *res)
-{
-    UNUSED(arg);
-    return soft_max(layer, neuron, res);
-}
+layer_activation_t activations[] = {{sigmoid, sigmoid_derivative, "sigmoid"},
+    {soft_max, soft_max_derivative, "softmax"}};
 
-double output_activation_derivative(
-    size_t layer, size_t neuron, double arg, network_results_t *res)
+layer_activation_t get_layer_activation(const char *name)
 {
-    UNUSED(res);
-    UNUSED(layer);
-    UNUSED(neuron);
-    return soft_max_derivative(arg);
-}
-
-double activation(
-    size_t layer, size_t neuron, double arg, network_results_t *res)
-{
-    UNUSED(res);
-    UNUSED(layer);
-    UNUSED(neuron);
-    return sigmoid(arg);
-}
-
-double activation_derivative(
-    size_t layer, size_t neuron, double arg, network_results_t *res)
-{
-    UNUSED(res);
-    UNUSED(layer);
-    UNUSED(neuron);
-    return sigmoid_derivative(arg);
+    if (name == NULL)
+        return activations[0];
+    size_t len = sizeof(activations) / sizeof(layer_activation_t);
+    for (size_t i = 0; i < len; i++)
+    {
+        if (strcmp(activations[i].name, name) == 0)
+        {
+            return activations[i];
+        }
+    }
+    return activations[0];
 }
 
 double cost(matrix_t *target, matrix_t *output)

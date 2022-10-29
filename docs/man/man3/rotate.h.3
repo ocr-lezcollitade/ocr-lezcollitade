@@ -1,0 +1,91 @@
+.TH "src/preproc/rotate/rotate.h" 3 "Sat Oct 29 2022" "OCR-Lezcollitade" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/preproc/rotate/rotate.h
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "SDL_Surface * \fBrotate_surface\fP (SDL_Surface *surface, double deg)"
+.br
+.ti -1c
+.RI "void \fBrotate_image\fP (const char *file, double deg)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void rotate_image (const char * file, double deg)"
+
+.PP
+Definition at line \fB63\fP of file \fBrotate\&.c\fP\&.
+.PP
+.nf
+64 {
+65     if (SDL_Init(SDL_INIT_VIDEO) != 0)
+66         errx(EXIT_FAILURE, "%s", SDL_GetError());
+67 
+68     SDL_Surface *surface = load_image(file);
+69 
+70     SDL_Surface *new_surface = rotate_surface(surface, deg);
+71 
+72     if (IMG_SavePNG(new_surface, "res\&.png") != 0)
+73         errx(EXIT_FAILURE, "%s", SDL_GetError());
+74 
+75     SDL_FreeSurface(new_surface);
+76     SDL_FreeSurface(surface);
+77     SDL_Quit();
+78 }
+.fi
+.SS "SDL_Surface * rotate_surface (SDL_Surface * surface, double deg)"
+
+.PP
+Definition at line \fB22\fP of file \fBrotate\&.c\fP\&.
+.PP
+.nf
+23 {
+24     Uint32 *pixels = surface->pixels;
+25 
+26     int width = surface->w;
+27     int height = surface->h;
+28 
+29     int len = width * height;
+30 
+31     deg = deg * M_PI / 180;
+32 
+33     int midx = width / 2;
+34     int midy = height / 2;
+35 
+36     SDL_Surface *new_surface
+37         = SDL_CreateRGBSurface(0, width, height, 32, 0, 0, 0, 0);
+38 
+39     Uint32 *new_pixels = new_surface->pixels;
+40 
+41     for (int i = 0; i < len; i++)
+42     {
+43         int destx = i % width;
+44         int desty = i / width;
+45 
+46         int sourcex
+47             = floor(cos(-deg) * (destx - midx) - sin(-deg) * (desty - midy))
+48               + midx;
+49 
+50         int sourcey
+51             = floor(sin(-deg) * (destx - midx) + cos(-deg) * (desty - midy))
+52               + midy;
+53 
+54         int sourcei = sourcey * width + sourcex;
+55 
+56         if (sourcei >= 0 && sourcei < len)
+57             new_pixels[i] = pixels[sourcei];
+58     }
+59 
+60     return new_surface;
+61 }
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for OCR-Lezcollitade from the source code\&.

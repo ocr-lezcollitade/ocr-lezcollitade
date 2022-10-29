@@ -16,6 +16,18 @@ typedef struct network_results_t network_results_t;
  */
 typedef double (*activation_t)(
     size_t layer, size_t neuron, double input, network_results_t *results);
+
+/**
+ *  \brief          The struct containing all info required about the
+ *  activation function.
+ *  \struct         layer_activation_t
+ */
+typedef struct
+{
+    activation_t activation;  /*! The activation function. */
+    activation_t dactivation; /*! The derivative of the activation function */
+    const char *name;         /*! The name of the function. */
+} layer_activation_t;
 /**
  *  \brief          A struct representing a neuron in the network.
  *  \struct         neuron_t
@@ -33,10 +45,9 @@ typedef struct
  */
 typedef struct
 {
-    neuron_t **neurons;       /*! The allocated neurons in the layer. */
-    size_t count;             /*! The number of neurons in the layer. */
-    activation_t activation;  /*! The activation function for the layer */
-    activation_t dactivation; /*! The derivative of the activation function */
+    neuron_t **neurons;     /*! The allocated neurons in the layer. */
+    size_t count;           /*! The number of neurons in the layer. */
+    layer_activation_t act; /*! The activation struct for the layer. */
 
 } layer_t;
 
@@ -97,24 +108,22 @@ void neuron_free(neuron_t *neuron);
  *  \param biases   The array of biases for each neuron in the layer.
  *  \param count    The number of elements to be created, hence the size of
  *  weights and biases.
- *  \param f        The activation function.
- *  \param d        The derivative of the activation function.
+ *  \param act      The activation struct for the layer.
  *  \return         The created layer.
  */
-layer_t *layer_create_from_mat(matrix_t **weights, double *biases,
-    size_t count, activation_t f, activation_t d);
+layer_t *layer_create_from_mat(
+    matrix_t **weights, double *biases, size_t count, layer_activation_t act);
 
 /**
  *  \brief          Creates a layer from an array of neurons.
  *  \fn             layer_t *layer_create(neuron_t **neurons, size_t count)
  *  \param neurons  The array of neurons in the layer.
  *  \param count    The count of neurons in the layer.
- *  \param f        The activation function of the layer.
- *  \param d        The derivative of the activation function.
+ *  \param act      The activation struct for the layer.
  *  \return         The created layer.
  */
 layer_t *layer_create(
-    neuron_t **neurons, size_t count, activation_t f, activation_t d);
+    neuron_t **neurons, size_t count, layer_activation_t act);
 
 /**
  *  \brief          Frees an allocated layer.
@@ -145,7 +154,9 @@ network_t *network_create(layer_t **layers, size_t layer_count, size_t inputs);
  * number of layers plus the input layer. \return         The generated
  * network.
  */
-network_t *network_generate(size_t *neurons, size_t size);
+network_t *network_generate(size_t *neurons, size_t size,
+    layer_activation_t hidden_activation,
+    layer_activation_t output_activation);
 
 /**
  *  \brief          Loads the network from a file.

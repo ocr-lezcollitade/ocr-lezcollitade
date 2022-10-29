@@ -134,32 +134,32 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The hash table of params. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8c_source.html#l00100">100</a> of file <a class="el" href="parser_8c_source.html">parser.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  101</span>{</div>
-<div class="line"><span class="lineno">  102</span>    <span class="keywordflow">if</span> (argc &lt; 2)</div>
-<div class="line"><span class="lineno">  103</span>    {</div>
-<div class="line"><span class="lineno">  104</span>        <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><span class="lineno">  105</span>    }</div>
-<div class="line"><span class="lineno">  106</span> </div>
-<div class="line"><span class="lineno">  107</span>    <a class="code hl_typedef" href="parser_8h.html#a956c158032da3a69086ec31168c991ba">params_t</a> res = NULL;</div>
-<div class="line"><span class="lineno">  108</span>    <span class="keywordtype">char</span> *subcommand = argv[1];</div>
-<div class="line"><span class="lineno">  109</span>    <span class="keywordflow">if</span> (strcmp(subcommand, <span class="stringliteral">&quot;train&quot;</span>) == 0)</div>
-<div class="line"><span class="lineno">  110</span>    {</div>
-<div class="line"><span class="lineno">  111</span>        *mode = <a class="code hl_define" href="parser_8h.html#a9bfdcc2e01a085b81125cadcfe83cb66">TRAIN_MODE</a>;</div>
-<div class="line"><span class="lineno">  112</span>        res = <a class="code hl_function" href="parser_8c.html#ab2f489b7f919e61d84e74826ca0040de">parse_train_params</a>(argc - 2, argv + 2);</div>
-<div class="line"><span class="lineno">  113</span>    }</div>
-<div class="line"><span class="lineno">  114</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strcmp(subcommand, <span class="stringliteral">&quot;test&quot;</span>) == 0)</div>
-<div class="line"><span class="lineno">  115</span>    {</div>
-<div class="line"><span class="lineno">  116</span>        *mode = <a class="code hl_define" href="parser_8h.html#ab6d58cce6e97b6b549801e696ac9f4f6">TEST_MODE</a>;</div>
-<div class="line"><span class="lineno">  117</span>        res = <a class="code hl_function" href="parser_8c.html#ab2116d885ed230baeb9b20a83a672ea0">parse_test_params</a>(argc - 2, argv + 2);</div>
+<p class="definition">Definition at line <a class="el" href="parser_8c_source.html#l00113">113</a> of file <a class="el" href="parser_8c_source.html">parser.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  114</span>{</div>
+<div class="line"><span class="lineno">  115</span>    <span class="keywordflow">if</span> (argc &lt; 2)</div>
+<div class="line"><span class="lineno">  116</span>    {</div>
+<div class="line"><span class="lineno">  117</span>        <span class="keywordflow">return</span> NULL;</div>
 <div class="line"><span class="lineno">  118</span>    }</div>
-<div class="line"><span class="lineno">  119</span>    <span class="keywordflow">return</span> res;</div>
-<div class="line"><span class="lineno">  120</span>}</div>
-<div class="ttc" id="aparser_8c_html_ab2116d885ed230baeb9b20a83a672ea0"><div class="ttname"><a href="parser_8c.html#ab2116d885ed230baeb9b20a83a672ea0">parse_test_params</a></div><div class="ttdeci">params_t parse_test_params(int argc, char **argv)</div><div class="ttdoc">Parses the test parameters.</div><div class="ttdef"><b>Definition:</b> <a href="parser_8c_source.html#l00092">parser.c:92</a></div></div>
-<div class="ttc" id="aparser_8c_html_ab2f489b7f919e61d84e74826ca0040de"><div class="ttname"><a href="parser_8c.html#ab2f489b7f919e61d84e74826ca0040de">parse_train_params</a></div><div class="ttdeci">params_t parse_train_params(int argc, char **argv)</div><div class="ttdoc">Parses the train parameters.</div><div class="ttdef"><b>Definition:</b> <a href="parser_8c_source.html#l00085">parser.c:85</a></div></div>
-<div class="ttc" id="aparser_8h_html_a956c158032da3a69086ec31168c991ba"><div class="ttname"><a href="parser_8h.html#a956c158032da3a69086ec31168c991ba">params_t</a></div><div class="ttdeci">char ** params_t</div><div class="ttdoc">A hash table of params.</div><div class="ttdef"><b>Definition:</b> <a href="parser_8h_source.html#l00019">parser.h:19</a></div></div>
-<div class="ttc" id="aparser_8h_html_a9bfdcc2e01a085b81125cadcfe83cb66"><div class="ttname"><a href="parser_8h.html#a9bfdcc2e01a085b81125cadcfe83cb66">TRAIN_MODE</a></div><div class="ttdeci">#define TRAIN_MODE</div><div class="ttdef"><b>Definition:</b> <a href="parser_8h_source.html#l00039">parser.h:39</a></div></div>
-<div class="ttc" id="aparser_8h_html_ab6d58cce6e97b6b549801e696ac9f4f6"><div class="ttname"><a href="parser_8h.html#ab6d58cce6e97b6b549801e696ac9f4f6">TEST_MODE</a></div><div class="ttdeci">#define TEST_MODE</div><div class="ttdef"><b>Definition:</b> <a href="parser_8h_source.html#l00040">parser.h:40</a></div></div>
+<div class="line"><span class="lineno">  119</span> </div>
+<div class="line"><span class="lineno">  120</span>    <a class="code hl_typedef" href="parser_8h.html#a956c158032da3a69086ec31168c991ba">params_t</a> res = NULL;</div>
+<div class="line"><span class="lineno">  121</span>    <span class="keywordtype">char</span> *subcommand = argv[1];</div>
+<div class="line"><span class="lineno">  122</span>    <span class="keywordflow">if</span> (strcmp(subcommand, <span class="stringliteral">&quot;train&quot;</span>) == 0)</div>
+<div class="line"><span class="lineno">  123</span>    {</div>
+<div class="line"><span class="lineno">  124</span>        *mode = <a class="code hl_define" href="parser_8h.html#a9bfdcc2e01a085b81125cadcfe83cb66">TRAIN_MODE</a>;</div>
+<div class="line"><span class="lineno">  125</span>        res = <a class="code hl_function" href="parser_8c.html#ab2f489b7f919e61d84e74826ca0040de">parse_train_params</a>(argc - 2, argv + 2);</div>
+<div class="line"><span class="lineno">  126</span>    }</div>
+<div class="line"><span class="lineno">  127</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strcmp(subcommand, <span class="stringliteral">&quot;test&quot;</span>) == 0)</div>
+<div class="line"><span class="lineno">  128</span>    {</div>
+<div class="line"><span class="lineno">  129</span>        *mode = <a class="code hl_define" href="parser_8h.html#ab6d58cce6e97b6b549801e696ac9f4f6">TEST_MODE</a>;</div>
+<div class="line"><span class="lineno">  130</span>        res = <a class="code hl_function" href="parser_8c.html#ab2116d885ed230baeb9b20a83a672ea0">parse_test_params</a>(argc - 2, argv + 2);</div>
+<div class="line"><span class="lineno">  131</span>    }</div>
+<div class="line"><span class="lineno">  132</span>    <span class="keywordflow">return</span> res;</div>
+<div class="line"><span class="lineno">  133</span>}</div>
+<div class="ttc" id="aparser_8c_html_ab2116d885ed230baeb9b20a83a672ea0"><div class="ttname"><a href="parser_8c.html#ab2116d885ed230baeb9b20a83a672ea0">parse_test_params</a></div><div class="ttdeci">params_t parse_test_params(int argc, char **argv)</div><div class="ttdoc">Parses the test parameters.</div><div class="ttdef"><b>Definition:</b> <a href="parser_8c_source.html#l00105">parser.c:105</a></div></div>
+<div class="ttc" id="aparser_8c_html_ab2f489b7f919e61d84e74826ca0040de"><div class="ttname"><a href="parser_8c.html#ab2f489b7f919e61d84e74826ca0040de">parse_train_params</a></div><div class="ttdeci">params_t parse_train_params(int argc, char **argv)</div><div class="ttdoc">Parses the train parameters.</div><div class="ttdef"><b>Definition:</b> <a href="parser_8c_source.html#l00098">parser.c:98</a></div></div>
+<div class="ttc" id="aparser_8h_html_a956c158032da3a69086ec31168c991ba"><div class="ttname"><a href="parser_8h.html#a956c158032da3a69086ec31168c991ba">params_t</a></div><div class="ttdeci">char ** params_t</div><div class="ttdoc">A hash table of params.</div><div class="ttdef"><b>Definition:</b> <a href="parser_8h_source.html#l00022">parser.h:22</a></div></div>
+<div class="ttc" id="aparser_8h_html_a9bfdcc2e01a085b81125cadcfe83cb66"><div class="ttname"><a href="parser_8h.html#a9bfdcc2e01a085b81125cadcfe83cb66">TRAIN_MODE</a></div><div class="ttdeci">#define TRAIN_MODE</div><div class="ttdef"><b>Definition:</b> <a href="parser_8h_source.html#l00042">parser.h:42</a></div></div>
+<div class="ttc" id="aparser_8h_html_ab6d58cce6e97b6b549801e696ac9f4f6"><div class="ttname"><a href="parser_8h.html#ab6d58cce6e97b6b549801e696ac9f4f6">TEST_MODE</a></div><div class="ttdeci">#define TEST_MODE</div><div class="ttdef"><b>Definition:</b> <a href="parser_8h_source.html#l00043">parser.h:43</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -199,13 +199,13 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The parameters hash table. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8c_source.html#l00092">92</a> of file <a class="el" href="parser_8c_source.html">parser.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   93</span>{</div>
-<div class="line"><span class="lineno">   94</span> </div>
-<div class="line"><span class="lineno">   95</span>    <a class="code hl_typedef" href="parser_8h.html#a956c158032da3a69086ec31168c991ba">params_t</a> params = _parse_params(argc, argv);</div>
-<div class="line"><span class="lineno">   96</span>    <span class="comment">// TODO : check parameters validity</span></div>
-<div class="line"><span class="lineno">   97</span>    <span class="keywordflow">return</span> params;</div>
-<div class="line"><span class="lineno">   98</span>}</div>
+<p class="definition">Definition at line <a class="el" href="parser_8c_source.html#l00105">105</a> of file <a class="el" href="parser_8c_source.html">parser.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  106</span>{</div>
+<div class="line"><span class="lineno">  107</span> </div>
+<div class="line"><span class="lineno">  108</span>    <a class="code hl_typedef" href="parser_8h.html#a956c158032da3a69086ec31168c991ba">params_t</a> params = _parse_params(argc, argv);</div>
+<div class="line"><span class="lineno">  109</span>    <span class="comment">// TODO : check parameters validity</span></div>
+<div class="line"><span class="lineno">  110</span>    <span class="keywordflow">return</span> params;</div>
+<div class="line"><span class="lineno">  111</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -245,12 +245,12 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The hash table of params. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8c_source.html#l00085">85</a> of file <a class="el" href="parser_8c_source.html">parser.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   86</span>{</div>
-<div class="line"><span class="lineno">   87</span>    <a class="code hl_typedef" href="parser_8h.html#a956c158032da3a69086ec31168c991ba">params_t</a> params = _parse_params(argc, argv);</div>
-<div class="line"><span class="lineno">   88</span>    <span class="comment">// TODO : check parameters validity</span></div>
-<div class="line"><span class="lineno">   89</span>    <span class="keywordflow">return</span> params;</div>
-<div class="line"><span class="lineno">   90</span>}</div>
+<p class="definition">Definition at line <a class="el" href="parser_8c_source.html#l00098">98</a> of file <a class="el" href="parser_8c_source.html">parser.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   99</span>{</div>
+<div class="line"><span class="lineno">  100</span>    <a class="code hl_typedef" href="parser_8h.html#a956c158032da3a69086ec31168c991ba">params_t</a> params = _parse_params(argc, argv);</div>
+<div class="line"><span class="lineno">  101</span>    <span class="comment">// TODO : check parameters validity</span></div>
+<div class="line"><span class="lineno">  102</span>    <span class="keywordflow">return</span> params;</div>
+<div class="line"><span class="lineno">  103</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

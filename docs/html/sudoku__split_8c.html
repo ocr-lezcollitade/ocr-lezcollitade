@@ -89,6 +89,9 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ae039909b59c538c2b7a1c305fbc9292a"><td class="memItemLeft" align="right" valign="top">SDL_Surface *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sudoku__split_8c.html#ae039909b59c538c2b7a1c305fbc9292a">scale_down</a> (SDL_Surface *surface, size_t w, size_t h, size_t new_w, size_t new_h)</td></tr>
+<tr class="memdesc:ae039909b59c538c2b7a1c305fbc9292a"><td class="mdescLeft">&#160;</td><td class="mdescRight">scales down a surfacewant to scale down  <a href="sudoku__split_8c.html#ae039909b59c538c2b7a1c305fbc9292a">More...</a><br /></td></tr>
+<tr class="separator:ae039909b59c538c2b7a1c305fbc9292a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd18687c12cdeb98784ff51d91005985"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sudoku__split_8c.html#abd18687c12cdeb98784ff51d91005985">sudoku_split</a> (char *black_white, char *grayscale)</td></tr>
 <tr class="memdesc:abd18687c12cdeb98784ff51d91005985"><td class="mdescLeft">&#160;</td><td class="mdescRight">splits the sudoku grid into 81 squares  <a href="sudoku__split_8c.html#abd18687c12cdeb98784ff51d91005985">More...</a><br /></td></tr>
 <tr class="separator:abd18687c12cdeb98784ff51d91005985"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -120,6 +123,86 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ae039909b59c538c2b7a1c305fbc9292a" name="ae039909b59c538c2b7a1c305fbc9292a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae039909b59c538c2b7a1c305fbc9292a">&#9670;&nbsp;</a></span>scale_down()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SDL_Surface * scale_down </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Surface *&#160;</td>
+          <td class="paramname"><em>surface</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>h</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>new_w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>new_h</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>scales down a surfacewant to scale down </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w,h</td><td>the width and height of the original surface</td></tr>
+    <tr><td class="paramname">new_w,new_h</td><td>the width and height of the surface we want </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="sudoku__split_8c_source.html#l00189">189</a> of file <a class="el" href="sudoku__split_8c_source.html">sudoku_split.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  191</span>{</div>
+<div class="line"><span class="lineno">  192</span>    SDL_Surface *output</div>
+<div class="line"><span class="lineno">  193</span>        = SDL_CreateRGBSurface(0, (<span class="keywordtype">int</span>)new_w, (<span class="keywordtype">int</span>)new_h, 32, 0, 0, 0, 0);</div>
+<div class="line"><span class="lineno">  194</span> </div>
+<div class="line"><span class="lineno">  195</span>    SDL_PixelFormat *format = surface-&gt;format;</div>
+<div class="line"><span class="lineno">  196</span>    SDL_PixelFormat *format_output = output-&gt;format;</div>
+<div class="line"><span class="lineno">  197</span> </div>
+<div class="line"><span class="lineno">  198</span>    Uint32 *pixels = surface-&gt;pixels;</div>
+<div class="line"><span class="lineno">  199</span>    Uint32 *pixels_output = output-&gt;pixels;</div>
+<div class="line"><span class="lineno">  200</span> </div>
+<div class="line"><span class="lineno">  201</span>    <span class="keywordtype">double</span> ratio_h = ((double)h / new_h);</div>
+<div class="line"><span class="lineno">  202</span>    <span class="keywordtype">double</span> ratio_w = ((double)w / new_w);</div>
+<div class="line"><span class="lineno">  203</span> </div>
+<div class="line"><span class="lineno">  204</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; new_h; j++)</div>
+<div class="line"><span class="lineno">  205</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; new_w; i++)</div>
+<div class="line"><span class="lineno">  206</span>        {</div>
+<div class="line"><span class="lineno">  207</span>            <span class="keywordtype">int</span> r, g, b;</div>
+<div class="line"><span class="lineno">  208</span>            average(i, j, ratio_h, ratio_w, w, format, pixels, &amp;r, &amp;g, &amp;b);</div>
+<div class="line"><span class="lineno">  209</span>            pixels_output[j * new_w + i] = SDL_MapRGB(format_output, r, g, b);</div>
+<div class="line"><span class="lineno">  210</span>        }</div>
+<div class="line"><span class="lineno">  211</span> </div>
+<div class="line"><span class="lineno">  212</span>    <span class="keywordflow">return</span> output;</div>
+<div class="line"><span class="lineno">  213</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="abd18687c12cdeb98784ff51d91005985" name="abd18687c12cdeb98784ff51d91005985"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abd18687c12cdeb98784ff51d91005985">&#9670;&nbsp;</a></span>sudoku_split()</h2>
 
@@ -155,23 +238,22 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="sudoku__split_8c_source.html#l00441">441</a> of file <a class="el" href="sudoku__split_8c_source.html">sudoku_split.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  442</span>{</div>
-<div class="line"><span class="lineno">  443</span>    <span class="comment">// Initializes the SDL.</span></div>
-<div class="line"><span class="lineno">  444</span>    <span class="keywordflow">if</span> (SDL_Init(SDL_INIT_VIDEO) != 0)</div>
-<div class="line"><span class="lineno">  445</span>        errx(EXIT_FAILURE, <span class="stringliteral">&quot;%s&quot;</span>, SDL_GetError());</div>
-<div class="line"><span class="lineno">  446</span> </div>
-<div class="line"><span class="lineno">  447</span>    SDL_Surface *surface = load_image(black_white);</div>
-<div class="line"><span class="lineno">  448</span>    SDL_Surface *sudoku = load_image(grayscale);</div>
-<div class="line"><span class="lineno">  449</span> </div>
-<div class="line"><span class="lineno">  450</span>    line_detection(surface, sudoku);</div>
-<div class="line"><span class="lineno">  451</span> </div>
-<div class="line"><span class="lineno">  452</span>    <span class="comment">// IMG_SavePNG(surface, &quot;hough.png&quot;);</span></div>
-<div class="line"><span class="lineno">  453</span>    SDL_FreeSurface(surface);</div>
-<div class="line"><span class="lineno">  454</span> </div>
-<div class="line"><span class="lineno">  455</span>    <span class="comment">// Destroys the objects.</span></div>
-<div class="line"><span class="lineno">  456</span>    SDL_Quit();</div>
-<div class="line"><span class="lineno">  457</span>}</div>
+<p class="definition">Definition at line <a class="el" href="sudoku__split_8c_source.html#l00494">494</a> of file <a class="el" href="sudoku__split_8c_source.html">sudoku_split.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  495</span>{</div>
+<div class="line"><span class="lineno">  496</span>    <span class="comment">// Initializes the SDL.</span></div>
+<div class="line"><span class="lineno">  497</span>    <span class="keywordflow">if</span> (SDL_Init(SDL_INIT_VIDEO) != 0)</div>
+<div class="line"><span class="lineno">  498</span>        errx(EXIT_FAILURE, <span class="stringliteral">&quot;%s&quot;</span>, SDL_GetError());</div>
+<div class="line"><span class="lineno">  499</span> </div>
+<div class="line"><span class="lineno">  500</span>    SDL_Surface *surface = load_image(black_white);</div>
+<div class="line"><span class="lineno">  501</span>    SDL_Surface *sudoku = load_image(grayscale);</div>
+<div class="line"><span class="lineno">  502</span> </div>
+<div class="line"><span class="lineno">  503</span>    line_detection(surface, sudoku);</div>
+<div class="line"><span class="lineno">  504</span> </div>
+<div class="line"><span class="lineno">  505</span>    SDL_FreeSurface(surface);</div>
+<div class="line"><span class="lineno">  506</span>    SDL_FreeSurface(sudoku);</div>
+<div class="line"><span class="lineno">  507</span> </div>
+<div class="line"><span class="lineno">  508</span>    SDL_Quit();</div>
+<div class="line"><span class="lineno">  509</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

@@ -1,0 +1,94 @@
+.TH "src/utils/mnist/loader.h" 3 "Sat Oct 29 2022" "OCR-Lezcollitade" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/utils/mnist/loader.h
+.SH SYNOPSIS
+.br
+.PP
+\fC#include '\&.\&./matrices/matrix\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBBINARY_MODE\fP   'rb'"
+.br
+.ti -1c
+.RI "#define \fBCSV_MODE\fP   'r'"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBload_mnist\fP (const char *file, \fBmatrix_t\fP ***inputs, \fBmatrix_t\fP ***expected, size_t start, size_t length, const char *mode, size_t inputsize, size_t outputsize)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define BINARY_MODE   'rb'"
+
+.PP
+Definition at line \fB6\fP of file \fBloader\&.h\fP\&.
+.SS "#define CSV_MODE   'r'"
+
+.PP
+Definition at line \fB7\fP of file \fBloader\&.h\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "size_t load_mnist (const char * file, \fBmatrix_t\fP *** inputs, \fBmatrix_t\fP *** expected, size_t start, size_t length, const char * mode, size_t inputsize, size_t outputsize)"
+
+.PP
+Definition at line \fB188\fP of file \fBloader\&.c\fP\&.
+.PP
+.nf
+191 {
+192 
+193     if (strcmp(mode, CSV_MODE) && strcmp(mode, BINARY_MODE))
+194     {
+195         return 0;
+196     }
+197 
+198     FILE *file = fopen(path, mode);
+199     if (file == NULL)
+200         return 0;
+201 
+202     if (length == 0)
+203     {
+204         *_inputs = NULL;
+205         *_expected = NULL;
+206         if (strcmp(mode, CSV_MODE) == 0)
+207             length = load_csv_dynamic(
+208                 file, _inputs, _expected, start, inputsize, outputsize);
+209         else
+210             length = 0;
+211     }
+212     else
+213     {
+214         *_inputs = (matrix_t **)malloc(length * sizeof(matrix_t *));
+215         if (*_inputs == NULL)
+216             return 0;
+217         *_expected = (matrix_t **)malloc(length * sizeof(matrix_t *));
+218         if (*_expected == NULL)
+219             return 0;
+220         init_vectors(*_expected, length, outputsize, 1);
+221         init_vectors(*_inputs, length, inputsize, 0);
+222         if (strcmp(mode, CSV_MODE) == 0)
+223         {
+224             length = load_csv(file, *_inputs, *_expected, start, length);
+225         }
+226         else
+227         {
+228             length = 0;
+229         }
+230     }
+231 
+232     fclose(file);
+233     return length;
+234 }
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for OCR-Lezcollitade from the source code\&.

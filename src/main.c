@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "./cli/parser.h"
+#include "./network/function.h"
 #include "./network/network.h"
 #include "./solver/solver.h"
 #include "./utils/matrices/matrix.h"
@@ -50,6 +51,13 @@ static size_t *get_layers(const char *layers, size_t *length)
     return res;
 }
 
+static void get_param_activations(
+    params_t params, layer_activation_t *hidden, layer_activation_t *output)
+{
+    *hidden = get_layer_activation(params[ACTIVATION]);
+    *output = get_layer_activation(params[OUTPUT_ACTIVATION]);
+}
+
 static network_t *get_train_network(params_t params)
 {
     if (params[INPUT_NETWORK] != NULL)
@@ -60,7 +68,9 @@ static network_t *get_train_network(params_t params)
     {
         size_t length;
         size_t *layers = get_layers(params[GENERATE], &length);
-        network_t *net = network_generate(layers, length);
+        layer_activation_t hidden, output;
+        get_param_activations(params, &hidden, &output);
+        network_t *net = network_generate(layers, length, hidden, output);
         free(layers);
         return net;
     }
@@ -112,6 +122,11 @@ static size_t load_train_data(params_t params, matrix_t ***inputs,
         return l;
 }
 
+static int get_verbose(params_t params)
+{
+    return params[VERBOSE] == NULL ? 0 : 1;
+}
+
 static double get_rate(params_t params)
 {
     double rate = 0.1;
@@ -140,9 +155,161 @@ static void print_params(params_t params)
     PRINT_PARAM(params, LENGTH);
 }
 
+static void show_results(
+    matrix_t *inputs, matrix_t *expected, int ex, matrix_t *outputs, int out)
+{
+
+    printf("===TEST===\n");
+    printf("inputs:\n");
+    mat_print(inputs);
+    printf("outputs: %d\n", out);
+    mat_print(outputs);
+    printf("expected: %d\n", ex);
+    mat_print(expected);
+    printf("\n");
+}
+
+static void train_xor(params_t params)
+{
+    network_t *net = get_train_network(params);
+    double invalues[][2] = {{1, 0}, {0, 1}, {1, 1}, {0, 0}};
+    double outvalues[][1] = {{1}, {1}, {0}, {0}};
+    matrix_t **inputs
+        = (matrix_t **)calloc(sizeof(invalues), sizeof(matrix_t *));
+    size_t length = sizeof(invalues) / sizeof(double[2]);
+    for (size_t i = 0; i < length; i++)
+    {
+        inputs[i] = mat_create_fill(2, 1, invalues[i]);
+    }
+
+    matrix_t **outputs
+        = (matrix_t **)calloc(sizeof(outvalues), sizeof(matrix_t *));
+    for (size_t i = 0; i < length; i++)
+    {
+        outputs[i] = mat_create_fill(1, 1, outvalues[i]);
+    }
+    for (size_t i = 0; i < 100000; i++)
+    {
+        for (size_t j = 0; j < length; j++)
+        {
+            network_train(&net, inputs[j], outputs[j], 0.1);
+        }
+    }
+
+    for (size_t j = 0; j < length; j++)
+    {
+        matrix_t *res = compute_results(inputs[j], net);
+        int out = network_get_output(res, 0.8);
+        int ex = network_get_output(outputs[j], 0.8);
+        show_results(inputs[j], outputs[j], ex, res, out);
+        matrix_free(res);
+    }
+    network_save(params[OUTPUT_NETWORK], net);
+    network_free(net);
+
+    for (size_t i = 0; i < length; i++)
+    {
+        matrix_free(inputs[i]);
+        matrix_free(outputs[i]);
+    }
+
+    free(inputs);
+    free(outputs);
+    free(params);
+}
+
+static void train(params_t params)
+{
+    network_t *net = get_train_network(params);
+    matrix_t **inputs;
+    matrix_t **outputs;
+    size_t length = load_train_data(params, &inputs, &outputs, net->inputs,
+        net->layers[net->layer_count - 1]->count);
+
+    size_t iterations = 0;
+    if (params[ITERATIONS] == NULL
+        || sscanf(params[ITERATIONS], "%zu", &iterations) == 0)
+    {
+        iterations = 0;
+    }
+    else
+    {
+        keep_running = 0;
+    }
+    printf("starting the training\n");
+
+    double rate = get_rate(params);
+    int running = keep_running || iterations > 0;
+    for (size_t i = 0; running; i++)
+    {
+        size_t j;
+        for (j = 0; j < length && (running); j++)
+        {
+            network_train(&net, inputs[j], outputs[j], rate);
+            running = keep_running || i < iterations;
+        }
+        if (j == length)
+            printf("iteration %zu\n", i + 1);
+    }
+
+    printf("saving to %s\n", params[OUTPUT_NETWORK]);
+    network_save(params[OUTPUT_NETWORK], net);
+    network_free(net);
+    for (size_t i = 0; i < length; i++)
+    {
+        matrix_free(inputs[i]);
+        matrix_free(outputs[i]);
+    }
+
+    free(inputs);
+    free(outputs);
+    free(params);
+}
+
+static void test(params_t params)
+{
+
+    network_t *net = get_train_network(params);
+    matrix_t **inputs;
+    matrix_t **outputs;
+    size_t length = load_train_data(params, &inputs, &outputs, net->inputs,
+        net->layers[net->layer_count - 1]->count);
+    int verbose = get_verbose(params);
+
+    printf("starting the test\n");
+
+    size_t succeeded = 0, tests = 0;
+    for (size_t j = 0; j < length && keep_running; j++)
+    {
+        matrix_t *res = compute_results(inputs[j], net);
+        int out = network_get_output(res, 0.8);
+        int ex = network_get_output(outputs[j], 0.8);
+        if (verbose)
+            show_results(inputs[j], outputs[j], ex, res, out);
+        matrix_free(res);
+        if (out == ex)
+            succeeded++;
+        tests++;
+    }
+    printf("rate: %.2f%c\n", 100.0 * succeeded / (double)tests, '%');
+
+    network_free(net);
+    for (size_t i = 0; i < length; i++)
+    {
+        matrix_free(inputs[i]);
+        matrix_free(outputs[i]);
+    }
+
+    free(inputs);
+    free(outputs);
+    free(params);
+}
+
 int main(int argc, char **argv)
 {
     UNUSED(print_params);
+    UNUSED(show_results);
+    UNUSED(train_xor);
     char mode;
     params_t params = parse_params(argc, argv, &mode);
     if (params == NULL)
@@ -153,83 +320,11 @@ int main(int argc, char **argv)
     signal(SIGINT, int_handler);
     if (mode == TRAIN_MODE)
     {
-        network_t *net = get_train_network(params);
-        matrix_t **inputs;
-        matrix_t **outputs;
-        size_t length = load_train_data(params, &inputs, &outputs, net->inputs,
-            net->layers[net->layer_count - 1]->count);
-
-        size_t iterations = 0;
-        if (params[ITERATIONS] == NULL
-            || sscanf(params[ITERATIONS], "%zu", &iterations) == 0)
-        {
-            iterations = 0;
-        }
-        else
-        {
-            keep_running = 0;
-        }
-        printf("starting the training\n");
-
-        double rate = get_rate(params);
-        int running = keep_running || iterations > 0;
-        for (size_t i = 0; running; i++)
-        {
-            for (size_t j = 0; j < length && (running); j++)
-            {
-                network_train(&net, inputs[j], outputs[j], rate);
-                running = keep_running || i < iterations;
-            }
-            printf("iteration %zu\n", i + 1);
-        }
-
-        printf("saving to %s\n", params[OUTPUT_NETWORK]);
-        network_save(params[OUTPUT_NETWORK], net);
-        network_free(net);
-        for (size_t i = 0; i < length; i++)
-        {
-            matrix_free(inputs[i]);
-            matrix_free(outputs[i]);
-        }
-
-        free(inputs);
-        free(outputs);
-        free(params);
+        train(params);
     }
     else if (mode == TEST_MODE)
     {
-
-        network_t *net = get_train_network(params);
-        matrix_t **inputs;
-        matrix_t **outputs;
-        size_t length = load_train_data(params, &inputs, &outputs, net->inputs,
-            net->layers[net->layer_count - 1]->count);
-
-        printf("starting the test\n");
-
-        size_t succeeded = 0, tests = 0;
-        for (size_t j = 0; j < length && keep_running; j++)
-        {
-            matrix_t *res = compute_results(inputs[j], net);
-            int out = network_get_output(res, 0);
-            int ex = network_get_output(outputs[j], 0);
-            matrix_free(res);
-            if (out == ex)
-                succeeded++;
-            tests++;
-        }
-        printf("rate: %.2f%c\n", 100.0 * succeeded / (double)tests, '%');
-
-        network_free(net);
-        for (size_t i = 0; i < length; i++)
-        {
-            matrix_free(inputs[i]);
-            matrix_free(outputs[i]);
-        }
-
-        free(inputs);
-        free(outputs);
-        free(params);
+        test(params);
     }
 
     return 0;
