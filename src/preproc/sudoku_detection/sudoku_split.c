@@ -7,6 +7,7 @@
 #define UNUSED(x) (void)(x)
 
 int thres = 600;
+char save_path[30];
 
 // Loads an image in a surface.
 // The format of the surface is SDL_PIXELFORMAT_RGB888.
@@ -248,8 +249,9 @@ static void square(SDL_Surface *surface, size_t x1, size_t y1, size_t x2,
     SDL_UnlockSurface(output);
     SDL_FreeSurface(output);
 
-    char out[10];
-    snprintf(out, 7, "%zu.png", name);
+    char out[50];
+    sprintf(out, "%s%zu.png", save_path, name);
+
     IMG_SavePNG(final, out);
     SDL_FreeSurface(final);
 }
@@ -491,7 +493,7 @@ static void line_detection(SDL_Surface *surface, SDL_Surface *sudoku)
     matrix_free(acc);
 }
 
-void sudoku_split(char *black_white, char *grayscale)
+void sudoku_split(char *black_white, char *grayscale, char *path)
 {
     // Initializes the SDL.
     if (SDL_Init(SDL_INIT_VIDEO) != 0)
@@ -499,6 +501,8 @@ void sudoku_split(char *black_white, char *grayscale)
 
     SDL_Surface *surface = load_image(black_white);
     SDL_Surface *sudoku = load_image(grayscale);
+
+    strcpy(save_path, path);
 
     line_detection(surface, sudoku);
 

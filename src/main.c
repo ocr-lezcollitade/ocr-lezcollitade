@@ -1,4 +1,6 @@
 #include <err.h>
+#include <gtk/gtk.h>
+#include <gtk/gtkx.h>
 #include <math.h>
 #include <signal.h>
 #include <stdio.h>
@@ -8,6 +10,7 @@
 #include "./network/function.h"
 #include "./network/network.h"
 #include "./solver/solver.h"
+#include "./ui/ui.h"
 #include "./utils/matrices/matrix.h"
 #include "./utils/mnist/loader.h"
 
@@ -314,9 +317,9 @@ int main(int argc, char **argv)
     params_t params = parse_params(argc, argv, &mode);
     if (params == NULL)
     {
-        errx(-1, "missing subcommand");
+        open_ui();
+        return 0;
     }
-
     signal(SIGINT, int_handler);
     if (mode == TRAIN_MODE)
     {

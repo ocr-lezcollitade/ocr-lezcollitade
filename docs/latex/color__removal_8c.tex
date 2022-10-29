@@ -1,0 +1,308 @@
+\hypertarget{color__removal_8c}{}\doxysection{src/preproc/color\+\_\+removal/color\+\_\+removal.c File Reference}
+\label{color__removal_8c}\index{src/preproc/color\_removal/color\_removal.c@{src/preproc/color\_removal/color\_removal.c}}
+{\ttfamily \#include $<$SDL2/\+SDL.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL\+\_\+image.\+h$>$}\newline
+{\ttfamily \#include $<$err.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}color\+\_\+removal.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{color__removal_8c_a916836517383411ed420677f40cc2dcd}{surface\+\_\+to\+\_\+grayscale}} (SDL\+\_\+\+Surface $\ast$surface)
+\begin{DoxyCompactList}\small\item\em Turns a surface into grayscale. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{color__removal_8c_a24fa3688a16d996344575681ae988134}{surface\+\_\+to\+\_\+binary}} (SDL\+\_\+\+Surface $\ast$surface, int threshold)
+\item 
+int \mbox{\hyperlink{color__removal_8c_a1dffa7e09981c4705e52c62f79ad57b1}{otsu}} (SDL\+\_\+\+Surface $\ast$surface)
+\begin{DoxyCompactList}\small\item\em Finds the threshold of an image using Otsu\textquotesingle{}s method. \end{DoxyCompactList}\item 
+SDL\+\_\+\+Surface $\ast$ \mbox{\hyperlink{color__removal_8c_a017c197cebef5a7b13cbb4a418ca3ede}{blur}} (SDL\+\_\+\+Surface $\ast$surface)
+\begin{DoxyCompactList}\small\item\em Applies a blur filter to a surface. \end{DoxyCompactList}\item 
+SDL\+\_\+\+Surface $\ast$ \mbox{\hyperlink{color__removal_8c_ad2036f82dc05e3badfef30c72a6e52b2}{full\+\_\+binary}} (SDL\+\_\+\+Surface $\ast$surface)
+\begin{DoxyCompactList}\small\item\em Creates a binary copy of a surface using gaussian blur and ostu\textquotesingle{}s method. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{color__removal_8c_ab62c3f28d31090512a554c66ce2044c7}{grayscale\+\_\+image}} (char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Turns an image into grayscale. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{color__removal_8c_ab139b7e94330362f1f2bbd3bf2242f67}{binary\+\_\+image}} (char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Turns an image into binary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{color__removal_8c_ab139b7e94330362f1f2bbd3bf2242f67}\label{color__removal_8c_ab139b7e94330362f1f2bbd3bf2242f67}} 
+\index{color\_removal.c@{color\_removal.c}!binary\_image@{binary\_image}}
+\index{binary\_image@{binary\_image}!color\_removal.c@{color\_removal.c}}
+\doxysubsubsection{\texorpdfstring{binary\_image()}{binary\_image()}}
+{\footnotesize\ttfamily void binary\+\_\+image (\begin{DoxyParamCaption}\item[{char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Turns an image into binary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path of the image \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 222 of file color\+\_\+removal.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{223 \{}
+\DoxyCodeLine{224     SDL\_Surface *surface = load\_image(path);}
+\DoxyCodeLine{225 }
+\DoxyCodeLine{226     \mbox{\hyperlink{color__removal_8c_a916836517383411ed420677f40cc2dcd}{surface\_to\_grayscale}}(surface);}
+\DoxyCodeLine{227 }
+\DoxyCodeLine{228     \textcolor{keywordtype}{int} threshold = \mbox{\hyperlink{color__removal_8c_a1dffa7e09981c4705e52c62f79ad57b1}{otsu}}(surface);}
+\DoxyCodeLine{229 }
+\DoxyCodeLine{230     SDL\_Surface *blurry = \mbox{\hyperlink{color__removal_8c_a017c197cebef5a7b13cbb4a418ca3ede}{blur}}(surface);}
+\DoxyCodeLine{231 }
+\DoxyCodeLine{232     \mbox{\hyperlink{color__removal_8c_a24fa3688a16d996344575681ae988134}{surface\_to\_binary}}(blurry, threshold);}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{234     IMG\_SavePNG(blurry, \textcolor{stringliteral}{"{}binarized.png"{}});}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236     SDL\_FreeSurface(surface);}
+\DoxyCodeLine{237     SDL\_FreeSurface(blurry);}
+\DoxyCodeLine{238 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{color__removal_8c_a017c197cebef5a7b13cbb4a418ca3ede}\label{color__removal_8c_a017c197cebef5a7b13cbb4a418ca3ede}} 
+\index{color\_removal.c@{color\_removal.c}!blur@{blur}}
+\index{blur@{blur}!color\_removal.c@{color\_removal.c}}
+\doxysubsubsection{\texorpdfstring{blur()}{blur()}}
+{\footnotesize\ttfamily SDL\+\_\+\+Surface $\ast$ blur (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Surface $\ast$}]{surface }\end{DoxyParamCaption})}
+
+
+
+Applies a blur filter to a surface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em surface} & The surface which we want to blur \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new blurred surface 
+\end{DoxyReturn}
+
+
+Definition at line 155 of file color\+\_\+removal.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{156 \{}
+\DoxyCodeLine{157     \textcolor{keywordtype}{int} kernel[] = \{1, 2, 1, 2, 4, 2, 1, 2, 1\};}
+\DoxyCodeLine{158     \textcolor{keywordtype}{int} size = 3;}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160     SDL\_Surface *new\_surface}
+\DoxyCodeLine{161         = SDL\_CreateRGBSurface(0, surface-\/>w, surface-\/>h, 32, 0, 0, 0, 0);}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163     Uint32 *pixels = surface-\/>pixels;}
+\DoxyCodeLine{164     Uint32 *new\_pixels = new\_surface-\/>pixels;}
+\DoxyCodeLine{165     Uint8 r, g, b;}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} x = 0; x < surface-\/>w; x++)}
+\DoxyCodeLine{168         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} y = 0; y < surface-\/>h; y++)}
+\DoxyCodeLine{169         \{}
+\DoxyCodeLine{170             \textcolor{keywordtype}{int} shift = size / 2;}
+\DoxyCodeLine{171             \textcolor{keywordtype}{int} weight = 0, sum = 0, ki = 0;}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} s\_x = shift -\/ size; s\_x < shift; s\_x++)}
+\DoxyCodeLine{174                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} s\_y = shift -\/ size; s\_y < shift; s\_y++)}
+\DoxyCodeLine{175                 \{}
+\DoxyCodeLine{176                     \textcolor{keywordtype}{int} coord = (y + s\_y) * surface-\/>w + x + s\_x;}
+\DoxyCodeLine{177                     if (coord >= 0)}
+\DoxyCodeLine{178                     \{}
+\DoxyCodeLine{179                         SDL\_GetRGB(pixels[coord], surface-\/>format, \&r, \&g, \&b);}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181                         sum += kernel[ki]}
+\DoxyCodeLine{182                                * floor(0.299 * r + 0.587 * g + 0.114 * b);}
+\DoxyCodeLine{183                         weight += kernel[ki];}
+\DoxyCodeLine{184                     \}}
+\DoxyCodeLine{185                     ki++;}
+\DoxyCodeLine{186                 \}}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188             \textcolor{keywordtype}{int} coord = y * surface-\/>w + x;}
+\DoxyCodeLine{189             \textcolor{keywordtype}{int} c = sum / weight;}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191             Uint32 color = SDL\_MapRGB(surface-\/>format, c, c, c);}
+\DoxyCodeLine{192             new\_pixels[coord] = color;}
+\DoxyCodeLine{193         \}}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195     \textcolor{keywordflow}{return} new\_surface;}
+\DoxyCodeLine{196 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{color__removal_8c_ad2036f82dc05e3badfef30c72a6e52b2}\label{color__removal_8c_ad2036f82dc05e3badfef30c72a6e52b2}} 
+\index{color\_removal.c@{color\_removal.c}!full\_binary@{full\_binary}}
+\index{full\_binary@{full\_binary}!color\_removal.c@{color\_removal.c}}
+\doxysubsubsection{\texorpdfstring{full\_binary()}{full\_binary()}}
+{\footnotesize\ttfamily SDL\+\_\+\+Surface $\ast$ full\+\_\+binary (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Surface $\ast$}]{surface }\end{DoxyParamCaption})}
+
+
+
+Creates a binary copy of a surface using gaussian blur and ostu\textquotesingle{}s method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em surface} & The surface \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The binary surface 
+\end{DoxyReturn}
+
+
+Definition at line 198 of file color\+\_\+removal.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{199 \{}
+\DoxyCodeLine{200     \mbox{\hyperlink{color__removal_8c_a916836517383411ed420677f40cc2dcd}{surface\_to\_grayscale}}(surface);}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202     \textcolor{keywordtype}{int} threshold = \mbox{\hyperlink{color__removal_8c_a1dffa7e09981c4705e52c62f79ad57b1}{otsu}}(surface);}
+\DoxyCodeLine{203 }
+\DoxyCodeLine{204     SDL\_Surface *blurry = \mbox{\hyperlink{color__removal_8c_a017c197cebef5a7b13cbb4a418ca3ede}{blur}}(surface);}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206     \mbox{\hyperlink{color__removal_8c_a24fa3688a16d996344575681ae988134}{surface\_to\_binary}}(blurry, threshold);}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{208     \textcolor{keywordflow}{return} blurry;}
+\DoxyCodeLine{209 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{color__removal_8c_ab62c3f28d31090512a554c66ce2044c7}\label{color__removal_8c_ab62c3f28d31090512a554c66ce2044c7}} 
+\index{color\_removal.c@{color\_removal.c}!grayscale\_image@{grayscale\_image}}
+\index{grayscale\_image@{grayscale\_image}!color\_removal.c@{color\_removal.c}}
+\doxysubsubsection{\texorpdfstring{grayscale\_image()}{grayscale\_image()}}
+{\footnotesize\ttfamily void grayscale\+\_\+image (\begin{DoxyParamCaption}\item[{char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Turns an image into grayscale. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path of the image \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 211 of file color\+\_\+removal.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{212 \{}
+\DoxyCodeLine{213     SDL\_Surface *surface = load\_image(path);}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215     \mbox{\hyperlink{color__removal_8c_a916836517383411ed420677f40cc2dcd}{surface\_to\_grayscale}}(surface);}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217     IMG\_SavePNG(surface, \textcolor{stringliteral}{"{}grayscaled.png"{}});}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219     SDL\_FreeSurface(surface);}
+\DoxyCodeLine{220 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{color__removal_8c_a1dffa7e09981c4705e52c62f79ad57b1}\label{color__removal_8c_a1dffa7e09981c4705e52c62f79ad57b1}} 
+\index{color\_removal.c@{color\_removal.c}!otsu@{otsu}}
+\index{otsu@{otsu}!color\_removal.c@{color\_removal.c}}
+\doxysubsubsection{\texorpdfstring{otsu()}{otsu()}}
+{\footnotesize\ttfamily int otsu (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Surface $\ast$}]{surface }\end{DoxyParamCaption})}
+
+
+
+Finds the threshold of an image using Otsu\textquotesingle{}s method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em surface} & The surface which threshold we want \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The threhsold 
+\end{DoxyReturn}
+
+
+Definition at line 100 of file color\+\_\+removal.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{101 \{}
+\DoxyCodeLine{102     \textcolor{keywordtype}{int} histo[256] = \{0\};}
+\DoxyCodeLine{103     fill\_histo(surface, histo);}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105     \textcolor{keywordtype}{int} total = surface-\/>w * surface-\/>h;}
+\DoxyCodeLine{106     \textcolor{keywordtype}{int} level = 0;}
+\DoxyCodeLine{107     \textcolor{keywordtype}{double} sumB = 0, max = 0, sum = 0, wB = 0;}
+\DoxyCodeLine{108     \textcolor{keywordtype}{double} wF, mean\_F;}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 256; i++)}
+\DoxyCodeLine{111         sum += i * histo[i];}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 1; i < 200; i++)}
+\DoxyCodeLine{114     \{}
+\DoxyCodeLine{115         wF = total -\/ wB;}
+\DoxyCodeLine{116         \textcolor{keywordflow}{if} (wB > 0 \&\& wF > 0)}
+\DoxyCodeLine{117         \{}
+\DoxyCodeLine{118             mean\_F = (sum -\/ sumB) / wF;}
+\DoxyCodeLine{119             \textcolor{keywordtype}{double} val}
+\DoxyCodeLine{120                 = wB * wF * ((sumB / wB) -\/ mean\_F) * ((sumB / wB) -\/ mean\_F);}
+\DoxyCodeLine{121             \textcolor{keywordflow}{if} (val >= max)}
+\DoxyCodeLine{122             \{}
+\DoxyCodeLine{123                 level = i;}
+\DoxyCodeLine{124                 max = val;}
+\DoxyCodeLine{125             \}}
+\DoxyCodeLine{126         \}}
+\DoxyCodeLine{127         wB += histo[i];}
+\DoxyCodeLine{128         sumB = sumB + (i -\/ 1) * histo[i];}
+\DoxyCodeLine{129     \}}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131     \textcolor{keywordflow}{return} level;}
+\DoxyCodeLine{132 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{color__removal_8c_a24fa3688a16d996344575681ae988134}\label{color__removal_8c_a24fa3688a16d996344575681ae988134}} 
+\index{color\_removal.c@{color\_removal.c}!surface\_to\_binary@{surface\_to\_binary}}
+\index{surface\_to\_binary@{surface\_to\_binary}!color\_removal.c@{color\_removal.c}}
+\doxysubsubsection{\texorpdfstring{surface\_to\_binary()}{surface\_to\_binary()}}
+{\footnotesize\ttfamily void surface\+\_\+to\+\_\+binary (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Surface $\ast$}]{surface,  }\item[{int}]{threshold }\end{DoxyParamCaption})}
+
+
+
+Definition at line 61 of file color\+\_\+removal.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{62 \{}
+\DoxyCodeLine{63     Uint32 *pixels = surface-\/>pixels;}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < (surface-\/>w * surface-\/>h); i++)}
+\DoxyCodeLine{66         pixels[i] = pixel\_to\_binary(pixels[i], surface, threshold);}
+\DoxyCodeLine{67 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{color__removal_8c_a916836517383411ed420677f40cc2dcd}\label{color__removal_8c_a916836517383411ed420677f40cc2dcd}} 
+\index{color\_removal.c@{color\_removal.c}!surface\_to\_grayscale@{surface\_to\_grayscale}}
+\index{surface\_to\_grayscale@{surface\_to\_grayscale}!color\_removal.c@{color\_removal.c}}
+\doxysubsubsection{\texorpdfstring{surface\_to\_grayscale()}{surface\_to\_grayscale()}}
+{\footnotesize\ttfamily void surface\+\_\+to\+\_\+grayscale (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Surface $\ast$}]{surface }\end{DoxyParamCaption})}
+
+
+
+Turns a surface into grayscale. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em surface} & The surface to turn into grayscale \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 35 of file color\+\_\+removal.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{36 \{}
+\DoxyCodeLine{37     Uint32 *pixels = surface-\/>pixels;}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < (surface-\/>w * surface-\/>h); i++)}
+\DoxyCodeLine{40         pixels[i] = pixel\_to\_grayscale(pixels[i], surface);}
+\DoxyCodeLine{41 \}}
+
+\end{DoxyCode}

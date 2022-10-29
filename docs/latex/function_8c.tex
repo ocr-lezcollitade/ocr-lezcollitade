@@ -1,0 +1,306 @@
+\hypertarget{function_8c}{}\doxysection{src/network/function.c File Reference}
+\label{function_8c}\index{src/network/function.c@{src/network/function.c}}
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}function.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(x)~(void)(x)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{function_8c_aad9426959fd01ef08b2da99d846dce0e}{output\+\_\+activation}} (size\+\_\+t layer, size\+\_\+t neuron, double arg, \mbox{\hyperlink{structnetwork__results__t}{network\+\_\+results\+\_\+t}} $\ast$res)
+\item 
+double \mbox{\hyperlink{function_8c_acc76e8527c5c41125cffaee537a0068d}{output\+\_\+activation\+\_\+derivative}} (size\+\_\+t layer, size\+\_\+t neuron, double arg, \mbox{\hyperlink{structnetwork__results__t}{network\+\_\+results\+\_\+t}} $\ast$res)
+\item 
+double \mbox{\hyperlink{function_8c_a3cfe80ea8f08d3cb79fac7898f2f732f}{activation}} (size\+\_\+t layer, size\+\_\+t neuron, double arg, \mbox{\hyperlink{structnetwork__results__t}{network\+\_\+results\+\_\+t}} $\ast$res)
+\item 
+double \mbox{\hyperlink{function_8c_aadf5a2658d407fe312e061e9f92e7aff}{activation\+\_\+derivative}} (size\+\_\+t layer, size\+\_\+t neuron, double arg, \mbox{\hyperlink{structnetwork__results__t}{network\+\_\+results\+\_\+t}} $\ast$res)
+\item 
+double \mbox{\hyperlink{function_8c_a9dc739a8f297a615beeed83b8b1de5c3}{cost}} (\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$target, \mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$output)
+\item 
+double \mbox{\hyperlink{function_8c_ace36f4d417e611fd6e6d265b09066b89}{cost\+\_\+derivative}} (double target, double output)
+\item 
+double \mbox{\hyperlink{function_8c_ae26b6248510ebcfc65f48a62e8b01ba1}{nb\+\_\+m1\+\_\+and\+\_\+1}} ()
+\item 
+int \mbox{\hyperlink{function_8c_a1422db7183b6193c878d7afb32cd60a6}{index\+\_\+random}} (int count)
+\item 
+double \mbox{\hyperlink{function_8c_a5530f7da19de2bf4e3ab4b717824472c}{normal}} (double z)
+\begin{DoxyCompactList}\small\item\em Returns a number following the standard normal distribution;. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{function_8c_a0770694792334e6a69938e6a9364fbb9}{sign}} (double nb)
+\begin{DoxyCompactList}\small\item\em Returns 1 if the double is positive, -\/1 otherwise;. \end{DoxyCompactList}\item 
+double $\ast$ \mbox{\hyperlink{function_8c_ae6d5ccd297429cb956c9a4deb3d5daa8}{generate\+\_\+weights}} (double n)
+\begin{DoxyCompactList}\small\item\em Returns a double pointer with values following normal distribution; of element for the distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{function_8c_a86d500a34c624c2cae56bc25a31b12f3}\label{function_8c_a86d500a34c624c2cae56bc25a31b12f3}} 
+\index{function.c@{function.c}!UNUSED@{UNUSED}}
+\index{UNUSED@{UNUSED}!function.c@{function.c}}
+\doxysubsubsection{\texorpdfstring{UNUSED}{UNUSED}}
+{\footnotesize\ttfamily \#define UNUSED(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(void)(x)}
+
+
+
+Definition at line 5 of file function.\+c.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{function_8c_a3cfe80ea8f08d3cb79fac7898f2f732f}\label{function_8c_a3cfe80ea8f08d3cb79fac7898f2f732f}} 
+\index{function.c@{function.c}!activation@{activation}}
+\index{activation@{activation}!function.c@{function.c}}
+\doxysubsubsection{\texorpdfstring{activation()}{activation()}}
+{\footnotesize\ttfamily double activation (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{layer,  }\item[{size\+\_\+t}]{neuron,  }\item[{double}]{arg,  }\item[{\mbox{\hyperlink{structnetwork__results__t}{network\+\_\+results\+\_\+t}} $\ast$}]{res }\end{DoxyParamCaption})}
+
+
+
+Definition at line 69 of file function.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{71 \{}
+\DoxyCodeLine{72     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(res);}
+\DoxyCodeLine{73     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(layer);}
+\DoxyCodeLine{74     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(neuron);}
+\DoxyCodeLine{75     \textcolor{keywordflow}{return} sigmoid(arg);}
+\DoxyCodeLine{76 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8c_aadf5a2658d407fe312e061e9f92e7aff}\label{function_8c_aadf5a2658d407fe312e061e9f92e7aff}} 
+\index{function.c@{function.c}!activation\_derivative@{activation\_derivative}}
+\index{activation\_derivative@{activation\_derivative}!function.c@{function.c}}
+\doxysubsubsection{\texorpdfstring{activation\_derivative()}{activation\_derivative()}}
+{\footnotesize\ttfamily double activation\+\_\+derivative (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{layer,  }\item[{size\+\_\+t}]{neuron,  }\item[{double}]{arg,  }\item[{\mbox{\hyperlink{structnetwork__results__t}{network\+\_\+results\+\_\+t}} $\ast$}]{res }\end{DoxyParamCaption})}
+
+
+
+Definition at line 78 of file function.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{80 \{}
+\DoxyCodeLine{81     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(res);}
+\DoxyCodeLine{82     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(layer);}
+\DoxyCodeLine{83     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(neuron);}
+\DoxyCodeLine{84     \textcolor{keywordflow}{return} sigmoid\_derivative(arg);}
+\DoxyCodeLine{85 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8c_a9dc739a8f297a615beeed83b8b1de5c3}\label{function_8c_a9dc739a8f297a615beeed83b8b1de5c3}} 
+\index{function.c@{function.c}!cost@{cost}}
+\index{cost@{cost}!function.c@{function.c}}
+\doxysubsubsection{\texorpdfstring{cost()}{cost()}}
+{\footnotesize\ttfamily double cost (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{target,  }\item[{\mbox{\hyperlink{structmatrix__t}{matrix\+\_\+t}} $\ast$}]{output }\end{DoxyParamCaption})}
+
+
+
+Definition at line 87 of file function.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{88 \{}
+\DoxyCodeLine{89     \textcolor{keywordtype}{double} res = 0;}
+\DoxyCodeLine{90     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < target-\/>\mbox{\hyperlink{structmatrix__t_a9620f15b4416ec1830196db9ec904fc5}{rows}}; i++)}
+\DoxyCodeLine{91     \{}
+\DoxyCodeLine{92         res += pow(\mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(target, i, 0) -\/ \mbox{\hyperlink{matrix_8c_a631ff21351ba5ec31350fb5277605d3b}{mat\_el\_at}}(output, i, 0), 2);}
+\DoxyCodeLine{93     \}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95     \textcolor{keywordflow}{return} res / 2;}
+\DoxyCodeLine{96 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8c_ace36f4d417e611fd6e6d265b09066b89}\label{function_8c_ace36f4d417e611fd6e6d265b09066b89}} 
+\index{function.c@{function.c}!cost\_derivative@{cost\_derivative}}
+\index{cost\_derivative@{cost\_derivative}!function.c@{function.c}}
+\doxysubsubsection{\texorpdfstring{cost\_derivative()}{cost\_derivative()}}
+{\footnotesize\ttfamily double cost\+\_\+derivative (\begin{DoxyParamCaption}\item[{double}]{target,  }\item[{double}]{output }\end{DoxyParamCaption})}
+
+
+
+Definition at line 98 of file function.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{99 \{}
+\DoxyCodeLine{100     \textcolor{keywordflow}{return} output -\/ target;}
+\DoxyCodeLine{101 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8c_ae6d5ccd297429cb956c9a4deb3d5daa8}\label{function_8c_ae6d5ccd297429cb956c9a4deb3d5daa8}} 
+\index{function.c@{function.c}!generate\_weights@{generate\_weights}}
+\index{generate\_weights@{generate\_weights}!function.c@{function.c}}
+\doxysubsubsection{\texorpdfstring{generate\_weights()}{generate\_weights()}}
+{\footnotesize\ttfamily double $\ast$ generate\+\_\+weights (\begin{DoxyParamCaption}\item[{double}]{n }\end{DoxyParamCaption})}
+
+
+
+Returns a double pointer with values following normal distribution; of element for the distribution. 
+
+\begin{DoxyReturn}{Returns}
+a double pointer with values following normal distribution; 
+\end{DoxyReturn}
+
+
+Definition at line 125 of file function.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{126 \{}
+\DoxyCodeLine{127     \textcolor{keywordtype}{size\_t} index = 0;}
+\DoxyCodeLine{128     \textcolor{keywordtype}{double} *values = (\textcolor{keywordtype}{double} *)malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{double}) * n);}
+\DoxyCodeLine{129     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = -\/n / 2; i < n / 2; i++)}
+\DoxyCodeLine{130     \{}
+\DoxyCodeLine{131         \textcolor{keywordtype}{double} nb = \mbox{\hyperlink{function_8c_a5530f7da19de2bf4e3ab4b717824472c}{normal}}(\mbox{\hyperlink{function_8c_ae26b6248510ebcfc65f48a62e8b01ba1}{nb\_m1\_and\_1}}() * 2) * \mbox{\hyperlink{function_8c_a0770694792334e6a69938e6a9364fbb9}{sign}}(i);}
+\DoxyCodeLine{132         values[index] = nb;}
+\DoxyCodeLine{133         index++;}
+\DoxyCodeLine{134     \}}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136     \textcolor{comment}{// SHUFFLE}}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 100; i++)}
+\DoxyCodeLine{139     \{}
+\DoxyCodeLine{140         \textcolor{keywordtype}{int} i1 = \mbox{\hyperlink{function_8c_a1422db7183b6193c878d7afb32cd60a6}{index\_random}}(n);}
+\DoxyCodeLine{141         \textcolor{keywordtype}{int} i2 = \mbox{\hyperlink{function_8c_a1422db7183b6193c878d7afb32cd60a6}{index\_random}}(n);}
+\DoxyCodeLine{142         \textcolor{keywordtype}{double} temp = values[i1];}
+\DoxyCodeLine{143         values[i1] = values[i2];}
+\DoxyCodeLine{144         values[i2] = temp;}
+\DoxyCodeLine{145     \}}
+\DoxyCodeLine{146     \textcolor{keywordflow}{return} values;}
+\DoxyCodeLine{147 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8c_a1422db7183b6193c878d7afb32cd60a6}\label{function_8c_a1422db7183b6193c878d7afb32cd60a6}} 
+\index{function.c@{function.c}!index\_random@{index\_random}}
+\index{index\_random@{index\_random}!function.c@{function.c}}
+\doxysubsubsection{\texorpdfstring{index\_random()}{index\_random()}}
+{\footnotesize\ttfamily int index\+\_\+random (\begin{DoxyParamCaption}\item[{int}]{count }\end{DoxyParamCaption})}
+
+
+
+Definition at line 108 of file function.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{109 \{}
+\DoxyCodeLine{110     \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})((((double)rand() / (double)(\textcolor{keywordtype}{unsigned})RAND\_MAX + 1))}
+\DoxyCodeLine{111                  * (double)count)}
+\DoxyCodeLine{112            -\/ count;}
+\DoxyCodeLine{113 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8c_ae26b6248510ebcfc65f48a62e8b01ba1}\label{function_8c_ae26b6248510ebcfc65f48a62e8b01ba1}} 
+\index{function.c@{function.c}!nb\_m1\_and\_1@{nb\_m1\_and\_1}}
+\index{nb\_m1\_and\_1@{nb\_m1\_and\_1}!function.c@{function.c}}
+\doxysubsubsection{\texorpdfstring{nb\_m1\_and\_1()}{nb\_m1\_and\_1()}}
+{\footnotesize\ttfamily double nb\+\_\+m1\+\_\+and\+\_\+1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 103 of file function.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{104 \{}
+\DoxyCodeLine{105     \textcolor{keywordflow}{return} ((\textcolor{keywordtype}{double})rand() / (\textcolor{keywordtype}{double})((\textcolor{keywordtype}{unsigned})RAND\_MAX + 1)) * 2 -\/ 1;}
+\DoxyCodeLine{106 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8c_a5530f7da19de2bf4e3ab4b717824472c}\label{function_8c_a5530f7da19de2bf4e3ab4b717824472c}} 
+\index{function.c@{function.c}!normal@{normal}}
+\index{normal@{normal}!function.c@{function.c}}
+\doxysubsubsection{\texorpdfstring{normal()}{normal()}}
+{\footnotesize\ttfamily double normal (\begin{DoxyParamCaption}\item[{double}]{z }\end{DoxyParamCaption})}
+
+
+
+Returns a number following the standard normal distribution;. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em z} & The argument for the standard normal distribution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number following the standard normal distribution 
+\end{DoxyReturn}
+
+
+Definition at line 115 of file function.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{116 \{}
+\DoxyCodeLine{117     \textcolor{keywordflow}{return} exp(-\/(z * z) / 2) / sqrt(2 * M\_PI);}
+\DoxyCodeLine{118 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8c_aad9426959fd01ef08b2da99d846dce0e}\label{function_8c_aad9426959fd01ef08b2da99d846dce0e}} 
+\index{function.c@{function.c}!output\_activation@{output\_activation}}
+\index{output\_activation@{output\_activation}!function.c@{function.c}}
+\doxysubsubsection{\texorpdfstring{output\_activation()}{output\_activation()}}
+{\footnotesize\ttfamily double output\+\_\+activation (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{layer,  }\item[{size\+\_\+t}]{neuron,  }\item[{double}]{arg,  }\item[{\mbox{\hyperlink{structnetwork__results__t}{network\+\_\+results\+\_\+t}} $\ast$}]{res }\end{DoxyParamCaption})}
+
+
+
+Definition at line 53 of file function.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{55 \{}
+\DoxyCodeLine{56     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(arg);}
+\DoxyCodeLine{57     \textcolor{keywordflow}{return} soft\_max(layer, neuron, res);}
+\DoxyCodeLine{58 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8c_acc76e8527c5c41125cffaee537a0068d}\label{function_8c_acc76e8527c5c41125cffaee537a0068d}} 
+\index{function.c@{function.c}!output\_activation\_derivative@{output\_activation\_derivative}}
+\index{output\_activation\_derivative@{output\_activation\_derivative}!function.c@{function.c}}
+\doxysubsubsection{\texorpdfstring{output\_activation\_derivative()}{output\_activation\_derivative()}}
+{\footnotesize\ttfamily double output\+\_\+activation\+\_\+derivative (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{layer,  }\item[{size\+\_\+t}]{neuron,  }\item[{double}]{arg,  }\item[{\mbox{\hyperlink{structnetwork__results__t}{network\+\_\+results\+\_\+t}} $\ast$}]{res }\end{DoxyParamCaption})}
+
+
+
+Definition at line 60 of file function.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{62 \{}
+\DoxyCodeLine{63     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(res);}
+\DoxyCodeLine{64     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(layer);}
+\DoxyCodeLine{65     \mbox{\hyperlink{function_8c_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(neuron);}
+\DoxyCodeLine{66     \textcolor{keywordflow}{return} soft\_max\_derivative(arg);}
+\DoxyCodeLine{67 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{function_8c_a0770694792334e6a69938e6a9364fbb9}\label{function_8c_a0770694792334e6a69938e6a9364fbb9}} 
+\index{function.c@{function.c}!sign@{sign}}
+\index{sign@{sign}!function.c@{function.c}}
+\doxysubsubsection{\texorpdfstring{sign()}{sign()}}
+{\footnotesize\ttfamily double sign (\begin{DoxyParamCaption}\item[{double}]{nb }\end{DoxyParamCaption})}
+
+
+
+Returns 1 if the double is positive, -\/1 otherwise;. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nb} & A double number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 1 if the double is positive, -\/1 otherwise; 
+\end{DoxyReturn}
+
+
+Definition at line 120 of file function.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{121 \{}
+\DoxyCodeLine{122     \textcolor{keywordflow}{return} (nb > 0 ? 1 : -\/1);}
+\DoxyCodeLine{123 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,96 @@
+\hypertarget{rotate_8h}{}\doxysection{src/preproc/rotate/rotate.h File Reference}
+\label{rotate_8h}\index{src/preproc/rotate/rotate.h@{src/preproc/rotate/rotate.h}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+SDL\+\_\+\+Surface $\ast$ \mbox{\hyperlink{rotate_8h_abcb49af9bc9200ea8d35bcdf3da8600d}{rotate\+\_\+surface}} (SDL\+\_\+\+Surface $\ast$surface, double deg)
+\item 
+void \mbox{\hyperlink{rotate_8h_abaff7e12c98b996f3b2acfcd53f88f38}{rotate\+\_\+image}} (const char $\ast$file, double deg)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{rotate_8h_abaff7e12c98b996f3b2acfcd53f88f38}\label{rotate_8h_abaff7e12c98b996f3b2acfcd53f88f38}} 
+\index{rotate.h@{rotate.h}!rotate\_image@{rotate\_image}}
+\index{rotate\_image@{rotate\_image}!rotate.h@{rotate.h}}
+\doxysubsubsection{\texorpdfstring{rotate\_image()}{rotate\_image()}}
+{\footnotesize\ttfamily void rotate\+\_\+image (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file,  }\item[{double}]{deg }\end{DoxyParamCaption})}
+
+
+
+Definition at line 52 of file rotate.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{53 \{}
+\DoxyCodeLine{54     \textcolor{keywordflow}{if} (SDL\_Init(SDL\_INIT\_VIDEO) != 0)}
+\DoxyCodeLine{55         errx(EXIT\_FAILURE, \textcolor{stringliteral}{"{}\%s"{}}, SDL\_GetError());}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57     SDL\_Surface *surface = \mbox{\hyperlink{img__loader_2loader_8c_aa94630c00e1f24be513946e50ccdb0e4}{load\_image}}(file);}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59     SDL\_Surface *new\_surface = \mbox{\hyperlink{rotate_8c_abcb49af9bc9200ea8d35bcdf3da8600d}{rotate\_surface}}(surface, deg);}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61     \textcolor{keywordflow}{if} (IMG\_SavePNG(new\_surface, \textcolor{stringliteral}{"{}rotated.png"{}}) != 0)}
+\DoxyCodeLine{62         errx(EXIT\_FAILURE, \textcolor{stringliteral}{"{}\%s"{}}, SDL\_GetError());}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64     SDL\_FreeSurface(new\_surface);}
+\DoxyCodeLine{65     SDL\_FreeSurface(surface);}
+\DoxyCodeLine{66     SDL\_Quit();}
+\DoxyCodeLine{67 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{rotate_8h_abcb49af9bc9200ea8d35bcdf3da8600d}\label{rotate_8h_abcb49af9bc9200ea8d35bcdf3da8600d}} 
+\index{rotate.h@{rotate.h}!rotate\_surface@{rotate\_surface}}
+\index{rotate\_surface@{rotate\_surface}!rotate.h@{rotate.h}}
+\doxysubsubsection{\texorpdfstring{rotate\_surface()}{rotate\_surface()}}
+{\footnotesize\ttfamily SDL\+\_\+\+Surface$\ast$ rotate\+\_\+surface (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Surface $\ast$}]{surface,  }\item[{double}]{deg }\end{DoxyParamCaption})}
+
+
+
+Definition at line 9 of file rotate.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{10 \{}
+\DoxyCodeLine{11     Uint32 *pixels = surface-\/>pixels;}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13     \textcolor{keywordtype}{int} width = surface-\/>w;}
+\DoxyCodeLine{14     \textcolor{keywordtype}{int} height = surface-\/>h;}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16     \textcolor{keywordtype}{int} len = width * height;}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18     deg = deg * M\_PI / 180;}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20     \textcolor{keywordtype}{int} midx = width / 2;}
+\DoxyCodeLine{21     \textcolor{keywordtype}{int} midy = height / 2;}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     SDL\_Surface *new\_surface}
+\DoxyCodeLine{24         = SDL\_CreateRGBSurface(0, width, height, 32, 0, 0, 0, 0);}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26     Uint32 *new\_pixels = new\_surface-\/>pixels;}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < len; i++)}
+\DoxyCodeLine{29     \{}
+\DoxyCodeLine{30         \textcolor{keywordtype}{int} destx = i \% width;}
+\DoxyCodeLine{31         \textcolor{keywordtype}{int} desty = i / width;}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33         \textcolor{keywordtype}{int} sourcex}
+\DoxyCodeLine{34             = floor(cos(-\/deg) * (destx -\/ midx) -\/ sin(-\/deg) * (desty -\/ midy))}
+\DoxyCodeLine{35               + midx;}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37         \textcolor{keywordtype}{int} sourcey}
+\DoxyCodeLine{38             = floor(sin(-\/deg) * (destx -\/ midx) + cos(-\/deg) * (desty -\/ midy))}
+\DoxyCodeLine{39               + midy;}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41         \textcolor{keywordtype}{int} sourcei = sourcey * width + sourcex;}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43         \textcolor{keywordflow}{if} (sourcei >= 0 \&\& sourcei < len)}
+\DoxyCodeLine{44             new\_pixels[i] = pixels[sourcei];}
+\DoxyCodeLine{45         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{46             new\_pixels[i] = SDL\_MapRGB(surface-\/>format, 255, 255, 255);}
+\DoxyCodeLine{47     \}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49     \textcolor{keywordflow}{return} new\_surface;}
+\DoxyCodeLine{50 \}}
+
+\end{DoxyCode}

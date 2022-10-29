@@ -4,20 +4,7 @@
 #include <math.h>
 #include <stdio.h>
 #include "rotate.h"
-
-static SDL_Surface *load_image(const char *path)
-{
-    SDL_Surface *temp_surface = IMG_Load(path);
-    if (temp_surface == NULL)
-        errx(EXIT_FAILURE, "%s", SDL_GetError());
-
-    SDL_Surface *surface
-        = SDL_ConvertSurfaceFormat(temp_surface, SDL_PIXELFORMAT_RGB888, 0);
-
-    SDL_FreeSurface(temp_surface);
-
-    return surface;
-}
+#include "../../utils/img_loader/loader.h"
 
 SDL_Surface *rotate_surface(SDL_Surface *surface, double deg)
 {
@@ -55,6 +42,8 @@ SDL_Surface *rotate_surface(SDL_Surface *surface, double deg)
 
         if (sourcei >= 0 && sourcei < len)
             new_pixels[i] = pixels[sourcei];
+        else
+            new_pixels[i] = SDL_MapRGB(surface->format, 255, 255, 255);
     }
 
     return new_surface;
@@ -69,7 +58,7 @@ void rotate_image(const char *file, double deg)
 
     SDL_Surface *new_surface = rotate_surface(surface, deg);
 
-    if (IMG_SavePNG(new_surface, "res.png") != 0)
+    if (IMG_SavePNG(new_surface, "rotated.png") != 0)
         errx(EXIT_FAILURE, "%s", SDL_GetError());
 
     SDL_FreeSurface(new_surface);

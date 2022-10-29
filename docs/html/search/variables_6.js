@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['layer_5fcount_0',['layer_count',['../structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636',1,'network_t']]],
-  ['layers_1',['layers',['../structnetwork__t.html#abc9801a33bc441d67a87fac3b603ae87',1,'network_t']]]
+  ['import_289',['import',['../ui_8c.html#af2f2e23c2cf22d25c6bb0048b38fac29',1,'ui.c']]],
+  ['inputs_290',['inputs',['../structnetwork__t.html#af7a2fbc049a0fd2d5ad14f218658ca83',1,'network_t']]]
 ];

@@ -1,14 +1,27 @@
 stages:
+  - lint
   - build
   - test
 
+
+clang-format-lint:
+  stage: lint
+  before_script: 
+    - |
+      apk update
+      apk add git clang clang-extra-tools
+      git config --global --add safe.directory `pwd`
+  script:
+    - for f in `git ls-files | grep -E "\.(c|h)$"`; do name=$(echo $f | sed -E "s/\//_/g"); clang-format $f > $name; diff $f $name; done > .ci-temp || true
+    - cat .ci-temp
+    - exit $(wc -c < .ci-temp)
 
 build-job:
   stage: build
   before_script:
     - |
       apk update 
-      apk add build-base make tree pkgconfig sdl2-dev sdl2_image-dev
+      apk add build-base make tree pkgconfig sdl2-dev sdl2_image-dev gtk+3.0-dev
   script:
     - make clean
     - make build
@@ -21,6 +34,6 @@ unit_test:
   stage: test
   image: ubuntu:22.04
   before_script:
-    - apt-get update -y && apt-get install -y libcriterion-dev build-essential libsdl2-dev libsdl2-image-dev
+    - apt-get update -y && apt-get install -y libcriterion-dev build-essential libsdl2-dev libsdl2-image-dev libgtk-3-dev
   script:
     - make test

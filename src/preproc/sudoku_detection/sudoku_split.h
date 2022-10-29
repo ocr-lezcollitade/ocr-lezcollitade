@@ -6,8 +6,9 @@
  * \fn                  void sudoku_split(char *black_white, char *grayscale)
  * \param black_white   the path to the black & white picture of the sudoku
  * \param grayscale     the path to the grayscaled picture of the sudoku
+ * \param path          the path where we want to save the images
  */
-void sudoku_split(char *black_white, char *grayscale);
+void sudoku_split(char *black_white, char *grayscale, char *path);
 
 /**
  * \brief               scales down a surface

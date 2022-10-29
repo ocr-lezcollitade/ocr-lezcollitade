@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['verbose_0',['VERBOSE',['../parser_8h.html#a42f8c497a1968074f38bf5055c650dca',1,'parser.h']]]
+  ['ui_2ec_159',['ui.c',['../ui_8c.html',1,'']]],
+  ['ui_2eh_160',['ui.h',['../ui_8h.html',1,'']]],
+  ['unused_161',['UNUSED',['../main_8c.html#a86d500a34c624c2cae56bc25a31b12f3',1,'UNUSED():&#160;main.c'],['../function_8c.html#a86d500a34c624c2cae56bc25a31b12f3',1,'UNUSED():&#160;function.c'],['../sudoku__split_8c.html#a86d500a34c624c2cae56bc25a31b12f3',1,'UNUSED():&#160;sudoku_split.c']]]
 ];
