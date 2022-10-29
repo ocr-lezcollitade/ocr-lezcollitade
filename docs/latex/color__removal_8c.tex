@@ -38,51 +38,51 @@ A new blurred surface
 \end{DoxyReturn}
 
 
-Definition at line 142 of file color\+\_\+removal.\+c.
+Definition at line \mbox{\hyperlink{color__removal_8c_source_l00142}{142}} of file \mbox{\hyperlink{color__removal_8c_source}{color\+\_\+removal.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{143 \{}
-\DoxyCodeLine{144     \textcolor{keywordtype}{int} kernel[] = \{1, 2, 1, 2, 4, 2, 1, 2, 1\};}
-\DoxyCodeLine{145     \textcolor{keywordtype}{int} size = 3;}
-\DoxyCodeLine{146 }
-\DoxyCodeLine{147     SDL\_Surface *new\_surface}
-\DoxyCodeLine{148         = SDL\_CreateRGBSurface(0, surface-\/>w, surface-\/>h, 32, 0, 0, 0, 0);}
-\DoxyCodeLine{149 }
-\DoxyCodeLine{150     Uint32 *pixels = surface-\/>pixels;}
-\DoxyCodeLine{151     Uint32 *new\_pixels = new\_surface-\/>pixels;}
-\DoxyCodeLine{152     Uint8 r, g, b;}
-\DoxyCodeLine{153 }
-\DoxyCodeLine{154     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} x = 0; x < surface-\/>w; x++)}
-\DoxyCodeLine{155         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} y = 0; y < surface-\/>h; y++)}
-\DoxyCodeLine{156         \{}
-\DoxyCodeLine{157             \textcolor{keywordtype}{int} shift = size / 2;}
-\DoxyCodeLine{158             \textcolor{keywordtype}{int} weight = 0, sum = 0, ki = 0;}
-\DoxyCodeLine{159 }
-\DoxyCodeLine{160             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} s\_x = shift -\/ size; s\_x < shift; s\_x++)}
-\DoxyCodeLine{161                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} s\_y = shift -\/ size; s\_y < shift; s\_y++)}
-\DoxyCodeLine{162                 \{}
-\DoxyCodeLine{163                     \textcolor{keywordtype}{int} coord = (y + s\_y) * surface-\/>w + x + s\_x;}
-\DoxyCodeLine{164                     if (coord >= 0)}
-\DoxyCodeLine{165                     \{}
-\DoxyCodeLine{166                         SDL\_GetRGB(pixels[coord], surface-\/>format, \&r, \&g, \&b);}
-\DoxyCodeLine{167 }
-\DoxyCodeLine{168                         sum += kernel[ki]}
-\DoxyCodeLine{169                                * floor(0.299 * r + 0.587 * g + 0.114 * b);}
-\DoxyCodeLine{170                         weight += kernel[ki];}
-\DoxyCodeLine{171                     \}}
-\DoxyCodeLine{172                     ki++;}
-\DoxyCodeLine{173                 \}}
-\DoxyCodeLine{174 }
-\DoxyCodeLine{175             \textcolor{keywordtype}{int} coord = y * surface-\/>w + x;}
-\DoxyCodeLine{176             \textcolor{keywordtype}{int} c = sum / weight;}
-\DoxyCodeLine{177 }
-\DoxyCodeLine{178             Uint32 color = SDL\_MapRGB(surface-\/>format, c, c, c);}
-\DoxyCodeLine{179             new\_pixels[coord] = color;}
-\DoxyCodeLine{180         \}}
-\DoxyCodeLine{181 }
-\DoxyCodeLine{182     \textcolor{keywordflow}{return} new\_surface;}
-\DoxyCodeLine{183 \}}
+\DoxyCodeLine{00143 \{}
+\DoxyCodeLine{00144     \textcolor{keywordtype}{int} kernel[] = \{1, 2, 1, 2, 4, 2, 1, 2, 1\};}
+\DoxyCodeLine{00145     \textcolor{keywordtype}{int} size = 3;}
+\DoxyCodeLine{00146 }
+\DoxyCodeLine{00147     SDL\_Surface *new\_surface}
+\DoxyCodeLine{00148         = SDL\_CreateRGBSurface(0, surface-\/>w, surface-\/>h, 32, 0, 0, 0, 0);}
+\DoxyCodeLine{00149 }
+\DoxyCodeLine{00150     Uint32 *pixels = surface-\/>pixels;}
+\DoxyCodeLine{00151     Uint32 *new\_pixels = new\_surface-\/>pixels;}
+\DoxyCodeLine{00152     Uint8 r, g, b;}
+\DoxyCodeLine{00153 }
+\DoxyCodeLine{00154     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} x = 0; x < surface-\/>w; x++)}
+\DoxyCodeLine{00155         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} y = 0; y < surface-\/>h; y++)}
+\DoxyCodeLine{00156         \{}
+\DoxyCodeLine{00157             \textcolor{keywordtype}{int} shift = size / 2;}
+\DoxyCodeLine{00158             \textcolor{keywordtype}{int} weight = 0, sum = 0, ki = 0;}
+\DoxyCodeLine{00159 }
+\DoxyCodeLine{00160             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} s\_x = shift -\/ size; s\_x < shift; s\_x++)}
+\DoxyCodeLine{00161                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} s\_y = shift -\/ size; s\_y < shift; s\_y++)}
+\DoxyCodeLine{00162                 \{}
+\DoxyCodeLine{00163                     \textcolor{keywordtype}{int} coord = (y + s\_y) * surface-\/>w + x + s\_x;}
+\DoxyCodeLine{00164                     if (coord >= 0)}
+\DoxyCodeLine{00165                     \{}
+\DoxyCodeLine{00166                         SDL\_GetRGB(pixels[coord], surface-\/>format, \&r, \&g, \&b);}
+\DoxyCodeLine{00167 }
+\DoxyCodeLine{00168                         sum += kernel[ki]}
+\DoxyCodeLine{00169                                * floor(0.299 * r + 0.587 * g + 0.114 * b);}
+\DoxyCodeLine{00170                         weight += kernel[ki];}
+\DoxyCodeLine{00171                     \}}
+\DoxyCodeLine{00172                     ki++;}
+\DoxyCodeLine{00173                 \}}
+\DoxyCodeLine{00174 }
+\DoxyCodeLine{00175             \textcolor{keywordtype}{int} coord = y * surface-\/>w + x;}
+\DoxyCodeLine{00176             \textcolor{keywordtype}{int} c = sum / weight;}
+\DoxyCodeLine{00177 }
+\DoxyCodeLine{00178             Uint32 color = SDL\_MapRGB(surface-\/>format, c, c, c);}
+\DoxyCodeLine{00179             new\_pixels[coord] = color;}
+\DoxyCodeLine{00180         \}}
+\DoxyCodeLine{00181 }
+\DoxyCodeLine{00182     \textcolor{keywordflow}{return} new\_surface;}
+\DoxyCodeLine{00183 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{color__removal_8c_a1dffa7e09981c4705e52c62f79ad57b1}\label{color__removal_8c_a1dffa7e09981c4705e52c62f79ad57b1}} 
@@ -105,42 +105,42 @@ The threhsold
 \end{DoxyReturn}
 
 
-Definition at line 87 of file color\+\_\+removal.\+c.
+Definition at line \mbox{\hyperlink{color__removal_8c_source_l00087}{87}} of file \mbox{\hyperlink{color__removal_8c_source}{color\+\_\+removal.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{88 \{}
-\DoxyCodeLine{89     \textcolor{keywordtype}{int} histo[256] = \{0\};}
-\DoxyCodeLine{90     fill\_histo(surface, histo);}
-\DoxyCodeLine{91 }
-\DoxyCodeLine{92     \textcolor{keywordtype}{int} total = surface-\/>w * surface-\/>h;}
-\DoxyCodeLine{93     \textcolor{keywordtype}{int} level = 0;}
-\DoxyCodeLine{94     \textcolor{keywordtype}{double} sumB = 0, max = 0, sum = 0, wB = 0;}
-\DoxyCodeLine{95     \textcolor{keywordtype}{double} wF, mean\_F;}
-\DoxyCodeLine{96 }
-\DoxyCodeLine{97     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 256; i++)}
-\DoxyCodeLine{98         sum += i * histo[i];}
-\DoxyCodeLine{99 }
-\DoxyCodeLine{100     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 1; i < 200; i++)}
-\DoxyCodeLine{101     \{}
-\DoxyCodeLine{102         wF = total -\/ wB;}
-\DoxyCodeLine{103         \textcolor{keywordflow}{if} (wB > 0 \&\& wF > 0)}
-\DoxyCodeLine{104         \{}
-\DoxyCodeLine{105             mean\_F = (sum -\/ sumB) / wF;}
-\DoxyCodeLine{106             \textcolor{keywordtype}{double} val}
-\DoxyCodeLine{107                 = wB * wF * ((sumB / wB) -\/ mean\_F) * ((sumB / wB) -\/ mean\_F);}
-\DoxyCodeLine{108             \textcolor{keywordflow}{if} (val >= max)}
-\DoxyCodeLine{109             \{}
-\DoxyCodeLine{110                 level = i;}
-\DoxyCodeLine{111                 max = val;}
-\DoxyCodeLine{112             \}}
-\DoxyCodeLine{113         \}}
-\DoxyCodeLine{114         wB += histo[i];}
-\DoxyCodeLine{115         sumB = sumB + (i -\/ 1) * histo[i];}
-\DoxyCodeLine{116     \}}
-\DoxyCodeLine{117 }
-\DoxyCodeLine{118     \textcolor{keywordflow}{return} level;}
-\DoxyCodeLine{119 \}}
+\DoxyCodeLine{00088 \{}
+\DoxyCodeLine{00089     \textcolor{keywordtype}{int} histo[256] = \{0\};}
+\DoxyCodeLine{00090     fill\_histo(surface, histo);}
+\DoxyCodeLine{00091 }
+\DoxyCodeLine{00092     \textcolor{keywordtype}{int} total = surface-\/>w * surface-\/>h;}
+\DoxyCodeLine{00093     \textcolor{keywordtype}{int} level = 0;}
+\DoxyCodeLine{00094     \textcolor{keywordtype}{double} sumB = 0, max = 0, sum = 0, wB = 0;}
+\DoxyCodeLine{00095     \textcolor{keywordtype}{double} wF, mean\_F;}
+\DoxyCodeLine{00096 }
+\DoxyCodeLine{00097     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 256; i++)}
+\DoxyCodeLine{00098         sum += i * histo[i];}
+\DoxyCodeLine{00099 }
+\DoxyCodeLine{00100     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 1; i < 200; i++)}
+\DoxyCodeLine{00101     \{}
+\DoxyCodeLine{00102         wF = total -\/ wB;}
+\DoxyCodeLine{00103         \textcolor{keywordflow}{if} (wB > 0 \&\& wF > 0)}
+\DoxyCodeLine{00104         \{}
+\DoxyCodeLine{00105             mean\_F = (sum -\/ sumB) / wF;}
+\DoxyCodeLine{00106             \textcolor{keywordtype}{double} val}
+\DoxyCodeLine{00107                 = wB * wF * ((sumB / wB) -\/ mean\_F) * ((sumB / wB) -\/ mean\_F);}
+\DoxyCodeLine{00108             \textcolor{keywordflow}{if} (val >= max)}
+\DoxyCodeLine{00109             \{}
+\DoxyCodeLine{00110                 level = i;}
+\DoxyCodeLine{00111                 max = val;}
+\DoxyCodeLine{00112             \}}
+\DoxyCodeLine{00113         \}}
+\DoxyCodeLine{00114         wB += histo[i];}
+\DoxyCodeLine{00115         sumB = sumB + (i -\/ 1) * histo[i];}
+\DoxyCodeLine{00116     \}}
+\DoxyCodeLine{00117 }
+\DoxyCodeLine{00118     \textcolor{keywordflow}{return} level;}
+\DoxyCodeLine{00119 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{color__removal_8c_a24fa3688a16d996344575681ae988134}\label{color__removal_8c_a24fa3688a16d996344575681ae988134}} 
@@ -151,16 +151,16 @@ Definition at line 87 of file color\+\_\+removal.\+c.
 
 
 
-Definition at line 48 of file color\+\_\+removal.\+c.
+Definition at line \mbox{\hyperlink{color__removal_8c_source_l00048}{48}} of file \mbox{\hyperlink{color__removal_8c_source}{color\+\_\+removal.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{49 \{}
-\DoxyCodeLine{50     Uint32 *pixels = surface-\/>pixels;}
-\DoxyCodeLine{51 }
-\DoxyCodeLine{52     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < (surface-\/>w * surface-\/>h); i++)}
-\DoxyCodeLine{53         pixels[i] = pixel\_to\_binary(pixels[i], surface, threshold);}
-\DoxyCodeLine{54 \}}
+\DoxyCodeLine{00049 \{}
+\DoxyCodeLine{00050     Uint32 *pixels = surface-\/>pixels;}
+\DoxyCodeLine{00051 }
+\DoxyCodeLine{00052     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < (surface-\/>w * surface-\/>h); i++)}
+\DoxyCodeLine{00053         pixels[i] = pixel\_to\_binary(pixels[i], surface, threshold);}
+\DoxyCodeLine{00054 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{color__removal_8c_a916836517383411ed420677f40cc2dcd}\label{color__removal_8c_a916836517383411ed420677f40cc2dcd}} 
@@ -180,15 +180,15 @@ Turns a surface into grayscale.
 \end{DoxyParams}
 
 
-Definition at line 22 of file color\+\_\+removal.\+c.
+Definition at line \mbox{\hyperlink{color__removal_8c_source_l00022}{22}} of file \mbox{\hyperlink{color__removal_8c_source}{color\+\_\+removal.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{23 \{}
-\DoxyCodeLine{24     Uint32 *pixels = surface-\/>pixels;}
-\DoxyCodeLine{25 }
-\DoxyCodeLine{26     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < (surface-\/>w * surface-\/>h); i++)}
-\DoxyCodeLine{27         pixels[i] = pixel\_to\_grayscale(pixels[i], surface);}
-\DoxyCodeLine{28 \}}
+\DoxyCodeLine{00023 \{}
+\DoxyCodeLine{00024     Uint32 *pixels = surface-\/>pixels;}
+\DoxyCodeLine{00025 }
+\DoxyCodeLine{00026     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < (surface-\/>w * surface-\/>h); i++)}
+\DoxyCodeLine{00027         pixels[i] = pixel\_to\_grayscale(pixels[i], surface);}
+\DoxyCodeLine{00028 \}}
 
 \end{DoxyCode}

@@ -1,6 +1,7 @@
 CC=gcc
-CFLAGS=-Wall -Werror -Wextra -O3 -c `pkg-config --cflags sdl2 SDL2_image`
-DFLAGS=-Wall -Werror -Wextra -O0 -c -g -fsanitize=address `pkg-config --cflags sdl2 SDL2_image`
+BASE_FLAGS=-Wall -Werror -Wextra -c `pkg-config --cflags sdl2 SDL2_image`
+CFLAGS=$(BASE_FLAGS) -O3
+DFLAGS=$(BASE_FLAGS) -O0 -g -fsanitize=address
 
 LD=gcc
 LDFLAGS=-lm
@@ -24,7 +25,8 @@ SRC_DIR=./src
 SRC=main.c cli/parser.c utils/mnist/loader.c utils/matrices/matrix.c\
 	solver/solver.c network/function.c network/network.c\
 	preproc/rotate/rotate.c preproc/sudoku_detection/sudoku_split.c\
-	preproc/color_removal/color_removal.c
+	preproc/color_removal/color_removal.c\
+	utils/img_loader/loader.c
 
 OBJ_ROOT=./obj
 OBJ_DIR=$(OBJ_ROOT)/Release
