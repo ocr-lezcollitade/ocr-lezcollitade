@@ -1,0 +1,47 @@
+.TH "layer_t" 3 "Sat Oct 29 2022" "OCR-Lezcollitade" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+layer_t \- A struct representing a layer in the network\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <network\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBneuron_t\fP ** \fBneurons\fP"
+.br
+.ti -1c
+.RI "size_t \fBcount\fP"
+.br
+.ti -1c
+.RI "\fBlayer_activation_t\fP \fBact\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+A struct representing a layer in the network\&. 
+.PP
+Definition at line 46 of file network\&.h\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBlayer_activation_t\fP layer_t::act"
+The number of neurons in the layer\&. 
+.PP
+Definition at line 50 of file network\&.h\&.
+.SS "size_t layer_t::count"
+The allocated neurons in the layer\&. 
+.PP
+Definition at line 49 of file network\&.h\&.
+.SS "\fBneuron_t\fP** layer_t::neurons"
+
+.PP
+Definition at line 48 of file network\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for OCR-Lezcollitade from the source code\&.

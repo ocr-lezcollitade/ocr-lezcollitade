@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ocr_20lezcollitade_335',['Ocr Lezcollitade',['../md_README.html',1,'']]]
+  ['ocr_2dlezcollitade_344',['OCR-Lezcollitade',['../index.html',1,'']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['length_322',['LENGTH',['../parser_8h.html#a30362161c93e3f1a4ee4c673f535b5a8',1,'parser.h']]]
+  ['input_5fnetwork_327',['INPUT_NETWORK',['../parser_8h.html#a4615540bab23a39df3ebc40011f34b08',1,'parser.h']]],
+  ['iterations_328',['ITERATIONS',['../parser_8h.html#aa9cc087d076e4fa101f8794a947bd01a',1,'parser.h']]]
 ];

@@ -1,0 +1,140 @@
+.TH "src/cli/parser.c" 3 "Sat Oct 29 2022" "OCR-Lezcollitade" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/cli/parser.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <err\&.h>\fP
+.br
+\fC#include <malloc\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include 'parser\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBparams_t\fP \fBparse_train_params\fP (int argc, char **argv)"
+.br
+.RI "Parses the train parameters\&. "
+.ti -1c
+.RI "\fBparams_t\fP \fBparse_test_params\fP (int argc, char **argv)"
+.br
+.RI "Parses the test parameters\&. "
+.ti -1c
+.RI "\fBparams_t\fP \fBparse_params\fP (int argc, char **argv, char *mode)"
+.br
+.RI "Parses all the params\&. "
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "\fBparams_t\fP parse_params (int argc, char ** argv, char * mode)"
+
+.PP
+Parses all the params\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIargc\fP The number of strings in the argv array\&. 
+.br
+\fIargv\fP The array of param strings\&. 
+.br
+\fImode\fP The mode: either TRAIN_MODE or RUN_MODE\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The hash table of params\&. 
+.RE
+.PP
+
+.PP
+Definition at line 113 of file parser\&.c\&.
+.PP
+.nf
+114 {
+115     if (argc < 2)
+116     {
+117         return NULL;
+118     }
+119 
+120     params_t res = NULL;
+121     char *subcommand = argv[1];
+122     if (strcmp(subcommand, "train") == 0)
+123     {
+124         *mode = TRAIN_MODE;
+125         res = parse_train_params(argc - 2, argv + 2);
+126     }
+127     else if (strcmp(subcommand, "test") == 0)
+128     {
+129         *mode = TEST_MODE;
+130         res = parse_test_params(argc - 2, argv + 2);
+131     }
+132     return res;
+133 }
+.fi
+.SS "\fBparams_t\fP parse_test_params (int argc, char ** argv)"
+
+.PP
+Parses the test parameters\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIargc\fP The number of arguments in the array\&. 
+.br
+\fIargv\fP The array of parameters\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The parameters hash table\&. 
+.RE
+.PP
+
+.PP
+Definition at line 105 of file parser\&.c\&.
+.PP
+.nf
+106 {
+107 
+108     params_t params = _parse_params(argc, argv);
+109     // TODO : check parameters validity
+110     return params;
+111 }
+.fi
+.SS "\fBparams_t\fP parse_train_params (int argc, char ** argv)"
+
+.PP
+Parses the train parameters\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIargc\fP The number of strings in the argv array\&. 
+.br
+\fIargv\fP The list of strings\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The hash table of params\&. 
+.RE
+.PP
+
+.PP
+Definition at line 98 of file parser\&.c\&.
+.PP
+.nf
+99 {
+100     params_t params = _parse_params(argc, argv);
+101     // TODO : check parameters validity
+102     return params;
+103 }
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for OCR-Lezcollitade from the source code\&.

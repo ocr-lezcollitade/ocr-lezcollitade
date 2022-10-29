@@ -1,0 +1,283 @@
+.TH "src/preproc/color_removal/color_removal.h" 3 "Sat Oct 29 2022" "OCR-Lezcollitade" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/preproc/color_removal/color_removal.h
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBsurface_to_grayscale\fP (SDL_Surface *surface)"
+.br
+.RI "Turns a surface into grayscale\&. "
+.ti -1c
+.RI "void \fBsurface_to_binary\fP (SDL_Surface *surface, int threshold)"
+.br
+.ti -1c
+.RI "int \fBotsu\fP (SDL_Surface *surface)"
+.br
+.RI "Finds the threshold of an image using Otsu's method\&. "
+.ti -1c
+.RI "SDL_Surface * \fBblur\fP (SDL_Surface *surface)"
+.br
+.RI "Applies a blur filter to a surface\&. "
+.ti -1c
+.RI "void \fBgrayscale_image\fP (char *path)"
+.br
+.RI "Turns an image into grayscale\&. "
+.ti -1c
+.RI "void \fBbinary_image\fP (char *path)"
+.br
+.RI "Turns an image into binary\&. "
+.ti -1c
+.RI "SDL_Surface * \fBfull_binary\fP (SDL_Surface *surface)"
+.br
+.RI "Creates a binary copy of a surface using gaussian blur and ostu's method\&. "
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void binary_image (char * path)"
+
+.PP
+Turns an image into binary\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpath\fP The path of the image 
+.RE
+.PP
+
+.PP
+Definition at line 210 of file color_removal\&.c\&.
+.PP
+.nf
+211 {
+212     SDL_Surface *surface = load_image(path);
+213 
+214     surface_to_grayscale(surface);
+215 
+216     int threshold = otsu(surface);
+217 
+218     SDL_Surface *blurry = blur(surface);
+219 
+220     surface_to_binary(blurry, threshold);
+221 
+222     IMG_SavePNG(blurry, "binarized\&.png");
+223 
+224     SDL_FreeSurface(surface);
+225     SDL_FreeSurface(blurry);
+226 }
+.fi
+.SS "SDL_Surface* blur (SDL_Surface * surface)"
+
+.PP
+Applies a blur filter to a surface\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsurface\fP The surface which we want to blur 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A new blurred surface 
+.RE
+.PP
+
+.PP
+Definition at line 143 of file color_removal\&.c\&.
+.PP
+.nf
+144 {
+145     int kernel[] = {1, 2, 1, 2, 4, 2, 1, 2, 1};
+146     int size = 3;
+147 
+148     SDL_Surface *new_surface
+149         = SDL_CreateRGBSurface(0, surface->w, surface->h, 32, 0, 0, 0, 0);
+150 
+151     Uint32 *pixels = surface->pixels;
+152     Uint32 *new_pixels = new_surface->pixels;
+153     Uint8 r, g, b;
+154 
+155     for (int x = 0; x < surface->w; x++)
+156         for (int y = 0; y < surface->h; y++)
+157         {
+158             int shift = size / 2;
+159             int weight = 0, sum = 0, ki = 0;
+160 
+161             for (int s_x = shift - size; s_x < shift; s_x++)
+162                 for (int s_y = shift - size; s_y < shift; s_y++)
+163                 {
+164                     int coord = (y + s_y) * surface->w + x + s_x;
+165                     if (coord >= 0)
+166                     {
+167                         SDL_GetRGB(pixels[coord], surface->format, &r, &g, &b);
+168 
+169                         sum += kernel[ki]
+170                                * floor(0\&.299 * r + 0\&.587 * g + 0\&.114 * b);
+171                         weight += kernel[ki];
+172                     }
+173                     ki++;
+174                 }
+175 
+176             int coord = y * surface->w + x;
+177             int c = sum / weight;
+178 
+179             Uint32 color = SDL_MapRGB(surface->format, c, c, c);
+180             new_pixels[coord] = color;
+181         }
+182 
+183     return new_surface;
+184 }
+.fi
+.SS "SDL_Surface* full_binary (SDL_Surface * surface)"
+
+.PP
+Creates a binary copy of a surface using gaussian blur and ostu's method\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsurface\fP The surface 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The binary surface 
+.RE
+.PP
+
+.PP
+Definition at line 186 of file color_removal\&.c\&.
+.PP
+.nf
+187 {
+188     surface_to_grayscale(surface);
+189 
+190     int threshold = otsu(surface);
+191 
+192     SDL_Surface *blurry = blur(surface);
+193 
+194     surface_to_binary(blurry, threshold);
+195 
+196     return blurry;
+197 }
+.fi
+.SS "void grayscale_image (char * path)"
+
+.PP
+Turns an image into grayscale\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpath\fP The path of the image 
+.RE
+.PP
+
+.PP
+Definition at line 199 of file color_removal\&.c\&.
+.PP
+.nf
+200 {
+201     SDL_Surface *surface = load_image(path);
+202 
+203     surface_to_grayscale(surface);
+204 
+205     IMG_SavePNG(surface, "grayscaled\&.png");
+206 
+207     SDL_FreeSurface(surface);
+208 }
+.fi
+.SS "int otsu (SDL_Surface * surface)"
+
+.PP
+Finds the threshold of an image using Otsu's method\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsurface\fP The surface which threshold we want 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The threhsold 
+.RE
+.PP
+
+.PP
+Definition at line 88 of file color_removal\&.c\&.
+.PP
+.nf
+89 {
+90     int histo[256] = {0};
+91     fill_histo(surface, histo);
+92 
+93     int total = surface->w * surface->h;
+94     int level = 0;
+95     double sumB = 0, max = 0, sum = 0, wB = 0;
+96     double wF, mean_F;
+97 
+98     for (int i = 0; i < 256; i++)
+99         sum += i * histo[i];
+100 
+101     for (int i = 1; i < 200; i++)
+102     {
+103         wF = total - wB;
+104         if (wB > 0 && wF > 0)
+105         {
+106             mean_F = (sum - sumB) / wF;
+107             double val
+108                 = wB * wF * ((sumB / wB) - mean_F) * ((sumB / wB) - mean_F);
+109             if (val >= max)
+110             {
+111                 level = i;
+112                 max = val;
+113             }
+114         }
+115         wB += histo[i];
+116         sumB = sumB + (i - 1) * histo[i];
+117     }
+118 
+119     return level;
+120 }
+.fi
+.SS "void surface_to_binary (SDL_Surface * surface, int threshold)"
+
+.PP
+Definition at line 49 of file color_removal\&.c\&.
+.PP
+.nf
+50 {
+51     Uint32 *pixels = surface->pixels;
+52 
+53     for (int i = 0; i < (surface->w * surface->h); i++)
+54         pixels[i] = pixel_to_binary(pixels[i], surface, threshold);
+55 }
+.fi
+.SS "void surface_to_grayscale (SDL_Surface * surface)"
+
+.PP
+Turns a surface into grayscale\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsurface\fP The surface to turn into grayscale 
+.RE
+.PP
+
+.PP
+Definition at line 23 of file color_removal\&.c\&.
+.PP
+.nf
+24 {
+25     Uint32 *pixels = surface->pixels;
+26 
+27     for (int i = 0; i < (surface->w * surface->h); i++)
+28         pixels[i] = pixel_to_gray(pixels[i], surface);
+29 }
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for OCR-Lezcollitade from the source code\&.
