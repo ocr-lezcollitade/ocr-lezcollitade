@@ -11,10 +11,11 @@ LDLIBS=`pkg-config --libs gtk+-3.0 sdl2 SDL2_image`
 ROOT_TARGET=./bin
 TARGET_DIR=$(ROOT_TARGET)/Release
 TARGET=$(TARGET_DIR)/Lezcollitade
+INSTALL_TARGET=./solver
 LIB=$(TARGET_DIR)/Lezcollitade.a
 
 DEBUG_TARGET_DIR=$(ROOT_TARGET)/Debug
-DEBUG_TARGET=$(DEBUG_TARGET_DIR)/Lezcollitade.debug
+DEBUG_TARGET=$(DEBUG_TARGET_DIR)/solver.debug
 
 TEST_DIR=./tests
 TEST_BIN=$(TEST_DIR)/bin
@@ -36,9 +37,12 @@ OBJS=$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 DEBUG_OBJ_DIR=$(OBJ_ROOT)/Debug
 DEBUG_OBJS=$(addprefix $(DEBUG_OBJ_DIR)/, $(SRC:.c=.o))
 
-.PHONY: all prod debug clean build dbuild lib test docs format
+.PHONY: all prod debug clean build dbuild lib test docs format install
 
 all: prod debug
+
+install: prod
+	cp $(TARGET) $(INSTALL_TARGET)
 
 prod: $(TARGET)
 

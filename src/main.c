@@ -11,6 +11,7 @@
 #include "./network/network.h"
 #include "./solver/solver.h"
 #include "./ui/ui.h"
+#include "./utils/img_loader/loader.h"
 #include "./utils/matrices/matrix.h"
 #include "./utils/mnist/loader.h"
 
@@ -315,6 +316,10 @@ int main(int argc, char **argv)
     UNUSED(train_xor);
     char mode;
     params_t params = parse_params(argc, argv, &mode);
+    if (argc == 2)
+    {
+        return solve(argv[1]);
+    }
     if (params == NULL)
     {
         open_ui();
