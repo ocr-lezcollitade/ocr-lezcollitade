@@ -1,0 +1,13 @@
+window {
+    background-color: white;
+}
+
+button {
+    background-image: radial-gradient(ellipse at center, #323169 100%, #323169 100%);
+    border-radius: 40px;
+}
+
+frame {
+    background-color: #ffeeeb;
+    border-radius: 40px;
+}

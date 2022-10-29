@@ -2,8 +2,9 @@
 #include <SDL2/SDL_image.h>
 #include <err.h>
 #include "color_removal.h"
+#include "../../utils/img_loader/loader.h"
 
-static Uint32 pixel_to_grayscale(Uint32 pixel_color, SDL_Surface *surface)
+static Uint32 pixel_to_gray(Uint32 pixel_color, SDL_Surface *surface)
 {
     Uint8 r, g, b;
     SDL_GetRGB(pixel_color, surface->format, &r, &g, &b);
@@ -24,7 +25,7 @@ void surface_to_grayscale(SDL_Surface *surface)
     Uint32 *pixels = surface->pixels;
 
     for (int i = 0; i < (surface->w * surface->h); i++)
-        pixels[i] = pixel_to_grayscale(pixels[i], surface);
+        pixels[i] = pixel_to_gray(pixels[i], surface);
 }
 
 static Uint32 pixel_to_binary(
@@ -180,4 +181,46 @@ SDL_Surface *blur(SDL_Surface *surface)
         }
 
     return new_surface;
+}
+
+SDL_Surface *full_binary(SDL_Surface *surface)
+{
+    surface_to_grayscale(surface);
+
+    int threshold = otsu(surface);
+
+    SDL_Surface *blurry = blur(surface);
+
+    surface_to_binary(blurry, threshold);
+
+    return blurry;
+}
+
+void grayscale_image(char *path)
+{
+    SDL_Surface *surface = load_image(path);
+
+    surface_to_grayscale(surface);
+
+    IMG_SavePNG(surface, "grayscaled.png");
+
+    SDL_FreeSurface(surface);
+}
+
+void binary_image(char *path)
+{
+    SDL_Surface *surface = load_image(path);
+
+    surface_to_grayscale(surface);
+
+    int threshold = otsu(surface);
+
+    SDL_Surface *blurry = blur(surface);
+
+    surface_to_binary(blurry, threshold);
+
+    IMG_SavePNG(blurry, "binarized.png");
+
+    SDL_FreeSurface(surface);
+    SDL_FreeSurface(blurry);
 }

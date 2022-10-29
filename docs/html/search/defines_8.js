@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['multi_5fimage_0',['MULTI_IMAGE',['../img__loader_2loader_8h.html#ac7c0b099ecd758709f31bfb602a7b6de',1,'loader.h']]]
+  ['output_5fnetwork_324',['OUTPUT_NETWORK',['../parser_8h.html#a0bbb2b623b27fdae8210c686fbcfc698',1,'parser.h']]],
+  ['output_5fsize_325',['OUTPUT_SIZE',['../mnist_2loader_8c.html#a894874fce4252e840e2412fd1dbfa4ea',1,'loader.c']]]
 ];
