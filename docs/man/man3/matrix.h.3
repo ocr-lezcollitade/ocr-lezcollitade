@@ -1,4 +1,4 @@
-.TH "src/utils/matrices/matrix.h" 3 "Sat Oct 29 2022" "OCR-Lezcollitade" \" -*- nroff -*-
+.TH "src/utils/matrices/matrix.h" 3 "Sun Oct 30 2022" "OCR-Lezcollitade" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -93,10 +93,10 @@ src/utils/matrices/matrix.h
 .PP
 A function transforming double into new value for each element of the matrix\&. 
 .PP
-Definition at line 87 of file matrix\&.h\&.
+Definition at line \fB87\fP of file \fBmatrix\&.h\fP\&.
 .SH "Function Documentation"
 .PP 
-.SS "\fBmatrix_t\fP* mat_add (\fBmatrix_t\fP * A, \fBmatrix_t\fP * B)"
+.SS "\fBmatrix_t\fP * mat_add (\fBmatrix_t\fP * A, \fBmatrix_t\fP * B)"
 
 .PP
 Performs the addition of 2 matrices\&. 
@@ -115,7 +115,7 @@ The result of the addition, NULL if not possible\&.
 .PP
 
 .PP
-Definition at line 74 of file matrix\&.c\&.
+Definition at line \fB74\fP of file \fBmatrix\&.c\fP\&.
 .PP
 .nf
 75 {
@@ -133,7 +133,7 @@ Definition at line 74 of file matrix\&.c\&.
 87     return res;
 88 }
 .fi
-.SS "\fBmatrix_t\fP* mat_copy (\fBmatrix_t\fP * origin)"
+.SS "\fBmatrix_t\fP * mat_copy (\fBmatrix_t\fP * origin)"
 
 .PP
 Copies the matrix\&. 
@@ -150,7 +150,7 @@ A copy of the matrix\&.
 .PP
 
 .PP
-Definition at line 193 of file matrix\&.c\&.
+Definition at line \fB193\fP of file \fBmatrix\&.c\fP\&.
 .PP
 .nf
 194 {
@@ -168,7 +168,7 @@ Definition at line 193 of file matrix\&.c\&.
 206     return result;
 207 }
 .fi
-.SS "\fBmatrix_t\fP* mat_create_fill (size_t rows, size_t columns, double * elements)"
+.SS "\fBmatrix_t\fP * mat_create_fill (size_t rows, size_t columns, double * elements)"
 
 .PP
 Creates a matrix and fills it\&. 
@@ -189,7 +189,7 @@ The created matrix\&.
 .PP
 
 .PP
-Definition at line 38 of file matrix\&.c\&.
+Definition at line \fB38\fP of file \fBmatrix\&.c\fP\&.
 .PP
 .nf
 39 {
@@ -219,7 +219,7 @@ The value of the element at i, j\&.
 .PP
 
 .PP
-Definition at line 6 of file matrix\&.c\&.
+Definition at line \fB6\fP of file \fBmatrix\&.c\fP\&.
 .PP
 .nf
 7 {
@@ -246,7 +246,7 @@ Checks if to matrices are equal\&.
 .PP
 
 .PP
-Definition at line 150 of file matrix\&.c\&.
+Definition at line \fB150\fP of file \fBmatrix\&.c\fP\&.
 .PP
 .nf
 151 {
@@ -281,7 +281,7 @@ Fills the matrix with the given elements\&.
 .PP
 
 .PP
-Definition at line 169 of file matrix\&.c\&.
+Definition at line \fB169\fP of file \fBmatrix\&.c\fP\&.
 .PP
 .nf
 170 {
@@ -295,7 +295,7 @@ Definition at line 169 of file matrix\&.c\&.
 178     }
 179 }
 .fi
-.SS "\fBmatrix_t\fP* mat_identity (size_t size)"
+.SS "\fBmatrix_t\fP * mat_identity (size_t size)"
 
 .PP
 Creates an Identity matrix for given size\&. 
@@ -312,7 +312,7 @@ The Identity matrix\&.
 .PP
 
 .PP
-Definition at line 142 of file matrix\&.c\&.
+Definition at line \fB142\fP of file \fBmatrix\&.c\fP\&.
 .PP
 .nf
 143 {
@@ -334,7 +334,7 @@ Prints the matrix\&.
 .PP
 
 .PP
-Definition at line 181 of file matrix\&.c\&.
+Definition at line \fB181\fP of file \fBmatrix\&.c\fP\&.
 .PP
 .nf
 182 {
@@ -348,7 +348,7 @@ Definition at line 181 of file matrix\&.c\&.
 190     }
 191 }
 .fi
-.SS "\fBmatrix_t\fP* mat_product (\fBmatrix_t\fP * A, \fBmatrix_t\fP * B)"
+.SS "\fBmatrix_t\fP * mat_product (\fBmatrix_t\fP * A, \fBmatrix_t\fP * B)"
 
 .PP
 Performs the dot product on 2 \fBmatrix_t\fP structures\&. 
@@ -367,7 +367,7 @@ The resutl of the product, NULL if not possible\&.
 .PP
 
 .PP
-Definition at line 51 of file matrix\&.c\&.
+Definition at line \fB51\fP of file \fBmatrix\&.c\fP\&.
 .PP
 .nf
 52 {
@@ -392,7 +392,7 @@ Definition at line 51 of file matrix\&.c\&.
 71     return res;
 72 }
 .fi
-.SS "\fBmatrix_t\fP* mat_scalar_multiply (\fBmatrix_t\fP * A, double scalar, int inplace)"
+.SS "\fBmatrix_t\fP * mat_scalar_multiply (\fBmatrix_t\fP * A, double scalar, int inplace)"
 
 .PP
 Multiplies the matrix by a given scalar\&. 
@@ -413,7 +413,7 @@ A pointer to the transform matrix\&.
 .PP
 
 .PP
-Definition at line 110 of file matrix\&.c\&.
+Definition at line \fB110\fP of file \fBmatrix\&.c\fP\&.
 .PP
 .nf
 111 {
@@ -438,7 +438,7 @@ Definition at line 110 of file matrix\&.c\&.
 .SS "void mat_set_el (\fBmatrix_t\fP * mat, size_t i, size_t j, double value)"
 
 .PP
-Definition at line 12 of file matrix\&.c\&.
+Definition at line \fB12\fP of file \fBmatrix\&.c\fP\&.
 .PP
 .nf
 13 {
@@ -446,7 +446,7 @@ Definition at line 12 of file matrix\&.c\&.
 15     mat->_elements[index] = value;
 16 }
 .fi
-.SS "\fBmatrix_t\fP* mat_transform (\fBmatrix_t\fP * A, \fBmat_transform_t\fP transform, int inplace)"
+.SS "\fBmatrix_t\fP * mat_transform (\fBmatrix_t\fP * A, \fBmat_transform_t\fP transform, int inplace)"
 
 .PP
 Applies the transform to each of the matrix_elements\&. 
@@ -467,7 +467,7 @@ A pointer to the transformed matrix\&.
 .PP
 
 .PP
-Definition at line 90 of file matrix\&.c\&.
+Definition at line \fB90\fP of file \fBmatrix\&.c\fP\&.
 .PP
 .nf
 91 {
@@ -489,7 +489,7 @@ Definition at line 90 of file matrix\&.c\&.
 107     return res;
 108 }
 .fi
-.SS "\fBmatrix_t\fP* mat_transpose (\fBmatrix_t\fP * A)"
+.SS "\fBmatrix_t\fP * mat_transpose (\fBmatrix_t\fP * A)"
 
 .PP
 Transposes the given matrix\&. 
@@ -506,7 +506,7 @@ The transposed matrix\&.
 .PP
 
 .PP
-Definition at line 130 of file matrix\&.c\&.
+Definition at line \fB130\fP of file \fBmatrix\&.c\fP\&.
 .PP
 .nf
 131 {
@@ -520,10 +520,10 @@ Definition at line 130 of file matrix\&.c\&.
 139     return res;
 140 }
 .fi
-.SS "\fBmatrix_t\fP* matrix_create (size_t rows, size_t columns, int fill)"
+.SS "\fBmatrix_t\fP * matrix_create (size_t rows, size_t columns, int fill)"
 
 .PP
-Definition at line 18 of file matrix\&.c\&.
+Definition at line \fB18\fP of file \fBmatrix\&.c\fP\&.
 .PP
 .nf
 19 {
@@ -557,7 +557,7 @@ frees the matrix
 .PP
 
 .PP
-Definition at line 45 of file matrix\&.c\&.
+Definition at line \fB45\fP of file \fBmatrix\&.c\fP\&.
 .PP
 .nf
 46 {
