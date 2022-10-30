@@ -1,6 +1,5 @@
 #include <err.h>
 #include <gtk/gtk.h>
-#include <gtk/gtkx.h>
 #include <math.h>
 #include <signal.h>
 #include <stdio.h>

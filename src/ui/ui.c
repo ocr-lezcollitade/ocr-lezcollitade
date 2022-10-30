@@ -1,7 +1,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <gtk/gtk.h>
-#include <gtk/gtkx.h>
 #include <math.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -137,14 +136,10 @@ void on_scrollbar_value_changed(GtkRange *r)
 
 void on_import_file_set(GtkFileChooserButton *f)
 {
-    char source_file[strlen(
-        gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(f)))];
-    strcpy(source_file, gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(f)));
-
     char file_name[] = "resources/ui/current.png";
 
     FILE *source, *target;
-    source = fopen(source_file, "rb");
+    source = fopen(gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(f)), "rb");
 
     fseek(source, 0, SEEK_END);
     int length = ftell(source);

@@ -1,6 +1,6 @@
 CC=gcc
 
-BASE_FLAGS=-Wall -Werror -Wextra -c `pkg-config --cflags gtk+-3.0 sdl2 SDL2_image`
+BASE_FLAGS=-Wall -Wextra -c `pkg-config --cflags gtk+-3.0 sdl2 SDL2_image`
 CFLAGS=$(BASE_FLAGS) -O3
 DFLAGS=$(BASE_FLAGS) -Werror -O0 -g -fsanitize=address
 
