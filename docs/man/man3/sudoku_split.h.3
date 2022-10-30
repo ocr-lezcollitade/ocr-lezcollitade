@@ -1,4 +1,4 @@
-.TH "src/preproc/sudoku_detection/sudoku_split.h" 3 "Sat Oct 29 2022" "OCR-Lezcollitade" \" -*- nroff -*-
+.TH "src/preproc/sudoku_detection/sudoku_split.h" 3 "Sun Oct 30 2022" "OCR-Lezcollitade" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -13,13 +13,13 @@ src/preproc/sudoku_detection/sudoku_split.h
 .RI "void \fBsudoku_split\fP (char *black_white, char *grayscale, char *path)"
 .br
 .ti -1c
-.RI "SDL_Surface * \fBscale_down\fP (SDL_Surface *surface, size_t w, size_t h, size_t new_w, size_t new_h, int b_w)"
+.RI "SDL_Surface * \fBscale_down\fP (SDL_Surface *surface, size_t w, size_t h, size_t new_w, size_t new_h)"
 .br
 .RI "scales down a surface "
 .in -1c
 .SH "Function Documentation"
 .PP 
-.SS "SDL_Surface* scale_down (SDL_Surface * surface, size_t w, size_t h, size_t new_w, size_t new_h, int b_w)"
+.SS "SDL_Surface * scale_down (SDL_Surface * surface, size_t w, size_t h, size_t new_w, size_t new_h)"
 
 .PP
 scales down a surface 
@@ -31,70 +31,60 @@ scales down a surface
 \fIw,h\fP the width and height of the original surface 
 .br
 \fInew_w,new_h\fP the width and height of the surface we want 
-.br
-\fIb_w\fP boolean indicating if we want a black and white output 
 .RE
 .PP
 
 .PP
-Definition at line 190 of file sudoku_split\&.c\&.
+Definition at line \fB247\fP of file \fBsudoku_split\&.c\fP\&.
 .PP
 .nf
-192 {
-193     SDL_Surface *output
-194         = SDL_CreateRGBSurface(0, (int)new_w, (int)new_h, 32, 0, 0, 0, 0);
-195 
-196     SDL_PixelFormat *format = surface->format;
-197     SDL_PixelFormat *format_output = output->format;
-198 
-199     Uint32 *pixels = surface->pixels;
-200     Uint32 *pixels_output = output->pixels;
-201 
-202     double ratio_h = ((double)h / new_h);
-203     double ratio_w = ((double)w / new_w);
-204 
-205     for (size_t j = 0; j < new_h; j++)
-206         for (size_t i = 0; i < new_w; i++)
-207         {
-208             int r, g, b;
-209             average(i, j, ratio_h, ratio_w, w, format, pixels, &r, &g, &b);
-210             if (b_w)
-211             {
-212                 int value = (r + g + b < 382 ? 0 : 765);
-213                 pixels_output[j * new_w + i]
-214                     = SDL_MapRGB(format_output, value, value, value);
-215             }
-216             else
-217                 pixels_output[j * new_w + i]
-218                     = SDL_MapRGB(format_output, r, g, b);
-219         }
-220 
-221     return output;
-222 }
+249 {
+250     SDL_Surface *output
+251         = SDL_CreateRGBSurface(0, (int)new_w, (int)new_h, 32, 0, 0, 0, 0);
+252 
+253     SDL_PixelFormat *format = surface->format;
+254     SDL_PixelFormat *format_output = output->format;
+255 
+256     Uint32 *pixels = surface->pixels;
+257     Uint32 *pixels_output = output->pixels;
+258 
+259     double ratio_h = ((double)h / new_h);
+260     double ratio_w = ((double)w / new_w);
+261 
+262     for (size_t j = 0; j < new_h; j++)
+263         for (size_t i = 0; i < new_w; i++)
+264         {
+265             int r, g, b;
+266             average(i, j, ratio_h, ratio_w, w, format, pixels, &r, &g, &b);
+267             pixels_output[j * new_w + i] = SDL_MapRGB(format_output, r, g, b);
+268         }
+269 
+270     return output;
+271 }
 .fi
 .SS "void sudoku_split (char * black_white, char * grayscale, char * path)"
 
 .PP
-Definition at line 537 of file sudoku_split\&.c\&.
+Definition at line \fB605\fP of file \fBsudoku_split\&.c\fP\&.
 .PP
 .nf
-538 {
-539     // Initializes the SDL\&.
-540     if (SDL_Init(SDL_INIT_VIDEO) != 0)
-541         errx(EXIT_FAILURE, "%s", SDL_GetError());
-542 
-543     SDL_Surface *b_w = load_image(black_white);
-544     SDL_Surface *gray = load_image(grayscale);
-545 
-546     strcpy(save_path, path);
-547 
-548     line_detection(b_w, gray);
-549 
-550     SDL_FreeSurface(b_w);
-551     SDL_FreeSurface(gray);
-552 
-553     SDL_Quit();
-554 }
+606 {
+607     // Initializes the SDL\&.
+608     if (SDL_Init(SDL_INIT_VIDEO) != 0)
+609         errx(EXIT_FAILURE, "%s", SDL_GetError());
+610 
+611     SDL_Surface *b_w = load_image(black_white);
+612     SDL_Surface *gray = load_image(grayscale);
+613 
+614     strcpy(save_path, path);
+615 
+616     line_detection(b_w, gray);
+617 
+618     SDL_FreeSurface(b_w);
+619     SDL_FreeSurface(gray);
+620 
+621     SDL_Quit();
+622 }
 .fi
 .SH "Author"
 .PP 
