@@ -61,4 +61,10 @@ void open_ui();
  */
 void quit();
 
+/**
+ * \brief Cleans the tmp directory
+ * \fn void clean_directory()
+ */
+void clean_directory();
+
 #endif
