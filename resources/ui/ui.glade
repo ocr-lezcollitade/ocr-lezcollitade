@@ -19,7 +19,7 @@
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <child>
-          <object class="GtkFixed">
+          <object class="GtkFixed" id="upload">
             <property name="width-request">1920</property>
             <property name="height-request">1080</property>
             <property name="visible">True</property>
@@ -229,7 +229,22 @@
                     <signal name="clicked" handler="load_grayscale" swapped="no"/>
                   </object>
                   <packing>
-                    <property name="x">897</property>
+                    <property name="x">832</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="label" translatable="yes">Restart</property>
+                    <property name="width-request">100</property>
+                    <property name="height-request">80</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <signal name="clicked" handler="clean_directory" swapped="no"/>
+                    <signal name="clicked" handler="go_to" object="upload" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="x">998</property>
                   </packing>
                 </child>
               </object>
@@ -307,7 +322,23 @@
                     <signal name="clicked" handler="load_binary" swapped="no"/>
                   </object>
                   <packing>
-                    <property name="x">926</property>
+                    <property name="x">844</property>
+                    <property name="y">18</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="label" translatable="yes">Restart</property>
+                    <property name="width-request">100</property>
+                    <property name="height-request">80</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <signal name="clicked" handler="clean_directory" swapped="no"/>
+                    <signal name="clicked" handler="go_to" object="upload" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="x">1024</property>
                     <property name="y">18</property>
                   </packing>
                 </child>
@@ -386,7 +417,23 @@
                     <signal name="clicked" handler="load_split" swapped="no"/>
                   </object>
                   <packing>
-                    <property name="x">910</property>
+                    <property name="x">831</property>
+                    <property name="y">17</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="label" translatable="yes">Restart</property>
+                    <property name="width-request">100</property>
+                    <property name="height-request">80</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <signal name="clicked" handler="clean_directory" swapped="no"/>
+                    <signal name="clicked" handler="go_to" object="upload" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="x">1017</property>
                     <property name="y">17</property>
                   </packing>
                 </child>
@@ -1372,7 +1419,23 @@
                     <signal name="clicked" handler="quit" swapped="no"/>
                   </object>
                   <packing>
-                    <property name="x">907</property>
+                    <property name="x">836</property>
+                    <property name="y">6</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="label" translatable="yes">Restart</property>
+                    <property name="width-request">100</property>
+                    <property name="height-request">80</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <signal name="clicked" handler="clean_directory" swapped="no"/>
+                    <signal name="clicked" handler="go_to" object="upload" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="x">970</property>
                     <property name="y">6</property>
                   </packing>
                 </child>

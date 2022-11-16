@@ -26,8 +26,6 @@ GtkLabel *show_rotation;
 GtkLabel *chooser_status;
 GtkGrid *split_grid;
 
-void css_set(GtkCssProvider *, GtkWidget *);
-
 GtkAdjustment *adjustment1;
 
 GtkBuilder *builder;
@@ -56,13 +54,13 @@ void go_to(GtkWidget *w, gpointer data)
 
 void load_binary()
 {
-    SDL_Surface *temp_surface = load_image("resources/ui/grayscaled.png");
+    SDL_Surface *temp_surface = load_image("resources/ui/tmp/grayscaled.png");
 
     SDL_Surface *binarized_surface = full_binary(temp_surface);
 
-    IMG_SavePNG(binarized_surface, "resources/ui/binarized.png");
+    IMG_SavePNG(binarized_surface, "resources/ui/tmp/binarized.png");
 
-    gtk_image_set_from_file(binarized_image, "resources/ui/binarized.png");
+    gtk_image_set_from_file(binarized_image, "resources/ui/tmp/binarized.png");
 
     SDL_FreeSurface(temp_surface);
     SDL_FreeSurface(binarized_surface);
@@ -73,29 +71,30 @@ void load_grayscale()
     SDL_Surface *grayscaled_surface;
 
     if (rotation == 0)
-        grayscaled_surface = load_image("resources/ui/current.png");
+        grayscaled_surface = load_image("resources/ui/tmp/current.png");
     else
-        grayscaled_surface = load_image("resources/ui/rotated.png");
+        grayscaled_surface = load_image("resources/ui/tmp/rotated.png");
 
     surface_to_grayscale(grayscaled_surface);
-    IMG_SavePNG(grayscaled_surface, "resources/ui/grayscaled.png");
+    IMG_SavePNG(grayscaled_surface, "resources/ui/tmp/grayscaled.png");
 
-    gtk_image_set_from_file(grayscaled_image, "resources/ui/grayscaled.png");
+    gtk_image_set_from_file(
+        grayscaled_image, "resources/ui/tmp/grayscaled.png");
 
     SDL_FreeSurface(grayscaled_surface);
 }
 
 void load_rotate()
 {
-    char path[] = "resources/ui/current.png";
+    char path[] = "resources/ui/tmp/current.png";
 
     gtk_image_set_from_file(rotated_image, path);
 }
 
 void load_split()
 {
-    sudoku_split("resources/ui/binarized.png", "resources/ui/grayscaled.png",
-        "resources/ui/");
+    sudoku_split("resources/ui/tmp/binarized.png",
+        "resources/ui/tmp/grayscaled.png", "resources/ui/tmp/");
 
     for (int i = 0; i < 9; i++)
     {
@@ -107,7 +106,7 @@ void load_split()
             char split_no[8];
             sprintf(split_no, "%i.png", i + j * 9);
 
-            char full_split[30] = "resources/ui/";
+            char full_split[30] = "resources/ui/tmp/";
             strcat(full_split, split_no);
 
             gtk_image_set_from_file(image, (gchar *)full_split);
@@ -124,19 +123,19 @@ void on_scrollbar_value_changed(GtkRange *r)
     sprintf(rot_label, "%i", rotation);
     gtk_label_set_text(show_rotation, (const gchar *)rot_label);
 
-    SDL_Surface *rotated_surface = load_image("resources/ui/current.png");
-    IMG_SavePNG(
-        rotate_surface(rotated_surface, rotation), "resources/ui/rotated.png");
+    SDL_Surface *rotated_surface = load_image("resources/ui/tmp/current.png");
+    IMG_SavePNG(rotate_surface(rotated_surface, rotation),
+        "resources/ui/tmp/rotated.png");
 
     gtk_image_set_from_file(
-        rotated_image, (const gchar *)"resources/ui/rotated.png");
+        rotated_image, (const gchar *)"resources/ui/tmp/rotated.png");
 
     SDL_FreeSurface(rotated_surface);
 }
 
 void on_import_file_set(GtkFileChooserButton *f)
 {
-    char file_name[] = "resources/ui/current.png";
+    char file_name[] = "resources/ui/tmp/current.png";
 
     FILE *source, *target;
     source = fopen(gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(f)), "rb");
@@ -160,7 +159,25 @@ void on_import_file_set(GtkFileChooserButton *f)
 
 void quit()
 {
+    clean_directory();
     gtk_window_close(GTK_WINDOW(window));
+}
+
+void clean_directory()
+{
+    for (int i = 0; i < 81; i++)
+    {
+        char file_no[8];
+        sprintf(file_no, "%i.png", i);
+
+        char full_file[30] = "resources/ui/tmp/";
+        strcat(full_file, file_no);
+        remove(full_file);
+    }
+
+    remove("resources/ui/tmp/grayscaled.png");
+    remove("resources/ui/tmp/binarized.png");
+    remove("resources/ui/tmp/current.png");
 }
 
 void open_ui()
