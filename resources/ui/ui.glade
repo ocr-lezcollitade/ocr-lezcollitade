@@ -241,6 +241,7 @@
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
                     <signal name="clicked" handler="clean_directory" swapped="no"/>
+                    <signal name="clicked" handler="deselect" swapped="no"/>
                     <signal name="clicked" handler="go_to" object="upload" swapped="no"/>
                   </object>
                   <packing>

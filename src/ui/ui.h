@@ -67,4 +67,10 @@ void quit();
  */
 void clean_directory();
 
+/**
+ * \brief Blocks the start button
+ * \fn void deselect()
+ */
+void deselect();
+
 #endif
