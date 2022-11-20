@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
 #include "ui.h"
 #include "../preproc/color_removal/color_removal.h"
 #include "../preproc/rotate/rotate.h"
@@ -137,6 +138,8 @@ void on_import_file_set(GtkFileChooserButton *f)
 {
     char file_name[] = "resources/ui/tmp/current.png";
 
+    mkdir("resources/ui/tmp", 0755);
+
     FILE *source, *target;
     source = fopen(gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(f)), "rb");
 
@@ -155,6 +158,12 @@ void on_import_file_set(GtkFileChooserButton *f)
     chooser_selected = 1;
     gtk_label_set_text(
         chooser_status, (const gchar *)"A file has been selected!");
+}
+
+void deselect()
+{
+    chooser_selected = 0;
+    gtk_label_set_text(chooser_status, (const gchar *)"No selected image yet");
 }
 
 void quit()
