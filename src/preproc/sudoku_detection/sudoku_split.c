@@ -4,10 +4,8 @@
 #include <math.h>
 #include "sudoku_split.h"
 #include "../../utils/matrices/matrix.h"
+#include "../color_removal/color_removal.h"
 #define UNUSED(x) (void)(x)
-
-int thres = 600;
-char save_path[30];
 
 // Loads an image in a surface.
 // The format of the surface is SDL_PIXELFORMAT_RGB888.
@@ -17,14 +15,14 @@ static SDL_Surface *load_image(const char *path)
 {
     SDL_Surface *tmp = IMG_Load(path);
     if (tmp == NULL)
-        errx(EXIT_FAILURE, "%s", SDL_GetError());
+        return NULL; // errx(EXIT_FAILURE, "%s", SDL_GetError());
 
     SDL_Surface *surface
         = SDL_ConvertSurfaceFormat(tmp, SDL_PIXELFORMAT_RGB888, 0);
     SDL_FreeSurface(tmp);
 
     if (surface == NULL)
-        errx(EXIT_FAILURE, "%s", SDL_GetError());
+        return NULL; // errx(EXIT_FAILURE, "%s", SDL_GetError());
     return surface;
 }
 
@@ -136,8 +134,10 @@ static double set_minus_one(double input)
     return -1;
 }
 
-static SDL_Surface *crop(SDL_Surface *b_w, SDL_Surface *output)
+static int crop(SDL_Surface *b_w, SDL_Surface **output_p)
 {
+    SDL_Surface *output = *output_p;
+
     size_t w = (size_t)output->w;
     size_t h = (size_t)output->h;
     size_t minx = w;
@@ -183,13 +183,13 @@ static SDL_Surface *crop(SDL_Surface *b_w, SDL_Surface *output)
         SDL_UnlockSurface(output);
 
         if (SDL_BlitSurface(output, &rect, new, NULL) != 0)
-            errx(EXIT_FAILURE, "%s", SDL_GetError());
+            return 1; // errx(EXIT_FAILURE, "%s", SDL_GetError());
 
         SDL_LockSurface(output);
-        return new;
+        SDL_FreeSurface(*output_p);
+        *output_p = new;
     }
-
-    return output;
+    return 0;
 }
 
 static void remove_border(SDL_Surface *surface)
@@ -244,9 +244,10 @@ static void average(size_t i, size_t j, double ratio_h, double ratio_w,
     *avb = floor(*avb / count);
 }
 
-SDL_Surface *scale_down(
-    SDL_Surface *surface, size_t w, size_t h, size_t new_w, size_t new_h)
+void scale_down(
+    SDL_Surface **surface_p, size_t w, size_t h, size_t new_w, size_t new_h)
 {
+    SDL_Surface *surface = *surface_p;
     SDL_Surface *output
         = SDL_CreateRGBSurface(0, (int)new_w, (int)new_h, 32, 0, 0, 0, 0);
 
@@ -267,11 +268,58 @@ SDL_Surface *scale_down(
             pixels_output[j * new_w + i] = SDL_MapRGB(format_output, r, g, b);
         }
 
-    return output;
+    SDL_FreeSurface(*surface_p);
+    *surface_p = output;
 }
 
-static void square(SDL_Surface *b_w, SDL_Surface *gray, size_t x1, size_t y1,
-    size_t x2, size_t y2, size_t name)
+static void add_border(
+    SDL_Surface **surface, size_t w, size_t h, size_t border)
+{
+    SDL_Surface *new = SDL_CreateRGBSurface(
+        0, w + (2 * border), h + (2 * border), 32, 0, 0, 0, 0);
+
+    SDL_PixelFormat *format = new->format;
+    Uint32 *pixels = new->pixels;
+
+    SDL_PixelFormat *old_format = (*surface)->format;
+    Uint32 *old_pixels = (*surface)->pixels;
+
+    size_t nw = new->w, nh = new->h;
+
+    for (size_t i = 0; i < border; i++)
+    {
+        size_t start_offset = i * nw, end_offset = (nh - i - 1) * nw;
+        for (size_t j = 0; j < nw; j++)
+        {
+            pixels[start_offset + j] = SDL_MapRGB(format, 0, 0, 0);
+            pixels[end_offset + j] = SDL_MapRGB(format, 0, 0, 0);
+        }
+    }
+    for (size_t i = 0; i < border; i++)
+    {
+        size_t end_offset = nw - i - 1;
+        for (size_t j = 0; j < nh; j++)
+        {
+            pixels[j * nw + i] = SDL_MapRGB(format, 0, 0, 0);
+            pixels[j * nw + end_offset] = SDL_MapRGB(format, 0, 0, 0);
+        }
+    }
+
+    for (size_t i = 0; i < w; i++)
+        for (size_t j = 0; j < h; j++)
+        {
+            Uint8 r, g, b;
+            SDL_GetRGB(old_pixels[j * w + i], old_format, &r, &g, &b);
+            pixels[(j + border) * nw + (i + border)]
+                = SDL_MapRGB(format, r, g, b);
+        }
+
+    SDL_FreeSurface(*surface);
+    *surface = new;
+}
+
+static int square(SDL_Surface *b_w, SDL_Surface *gray, size_t x1, size_t y1,
+    size_t x2, size_t y2, size_t name, char path[30])
 {
     SDL_Surface *output
         = SDL_CreateRGBSurface(0, x2 - x1, y2 - y1, 32, 0, 0, 0, 0);
@@ -314,10 +362,16 @@ static void square(SDL_Surface *b_w, SDL_Surface *gray, size_t x1, size_t y1,
     }
     remove_border(output);
     remove_border(output_b_w);
-    SDL_Surface *temp = crop(output_b_w, output);
-    SDL_Surface *final = scale_down(temp, temp->w, temp->h, 28, 28);
+    if (crop(output_b_w, &output) != 0)
+        return 1;
+    if (output == NULL)
+        return 1;
+    if (output->w < 28 || output->h < 28)
+        add_border(&output, output->w, output->h,
+            (size_t)fmax((double)(28 - output->w), (double)(28 - output->h)));
+    scale_down(&output, output->w, output->h, 20, 20);
+    add_border(&output, 20, 20, 4);
 
-    SDL_FreeSurface(temp);
     SDL_UnlockSurface(gray);
     SDL_UnlockSurface(output);
     SDL_UnlockSurface(b_w);
@@ -325,14 +379,15 @@ static void square(SDL_Surface *b_w, SDL_Surface *gray, size_t x1, size_t y1,
     SDL_FreeSurface(output_b_w);
 
     char out[50];
-    sprintf(out, "%s%zu.png", save_path, name);
+    sprintf(out, "%s%zu.png", path, name);
 
-    IMG_SavePNG(final, out);
-    SDL_FreeSurface(final);
+    IMG_SavePNG(output, out);
+    SDL_FreeSurface(output);
+    return 0;
 }
 
-static void cut_squares(
-    matrix_t *inter, SDL_Surface *b_w, SDL_Surface *gray, size_t len)
+static void cut_squares(matrix_t *inter, SDL_Surface *b_w, SDL_Surface *gray,
+    size_t len, char path[30])
 {
     size_t name = 0;
     size_t stop = len * len - len - 1;
@@ -344,7 +399,7 @@ static void cut_squares(
         {
             square(b_w, gray, mat_el_at(inter, i, 0), mat_el_at(inter, i, 1),
                 mat_el_at(inter, i + len + 1, 0),
-                mat_el_at(inter, i + len + 1, 1), name);
+                mat_el_at(inter, i + len + 1, 1), name, path);
             name++;
         }
     }
@@ -377,8 +432,8 @@ static void add_missing_lines(size_t lines[10][2])
 }
 
 // stores lines' coordinates in the "lines" matrix
-static size_t store_lines(
-    matrix_t *acc, double max, size_t rhos, ssize_t lines[20][2])
+static int store_lines(matrix_t *acc, size_t rhos, ssize_t lines[20][2],
+    double maximum, int thres)
 {
     for (size_t i = 0; i < 20; i++)
     {
@@ -386,7 +441,7 @@ static size_t store_lines(
         lines[i][1] = -1;
     }
 
-    double ratio = max / 1000;
+    double ratio = maximum / 1000;
     size_t x = 0;
     for (size_t j = 0; j < 360; j++)
         for (size_t i = 0; i < rhos; i++)
@@ -395,14 +450,14 @@ static size_t store_lines(
             if (val > thres)
             {
                 if (x >= 20)
-                    errx(1, "wrong number of lines");
+                    return -1; // errx(1, "wrong number of lines");
                 lines[x][0] = i;
                 lines[x][1] = j;
                 x++;
             }
         }
     if (x % 2 != 0)
-        errx(1, "odd number of lines");
+        return -1; // errx(1, "odd number of lines");
     return x;
 }
 
@@ -417,7 +472,7 @@ static size_t set_line_coordinates(
 // separates vertical and horizontal lines + orders them in increasing order
 // according to their distance from origin t1, t2 = approximated theta for one
 // of the lines' type
-static void separate_lines(
+static int separate_lines(
     size_t lines1[][2], size_t lines2[][2], size_t len, ssize_t lines[20][2])
 {
     int t1 = -1, t2 = -1;
@@ -464,7 +519,7 @@ static void separate_lines(
                         }
                         else
                         {
-                            errx(1, "solo line");
+                            return 1; // errx(1, "solo line");
                         }
                     }
                 }
@@ -473,17 +528,22 @@ static void separate_lines(
     }
     sort_list(lines1, len / 2);
     sort_list(lines2, len / 2);
+    return 0;
 }
 
-static void intersections(matrix_t *acc, double max, size_t rhos,
-    SDL_Surface *surface, SDL_Surface *sudoku)
+static int intersections(matrix_t *acc, size_t rhos, SDL_Surface *surface,
+    SDL_Surface *sudoku, double maximum, int thres, char path[30])
 {
     ssize_t lines[20][2];
-    size_t len = store_lines(acc, max, rhos, lines);
+    int l = store_lines(acc, rhos, lines, maximum, thres);
+    if (l < 0)
+        return 1;
+    size_t len = (size_t)l;
 
     size_t lines1[10][2];
     size_t lines2[10][2];
-    separate_lines(lines1, lines2, len, lines);
+    if (separate_lines(lines1, lines2, len, lines) != 0)
+        return 1;
 
     if (len == 8)
     {
@@ -500,16 +560,17 @@ static void intersections(matrix_t *acc, double max, size_t rhos,
     size_t n = draw_line(surface, inter, lines2, len / 2);
 
     if (n < (len / 2) * (len / 2))
-        errx(1, "404: Intersection not found");
+        return 1; // errx(1, "404: Intersection not found");
 
-    cut_squares(inter, surface, sudoku, len / 2);
+    cut_squares(inter, surface, sudoku, len / 2, path);
 
     matrix_free(inter);
+    return 0;
 }
 
-static void fuze_lines(matrix_t *acc, double max, size_t rhos)
+static void fuze_lines(matrix_t *acc, size_t rhos, double maximum, int thres)
 {
-    double ratio = max / 1000;
+    double ratio = maximum / 1000;
     size_t del_t = 70;
     size_t del_r = 30 * rhos / 1000;
     for (size_t j = 0; j < 360; j++)
@@ -530,15 +591,15 @@ static void fuze_lines(matrix_t *acc, double max, size_t rhos)
                         }
                     }
                 }
-                mat_set_el(acc, i, j, max);
+                mat_set_el(acc, i, j, maximum);
             }
         }
 }
 
-static int count_lines(matrix_t *acc, double max, size_t rhos)
+static int count_lines(matrix_t *acc, size_t rhos, double maximum, int thres)
 {
     int count = 0;
-    double ratio = max / 1000;
+    double ratio = maximum / 1000;
     for (size_t i = 0; i < rhos; i++)
         for (size_t j = 0; j < 360; j++)
         {
@@ -549,26 +610,35 @@ static int count_lines(matrix_t *acc, double max, size_t rhos)
     return count;
 }
 
-static double get_max(matrix_t *acc, size_t rhos)
+static double get_max(matrix_t *acc, size_t rhos, int *thres)
 {
-    double max = 0;
+    double maximum = 0;
     for (size_t i = 0; i < rhos; i++)
         for (size_t j = 0; j < 360; j++)
         {
             double el = mat_el_at(acc, i, j);
-            if (el > max)
-                max = el;
+            if (el > maximum)
+                maximum = el;
         }
-    fuze_lines(acc, max, rhos);
-    if (count_lines(acc, max, rhos) < 8)
+    fuze_lines(acc, rhos, maximum, *thres);
+    if (count_lines(acc, rhos, maximum, *thres) < 8)
     {
-        thres -= 50;
-        return get_max(acc, rhos);
+        *thres -= 50;
+        return get_max(acc, rhos, thres);
     }
-    return max;
+    return maximum;
 }
 
-static void line_detection(SDL_Surface *surface, SDL_Surface *sudoku)
+static int rotation(matrix_t *acc, size_t rho, double maximum)
+{
+    for (size_t t = 0; t < 360; t++)
+        for (size_t r = 0; r < rho; r++)
+            if (mat_el_at(acc, r, t) == maximum)
+                return t;
+    return -1;
+}
+static int line_detection(
+    SDL_Surface *surface, SDL_Surface *sudoku, int get_rotation, char path[30])
 {
     SDL_PixelFormat *format = surface->format;
     Uint32 *pixels = surface->pixels;
@@ -595,28 +665,56 @@ static void line_detection(SDL_Surface *surface, SDL_Surface *sudoku)
         }
     SDL_UnlockSurface(surface);
 
-    double max = get_max(acc, diag);
+    int thres = 600;
 
-    intersections(acc, max, diag, surface, sudoku);
+    double maximum = get_max(acc, diag, &thres);
+
+    int value
+        = intersections(acc, diag, surface, sudoku, maximum, thres, path);
+
+    int theta = 0;
+
+    if (get_rotation)
+        theta = rotation(acc, diag, maximum);
 
     matrix_free(acc);
+    if (value == 1)
+        return -2;
+    return theta;
 }
 
-void sudoku_split(char *black_white, char *grayscale, char *path)
+int sudoku_split(char *black_white, char *grayscale, char *path)
 {
     // Initializes the SDL.
     if (SDL_Init(SDL_INIT_VIDEO) != 0)
-        errx(EXIT_FAILURE, "%s", SDL_GetError());
+        return 1; // errx(EXIT_FAILURE, "%s", SDL_GetError());
 
     SDL_Surface *b_w = load_image(black_white);
+    if (b_w == NULL)
+        return 1;
     SDL_Surface *gray = load_image(grayscale);
+    if (gray == NULL)
+        return 1;
 
+    char save_path[30];
     strcpy(save_path, path);
 
-    line_detection(b_w, gray);
+    int value = line_detection(b_w, gray, 0, save_path);
 
     SDL_FreeSurface(b_w);
     SDL_FreeSurface(gray);
 
     SDL_Quit();
+    if (value == -2)
+        return 1;
+    return 0;
+}
+
+int get_rotation(SDL_Surface *surface)
+{
+    char save_path[30] = {0};
+    int theta = line_detection(surface, surface, 1, save_path);
+    if (theta < 0)
+        return -1;
+    return theta;
 }

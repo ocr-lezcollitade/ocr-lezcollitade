@@ -1,4 +1,4 @@
-.TH "src/main.c" 3 "Sun Oct 30 2022" "OCR-Lezcollitade" \" -*- nroff -*-
+.TH "src/main.c" 3 "Fri Nov 11 2022" "OCR-Lezcollitade" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -9,8 +9,6 @@ src/main.c
 \fC#include <err\&.h>\fP
 .br
 \fC#include <gtk/gtk\&.h>\fP
-.br
-\fC#include <gtk/gtkx\&.h>\fP
 .br
 \fC#include <math\&.h>\fP
 .br
@@ -61,46 +59,46 @@ src/main.c
 .SS "#define PRINT_PARAM(params, key)       printf('%s: \\'%d\\' \-> %s\\n', #key, key, params[key])"
 
 .PP
-Definition at line \fB145\fP of file \fBmain\&.c\fP\&.
+Definition at line 144 of file main\&.c\&.
 .SS "#define UNUSED(x)   (void)(x)"
 
 .PP
-Definition at line \fB18\fP of file \fBmain\&.c\fP\&.
+Definition at line 17 of file main\&.c\&.
 .SH "Function Documentation"
 .PP 
 .SS "int main (int argc, char ** argv)"
 
 .PP
-Definition at line \fB312\fP of file \fBmain\&.c\fP\&.
+Definition at line 311 of file main\&.c\&.
 .PP
 .nf
-313 {
-314     UNUSED(print_params);
-315     UNUSED(show_results);
-316     UNUSED(train_xor);
-317     char mode;
-318     params_t params = parse_params(argc, argv, &mode);
-319     if (argc == 2)
-320     {
-321         return solve(argv[1]);
-322     }
-323     if (params == NULL)
-324     {
-325         open_ui();
-326         return 0;
-327     }
-328     signal(SIGINT, int_handler);
-329     if (mode == TRAIN_MODE)
-330     {
-331         train(params);
-332     }
-333     else if (mode == TEST_MODE)
-334     {
-335         test(params);
-336     }
-337 
-338     return 0;
-339 }
+312 {
+313     UNUSED(print_params);
+314     UNUSED(show_results);
+315     UNUSED(train_xor);
+316     char mode;
+317     params_t params = parse_params(argc, argv, &mode);
+318     if (argc == 2)
+319     {
+320         return solve(argv[1]);
+321     }
+322     if (params == NULL)
+323     {
+324         open_ui();
+325         return 0;
+326     }
+327     signal(SIGINT, int_handler);
+328     if (mode == TRAIN_MODE)
+329     {
+330         train(params);
+331     }
+332     else if (mode == TEST_MODE)
+333     {
+334         test(params);
+335     }
+336 
+337     return 0;
+338 }
 .fi
 .SH "Author"
 .PP 

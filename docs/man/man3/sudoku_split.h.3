@@ -1,4 +1,4 @@
-.TH "src/preproc/sudoku_detection/sudoku_split.h" 3 "Sun Oct 30 2022" "OCR-Lezcollitade" \" -*- nroff -*-
+.TH "src/preproc/sudoku_detection/sudoku_split.h" 3 "Fri Nov 11 2022" "OCR-Lezcollitade" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -10,16 +10,47 @@ src/preproc/sudoku_detection/sudoku_split.h
 
 .in +1c
 .ti -1c
-.RI "void \fBsudoku_split\fP (char *black_white, char *grayscale, char *path)"
+.RI "int \fBsudoku_split\fP (char *black_white, char *grayscale, char *path)"
 .br
 .ti -1c
 .RI "SDL_Surface * \fBscale_down\fP (SDL_Surface *surface, size_t w, size_t h, size_t new_w, size_t new_h)"
 .br
 .RI "scales down a surface "
+.ti -1c
+.RI "ssize_t \fBget_rotation\fP (SDL_Surface *surface)"
+.br
+.RI "finds the angle the image has to be rotated with to be straight "
 .in -1c
 .SH "Function Documentation"
 .PP 
-.SS "SDL_Surface * scale_down (SDL_Surface * surface, size_t w, size_t h, size_t new_w, size_t new_h)"
+.SS "ssize_t get_rotation (SDL_Surface * surface)"
+
+.PP
+finds the angle the image has to be rotated with to be straight 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsurface\fP the surface we went the rotation of 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the angle the image has to be rotated with to be straight if it is found, -1 if not 
+.RE
+.PP
+
+.PP
+Definition at line 703 of file sudoku_split\&.c\&.
+.PP
+.nf
+704 {
+705     ssize_t theta = line_detection(surface, surface, 1);
+706     if (theta < 0)
+707         return -1;
+708     return theta;
+709 }
+.fi
+.SS "SDL_Surface* scale_down (SDL_Surface * surface, size_t w, size_t h, size_t new_w, size_t new_h)"
 
 .PP
 scales down a surface 
@@ -35,56 +66,63 @@ scales down a surface
 .PP
 
 .PP
-Definition at line \fB247\fP of file \fBsudoku_split\&.c\fP\&.
+Definition at line 249 of file sudoku_split\&.c\&.
 .PP
 .nf
-249 {
-250     SDL_Surface *output
-251         = SDL_CreateRGBSurface(0, (int)new_w, (int)new_h, 32, 0, 0, 0, 0);
-252 
-253     SDL_PixelFormat *format = surface->format;
-254     SDL_PixelFormat *format_output = output->format;
-255 
-256     Uint32 *pixels = surface->pixels;
-257     Uint32 *pixels_output = output->pixels;
-258 
-259     double ratio_h = ((double)h / new_h);
-260     double ratio_w = ((double)w / new_w);
-261 
-262     for (size_t j = 0; j < new_h; j++)
-263         for (size_t i = 0; i < new_w; i++)
-264         {
-265             int r, g, b;
-266             average(i, j, ratio_h, ratio_w, w, format, pixels, &r, &g, &b);
-267             pixels_output[j * new_w + i] = SDL_MapRGB(format_output, r, g, b);
-268         }
-269 
-270     return output;
-271 }
+251 {
+252     SDL_Surface *output
+253         = SDL_CreateRGBSurface(0, (int)new_w, (int)new_h, 32, 0, 0, 0, 0);
+254 
+255     SDL_PixelFormat *format = surface->format;
+256     SDL_PixelFormat *format_output = output->format;
+257 
+258     Uint32 *pixels = surface->pixels;
+259     Uint32 *pixels_output = output->pixels;
+260 
+261     double ratio_h = ((double)h / new_h);
+262     double ratio_w = ((double)w / new_w);
+263 
+264     for (size_t j = 0; j < new_h; j++)
+265         for (size_t i = 0; i < new_w; i++)
+266         {
+267             int r, g, b;
+268             average(i, j, ratio_h, ratio_w, w, format, pixels, &r, &g, &b);
+269             pixels_output[j * new_w + i] = SDL_MapRGB(format_output, r, g, b);
+270         }
+271 
+272     return output;
+273 }
 .fi
-.SS "void sudoku_split (char * black_white, char * grayscale, char * path)"
+.SS "int sudoku_split (char * black_white, char * grayscale, char * path)"
 
 .PP
-Definition at line \fB605\fP of file \fBsudoku_split\&.c\fP\&.
+Definition at line 677 of file sudoku_split\&.c\&.
 .PP
 .nf
-606 {
-607     // Initializes the SDL\&.
-608     if (SDL_Init(SDL_INIT_VIDEO) != 0)
-609         errx(EXIT_FAILURE, "%s", SDL_GetError());
-610 
-611     SDL_Surface *b_w = load_image(black_white);
-612     SDL_Surface *gray = load_image(grayscale);
-613 
-614     strcpy(save_path, path);
-615 
-616     line_detection(b_w, gray);
-617 
-618     SDL_FreeSurface(b_w);
-619     SDL_FreeSurface(gray);
-620 
-621     SDL_Quit();
-622 }
+678 {
+679     // Initializes the SDL\&.
+680     if (SDL_Init(SDL_INIT_VIDEO) != 0)
+681         return -1; // errx(EXIT_FAILURE, "%s", SDL_GetError());
+682 
+683     SDL_Surface *b_w = load_image(black_white);
+684     if (b_w == NULL)
+685         return -1;
+686     SDL_Surface *gray = load_image(grayscale);
+687     if (gray == NULL)
+688         return -1;
+689 
+690     strcpy(save_path, path);
+691 
+692     int value = (int)line_detection(b_w, gray, 0);
+693 
+694     SDL_FreeSurface(b_w);
+695     SDL_FreeSurface(gray);
+696 
+697     SDL_Quit();
+698     if (value == -2)
+699         return -1;
+700     return 0;
+701 }
 .fi
 .SH "Author"
 .PP 
