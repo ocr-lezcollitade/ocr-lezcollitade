@@ -1,4 +1,4 @@
-.TH "src/ui/ui.h" 3 "Sun Oct 30 2022" "OCR-Lezcollitade" \" -*- nroff -*-
+.TH "src/ui/ui.h" 3 "Fri Nov 11 2022" "OCR-Lezcollitade" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -62,73 +62,73 @@ Changes the stack's displayed page\&.
 .PP
 
 .PP
-Definition at line \fB51\fP of file \fBui\&.c\fP\&.
+Definition at line 50 of file ui\&.c\&.
 .PP
 .nf
-52 {
-53     UNUSED(w);
-54     GtkWidget *dest = data;
-55     gtk_stack_set_visible_child(stack, dest);
-56 }
+51 {
+52     UNUSED(w);
+53     GtkWidget *dest = data;
+54     gtk_stack_set_visible_child(stack, dest);
+55 }
 .fi
 .SS "void load_binary ()"
 
 .PP
 Sets up the binary page\&. 
 .PP
-Definition at line \fB58\fP of file \fBui\&.c\fP\&.
+Definition at line 57 of file ui\&.c\&.
 .PP
 .nf
-59 {
-60     SDL_Surface *temp_surface = load_image("resources/ui/grayscaled\&.png");
-61 
-62     SDL_Surface *binarized_surface = full_binary(temp_surface);
-63 
-64     IMG_SavePNG(binarized_surface, "resources/ui/binarized\&.png");
-65 
-66     gtk_image_set_from_file(binarized_image, "resources/ui/binarized\&.png");
-67 
-68     SDL_FreeSurface(temp_surface);
-69     SDL_FreeSurface(binarized_surface);
-70 }
+58 {
+59     SDL_Surface *temp_surface = load_image("resources/ui/grayscaled\&.png");
+60 
+61     SDL_Surface *binarized_surface = full_binary(temp_surface);
+62 
+63     IMG_SavePNG(binarized_surface, "resources/ui/binarized\&.png");
+64 
+65     gtk_image_set_from_file(binarized_image, "resources/ui/binarized\&.png");
+66 
+67     SDL_FreeSurface(temp_surface);
+68     SDL_FreeSurface(binarized_surface);
+69 }
 .fi
 .SS "void load_grayscale ()"
 
 .PP
 Sets up the grayscale page\&. 
 .PP
-Definition at line \fB72\fP of file \fBui\&.c\fP\&.
+Definition at line 71 of file ui\&.c\&.
 .PP
 .nf
-73 {
-74     SDL_Surface *grayscaled_surface;
-75 
-76     if (rotation == 0)
-77         grayscaled_surface = load_image("resources/ui/current\&.png");
-78     else
-79         grayscaled_surface = load_image("resources/ui/rotated\&.png");
-80 
-81     surface_to_grayscale(grayscaled_surface);
-82     IMG_SavePNG(grayscaled_surface, "resources/ui/grayscaled\&.png");
-83 
-84     gtk_image_set_from_file(grayscaled_image, "resources/ui/grayscaled\&.png");
-85 
-86     SDL_FreeSurface(grayscaled_surface);
-87 }
+72 {
+73     SDL_Surface *grayscaled_surface;
+74 
+75     if (rotation == 0)
+76         grayscaled_surface = load_image("resources/ui/current\&.png");
+77     else
+78         grayscaled_surface = load_image("resources/ui/rotated\&.png");
+79 
+80     surface_to_grayscale(grayscaled_surface);
+81     IMG_SavePNG(grayscaled_surface, "resources/ui/grayscaled\&.png");
+82 
+83     gtk_image_set_from_file(grayscaled_image, "resources/ui/grayscaled\&.png");
+84 
+85     SDL_FreeSurface(grayscaled_surface);
+86 }
 .fi
 .SS "void load_rotate ()"
 
 .PP
 Sets up the rotate page\&. 
 .PP
-Definition at line \fB89\fP of file \fBui\&.c\fP\&.
+Definition at line 88 of file ui\&.c\&.
 .PP
 .nf
-90 {
-91     char path[] = "resources/ui/current\&.png";
-92 
-93     gtk_image_set_from_file(rotated_image, path);
-94 }
+89 {
+90     char path[] = "resources/ui/current\&.png";
+91 
+92     gtk_image_set_from_file(rotated_image, path);
+93 }
 .fi
 .SS "void on_import_file_set (GtkFileChooserButton * f)"
 
@@ -142,35 +142,31 @@ Copies the chosen file to the ocr directory\&.
 .PP
 
 .PP
-Definition at line \fB138\fP of file \fBui\&.c\fP\&.
+Definition at line 137 of file ui\&.c\&.
 .PP
 .nf
-139 {
-140     char source_file[strlen(
-141         gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(f)))];
-142     strcpy(source_file, gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(f)));
+138 {
+139     char file_name[] = "resources/ui/current\&.png";
+140 
+141     FILE *source, *target;
+142     source = fopen(gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(f)), "rb");
 143 
-144     char file_name[] = "resources/ui/current\&.png";
-145 
-146     FILE *source, *target;
-147     source = fopen(source_file, "rb");
-148 
-149     fseek(source, 0, SEEK_END);
-150     int length = ftell(source);
-151 
-152     fseek(source, 0, SEEK_SET);
-153     target = fopen(file_name, "wb");
-154 
-155     for (int k = 0; k < length; k++)
-156         fputc(fgetc(source), target);
-157 
-158     fclose(source);
-159     fclose(target);
-160 
-161     chooser_selected = 1;
-162     gtk_label_set_text(
-163         chooser_status, (const gchar *)"A file has been selected!");
-164 }
+144     fseek(source, 0, SEEK_END);
+145     int length = ftell(source);
+146 
+147     fseek(source, 0, SEEK_SET);
+148     target = fopen(file_name, "wb");
+149 
+150     for (int k = 0; k < length; k++)
+151         fputc(fgetc(source), target);
+152 
+153     fclose(source);
+154     fclose(target);
+155 
+156     chooser_selected = 1;
+157     gtk_label_set_text(
+158         chooser_status, (const gchar *)"A file has been selected!");
+159 }
 .fi
 .SS "void on_scrollbar_value_changed (GtkRange * r)"
 
@@ -184,26 +180,26 @@ Updates rotation when the scrollbar is moved\&.
 .PP
 
 .PP
-Definition at line \fB119\fP of file \fBui\&.c\fP\&.
+Definition at line 118 of file ui\&.c\&.
 .PP
 .nf
-120 {
-121     gdouble x = gtk_range_get_value(r);
-122     rotation = (int)x;
-123 
-124     char rot_label[5];
-125     sprintf(rot_label, "%i", rotation);
-126     gtk_label_set_text(show_rotation, (const gchar *)rot_label);
-127 
-128     SDL_Surface *rotated_surface = load_image("resources/ui/current\&.png");
-129     IMG_SavePNG(
-130         rotate_surface(rotated_surface, rotation), "resources/ui/rotated\&.png");
-131 
-132     gtk_image_set_from_file(
-133         rotated_image, (const gchar *)"resources/ui/rotated\&.png");
-134 
-135     SDL_FreeSurface(rotated_surface);
-136 }
+119 {
+120     gdouble x = gtk_range_get_value(r);
+121     rotation = (int)x;
+122 
+123     char rot_label[5];
+124     sprintf(rot_label, "%i", rotation);
+125     gtk_label_set_text(show_rotation, (const gchar *)rot_label);
+126 
+127     SDL_Surface *rotated_surface = load_image("resources/ui/current\&.png");
+128     IMG_SavePNG(
+129         rotate_surface(rotated_surface, rotation), "resources/ui/rotated\&.png");
+130 
+131     gtk_image_set_from_file(
+132         rotated_image, (const gchar *)"resources/ui/rotated\&.png");
+133 
+134     SDL_FreeSurface(rotated_surface);
+135 }
 .fi
 .SS "void on_start (GtkWidget * w, gpointer data)"
 
@@ -219,75 +215,75 @@ Changes stack's page if a file was selected\&. FUNCTIONS
 .PP
 
 .PP
-Definition at line \fB41\fP of file \fBui\&.c\fP\&.
+Definition at line 40 of file ui\&.c\&.
 .PP
 .nf
-42 {
-43     UNUSED(w);
-44     if (chooser_selected)
-45     {
-46         GtkWidget *dest = data;
-47         gtk_stack_set_visible_child(stack, dest);
-48     }
-49 }
+41 {
+42     UNUSED(w);
+43     if (chooser_selected)
+44     {
+45         GtkWidget *dest = data;
+46         gtk_stack_set_visible_child(stack, dest);
+47     }
+48 }
 .fi
 .SS "void open_ui ()"
 
 .PP
 Opens the UI\&. 
 .PP
-Definition at line \fB171\fP of file \fBui\&.c\fP\&.
+Definition at line 166 of file ui\&.c\&.
 .PP
 .nf
-172 {
-173     gtk_init(0, NULL);
-174 
-175     builder = gtk_builder_new_from_file("resources/ui/ui\&.glade");
-176 
-177     window = GTK_WIDGET(gtk_builder_get_object(builder, "window"));
-178     import = GTK_WIDGET(gtk_builder_get_object(builder, "import"));
-179     rotated_image
-180         = GTK_IMAGE(gtk_builder_get_object(builder, "rotated_image"));
-181     grayscaled_image
-182         = GTK_IMAGE(gtk_builder_get_object(builder, "grayscaled_image"));
-183     binarized_image
-184         = GTK_IMAGE(gtk_builder_get_object(builder, "binarized_image"));
-185     scrollbar = GTK_WIDGET(gtk_builder_get_object(builder, "scrollbar"));
-186     stack = GTK_STACK(gtk_builder_get_object(builder, "stack"));
-187     show_rotation
-188         = GTK_LABEL(gtk_builder_get_object(builder, "show_rotation"));
-189     chooser_status
-190         = GTK_LABEL(gtk_builder_get_object(builder, "chooser_status"));
-191     split_grid = GTK_GRID(gtk_builder_get_object(builder, "split_grid"));
-192 
-193     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
-194 
-195     gtk_builder_connect_signals(builder, NULL);
-196 
-197     GtkCssProvider *cssProvider = gtk_css_provider_new();
-198 
-199     gtk_css_provider_load_from_path(cssProvider, "resources/ui/gtk\&.css", NULL);
-200 
-201     GdkScreen *screen = gdk_screen_get_default();
-202     gtk_style_context_add_provider_for_screen(screen,
-203         GTK_STYLE_PROVIDER(cssProvider), GTK_STYLE_PROVIDER_PRIORITY_USER);
-204 
-205     gtk_widget_show(window);
-206 
-207     gtk_main();
-208 }
+167 {
+168     gtk_init(0, NULL);
+169 
+170     builder = gtk_builder_new_from_file("resources/ui/ui\&.glade");
+171 
+172     window = GTK_WIDGET(gtk_builder_get_object(builder, "window"));
+173     import = GTK_WIDGET(gtk_builder_get_object(builder, "import"));
+174     rotated_image
+175         = GTK_IMAGE(gtk_builder_get_object(builder, "rotated_image"));
+176     grayscaled_image
+177         = GTK_IMAGE(gtk_builder_get_object(builder, "grayscaled_image"));
+178     binarized_image
+179         = GTK_IMAGE(gtk_builder_get_object(builder, "binarized_image"));
+180     scrollbar = GTK_WIDGET(gtk_builder_get_object(builder, "scrollbar"));
+181     stack = GTK_STACK(gtk_builder_get_object(builder, "stack"));
+182     show_rotation
+183         = GTK_LABEL(gtk_builder_get_object(builder, "show_rotation"));
+184     chooser_status
+185         = GTK_LABEL(gtk_builder_get_object(builder, "chooser_status"));
+186     split_grid = GTK_GRID(gtk_builder_get_object(builder, "split_grid"));
+187 
+188     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
+189 
+190     gtk_builder_connect_signals(builder, NULL);
+191 
+192     GtkCssProvider *cssProvider = gtk_css_provider_new();
+193 
+194     gtk_css_provider_load_from_path(cssProvider, "resources/ui/gtk\&.css", NULL);
+195 
+196     GdkScreen *screen = gdk_screen_get_default();
+197     gtk_style_context_add_provider_for_screen(screen,
+198         GTK_STYLE_PROVIDER(cssProvider), GTK_STYLE_PROVIDER_PRIORITY_USER);
+199 
+200     gtk_widget_show(window);
+201 
+202     gtk_main();
+203 }
 .fi
 .SS "void quit ()"
 
 .PP
 Quits the window\&. 
 .PP
-Definition at line \fB166\fP of file \fBui\&.c\fP\&.
+Definition at line 161 of file ui\&.c\&.
 .PP
 .nf
-167 {
-168     gtk_window_close(GTK_WINDOW(window));
-169 }
+162 {
+163     gtk_window_close(GTK_WINDOW(window));
+164 }
 .fi
 .SH "Author"
 .PP 
