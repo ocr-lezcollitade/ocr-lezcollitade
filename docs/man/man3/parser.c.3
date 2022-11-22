@@ -1,4 +1,4 @@
-.TH "src/cli/parser.c" 3 "Fri Nov 11 2022" "OCR-Lezcollitade" \" -*- nroff -*-
+.TH "src/cli/parser.c" 3 "Tue Nov 22 2022" "OCR-Lezcollitade" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -15,6 +15,13 @@ src/cli/parser.c
 \fC#include 'parser\&.h'\fP
 .br
 
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBUNUSED\fP(x)   (void)(x)"
+.br
+.in -1c
 .SS "Functions"
 
 .in +1c
@@ -27,12 +34,50 @@ src/cli/parser.c
 .br
 .RI "Parses the test parameters\&. "
 .ti -1c
+.RI "\fBparams_t\fP \fBparse_convert_params\fP (int argc, char **argv)"
+.br
+.RI "Parses the convert params\&. "
+.ti -1c
 .RI "\fBparams_t\fP \fBparse_params\fP (int argc, char **argv, char *mode)"
 .br
 .RI "Parses all the params\&. "
 .in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define UNUSED(x)   (void)(x)"
+
+.PP
+Definition at line \fB6\fP of file \fBparser\&.c\fP\&.
 .SH "Function Documentation"
 .PP 
+.SS "\fBparams_t\fP parse_convert_params (int argc, char ** argv)"
+
+.PP
+Parses the convert params\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIargc\fP The argument count\&. 
+.br
+\fIargv\fP The array of parameters\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The params hash table\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB163\fP of file \fBparser\&.c\fP\&.
+.PP
+.nf
+164 {
+165     params_t params = _parse_convert_params(argc, argv);
+166     // TODO : check parameters validity
+167     return params;
+168 }
+.fi
 .SS "\fBparams_t\fP parse_params (int argc, char ** argv, char * mode)"
 
 .PP
@@ -54,29 +99,34 @@ The hash table of params\&.
 .PP
 
 .PP
-Definition at line 113 of file parser\&.c\&.
+Definition at line \fB170\fP of file \fBparser\&.c\fP\&.
 .PP
 .nf
-114 {
-115     if (argc < 2)
-116     {
-117         return NULL;
-118     }
-119 
-120     params_t res = NULL;
-121     char *subcommand = argv[1];
-122     if (strcmp(subcommand, "train") == 0)
-123     {
-124         *mode = TRAIN_MODE;
-125         res = parse_train_params(argc - 2, argv + 2);
-126     }
-127     else if (strcmp(subcommand, "test") == 0)
-128     {
-129         *mode = TEST_MODE;
-130         res = parse_test_params(argc - 2, argv + 2);
-131     }
-132     return res;
-133 }
+171 {
+172     if (argc < 2)
+173     {
+174         return NULL;
+175     }
+176 
+177     params_t res = NULL;
+178     char *subcommand = argv[1];
+179     if (strcmp(subcommand, "train") == 0)
+180     {
+181         *mode = TRAIN_MODE;
+182         res = parse_train_params(argc - 2, argv + 2);
+183     }
+184     else if (strcmp(subcommand, "test") == 0)
+185     {
+186         *mode = TEST_MODE;
+187         res = parse_test_params(argc - 2, argv + 2);
+188     }
+189     else if (strcmp(subcommand, "convert") == 0)
+190     {
+191         *mode = CONVERT_MODE;
+192         res = parse_convert_params(argc - 2, argv + 2);
+193     }
+194     return res;
+195 }
 .fi
 .SS "\fBparams_t\fP parse_test_params (int argc, char ** argv)"
 
@@ -97,15 +147,15 @@ The parameters hash table\&.
 .PP
 
 .PP
-Definition at line 105 of file parser\&.c\&.
+Definition at line \fB155\fP of file \fBparser\&.c\fP\&.
 .PP
 .nf
-106 {
-107 
-108     params_t params = _parse_params(argc, argv);
-109     // TODO : check parameters validity
-110     return params;
-111 }
+156 {
+157 
+158     params_t params = _parse_params(argc, argv);
+159     // TODO : check parameters validity
+160     return params;
+161 }
 .fi
 .SS "\fBparams_t\fP parse_train_params (int argc, char ** argv)"
 
@@ -126,14 +176,14 @@ The hash table of params\&.
 .PP
 
 .PP
-Definition at line 98 of file parser\&.c\&.
+Definition at line \fB148\fP of file \fBparser\&.c\fP\&.
 .PP
 .nf
-99 {
-100     params_t params = _parse_params(argc, argv);
-101     // TODO : check parameters validity
-102     return params;
-103 }
+149 {
+150     params_t params = _parse_params(argc, argv);
+151     // TODO : check parameters validity
+152     return params;
+153 }
 .fi
 .SH "Author"
 .PP 

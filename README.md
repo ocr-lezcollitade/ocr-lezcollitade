@@ -126,3 +126,17 @@ in the command line.
 
 Tests the performances of the network contained in "./output.net"
 over all the lines of `./mnist_test_data.csv` except the first line.
+
+#### Convert
+
+> `--input-network|-i <file>`
+The input network to test on.
+
+> `--grid <dir>`
+The folder to the images of the grid.
+
+> `--data|-d`
+The path to the single image to be tested.
+
+> `--mode <single|multi>`
+Whether this tests with the `grid` folder or the `data` image path.

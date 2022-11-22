@@ -1,12 +1,13 @@
 var searchData=
 [
-  ['params_5ft_121',['params_t',['../parser_8h.html#a956c158032da3a69086ec31168c991ba',1,'parser.h']]],
-  ['parse_5fparams_122',['parse_params',['../parser_8c.html#af33c60f53ba8a04782e03a8500c5d099',1,'parse_params(int argc, char **argv, char *mode):&#160;parser.c'],['../parser_8h.html#af33c60f53ba8a04782e03a8500c5d099',1,'parse_params(int argc, char **argv, char *mode):&#160;parser.c']]],
-  ['parse_5ftest_5fparams_123',['parse_test_params',['../parser_8c.html#ab2116d885ed230baeb9b20a83a672ea0',1,'parse_test_params(int argc, char **argv):&#160;parser.c'],['../parser_8h.html#ab2116d885ed230baeb9b20a83a672ea0',1,'parse_test_params(int argc, char **argv):&#160;parser.c']]],
-  ['parse_5ftrain_5fparams_124',['parse_train_params',['../parser_8c.html#ab2f489b7f919e61d84e74826ca0040de',1,'parse_train_params(int argc, char **argv):&#160;parser.c'],['../parser_8h.html#ab2f489b7f919e61d84e74826ca0040de',1,'parse_train_params(int argc, char **argv):&#160;parser.c']]],
-  ['parser_2ec_125',['parser.c',['../parser_8c.html',1,'']]],
-  ['parser_2eh_126',['parser.h',['../parser_8h.html',1,'']]],
-  ['pixel_5fto_5fgrayscale_127',['pixel_to_grayscale',['../img__loader_2loader_8c.html#afb9117756e7a54f8ffcee98327b324c9',1,'pixel_to_grayscale(Uint32 pixel_color, SDL_PixelFormat *format, double *values, size_t i):&#160;loader.c'],['../img__loader_2loader_8h.html#ae4babe2df9c196d031b897a1b1d8cd0e',1,'pixel_to_grayscale(Uint32 pixel_color, SDL_PixelFormat *format, double *values, size_t i):&#160;loader.c']]],
-  ['preactivation_128',['preactivation',['../structnetwork__results__t.html#af7672c61fcb9cc66af09d166c98dfa0c',1,'network_results_t']]],
-  ['print_5fparam_129',['PRINT_PARAM',['../main_8c.html#ab84718f3a6e359bcc6615580caacd5d0',1,'main.c']]]
+  ['ocr_2dlezcollitade_0',['OCR-Lezcollitade',['../index.html',1,'']]],
+  ['on_5fimport_5ffile_5fset_1',['on_import_file_set',['../ui_8c.html#a72b7554953124830ac0f4d34bcdd49b9',1,'on_import_file_set(GtkFileChooserButton *f):&#160;ui.c'],['../ui_8h.html#a72b7554953124830ac0f4d34bcdd49b9',1,'on_import_file_set(GtkFileChooserButton *f):&#160;ui.c']]],
+  ['on_5fscrollbar_5fvalue_5fchanged_2',['on_scrollbar_value_changed',['../ui_8c.html#a4c64d462c2b927cd7c995158c49a55e2',1,'on_scrollbar_value_changed(GtkRange *r):&#160;ui.c'],['../ui_8h.html#a4c64d462c2b927cd7c995158c49a55e2',1,'on_scrollbar_value_changed(GtkRange *r):&#160;ui.c']]],
+  ['on_5fstart_3',['on_start',['../ui_8c.html#a343ab7db30564a92a2e4757d711a0cd5',1,'on_start(GtkWidget *w, gpointer data):&#160;ui.c'],['../ui_8h.html#a343ab7db30564a92a2e4757d711a0cd5',1,'on_start(GtkWidget *w, gpointer data):&#160;ui.c']]],
+  ['open_5fui_4',['open_ui',['../ui_8c.html#acc2b0b54bf0cf819bb23bd351bebfa06',1,'open_ui():&#160;ui.c'],['../ui_8h.html#acc2b0b54bf0cf819bb23bd351bebfa06',1,'open_ui():&#160;ui.c']]],
+  ['otsu_5',['otsu',['../color__removal_8c.html#a1dffa7e09981c4705e52c62f79ad57b1',1,'otsu(SDL_Surface *surface):&#160;color_removal.c'],['../color__removal_8h.html#a1dffa7e09981c4705e52c62f79ad57b1',1,'otsu(SDL_Surface *surface):&#160;color_removal.c']]],
+  ['output_5factivation_6',['OUTPUT_ACTIVATION',['../parser_8h.html#a630b5ac99a2e097fd65d3acc89e74c1b',1,'parser.h']]],
+  ['output_5fnetwork_7',['OUTPUT_NETWORK',['../parser_8h.html#a0bbb2b623b27fdae8210c686fbcfc698',1,'parser.h']]],
+  ['output_5fsize_8',['OUTPUT_SIZE',['../mnist_2loader_8c.html#a894874fce4252e840e2412fd1dbfa4ea',1,'loader.c']]],
+  ['outputs_9',['outputs',['../structnetwork__results__t.html#a5f69d90d162ba6b0796d55d4de7bc97d',1,'network_results_t']]]
 ];

@@ -13,8 +13,11 @@
 #define OUTPUT_ACTIVATION LENGTH + 1
 #define ACTIVATION OUTPUT_ACTIVATION + 1
 #define VERBOSE ACTIVATION + 1
+#define IMG_PATH VERBOSE + 1
+#define GRID_PATH IMG_PATH + 1
+#define CONVERT_PARAM GRID_PATH + 1
 
-#define TRAIN_PARAMETER_SIZE VERBOSE + 1
+#define TRAIN_PARAMETER_SIZE CONVERT_PARAM + 1
 
 /**
  *  \brief      A hash table of params.
@@ -39,8 +42,18 @@ params_t parse_train_params(int argc, char **argv);
  */
 params_t parse_test_params(int argc, char **argv);
 
+/**
+ *  \brief      Parses the convert params.
+ *  \fn         params_t parse_convert_params(int argc, char **argv)
+ *  \param argc The argument count.
+ *  \param argv The array of parameters.
+ *  \return     The params hash table.
+ */
+params_t parse_convert_params(int argc, char **argv);
+
 #define TRAIN_MODE 0
 #define TEST_MODE 1
+#define CONVERT_MODE 2
 
 /**
  *  \brief      Parses all the params.
