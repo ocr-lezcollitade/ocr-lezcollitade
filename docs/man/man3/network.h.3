@@ -1,4 +1,4 @@
-.TH "src/network/network.h" 3 "Fri Nov 11 2022" "OCR-Lezcollitade" \" -*- nroff -*-
+.TH "src/network/network.h" 3 "Tue Nov 22 2022" "OCR-Lezcollitade" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -135,17 +135,17 @@ The activation function type;\&.
 .PP
 
 .PP
-Definition at line 17 of file network\&.h\&.
+Definition at line \fB17\fP of file \fBnetwork\&.h\fP\&.
 .SS "typedef struct \fBnetwork_results_t\fP \fBnetwork_results_t\fP"
 
 .PP
-Definition at line 1 of file network\&.h\&.
+Definition at line \fB6\fP of file \fBnetwork\&.h\fP\&.
 .SH "Function Documentation"
 .PP 
 .SS "void compute_layer (\fBnetwork_results_t\fP * results, size_t layeri)"
 
 .PP
-Definition at line 57 of file network\&.c\&.
+Definition at line \fB57\fP of file \fBnetwork\&.c\fP\&.
 .PP
 .nf
 58 {
@@ -173,7 +173,7 @@ Definition at line 57 of file network\&.c\&.
 80     results->outputs[layeri + 1] = outputs;
 81 }
 .fi
-.SS "\fBmatrix_t\fP* compute_results (\fBmatrix_t\fP * values, \fBnetwork_t\fP * network)"
+.SS "\fBmatrix_t\fP * compute_results (\fBmatrix_t\fP * values, \fBnetwork_t\fP * network)"
 
 .PP
 Computes the result of the input by the network\&. 
@@ -192,7 +192,7 @@ The column vector of the computed results\&.
 .PP
 
 .PP
-Definition at line 83 of file network\&.c\&.
+Definition at line \fB83\fP of file \fBnetwork\&.c\fP\&.
 .PP
 .nf
 84 {
@@ -220,7 +220,7 @@ Computes the result while saving the result of each layers\&.
 .PP
 
 .PP
-Definition at line 95 of file network\&.c\&.
+Definition at line \fB95\fP of file \fBnetwork\&.c\fP\&.
 .PP
 .nf
 96 {
@@ -230,10 +230,10 @@ Definition at line 95 of file network\&.c\&.
 100     }
 101 }
 .fi
-.SS "\fBlayer_t\fP* layer_create (\fBneuron_t\fP ** neurons, size_t count, \fBlayer_activation_t\fP act)"
+.SS "\fBlayer_t\fP * layer_create (\fBneuron_t\fP ** neurons, size_t count, \fBlayer_activation_t\fP act)"
 
 .PP
-Definition at line 140 of file network\&.c\&.
+Definition at line \fB140\fP of file \fBnetwork\&.c\fP\&.
 .PP
 .nf
 141 {
@@ -247,10 +247,10 @@ Definition at line 140 of file network\&.c\&.
 149     return layer;
 150 }
 .fi
-.SS "\fBlayer_t\fP* layer_create_from_mat (\fBmatrix_t\fP ** weights, double * biases, size_t count, \fBlayer_activation_t\fP act)"
+.SS "\fBlayer_t\fP * layer_create_from_mat (\fBmatrix_t\fP ** weights, double * biases, size_t count, \fBlayer_activation_t\fP act)"
 
 .PP
-Definition at line 120 of file network\&.c\&.
+Definition at line \fB120\fP of file \fBnetwork\&.c\fP\&.
 .PP
 .nf
 122 {
@@ -283,7 +283,7 @@ Frees an allocated layer\&.
 .PP
 
 .PP
-Definition at line 152 of file network\&.c\&.
+Definition at line \fB152\fP of file \fBnetwork\&.c\fP\&.
 .PP
 .nf
 153 {
@@ -296,7 +296,7 @@ Definition at line 152 of file network\&.c\&.
 160     free(layer);
 161 }
 .fi
-.SS "\fBnetwork_t\fP* network_copy (\fBnetwork_t\fP * old)"
+.SS "\fBnetwork_t\fP * network_copy (\fBnetwork_t\fP * old)"
 
 .PP
 Create a deep copied network\&. 
@@ -313,7 +313,7 @@ The copied network\&.
 .PP
 
 .PP
-Definition at line 588 of file network\&.c\&.
+Definition at line \fB588\fP of file \fBnetwork\&.c\fP\&.
 .PP
 .nf
 589 {
@@ -328,7 +328,7 @@ Definition at line 588 of file network\&.c\&.
 598     return res;
 599 }
 .fi
-.SS "\fBnetwork_t\fP* network_create (\fBlayer_t\fP ** layers, size_t layer_count, size_t inputs)"
+.SS "\fBnetwork_t\fP * network_create (\fBlayer_t\fP ** layers, size_t layer_count, size_t inputs)"
 
 .PP
 Creates a network from an array of layers\&. 
@@ -349,7 +349,7 @@ The created network\&.
 .PP
 
 .PP
-Definition at line 163 of file network\&.c\&.
+Definition at line \fB163\fP of file \fBnetwork\&.c\fP\&.
 .PP
 .nf
 164 {
@@ -374,7 +374,7 @@ Frees the allocated network\&.
 .PP
 
 .PP
-Definition at line 174 of file network\&.c\&.
+Definition at line \fB174\fP of file \fBnetwork\&.c\fP\&.
 .PP
 .nf
 175 {
@@ -387,10 +387,10 @@ Definition at line 174 of file network\&.c\&.
 182     free(net);
 183 }
 .fi
-.SS "\fBnetwork_t\fP* network_generate (size_t * neurons, size_t size, \fBlayer_activation_t\fP hidden_activation, \fBlayer_activation_t\fP output_activation)"
+.SS "\fBnetwork_t\fP * network_generate (size_t * neurons, size_t size, \fBlayer_activation_t\fP hidden_activation, \fBlayer_activation_t\fP output_activation)"
 
 .PP
-Definition at line 541 of file network\&.c\&.
+Definition at line \fB541\fP of file \fBnetwork\&.c\fP\&.
 .PP
 .nf
 543 {
@@ -440,7 +440,7 @@ The calculated output or -1 if none above the threshold\&.
 .PP
 
 .PP
-Definition at line 715 of file network\&.c\&.
+Definition at line \fB715\fP of file \fBnetwork\&.c\fP\&.
 .PP
 .nf
 716 {
@@ -461,7 +461,7 @@ Definition at line 715 of file network\&.c\&.
 731     return result;
 732 }
 .fi
-.SS "\fBnetwork_t\fP* network_load (const char * file)"
+.SS "\fBnetwork_t\fP * network_load (const char * file)"
 
 .PP
 Loads the network from a file\&. 
@@ -478,7 +478,7 @@ The loaded network\&. The file format: The file will start with two comma-separa
 .PP
 
 .PP
-Definition at line 445 of file network\&.c\&.
+Definition at line \fB445\fP of file \fBnetwork\&.c\fP\&.
 .PP
 .nf
 446 {
@@ -555,7 +555,7 @@ Saves a network to a file\&.
 .PP
 
 .PP
-Definition at line 526 of file network\&.c\&.
+Definition at line \fB526\fP of file \fBnetwork\&.c\fP\&.
 .PP
 .nf
 527 {
@@ -575,7 +575,7 @@ Definition at line 526 of file network\&.c\&.
 .SS "void network_train (\fBnetwork_t\fP ** pnet, \fBmatrix_t\fP * inputs, \fBmatrix_t\fP * target, double rate)"
 
 .PP
-Definition at line 672 of file network\&.c\&.
+Definition at line \fB672\fP of file \fBnetwork\&.c\fP\&.
 .PP
 .nf
 674 {
@@ -619,7 +619,7 @@ Definition at line 672 of file network\&.c\&.
 712     *pnet = trained;
 713 }
 .fi
-.SS "\fBneuron_t\fP* neuron_create (\fBmatrix_t\fP * weights, double bias)"
+.SS "\fBneuron_t\fP * neuron_create (\fBmatrix_t\fP * weights, double bias)"
 
 .PP
 Creates a neuron\&. 
@@ -638,7 +638,7 @@ The instantiated neuron\&.
 .PP
 
 .PP
-Definition at line 103 of file network\&.c\&.
+Definition at line \fB103\fP of file \fBnetwork\&.c\fP\&.
 .PP
 .nf
 104 {
@@ -663,7 +663,7 @@ Frees the allocated neuron\&.
 .PP
 
 .PP
-Definition at line 114 of file network\&.c\&.
+Definition at line \fB114\fP of file \fBnetwork\&.c\fP\&.
 .PP
 .nf
 115 {
@@ -671,7 +671,7 @@ Definition at line 114 of file network\&.c\&.
 117     free(neuron);
 118 }
 .fi
-.SS "\fBnetwork_results_t\fP* results_create (size_t layer_count)"
+.SS "\fBnetwork_results_t\fP * results_create (size_t layer_count)"
 
 .PP
 Creates a network_results struct\&. 
@@ -688,7 +688,7 @@ The created structure\&.
 .PP
 
 .PP
-Definition at line 14 of file network\&.c\&.
+Definition at line \fB14\fP of file \fBnetwork\&.c\fP\&.
 .PP
 .nf
 15 {
@@ -727,7 +727,7 @@ Frees the network results struct\&.
 .PP
 
 .PP
-Definition at line 39 of file network\&.c\&.
+Definition at line \fB39\fP of file \fBnetwork\&.c\fP\&.
 .PP
 .nf
 40 {

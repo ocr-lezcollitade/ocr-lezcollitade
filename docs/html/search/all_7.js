@@ -1,8 +1,11 @@
 var searchData=
 [
-  ['import_47',['import',['../ui_8c.html#af2f2e23c2cf22d25c6bb0048b38fac29',1,'ui.c']]],
-  ['index_5frandom_48',['index_random',['../function_8c.html#a1422db7183b6193c878d7afb32cd60a6',1,'index_random(int count):&#160;function.c'],['../function_8h.html#a1422db7183b6193c878d7afb32cd60a6',1,'index_random(int count):&#160;function.c']]],
-  ['input_5fnetwork_49',['INPUT_NETWORK',['../parser_8h.html#a4615540bab23a39df3ebc40011f34b08',1,'parser.h']]],
-  ['inputs_50',['inputs',['../structnetwork__t.html#af7a2fbc049a0fd2d5ad14f218658ca83',1,'network_t']]],
-  ['iterations_51',['ITERATIONS',['../parser_8h.html#aa9cc087d076e4fa101f8794a947bd01a',1,'parser.h']]]
+  ['generate_0',['GENERATE',['../parser_8h.html#acf470cbbab24f2dfe963f889ba2231d1',1,'parser.h']]],
+  ['generate_5fweights_1',['generate_weights',['../function_8c.html#ae6d5ccd297429cb956c9a4deb3d5daa8',1,'generate_weights(double n):&#160;function.c'],['../function_8h.html#ae6d5ccd297429cb956c9a4deb3d5daa8',1,'generate_weights(double n):&#160;function.c']]],
+  ['get_5flayer_5factivation_2',['get_layer_activation',['../function_8c.html#ad931f594da43f54930f55a70a1370d5e',1,'get_layer_activation(const char *name):&#160;function.c'],['../function_8h.html#ad931f594da43f54930f55a70a1370d5e',1,'get_layer_activation(const char *name):&#160;function.c']]],
+  ['get_5frotation_3',['get_rotation',['../sudoku__split_8c.html#ac37320e6626d8b5cf2cc615fab636bbd',1,'get_rotation(SDL_Surface *surface):&#160;sudoku_split.c'],['../sudoku__split_8h.html#ae1d6c6b2b0e0105857ef1a2437cdecae',1,'get_rotation(SDL_Surface *surface):&#160;sudoku_split.c']]],
+  ['go_5fto_4',['go_to',['../ui_8c.html#aeba97b77fb5ea059633936a10f64764e',1,'go_to(GtkWidget *w, gpointer data):&#160;ui.c'],['../ui_8h.html#aeba97b77fb5ea059633936a10f64764e',1,'go_to(GtkWidget *w, gpointer data):&#160;ui.c']]],
+  ['grayscale_5fimage_5',['grayscale_image',['../color__removal_8c.html#ab62c3f28d31090512a554c66ce2044c7',1,'grayscale_image(char *path):&#160;color_removal.c'],['../color__removal_8h.html#ab62c3f28d31090512a554c66ce2044c7',1,'grayscale_image(char *path):&#160;color_removal.c']]],
+  ['grayscaled_5fimage_6',['grayscaled_image',['../ui_8c.html#a59823a8c08d88b084d9121d5ff9ae853',1,'ui.c']]],
+  ['grid_5fpath_7',['GRID_PATH',['../parser_8h.html#a60ce626734cc43687b449a02694af63e',1,'parser.h']]]
 ];

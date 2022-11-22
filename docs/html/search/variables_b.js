@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['preactivation_306',['preactivation',['../structnetwork__results__t.html#af7672c61fcb9cc66af09d166c98dfa0c',1,'network_results_t']]]
+  ['rotated_5fimage_0',['rotated_image',['../ui_8c.html#aed0e4cdbea82c678017dd5beeadbc5b1',1,'ui.c']]],
+  ['rotation_1',['rotation',['../ui_8c.html#a2b174cfb62c7f343a1ed1cda3a372e38',1,'ui.c']]],
+  ['rows_2',['rows',['../structmatrix__t.html#a9620f15b4416ec1830196db9ec904fc5',1,'matrix_t']]]
 ];

@@ -155,7 +155,11 @@ static void print_params(params_t params)
     PRINT_PARAM(params, RATE);
     PRINT_PARAM(params, ITERATIONS);
     PRINT_PARAM(params, START);
+    PRINT_PARAM(params, VERBOSE);
     PRINT_PARAM(params, LENGTH);
+    PRINT_PARAM(params, GRID_PATH);
+    PRINT_PARAM(params, IMG_PATH);
+    PRINT_PARAM(params, CONVERT_MODE);
 }
 
 static void show_results(
@@ -218,7 +222,6 @@ static void train_xor(params_t params)
 
     free(inputs);
     free(outputs);
-    free(params);
 }
 
 static void train(params_t params)
@@ -266,12 +269,10 @@ static void train(params_t params)
 
     free(inputs);
     free(outputs);
-    free(params);
 }
 
 static void test(params_t params)
 {
-
     network_t *net = get_train_network(params);
     matrix_t **inputs;
     matrix_t **outputs;
@@ -305,7 +306,36 @@ static void test(params_t params)
 
     free(inputs);
     free(outputs);
-    free(params);
+}
+
+static int get_convert_mode(params_t params)
+{
+
+    int res = -1;
+    char *mode = params[CONVERT_MODE];
+    if (mode != NULL)
+    {
+        if (strcmp(mode, "single") == 0)
+        {
+            res = 1;
+        }
+        else if (strcmp(mode, "multi") == 0)
+        {
+            res = 2;
+        }
+    }
+
+    if (res < 0)
+        errx(-1, "Invalid value for parameter --mode");
+
+    return res;
+}
+
+static void cli_convert(params_t params)
+{
+    int convert_mode = get_convert_mode(params);
+    convert(params[IMG_PATH], params[INPUT_NETWORK], params[GRID_PATH],
+        convert_mode);
 }
 
 int main(int argc, char **argv)
@@ -333,6 +363,11 @@ int main(int argc, char **argv)
     {
         test(params);
     }
+    else if (mode == CONVERT_MODE)
+    {
+        cli_convert(params);
+    }
+    free(params);
 
     return 0;
 }
