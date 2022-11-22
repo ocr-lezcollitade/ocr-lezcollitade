@@ -143,7 +143,7 @@ static void write_and_solve(int *sudoku, char *grid_path)
             fputs("\n", pfile);
     }
     fclose(pfile);
-    solve(gridfile);
+    solve(gridfile, 9);
     printf("Sucessfully solved the grid!\n");
     free(gridfile);
 }

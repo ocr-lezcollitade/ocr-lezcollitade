@@ -317,7 +317,7 @@ int main(int argc, char **argv)
     params_t params = parse_params(argc, argv, &mode);
     if (argc == 2)
     {
-        return solve(argv[1]);
+        return solve(argv[1], 16);
     }
     if (params == NULL)
     {
