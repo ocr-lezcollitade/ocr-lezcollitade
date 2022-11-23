@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['allchecks_0',['allChecks',['../solver_8c.html#a81c2adfdd6a0c92d4e6a77bbe646f9a3',1,'allChecks(int *grid, int DIM):&#160;solver.c'],['../solver_8h.html#a81c2adfdd6a0c92d4e6a77bbe646f9a3',1,'allChecks(int *grid, int DIM):&#160;solver.c']]]
+  ['allchecks_203',['allChecks',['../solver_8c.html#a29dce49f6d53b86d3bd65a83528fe33d',1,'allChecks(int grid[9][9]):&#160;solver.c'],['../solver_8h.html#a29dce49f6d53b86d3bd65a83528fe33d',1,'allChecks(int grid[9][9]):&#160;solver.c']]]
 ];

@@ -1,23 +1,13 @@
 var searchData=
 [
-  ['name_0',['name',['../structlayer__activation__t.html#a2328c127583eb502c56241a25aa1e8a6',1,'layer_activation_t']]],
-  ['nb_5fm1_5fand_5f1_1',['nb_m1_and_1',['../function_8c.html#ae26b6248510ebcfc65f48a62e8b01ba1',1,'nb_m1_and_1():&#160;function.c'],['../function_8h.html#ae26b6248510ebcfc65f48a62e8b01ba1',1,'nb_m1_and_1():&#160;function.c']]],
-  ['network_2',['network',['../structnetwork__results__t.html#a81f6c9388535caf11d916c99da211ed6',1,'network_results_t']]],
-  ['network_2ec_3',['network.c',['../network_8c.html',1,'']]],
-  ['network_2eh_4',['network.h',['../network_8h.html',1,'']]],
-  ['network_5fcopy_5',['network_copy',['../network_8c.html#abef62369a77da828529fbf193f111ef7',1,'network_copy(network_t *old):&#160;network.c'],['../network_8h.html#abef62369a77da828529fbf193f111ef7',1,'network_copy(network_t *old):&#160;network.c']]],
-  ['network_5fcreate_6',['network_create',['../network_8c.html#ad7ec187320facb456542975fd39de56e',1,'network_create(layer_t **layers, size_t layer_count, size_t inputs):&#160;network.c'],['../network_8h.html#ad7ec187320facb456542975fd39de56e',1,'network_create(layer_t **layers, size_t layer_count, size_t inputs):&#160;network.c']]],
-  ['network_5ffree_7',['network_free',['../network_8h.html#a409a0ece3c34a9afeaafecddf73a3e1a',1,'network_free(network_t *network):&#160;network.c'],['../network_8c.html#ab7de60cd0ad5a69e135b63d264018d1a',1,'network_free(network_t *net):&#160;network.c']]],
-  ['network_5fgenerate_8',['network_generate',['../network_8h.html#a4cde5bd336c7baa291bef5ddce33c600',1,'network_generate(size_t *neurons, size_t size, layer_activation_t hidden_activation, layer_activation_t output_activation):&#160;network.c'],['../network_8c.html#a19ab096206389ecd67d346b1a0474fc3',1,'network_generate(size_t *neuron_count, size_t size, layer_activation_t hidden_activation, layer_activation_t output_activation):&#160;network.c']]],
-  ['network_5fget_5foutput_9',['network_get_output',['../network_8c.html#a338eaca7b062c45c2ddf651ec7bfb5ab',1,'network_get_output(matrix_t *outputs, double threshold):&#160;network.c'],['../network_8h.html#a338eaca7b062c45c2ddf651ec7bfb5ab',1,'network_get_output(matrix_t *outputs, double threshold):&#160;network.c']]],
-  ['network_5fload_10',['network_load',['../network_8c.html#a71f0aa4f7efea3ff158a49342228bb80',1,'network_load(const char *path):&#160;network.c'],['../network_8h.html#a7b66b0f05d89a6c97711273d511444e4',1,'network_load(const char *file):&#160;network.c']]],
-  ['network_5fresults_5ft_11',['network_results_t',['../network_8h.html#a29ea24923365457767acb838f3e1f5af',1,'network_results_t():&#160;network.h'],['../structnetwork__results__t.html',1,'network_results_t']]],
-  ['network_5fsave_12',['network_save',['../network_8c.html#aee995127aad46272ae3ddc5dfef07edc',1,'network_save(const char *path, network_t *net):&#160;network.c'],['../network_8h.html#acd7231053a980eb6e53011a63601389f',1,'network_save(const char *file, network_t *network):&#160;network.c']]],
-  ['network_5ft_13',['network_t',['../structnetwork__t.html',1,'']]],
-  ['network_5ftrain_14',['network_train',['../network_8c.html#ac99789abdffa9915778914a50c1b4514',1,'network_train(network_t **pnet, matrix_t *inputs, matrix_t *target, double rate):&#160;network.c'],['../network_8h.html#ac99789abdffa9915778914a50c1b4514',1,'network_train(network_t **pnet, matrix_t *inputs, matrix_t *target, double rate):&#160;network.c']]],
-  ['neuron_5fcreate_15',['neuron_create',['../network_8c.html#aa706a2634d39e1b59182ab9a9403931c',1,'neuron_create(matrix_t *weights, double bias):&#160;network.c'],['../network_8h.html#aa706a2634d39e1b59182ab9a9403931c',1,'neuron_create(matrix_t *weights, double bias):&#160;network.c']]],
-  ['neuron_5ffree_16',['neuron_free',['../network_8c.html#a634adde351458c2e8f8825c1816eeb43',1,'neuron_free(neuron_t *neuron):&#160;network.c'],['../network_8h.html#a634adde351458c2e8f8825c1816eeb43',1,'neuron_free(neuron_t *neuron):&#160;network.c']]],
-  ['neuron_5ft_17',['neuron_t',['../structneuron__t.html',1,'']]],
-  ['neurons_18',['neurons',['../structlayer__t.html#a71e4f1a74c73f54b7ff2c40dc88c795e',1,'layer_t']]],
-  ['normal_19',['normal',['../function_8c.html#a5530f7da19de2bf4e3ab4b717824472c',1,'normal(double z):&#160;function.c'],['../function_8h.html#a5530f7da19de2bf4e3ab4b717824472c',1,'normal(double z):&#160;function.c']]]
+  ['ocr_2dlezcollitade_111',['OCR-Lezcollitade',['../index.html',1,'']]],
+  ['on_5fimport_5ffile_5fset_112',['on_import_file_set',['../ui_8c.html#a72b7554953124830ac0f4d34bcdd49b9',1,'on_import_file_set(GtkFileChooserButton *f):&#160;ui.c'],['../ui_8h.html#a72b7554953124830ac0f4d34bcdd49b9',1,'on_import_file_set(GtkFileChooserButton *f):&#160;ui.c']]],
+  ['on_5fscrollbar_5fvalue_5fchanged_113',['on_scrollbar_value_changed',['../ui_8c.html#a4c64d462c2b927cd7c995158c49a55e2',1,'on_scrollbar_value_changed(GtkRange *r):&#160;ui.c'],['../ui_8h.html#a4c64d462c2b927cd7c995158c49a55e2',1,'on_scrollbar_value_changed(GtkRange *r):&#160;ui.c']]],
+  ['on_5fstart_114',['on_start',['../ui_8c.html#a343ab7db30564a92a2e4757d711a0cd5',1,'on_start(GtkWidget *w, gpointer data):&#160;ui.c'],['../ui_8h.html#a343ab7db30564a92a2e4757d711a0cd5',1,'on_start(GtkWidget *w, gpointer data):&#160;ui.c']]],
+  ['open_5fui_115',['open_ui',['../ui_8c.html#acc2b0b54bf0cf819bb23bd351bebfa06',1,'open_ui():&#160;ui.c'],['../ui_8h.html#acc2b0b54bf0cf819bb23bd351bebfa06',1,'open_ui():&#160;ui.c']]],
+  ['otsu_116',['otsu',['../color__removal_8c.html#a1dffa7e09981c4705e52c62f79ad57b1',1,'otsu(SDL_Surface *surface):&#160;color_removal.c'],['../color__removal_8h.html#a1dffa7e09981c4705e52c62f79ad57b1',1,'otsu(SDL_Surface *surface):&#160;color_removal.c']]],
+  ['output_5factivation_117',['OUTPUT_ACTIVATION',['../parser_8h.html#a630b5ac99a2e097fd65d3acc89e74c1b',1,'parser.h']]],
+  ['output_5fnetwork_118',['OUTPUT_NETWORK',['../parser_8h.html#a0bbb2b623b27fdae8210c686fbcfc698',1,'parser.h']]],
+  ['output_5fsize_119',['OUTPUT_SIZE',['../mnist_2loader_8c.html#a894874fce4252e840e2412fd1dbfa4ea',1,'loader.c']]],
+  ['outputs_120',['outputs',['../structnetwork__results__t.html#a5f69d90d162ba6b0796d55d4de7bc97d',1,'network_results_t']]]
 ];
