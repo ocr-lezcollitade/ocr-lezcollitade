@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['full_5fbinary_0',['full_binary',['../color__removal_8c.html#ad2036f82dc05e3badfef30c72a6e52b2',1,'full_binary(SDL_Surface *surface):&#160;color_removal.c'],['../color__removal_8h.html#ad2036f82dc05e3badfef30c72a6e52b2',1,'full_binary(SDL_Surface *surface):&#160;color_removal.c']]]
+  ['index_5frandom_222',['index_random',['../function_8c.html#a1422db7183b6193c878d7afb32cd60a6',1,'index_random(int count):&#160;function.c'],['../function_8h.html#a1422db7183b6193c878d7afb32cd60a6',1,'index_random(int count):&#160;function.c']]]
 ];

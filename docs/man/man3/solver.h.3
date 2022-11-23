@@ -1,4 +1,4 @@
-.TH "src/solver/solver.h" 3 "Tue Nov 22 2022" "OCR-Lezcollitade" \" -*- nroff -*-
+.TH "src/solver/solver.h" 3 "Fri Nov 11 2022" "OCR-Lezcollitade" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -10,320 +10,373 @@ src/solver/solver.h
 
 .in +1c
 .ti -1c
-.RI "int \fBcheckRow\fP (int *grid, int DIM)"
+.RI "int \fBcheckRow\fP (int grid[9][9])"
 .br
+.RI "Checks if all the rows are valid\&. "
 .ti -1c
-.RI "int \fBcheckCol\fP (int *grid, int DIM)"
+.RI "int \fBcheckCol\fP (int grid[9][9])"
 .br
+.RI "Checks if all the columns are valid\&. "
 .ti -1c
-.RI "int \fBcheckSquare\fP (int *grid, int DIM)"
+.RI "int \fBcheckSquare\fP (int grid[9][9])"
 .br
+.RI "Checks if all the squares are valid\&. "
 .ti -1c
-.RI "int \fBallChecks\fP (int *grid, int DIM)"
+.RI "int \fBallChecks\fP (int grid[9][9])"
 .br
+.RI "Checks if all the rows, columns and squares are valid\&. "
 .ti -1c
-.RI "int \fBwin\fP (int *grid, int DIM)"
+.RI "int \fBwin\fP (int grid[9][9])"
 .br
+.RI "Checks if all the cases have a number and all the rows, columns and squares are valid represting the sudoku\&. "
 .ti -1c
-.RI "int \fBsolve\fP (char *inputFile, int DIM)"
+.RI "int \fBsolve\fP (char *inputFile)"
 .br
+.RI "read a sudoku grid from a file, solve it and write the solution in another file in '\&.result' the name og the input file "
 .in -1c
 .SH "Function Documentation"
 .PP 
-.SS "int allChecks (int * grid, int DIM)"
+.SS "int allChecks (int grid[9][9])"
 
 .PP
-Definition at line \fB87\fP of file \fBsolver\&.c\fP\&.
+Checks if all the rows, columns and squares are valid\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgrid\fP 2-d array represting the sudoku 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+1 if all the rows, columns and squares are valid 0 otherwise 
+.RE
+.PP
+
+.PP
+Definition at line 72 of file solver\&.c\&.
 .PP
 .nf
-88 {
-89     return checkSquare(grid, DIM) + checkCol(grid, DIM) + checkRow(grid, DIM)
-90            == 3;
-91 }
+73 {
+74     return checkSquare(grid) + checkCol(grid) + checkRow(grid) == 3;
+75 }
 .fi
-.SS "int checkCol (int * grid, int DIM)"
+.SS "int checkCol (int grid[9][9])"
 
 .PP
-Definition at line \fB35\fP of file \fBsolver\&.c\fP\&.
+Checks if all the columns are valid\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgrid\fP 2-d array represting the sudoku 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+1 if all the columns are valid 0 otherwise 
+.RE
+.PP
+
+.PP
+Definition at line 30 of file solver\&.c\&.
 .PP
 .nf
-36 {
-37     for (int i = 0; i < DIM; i++)
-38     {
-39         int *histo = calloc(DIM + 1, sizeof(int));
-40         for (int j = 0; j < DIM; j++)
-41         {
-42             histo[grid[j * DIM + i]]++;
+31 {
+32     for (int i = 0; i < 9; i++)
+33     {
+34         int histo[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+35         for (int j = 0; j < 9; j++)
+36         {
+37             histo[grid[j][i]]++;
+38         }
+39         for (int k = 1; k < 10; k++)
+40         {
+41             if (histo[k] > 1)
+42                 return 0;
 43         }
-44         for (int k = 1; k < DIM + 1; k++)
-45         {
-46             if (histo[k] > 1)
-47             {
-48                 free(histo);
-49                 return 0;
-50             }
-51         }
-52         free(histo);
-53     }
-54     return 1;
-55 }
+44     }
+45     return 1;
+46 }
 .fi
-.SS "int checkRow (int * grid, int DIM)"
+.SS "int checkRow (int grid[9][9])"
 
 .PP
-Definition at line \fB13\fP of file \fBsolver\&.c\fP\&.
+Checks if all the rows are valid\&. 
 .PP
-.nf
-14 {
-15     for (int i = 0; i < DIM; i++)
-16     {
-17         int *histo = calloc(DIM + 1, sizeof(int));
-18         for (int j = 0; j < DIM; j++)
-19         {
-20             histo[grid[i * DIM + j]]++;
-21         }
-22         for (int k = 1; k < DIM + 1; k++)
-23         {
-24             if (histo[k] > 1)
-25             {
-26                 free(histo);
-27                 return 0;
-28             }
-29         }
-30         free(histo);
-31     }
-32     return 1;
-33 }
-.fi
-.SS "int checkSquare (int * grid, int DIM)"
+\fBParameters\fP
+.RS 4
+\fIgrid\fP 2-d array represting the sudoku 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+1 if the rows are valids 0 otherwise 
+.RE
+.PP
 
 .PP
-Definition at line \fB57\fP of file \fBsolver\&.c\fP\&.
+Definition at line 12 of file solver\&.c\&.
 .PP
 .nf
-58 {
-59     int sqDIM = sqrt(DIM);
-60     for (int a = 0; a < DIM / sqDIM; a++)
-61     {
-62         for (int b = 0; b < DIM / sqDIM; b++)
-63         {
-64             int *histo = calloc(DIM + 1, sizeof(int));
-65             for (int i = 0; i < DIM / sqDIM; i++)
-66             {
-67                 for (int j = 0; j < DIM / sqDIM; j++)
-68                 {
-69                     histo[grid[(a * DIM / sqDIM + i) * DIM
-70                                + (b * DIM / sqDIM + j)]]++;
-71                 }
-72                 for (int k = 1; k < DIM + 1; k++)
-73                 {
-74                     if (histo[k] > 1)
-75                     {
-76                         free(histo);
-77                         return 0;
-78                     }
-79                 }
-80             }
-81             free(histo);
-82         }
-83     }
-84     return 1;
-85 }
+13 {
+14     for (int i = 0; i < 9; i++)
+15     {
+16         int histo[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+17         for (int j = 0; j < 9; j++)
+18         {
+19             histo[grid[i][j]]++;
+20         }
+21         for (int k = 1; k < 10; k++)
+22         {
+23             if (histo[k] > 1)
+24                 return 0;
+25         }
+26     }
+27     return 1;
+28 }
 .fi
-.SS "int solve (char * inputFile, int DIM)"
+.SS "int checkSquare (int grid[9][9])"
 
 .PP
-Definition at line \fB107\fP of file \fBsolver\&.c\fP\&.
+Checks if all the squares are valid\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgrid\fP 2-d array represting the sudoku 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+1 if all the squares are valid 0 otherwise 
+.RE
+.PP
+
+.PP
+Definition at line 48 of file solver\&.c\&.
 .PP
 .nf
-108 {
-109     if (DIM > 25
-110         || (DIM != 1 && DIM != 4 && DIM != 9 && DIM != 16 && DIM != 25))
-111     {
-112         printf("Dimension shouls be <= 25 and its square root should be an "
-113                "integer");
-114         return 1;
-115     }
-116 
-117     FILE *fpointer = fopen(inputFile, "r");
-118     char line[2 * DIM];
-119 
-120     int *grid = calloc(sizeof(int), DIM * DIM);
-121     int i = 0;
-122 
-123     while (fgets(line, 2 * DIM, fpointer))
-124     {
-125 
-126         size_t k = 0, pk = 0;
-127         while (line[pk] != '\n')
-128         {
-129 
-130             if (line[pk] != ' ')
-131             {
-132                 if (line[pk] >= '1' && line[pk] <= '9')
-133                     grid[i * DIM + k] = line[pk] - 48;
-134                 else if (line[pk] >= 'A' && line[pk] <= 'Z')
-135                     grid[i * DIM + k] = line[pk] - 55;
-136                 else if (line[pk] != '\&.')
-137                 {
-138                     printf("Unknown charater %c\n", line[pk]);
-139                     return 1;
-140                 }
-141                 k++;
-142             }
-143             pk++;
-144         }
-145         if (pk > 0)
-146             i++;
-147     }
-148 
-149     fclose(fpointer);
-150 
-151     // Debug
-152 
-153     /*
-154     for(int i=0;i<DIM;i++){
-155         for(int j=0;j<DIM;j++){
-156         printf("%d\&.",grid[i][j]);
-157         }
-158         printf("\n");
-159     }
-160     //    printf("CheckRow : %d\n",checkRow(grid));
-161     //    printf("CheckCol : %d\n",checkCol(grid));
-162     //    printf("CheckSquare : %d\n",checkSquare(grid));
-163 
-164     */
-165 
-166     // Si mauvaise grille
-167 
-168     if (!checkCol(grid, DIM) || !checkRow(grid, DIM)
-169         || !checkSquare(grid, DIM))
-170     {
-171         printf("Erreur dans grille d'entrée\n");
-172         return 1;
-173     }
-174 
-175     // On defini les case vides
-176 
-177     int nbEmpty = 0;
-178     struct Cell empty[DIM * DIM];
+49 {
+50     for (int a = 0; a < 9 / 3; a++)
+51     {
+52         for (int b = 0; b < 9 / 3; b++)
+53         {
+54             int histo[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+55             for (int i = 0; i < 9 / 3; i++)
+56             {
+57                 for (int j = 0; j < 9 / 3; j++)
+58                 {
+59                     histo[grid[a * 9 / 3 + i][b * 9 / 3 + j]]++;
+60                 }
+61                 for (int k = 1; k < 10; k++)
+62                 {
+63                     if (histo[k] > 1)
+64                         return 0;
+65                 }
+66             }
+67         }
+68     }
+69     return 1;
+70 }
+.fi
+.SS "int solve (char * inputFile)"
+
+.PP
+read a sudoku grid from a file, solve it and write the solution in another file in '\&.result' the name og the input file 
+.PP
+\fBReturns\fP
+.RS 4
+0 if the grid is solvable, 0 otherwise 
+.RE
+.PP
+
+.PP
+Definition at line 90 of file solver\&.c\&.
+.PP
+.nf
+91 {
+92 
+93     FILE *fpointer = fopen(inputFile, "r");
+94     char line[15];
+95 
+96     int grid[9][9];
+97     int i = 0;
+98     int delta = 0;
+99 
+100     for (int i = 0; i < 9; i++)
+101     {
+102         for (int j = 0; j < 9; j++)
+103         {
+104             grid[i][j] = 0;
+105         }
+106     }
+107 
+108     while (fgets(line, 15, fpointer))
+109     {
+110         if (i != 3 && i != 7)
+111         {
+112             for (int j = 0; j < 3; j++)
+113             {
+114                 if (line[j] >= '0' && line[j] <= '9')
+115                     grid[i - delta][j] = line[j] - 48;
+116             }
+117             for (int j = 4; j < 7; j++)
+118             {
+119                 if (line[j] >= '0' && line[j] <= '9')
+120                     grid[i - delta][j - 1] = line[j] - 48;
+121             }
+122             for (int j = 8; j < 11; j++)
+123             {
+124                 if (line[j] >= '0' && line[j] <= '9')
+125                     grid[i - delta][j - 2] = line[j] - 48;
+126             }
+127         }
+128         else if (i == 3)
+129             delta = 1;
+130         else if (i == 7)
+131             delta = 2;
+132         i++;
+133     }
+134 
+135     fclose(fpointer);
+136 
+137     // Debug
+138 
+139     /*for(int i=0;i<9;i++){
+140         for(int j=0;j<9;j++){
+141         printf("%d",grid[i][j]);
+142         }
+143         printf("\n");
+144     }
+145 
+146     //    printf("CheckRow : %d\n",checkRow(grid));
+147     //    printf("CheckCol : %d\n",checkCol(grid));
+148     //    printf("CheckSquare : %d\n",checkSquare(grid));
+149 
+150     */
+151 
+152     // Si mauvaise grille
+153 
+154     if (!checkCol(grid) || !checkRow(grid) || !checkSquare(grid))
+155     {
+156         printf("Erreur dans grille d'entrée\n");
+157         return 1;
+158     }
+159 
+160     // On defini les case vides
+161 
+162     int nbEmpty = 0;
+163     struct Cell empty[81];
+164 
+165     for (int i = 0; i < 9; i++)
+166     {
+167         for (int j = 0; j < 9; j++)
+168         {
+169             if (grid[i][j] == 0)
+170             {
+171                 struct Cell c;
+172                 c\&.x = i;
+173                 c\&.y = j;
+174                 empty[nbEmpty] = c;
+175                 nbEmpty++;
+176             }
+177         }
+178     }
 179 
-180     for (int i = 0; i < DIM; i++)
-181     {
-182         for (int j = 0; j < DIM; j++)
-183         {
-184             if (grid[i * DIM + j] == 0)
-185             {
-186                 struct Cell c;
-187                 c\&.x = i;
-188                 c\&.y = j;
-189                 empty[nbEmpty] = c;
-190                 nbEmpty++;
-191             }
+180     // Debut de la boucle principale
+181 
+182     int index = 0;
+183 
+184     while (index < nbEmpty && index >= 0)
+185     {
+186         struct Cell curr = empty[index];
+187         if (grid[curr\&.x][curr\&.y] < 9)
+188         {
+189             grid[curr\&.x][curr\&.y]++;
+190             if (allChecks(grid))
+191                 index++;
 192         }
-193     }
-194 
-195     // Debut de la boucle principale
-196 
-197     int index = 0;
-198 
-199     while (index < nbEmpty && index >= 0)
-200     {
-201         struct Cell curr = empty[index];
-202         if (grid[curr\&.x * DIM + curr\&.y] < DIM)
-203         {
-204             grid[curr\&.x * DIM + curr\&.y]++;
-205             if (allChecks(grid, DIM))
-206                 index++;
-207         }
-208         else
-209         {
-210             grid[curr\&.x * DIM + curr\&.y] = 0;
-211             index--;
-212         }
-213     }
-214 
-215     if (index < 0)
-216     {
-217         printf("Pas résolvable :(\n");
-218         return 0;
-219     }
+193         else
+194         {
+195             grid[curr\&.x][curr\&.y] = 0;
+196             index--;
+197         }
+198     }
+199 
+200     if (index < 0)
+201     {
+202         printf("Pas résolvable :(\n");
+203         return 0;
+204     }
+205 
+206     if (win(grid))
+207     {
+208         /*printf("Voici la solution\n");
+209         for(int i=0;i<9;i++){
+210             for(int j=0;j<9;j++){
+211                 printf("%d",grid[i][j]);
+212             }
+213             printf("\n");
+214         }*/
+215 
+216         // On ecrit dans un nouveau file
+217         char outputExt[] = "\&.result";
+218         strcat(inputFile, outputExt);
+219         FILE *pfile = fopen(inputFile, "w");
 220 
-221     if (win(grid, DIM))
-222     {
-223         /*
-224         printf("Voici la solution\n");
-225         for(int i=0;i<DIM;i++){
-226             for(int j=0;j<DIM;j++){
-227                 printf("%d\&.",grid[i][j]);
-228             }
-229             printf("\n");
-230         }*/
-231 
-232         // On ecrit dans un nouveau file
-233         char outputExt[] = "\&.result";
-234         strcat(inputFile, outputExt);
-235         FILE *pfile = fopen(inputFile, "w");
-236 
-237         char ligne[2 * DIM];
-238 
-239         size_t mod = sqrt(DIM);
-240 
-241         for (int i = 0; i < DIM; i++)
-242         {
-243             if (i > 0 && i % mod == 0)
-244                 fputs("\n", pfile);
-245 
-246             size_t pl = 0;
-247             for (int j = 0; j < DIM; j++)
-248             {
-249                 if (j > 0 && j % mod == 0)
-250                 {
-251                     ligne[pl] = ' ';
-252                     pl++;
-253                 }
-254 
-255                 if (grid[i * DIM + j] < 10)
-256                 {
-257                     ligne[pl] = grid[i * DIM + j] + 48;
-258                     pl++;
-259                 }
-260                 else
-261                 {
-262                     ligne[pl] = grid[i * DIM + j] + 55;
-263                     pl++;
-264                 }
-265             }
-266             ligne[pl] = '\0';
-267             fputs(ligne, pfile);
-268             fputs("\n", pfile);
-269         }
-270         fclose(pfile);
-271     }
-272 
-273     free(grid);
-274 
-275     return 0;
-276 }
+221         char ligne[12];
+222         ;
+223         for (int i = 0; i < 9; i++)
+224         {
+225             int d = 0;
+226             for (int j = 0; j < 9; j++)
+227             {
+228                 ligne[j + d] = grid[i][j] + 48;
+229                 if (j == 2 || j == 5)
+230                 {
+231                     d++;
+232                     ligne[j + d] = ' ';
+233                 }
+234             }
+235             ligne[11] = '\0';
+236             // for(int k=0;k<12;k++) printf("%c",ligne[k]);
+237             // printf("fin\n");
+238             fputs(ligne, pfile);
+239             // char test[3] = {i+48,'\n','\0'};
+240             fputs("\n", pfile);
+241             if (i == 2 || i == 5)
+242                 fputs("\n", pfile);
+243             // free(ligne);
+244         }
+245         fclose(pfile);
+246     }
+247     return 0;
+248 }
 .fi
-.SS "int win (int * grid, int DIM)"
+.SS "int win (int grid[9][9])"
 
 .PP
-Definition at line \fB93\fP of file \fBsolver\&.c\fP\&.
+Checks if all the cases have a number and all the rows, columns and squares are valid represting the sudoku\&. 
+.PP
+\fBReturns\fP
+.RS 4
+1 if all the cases have a number and all the rows, columns and squares are valid 0 otherwise 
+.RE
+.PP
+
+.PP
+Definition at line 77 of file solver\&.c\&.
 .PP
 .nf
-94 {
-95     for (int i = 0; i < DIM; i++)
-96     {
-97         for (int j = 0; j < DIM; j++)
-98         {
-99             if (grid[i * DIM + j] == 0)
-100                 return 0;
-101         }
-102     }
-103     return checkSquare(grid, DIM) + checkCol(grid, DIM) + checkRow(grid, DIM)
-104            == 3;
-105 }
+78 {
+79     for (int i = 0; i < 9; i++)
+80     {
+81         for (int j = 0; j < 9; j++)
+82         {
+83             if (grid[i][j] == 0)
+84                 return 0;
+85         }
+86     }
+87     return checkSquare(grid) + checkCol(grid) + checkRow(grid) == 3;
+88 }
 .fi
 .SH "Author"
 .PP 

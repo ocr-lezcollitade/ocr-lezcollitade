@@ -192,44 +192,128 @@ static int crop(SDL_Surface *b_w, SDL_Surface **output_p)
     return 0;
 }
 
-static void remove_border(SDL_Surface *surface)
+static int check_square(
+    SDL_Surface *surface, size_t x1, size_t x2, size_t y1, size_t y2)
 {
-    size_t w = (size_t)surface->w;
-    size_t h = (size_t)surface->h;
-    size_t pixel_del_w = (size_t)round(0.2 * w);
-    size_t pixel_del_h = (size_t)round(0.2 * h);
+    size_t w = surface->w;
+
+    int res = 0;
 
     SDL_PixelFormat *format = surface->format;
     Uint32 *pixels = surface->pixels;
 
-    for (size_t j = 0; j < pixel_del_h; j++)
+    for (size_t i = x1; i < x2; i++)
+    {
+        Uint8 r, g, b;
+        SDL_GetRGB(pixels[y1 * w + i], format, &r, &g, &b);
+        if (r + g + b == 765)
+            res++;
+        SDL_GetRGB(pixels[y2 * w + i], format, &r, &g, &b);
+        if (r + g + b == 765)
+            res++;
+    }
+    for (size_t j = y1; j < y2; j++)
+    {
+        Uint8 r, g, b;
+        SDL_GetRGB(pixels[j * w + x1], format, &r, &g, &b);
+        if (r + g + b == 765)
+            res++;
+        SDL_GetRGB(pixels[j * w + x2], format, &r, &g, &b);
+        if (r + g + b == 765)
+            res++;
+    }
+    return res;
+}
+
+static void remove_border(
+    SDL_Surface *surface, size_t x1, size_t x2, size_t y1, size_t y2)
+{
+    size_t w = surface->w;
+    size_t h = surface->h;
+
+    SDL_PixelFormat *format = surface->format;
+    Uint32 *pixels = surface->pixels;
+
+    for (size_t j = 0; j < y1; j++)
         for (size_t i = 0; i < w; i++)
             pixels[j * w + i] = SDL_MapRGB(format, 0, 0, 0);
 
-    for (size_t j = h - pixel_del_h; j < h; j++)
+    for (size_t j = y2; j < h; j++)
         for (size_t i = 0; i < w; i++)
             pixels[j * w + i] = SDL_MapRGB(format, 0, 0, 0);
 
     for (size_t j = 0; j < h; j++)
-        for (size_t i = 0; i < pixel_del_w; i++)
+        for (size_t i = 0; i < x1; i++)
             pixels[j * w + i] = SDL_MapRGB(format, 0, 0, 0);
 
     for (size_t j = 0; j < h; j++)
-        for (size_t i = w - pixel_del_w; i < w; i++)
+        for (size_t i = x2; i < w; i++)
             pixels[j * w + i] = SDL_MapRGB(format, 0, 0, 0);
 }
 
-static void average(size_t i, size_t j, double ratio_h, double ratio_w,
-    size_t w, SDL_PixelFormat *format, Uint32 *pixels, int *avr, int *avg,
-    int *avb)
+static void clean_border(SDL_Surface *surface, SDL_Surface *gray)
 {
+    size_t w = surface->w;
+    size_t h = surface->h;
+
+    size_t x1 = w / 2 - 1, x2 = w / 2 + 1, y1 = h / 2 - 1, y2 = h / 2 + 1;
+
+    while (check_square(surface, x1, x2, y1, y2) == 0
+           && !(x1 == 0 && x2 == w - 1 && y1 == 0 && y2 == h - 1))
+    {
+        if (x1 > 0)
+            x1 -= 1;
+        if (x2 < w - 1)
+            x2 += 1;
+        if (y1 > 0)
+            y1 -= 1;
+        if (y2 < h - 1)
+            y2 += 1;
+    }
+
+    if ((x2 - x1) * (y2 - y1) < (w * h) / 2)
+    {
+        while (check_square(surface, x1, x2, y1, y2) != 0
+               && !(x1 == 0 && x2 == w - 1 && y1 == 0 && y2 == h - 1))
+        {
+            if (x1 > 0)
+                x1 -= 1;
+            if (x2 < w - 1)
+                x2 += 1;
+            if (y1 > 0)
+                y1 -= 1;
+            if (y2 < h - 1)
+                y2 += 1;
+        }
+
+        remove_border(surface, x1, x2, y1, y2);
+        remove_border(gray, x1, x2, y1, y2);
+    }
+    else
+    {
+        remove_border(surface, w / 2, w / 2 + 1, h / 2, h / 2 + 1);
+        remove_border(gray, w / 2, w / 2 + 1, h / 2, h / 2 + 1);
+    }
+}
+
+static void average(size_t i, size_t j, double ratio_h, double ratio_w,
+    size_t w, SDL_Surface *surface, int *avr, int *avg, int *avb)
+{
+    SDL_PixelFormat *format = surface->format;
+    Uint32 *pixels = surface->pixels;
+
     *avr = 0;
     *avg = 0;
     *avb = 0;
     size_t count = 0;
     for (size_t x = 0; x < (size_t)ratio_w; x++)
+    {
+        if ((i + x) * ratio_w >= surface->w)
+            continue;
         for (size_t y = 0; y < (size_t)ratio_h; y++)
         {
+            if ((j + y) * ratio_h >= surface->h)
+                continue;
             Uint8 r, g, b;
             SDL_GetRGB(pixels[(size_t)((j + y) * ratio_h) * w
                               + (size_t)((i + x) * ratio_w)],
@@ -239,6 +323,7 @@ static void average(size_t i, size_t j, double ratio_h, double ratio_w,
             *avb += b;
             count++;
         }
+    }
     *avr = floor(*avr / count);
     *avg = floor(*avg / count);
     *avb = floor(*avb / count);
@@ -251,10 +336,8 @@ void scale_down(
     SDL_Surface *output
         = SDL_CreateRGBSurface(0, (int)new_w, (int)new_h, 32, 0, 0, 0, 0);
 
-    SDL_PixelFormat *format = surface->format;
     SDL_PixelFormat *format_output = output->format;
 
-    Uint32 *pixels = surface->pixels;
     Uint32 *pixels_output = output->pixels;
 
     double ratio_h = ((double)h / new_h);
@@ -264,7 +347,7 @@ void scale_down(
         for (size_t i = 0; i < new_w; i++)
         {
             int r, g, b;
-            average(i, j, ratio_h, ratio_w, w, format, pixels, &r, &g, &b);
+            average(i, j, ratio_h, ratio_w, w, surface, &r, &g, &b);
             pixels_output[j * new_w + i] = SDL_MapRGB(format_output, r, g, b);
         }
 
@@ -360,8 +443,7 @@ static int square(SDL_Surface *b_w, SDL_Surface *gray, size_t x1, size_t y1,
                 = SDL_MapRGB(format_output_b_w, r, g, b);
         }
     }
-    remove_border(output);
-    remove_border(output_b_w);
+    clean_border(output_b_w, output);
     if (crop(output_b_w, &output) != 0)
         return 1;
     if (output == NULL)
