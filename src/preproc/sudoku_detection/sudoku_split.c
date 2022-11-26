@@ -792,11 +792,19 @@ int sudoku_split(char *black_white, char *grayscale, char *path)
     return 0;
 }
 
+static int modulo(int x, int y)
+{
+    int res = x % y;
+    if (res > y / 2)
+        res -= y;
+    return res;
+}
+
 int get_rotation(SDL_Surface *surface)
 {
     char save_path[30] = {0};
     int theta = line_detection(surface, surface, 1, save_path);
     if (theta < 0)
         return -1;
-    return theta;
+    return modulo(theta, 90);
 }
