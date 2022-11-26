@@ -614,7 +614,8 @@ static int separate_lines(
 }
 
 static int intersections(matrix_t *acc, size_t rhos, SDL_Surface *surface,
-    SDL_Surface *sudoku, double maximum, int thres, char path[30])
+    SDL_Surface *sudoku, double maximum, int thres, char path[30],
+    int get_rotation)
 {
     ssize_t lines[20][2];
     int l = store_lines(acc, rhos, lines, maximum, thres);
@@ -644,7 +645,8 @@ static int intersections(matrix_t *acc, size_t rhos, SDL_Surface *surface,
     if (n < (len / 2) * (len / 2))
         return 1; // errx(1, "404: Intersection not found");
 
-    cut_squares(inter, surface, sudoku, len / 2, path);
+    if (!get_rotation)
+        cut_squares(inter, surface, sudoku, len / 2, path);
 
     matrix_free(inter);
     return 0;
@@ -751,8 +753,8 @@ static int line_detection(
 
     double maximum = get_max(acc, diag, &thres);
 
-    int value
-        = intersections(acc, diag, surface, sudoku, maximum, thres, path);
+    int value = intersections(
+        acc, diag, surface, sudoku, maximum, thres, path, get_rotation);
 
     int theta = 0;
 
