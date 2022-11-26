@@ -8,45 +8,14 @@
 
 SDL_Surface *rotate_surface(SDL_Surface *surface, double deg)
 {
-    Uint32 *pixels = surface->pixels;
-
-    int width = surface->w;
-    int height = surface->h;
-
-    int len = width * height;
-
-    deg = deg * M_PI / 180;
-
-    int midx = width / 2;
-    int midy = height / 2;
-
-    SDL_Surface *new_surface
-        = SDL_CreateRGBSurface(0, width, height, 32, 0, 0, 0, 0);
-
-    Uint32 *new_pixels = new_surface->pixels;
-
-    for (int i = 0; i < len; i++)
-    {
-        int destx = i % width;
-        int desty = i / width;
-
-        int sourcex
-            = floor(cos(-deg) * (destx - midx) - sin(-deg) * (desty - midy))
-              + midx;
-
-        int sourcey
-            = floor(sin(-deg) * (destx - midx) + cos(-deg) * (desty - midy))
-              + midy;
-
-        int sourcei = sourcey * width + sourcex;
-
-        if (sourcei >= 0 && sourcei < len)
-            new_pixels[i] = pixels[sourcei];
-        else
-            new_pixels[i] = SDL_MapRGB(surface->format, 255, 255, 255);
-    }
-
-    return new_surface;
+    SDL_Renderer *renderer = SDL_CreateSoftwareRenderer(surface);
+    SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+    SDL_RenderClear(renderer);
+    SDL_RenderCopyEx(renderer, texture, NULL, NULL, deg, NULL, SDL_FLIP_NONE);
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyTexture(texture);
+    return surface;
 }
 
 void rotate_image(const char *file, double deg)
