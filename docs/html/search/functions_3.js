@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['full_5fbinary_216',['full_binary',['../color__removal_8c.html#ad2036f82dc05e3badfef30c72a6e52b2',1,'full_binary(SDL_Surface *surface):&#160;color_removal.c'],['../color__removal_8h.html#abbde0535939b712745a3d393e66bc9ba',1,'full_binary(SDL_Surface *surface):&#160;color_removal.c']]]
+  ['deselect_0',['deselect',['../ui_8c.html#a7f828c74fb2a8c2e3d67fba4d94edc77',1,'deselect():&#160;ui.c'],['../ui_8h.html#a7f828c74fb2a8c2e3d67fba4d94edc77',1,'deselect():&#160;ui.c']]],
+  ['draw_1',['draw',['../painter_8c.html#ad976d734b0df5cd743c1866d5b986436',1,'painter.c']]]
 ];

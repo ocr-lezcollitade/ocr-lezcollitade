@@ -124,26 +124,42 @@ double sign(double nb)
     return (nb > 0 ? 1 : -1);
 }
 
-double *generate_weights(double n)
+double *generate_weights(size_t n, size_t prev)
 {
-    size_t index = 0;
-    double *values = (double *)malloc(sizeof(double) * n);
-    for (int i = -n / 2; i < n / 2; i++)
+    double stddev = 1 / (sqrt(prev));
+    return marsaglia(n, 0, stddev);
+}
+
+double *marsaglia(size_t count, double mean, double stddev)
+{
+    double *values = (double *)calloc(count, sizeof(double));
+    if (values == NULL)
+        return NULL;
+
+    double spare;
+    int has_spare = 0;
+    for (size_t i = 0; i < count; i++)
     {
-        double nb = normal(nb_m1_and_1() * 2) * sign(i);
-        values[index] = nb;
-        index++;
+        if (has_spare)
+        {
+            has_spare = 0;
+            values[i] = spare * stddev + mean;
+        }
+        else
+        {
+            double u, v, s;
+            do
+            {
+                u = (rand() / ((double)RAND_MAX)) * 2.0 - 1.0;
+                v = (rand() / ((double)RAND_MAX)) * 2.0 - 1.0;
+                s = u * u + v * v;
+            } while (s >= 1.0 || s == 0);
+            s = sqrt(-2.0 * log(s) / s);
+            values[i] = u * s * stddev + mean;
+            spare = v * s;
+            has_spare = 1;
+        }
     }
 
-    // SHUFFLE
-
-    for (int i = 0; i < 100; i++)
-    {
-        int i1 = index_random(n);
-        int i2 = index_random(n);
-        double temp = values[i1];
-        values[i1] = values[i2];
-        values[i2] = temp;
-    }
     return values;
 }

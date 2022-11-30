@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['save_5fpath_310',['save_path',['../sudoku__split_8c.html#a2b514ad37427cfded82f3e194418f1bf',1,'sudoku_split.c']]],
-  ['scrollbar_311',['scrollbar',['../ui_8c.html#a5ae0757c125b6fbc38b18c688a8c1c04',1,'ui.c']]],
-  ['show_5frotation_312',['show_rotation',['../ui_8c.html#a7cba865c614d091de591c6312ab3978d',1,'ui.c']]],
-  ['split_5fgrid_313',['split_grid',['../ui_8c.html#a9fa4df9e1a58debd8ff43c61f547586b',1,'ui.c']]],
-  ['stack_314',['stack',['../ui_8c.html#a5b8bd37653dc295f9d260a1d3db19ef7',1,'ui.c']]]
+  ['weights_0',['weights',['../structneuron__t.html#a6182effa3a478564d7dcd7f9d856c029',1,'neuron_t']]],
+  ['window_1',['window',['../ui_8c.html#a3d346c08cf2d67c388caabffb412b293',1,'ui.c']]]
 ];

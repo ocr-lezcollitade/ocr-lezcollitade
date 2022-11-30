@@ -82,7 +82,7 @@ $(TEST_BIN)/%: $(TEST_DIR)/%.c $(LIB)
 	@# vim color scheme debug "
 	$(CC) -g -Wall -Wextra -Werror $< $(LIB) -o $@ -lcriterion -lm
 
-test: clean $(LIB) $(TEST_BINS)
+test: $(LIB) $(TEST_BINS)
 	for test in $(TEST_BINS);do ./$$test; done
 
 docs:
