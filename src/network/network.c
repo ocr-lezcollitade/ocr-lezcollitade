@@ -544,19 +544,28 @@ network_t *network_generate(size_t *neuron_count, size_t size,
     if (size < 2)
         return NULL;
     layer_t **layers = (layer_t **)malloc((size - 1) * sizeof(layer_t *));
+    if (layers == NULL)
+        return NULL;
     size_t weights = neuron_count[0];
     network_t *res = network_create(layers, size - 1, weights);
+    if (res == NULL)
+        return NULL;
 
     for (size_t i = 1; i < size; i++)
     {
         size_t n_count = neuron_count[i];
         neuron_t **neurons = (neuron_t **)malloc(n_count * sizeof(neuron_t *));
+        if (neurons == NULL)
+            return NULL;
         layer_t *layer = layer_create(neurons, n_count, hidden_activation);
         layers[i - 1] = layer;
         for (size_t ni = 0; ni < n_count; ni++)
         {
-            double *values = generate_weights(weights + 1);
-            layers[i - 1]->neurons[ni] = parse_results(values, weights);
+            double *values = generate_weights(weights, neuron_count[i - 1]);
+            if (values == NULL)
+                return NULL;
+            layers[i - 1]->neurons[ni]
+                = neuron_create(mat_create_fill(1, weights, values), 0);
             free(values);
         }
         weights = n_count;

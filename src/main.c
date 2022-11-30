@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "./cli/parser.h"
 #include "./network/function.h"
 #include "./network/network.h"
@@ -340,6 +341,10 @@ static void cli_convert(params_t params)
 
 int main(int argc, char **argv)
 {
+
+    // Initializes the random generator.
+    srand((unsigned int)time(NULL));
+
     UNUSED(print_params);
     UNUSED(show_results);
     UNUSED(train_xor);
