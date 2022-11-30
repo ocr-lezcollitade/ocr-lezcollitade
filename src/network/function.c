@@ -1,4 +1,5 @@
 #include <math.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "function.h"
@@ -22,6 +23,53 @@ static double sigmoid_derivative(
     UNUSED(neuron);
     UNUSED(res);
     return x * (1 - x);
+}
+
+static double tanhy(
+    size_t layer, size_t neuron, double x, network_results_t *res)
+{
+    UNUSED(layer);
+    UNUSED(neuron);
+    UNUSED(res);
+    return (exp(x) - exp(-x)) / (exp(x) + exp(-x));
+}
+
+static double tanhy_derivative(
+    size_t layer, size_t neuron, double x, network_results_t *res)
+{
+
+    UNUSED(layer);
+    UNUSED(neuron);
+    UNUSED(res);
+    return 1 - pow(x, 2);
+}
+
+static double leaky_relu(
+    size_t layer, size_t neuron, double x, network_results_t *res)
+{
+    UNUSED(layer);
+    UNUSED(neuron);
+    UNUSED(res);
+    if (x >= 0)
+        return x > 6 ? 6 : x;
+    else
+        return x < -1 ? 0 : 0.01 * x;
+}
+
+static double leaky_relu_derivative(
+    size_t layer, size_t neuron, double x, network_results_t *res)
+{
+    UNUSED(layer);
+    UNUSED(neuron);
+    UNUSED(res);
+    if (x > 6)
+        return 0;
+    if (x > 0)
+        return 1;
+    if (x < -0.01)
+        return 0;
+    else
+        return 0.01;
 }
 
 static double soft_max(
@@ -69,7 +117,9 @@ static double soft_max_derivative(
 }
 
 layer_activation_t activations[] = {{sigmoid, sigmoid_derivative, "sigmoid"},
-    {soft_max, soft_max_derivative, "softmax"}};
+    {soft_max, soft_max_derivative, "softmax"},
+    {leaky_relu, leaky_relu_derivative, "leaky"},
+    {tanhy, tanhy_derivative, "tanh"}};
 
 layer_activation_t get_layer_activation(const char *name)
 {
@@ -86,7 +136,7 @@ layer_activation_t get_layer_activation(const char *name)
     return activations[0];
 }
 
-double cost(matrix_t *target, matrix_t *output)
+double mse(matrix_t *target, matrix_t *output)
 {
     double res = 0;
     for (size_t i = 0; i < target->rows; i++)
@@ -97,9 +147,36 @@ double cost(matrix_t *target, matrix_t *output)
     return res / 2;
 }
 
-double cost_derivative(double target, double output)
+double entropy(matrix_t *target, matrix_t *output)
+{
+    double res = 0;
+    for (size_t i = 0; i < target->rows; i++)
+    {
+        res += mat_el_at(target, i, 0) * log(mat_el_at(output, i, 0));
+    }
+    res *= -1;
+    printf("Cout : %.2f\n", res);
+    return res;
+}
+
+double cost(matrix_t *target, matrix_t *output)
+{
+    return entropy(target, output);
+}
+
+double mse_derivative(double target, double output)
 {
     return output - target;
+}
+
+double entropy_derivative(double target, double output)
+{
+    return (-target / output) + (1 - target) / (1 - output);
+}
+
+double cost_derivative(double target, double output)
+{
+    return entropy_derivative(target, output);
 }
 
 double nb_m1_and_1()
