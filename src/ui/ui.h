@@ -1,6 +1,6 @@
 #ifndef UI_UI_H
 #define UI_UI_H
-
+#define OUTPUT_FOLDER "/tmp/lezcollitade"
 /**
  * \brief Changes stack's page if a file was selected
  * \fn void on_start(GtkWidget *w, gpointer data)
@@ -64,13 +64,21 @@ void quit();
 /**
  * \brief Cleans the tmp directory
  * \fn void clean_directory()
+ * \return Whether the deletion went well (0) or not (-1)
  */
-void clean_directory();
+int clean_directory();
 
 /**
  * \brief Blocks the start button
  * \fn void deselect()
  */
 void deselect();
+
+/**
+ * \brief Applies an automatic rotation to the image before
+ * calling load_grayscale
+ * \fn void auto_rotation()
+ */
+void auto_rotation();
 
 #endif

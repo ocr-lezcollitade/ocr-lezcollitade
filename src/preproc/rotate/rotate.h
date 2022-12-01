@@ -2,7 +2,7 @@
 #define PREPROC_ROTATE_ROTATE_H
 
 /**
- * \brief Creates a rotated clone of a given surface
+ * \brief Creates a rotated clone of a given surface, freeing the latter
  * \fn SDL_Surface* rotate_surface(SDL_Surface* surface, int deg)
  * \param surface The surface to rotate
  * \param deg The angle of the rotation
