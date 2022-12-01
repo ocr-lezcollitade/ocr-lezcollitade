@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['layer_5fcount_0',['layer_count',['../structnetwork__t.html#ad5fc71e5df50072d2c5a9ebfb28c7636',1,'network_t']]],
-  ['layers_1',['layers',['../structnetwork__t.html#abc9801a33bc441d67a87fac3b603ae87',1,'network_t']]]
+  ['name_318',['name',['../structlayer__activation__t.html#a2328c127583eb502c56241a25aa1e8a6',1,'layer_activation_t']]],
+  ['network_319',['network',['../structnetwork__results__t.html#a81f6c9388535caf11d916c99da211ed6',1,'network_results_t']]],
+  ['neurons_320',['neurons',['../structlayer__t.html#a71e4f1a74c73f54b7ff2c40dc88c795e',1,'layer_t']]]
 ];

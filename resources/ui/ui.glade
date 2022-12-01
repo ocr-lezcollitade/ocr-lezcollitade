@@ -94,7 +94,6 @@
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
-                        <signal name="clicked" handler="load_rotate" swapped="no"/>
                         <signal name="clicked" handler="on_start" object="rotate" swapped="no"/>
                       </object>
                       <packing>
@@ -162,7 +161,7 @@
               <object class="GtkImage" id="rotated_image">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="pixbuf">current.png</property>
+                <property name="icon-name">applications-graphics</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -229,13 +228,13 @@
                     <signal name="clicked" handler="load_grayscale" swapped="no"/>
                   </object>
                   <packing>
-                    <property name="x">832</property>
+                    <property name="x">635</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkButton">
                     <property name="label" translatable="yes">Restart</property>
-                    <property name="width-request">100</property>
+                    <property name="width-request">84</property>
                     <property name="height-request">80</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
@@ -245,7 +244,22 @@
                     <signal name="clicked" handler="go_to" object="upload" swapped="no"/>
                   </object>
                   <packing>
-                    <property name="x">998</property>
+                    <property name="x">1147</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="auto_rotate">
+                    <property name="label" translatable="yes">Apply grayscale with automatic rotation</property>
+                    <property name="width-request">306</property>
+                    <property name="height-request">80</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <signal name="clicked" handler="auto_rotation" swapped="no"/>
+                    <signal name="clicked" handler="go_to" object="gray" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="x">808</property>
                   </packing>
                 </child>
               </object>
@@ -271,7 +285,7 @@
               <object class="GtkImage" id="grayscaled_image">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="pixbuf">current.png</property>
+                <property name="icon-name">applications-graphics</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -336,6 +350,7 @@
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
                     <signal name="clicked" handler="clean_directory" swapped="no"/>
+                    <signal name="clicked" handler="deselect" swapped="no"/>
                     <signal name="clicked" handler="go_to" object="upload" swapped="no"/>
                   </object>
                   <packing>
@@ -366,7 +381,7 @@
               <object class="GtkImage" id="binarized_image">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="pixbuf">current.png</property>
+                <property name="icon-name">applications-graphics</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -431,6 +446,7 @@
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
                     <signal name="clicked" handler="clean_directory" swapped="no"/>
+                    <signal name="clicked" handler="deselect" swapped="no"/>
                     <signal name="clicked" handler="go_to" object="upload" swapped="no"/>
                   </object>
                   <packing>
@@ -1382,7 +1398,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="split_result">
                     <property name="width-request">252</property>
                     <property name="height-request">80</property>
                     <property name="visible">True</property>
@@ -1433,6 +1449,7 @@
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
                     <signal name="clicked" handler="clean_directory" swapped="no"/>
+                    <signal name="clicked" handler="deselect" swapped="no"/>
                     <signal name="clicked" handler="go_to" object="upload" swapped="no"/>
                   </object>
                   <packing>

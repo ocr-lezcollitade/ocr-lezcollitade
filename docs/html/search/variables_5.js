@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['grayscaled_5fimage_0',['grayscaled_image',['../ui_8c.html#a59823a8c08d88b084d9121d5ff9ae853',1,'ui.c']]]
+  ['inputs_315',['inputs',['../structnetwork__t.html#af7a2fbc049a0fd2d5ad14f218658ca83',1,'network_t']]]
 ];

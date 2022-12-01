@@ -16,22 +16,7 @@
 
 /** GLOBAL VARIABLES **/
 
-GtkWidget *window;
-GtkWidget *import;
-GtkStack *stack;
-GtkImage *rotated_image;
-GtkImage *grayscaled_image;
-GtkImage *binarized_image;
-GtkWidget *scrollbar;
-GtkLabel *show_rotation;
-GtkLabel *chooser_status;
-GtkGrid *split_grid;
-
-GtkAdjustment *adjustment1;
-
 GtkBuilder *builder;
-
-int rotation = 0;
 bool chooser_selected = 0;
 
 /** FUNCTIONS **/
@@ -41,8 +26,10 @@ void on_start(GtkWidget *w, gpointer data)
     UNUSED(w);
     if (chooser_selected)
     {
+        GtkStack *stack = GTK_STACK(gtk_builder_get_object(builder, "stack"));
         GtkWidget *dest = data;
         gtk_stack_set_visible_child(stack, dest);
+        load_rotate();
     }
 }
 
@@ -50,95 +37,185 @@ void go_to(GtkWidget *w, gpointer data)
 {
     UNUSED(w);
     GtkWidget *dest = data;
+    GtkStack *stack = GTK_STACK(gtk_builder_get_object(builder, "stack"));
     gtk_stack_set_visible_child(stack, dest);
+}
+
+void auto_rotation()
+{
+    char filename[50];
+    snprintf(filename, 50, "%s/current.png", OUTPUT_FOLDER);
+    SDL_Surface *current_surface = load_image(filename);
+    SDL_Surface *temp = load_image(filename);
+    surface_to_grayscale(temp);
+    SDL_Surface *binarized_surface = full_binary(temp);
+    int rotation = get_rotation(binarized_surface);
+    SDL_Surface *rotated = rotate_surface(current_surface, -rotation);
+    snprintf(filename, 50, "%s/rotated.png", OUTPUT_FOLDER);
+    IMG_SavePNG(rotated, filename);
+
+    SDL_FreeSurface(temp);
+    SDL_FreeSurface(rotated);
+
+    load_grayscale();
 }
 
 void load_binary()
 {
-    SDL_Surface *temp_surface = load_image("resources/ui/tmp/grayscaled.png");
+    char filename[50];
+    snprintf(filename, 50, "%s/grayscaled.png", OUTPUT_FOLDER);
+    SDL_Surface *temp_surface = load_image(filename);
+    SDL_Surface *bs = full_binary(temp_surface);
+    snprintf(filename, 50, "%s/binarized.png", OUTPUT_FOLDER);
+    IMG_SavePNG(bs, filename);
 
-    SDL_Surface *binarized_surface = full_binary(temp_surface);
+    scale_down(&bs, bs->w, bs->h, (int)(bs->w / (bs->h / 500.0)), 500);
+    snprintf(filename, 50, "%s/tiny_binarized.png", OUTPUT_FOLDER);
+    IMG_SavePNG(bs, filename);
 
-    IMG_SavePNG(binarized_surface, "resources/ui/tmp/binarized.png");
-
-    gtk_image_set_from_file(binarized_image, "resources/ui/tmp/binarized.png");
+    GtkImage *image
+        = GTK_IMAGE(gtk_builder_get_object(builder, "binarized_image"));
+    gtk_image_set_from_file(image, filename);
 
     SDL_FreeSurface(temp_surface);
-    SDL_FreeSurface(binarized_surface);
+    SDL_FreeSurface(bs);
 }
 
 void load_grayscale()
 {
-    SDL_Surface *grayscaled_surface;
+    SDL_Surface *gs;
 
-    if (rotation == 0)
-        grayscaled_surface = load_image("resources/ui/tmp/current.png");
+    char rotated[50], tiny_grayscaled[50], filename[50];
+    snprintf(rotated, 50, "%s/rotated.png", OUTPUT_FOLDER);
+    snprintf(tiny_grayscaled, 50, "%s/tiny_grayscaled.png", OUTPUT_FOLDER);
+    snprintf(filename, 50, "%s/current.png", OUTPUT_FOLDER);
+
+    FILE *file = fopen(rotated, "r");
+
+    if (file == NULL)
+        gs = load_image(filename);
     else
-        grayscaled_surface = load_image("resources/ui/tmp/rotated.png");
+    {
+        fclose(file);
+        gs = load_image(rotated);
+    }
 
-    surface_to_grayscale(grayscaled_surface);
-    IMG_SavePNG(grayscaled_surface, "resources/ui/tmp/grayscaled.png");
+    surface_to_grayscale(gs);
+    snprintf(filename, 50, "%s/grayscaled.png", OUTPUT_FOLDER);
+    IMG_SavePNG(gs, filename);
 
-    gtk_image_set_from_file(
-        grayscaled_image, "resources/ui/tmp/grayscaled.png");
+    scale_down(&gs, gs->w, gs->h, (int)(gs->w / (gs->h / 500.0)), 500);
+    IMG_SavePNG(gs, tiny_grayscaled);
 
-    SDL_FreeSurface(grayscaled_surface);
+    GtkImage *image
+        = GTK_IMAGE(gtk_builder_get_object(builder, "grayscaled_image"));
+    gtk_image_set_from_file(image, tiny_grayscaled);
+
+    SDL_FreeSurface(gs);
 }
 
 void load_rotate()
 {
-    char path[] = "resources/ui/tmp/current.png";
+    char current[50], tiny_current[50];
+    snprintf(current, 50, "%s/current.png", OUTPUT_FOLDER);
+    snprintf(tiny_current, 50, "%s/tiny_current.png", OUTPUT_FOLDER);
 
-    gtk_image_set_from_file(rotated_image, path);
+    SDL_Surface *cs = load_image(current);
+    scale_down(&cs, cs->w, cs->h, (int)(cs->w / (cs->h / 500.0)), 500);
+    IMG_SavePNG(cs, tiny_current);
+
+    GtkImage *image
+        = GTK_IMAGE(gtk_builder_get_object(builder, "rotated_image"));
+    gtk_image_set_from_file(image, tiny_current);
+
+    GtkLabel *label
+        = GTK_LABEL(gtk_builder_get_object(builder, "show_rotation"));
+    gtk_label_set_text(label, "0");
+
+    GtkRange *range = GTK_RANGE(gtk_builder_get_object(builder, "scrollbar"));
+    gtk_range_set_value(range, (double)0);
+
+    SDL_FreeSurface(cs);
 }
 
 void load_split()
 {
-    sudoku_split("resources/ui/tmp/binarized.png",
-        "resources/ui/tmp/grayscaled.png", "resources/ui/tmp/");
+    GtkLabel *label
+        = GTK_LABEL(gtk_builder_get_object(builder, "split_result"));
 
-    for (int i = 0; i < 9; i++)
+    GtkGrid *grid = GTK_GRID(gtk_builder_get_object(builder, "split_grid"));
+
+    char bin[50], gscaled[50];
+    snprintf(bin, 50, "%s/binarized.png", OUTPUT_FOLDER);
+    snprintf(gscaled, 50, "%s/grayscaled.png", OUTPUT_FOLDER);
+    if (!sudoku_split(bin, gscaled, OUTPUT_FOLDER))
     {
-        for (int j = 0; j < 9; j++)
+        gtk_widget_show(GTK_WIDGET(grid));
+
+        for (int i = 0; i < 9; i++)
         {
-            GtkImage *image
-                = GTK_IMAGE(gtk_grid_get_child_at(split_grid, i, j));
+            for (int j = 0; j < 9; j++)
+            {
+                GtkImage *image = GTK_IMAGE(gtk_grid_get_child_at(grid, i, j));
 
-            char split_no[8];
-            sprintf(split_no, "%i.png", i + j * 9);
+                char split_no[8];
+                snprintf(split_no, 8, "%i.png", i + j * 9);
 
-            char full_split[30] = "resources/ui/tmp/";
-            strcat(full_split, split_no);
+                char full_split[30] = OUTPUT_FOLDER;
+                strncat(full_split, split_no, 8);
 
-            gtk_image_set_from_file(image, (gchar *)full_split);
+                gtk_image_set_from_file(image, (gchar *)full_split);
+            }
         }
+
+        gtk_label_set_text(label, "The image has been split.");
+    }
+    else
+    {
+        gtk_widget_hide(GTK_WIDGET(grid));
+        gtk_label_set_text(
+            label, "Splitting failed. Please restart with another image.");
     }
 }
 
 void on_scrollbar_value_changed(GtkRange *r)
 {
     gdouble x = gtk_range_get_value(r);
-    rotation = (int)x;
 
     char rot_label[5];
-    sprintf(rot_label, "%i", rotation);
-    gtk_label_set_text(show_rotation, (const gchar *)rot_label);
+    snprintf(rot_label, 5, "%i", (int)x);
 
-    SDL_Surface *rotated_surface = load_image("resources/ui/tmp/current.png");
-    IMG_SavePNG(rotate_surface(rotated_surface, rotation),
-        "resources/ui/tmp/rotated.png");
+    GtkLabel *label
+        = GTK_LABEL(gtk_builder_get_object(builder, "show_rotation"));
+    gtk_label_set_text(label, (const gchar *)rot_label);
 
-    gtk_image_set_from_file(
-        rotated_image, (const gchar *)"resources/ui/tmp/rotated.png");
+    char filename[50];
+    snprintf(filename, 50, "%s/current.png", OUTPUT_FOLDER);
+    SDL_Surface *cs = load_image(filename);
+    SDL_Surface *rs = rotate_surface(cs, (int)x);
+    snprintf(filename, 50, "%s/rotated.png", OUTPUT_FOLDER);
+    IMG_SavePNG(rs, filename);
 
-    SDL_FreeSurface(rotated_surface);
+    snprintf(filename, 50, "%s/tiny_current.png", OUTPUT_FOLDER);
+    SDL_Surface *tiny_cs = load_image(filename);
+    SDL_Surface *tiny_rs = rotate_surface(tiny_cs, (int)x);
+    snprintf(filename, 50, "%s/tiny_rotated.png", OUTPUT_FOLDER);
+    IMG_SavePNG(tiny_rs, filename);
+
+    GtkImage *image
+        = GTK_IMAGE(gtk_builder_get_object(builder, "rotated_image"));
+    snprintf(filename, 50, "%s/tiny_rotated.png", OUTPUT_FOLDER);
+    gtk_image_set_from_file(image, (const gchar *)filename);
+
+    SDL_FreeSurface(rs);
 }
 
 void on_import_file_set(GtkFileChooserButton *f)
 {
-    char file_name[] = "resources/ui/tmp/current.png";
+    char file_name[50];
+    snprintf(file_name, 50, "%s/current.png", OUTPUT_FOLDER);
 
-    mkdir("resources/ui/tmp", 0755);
+    mkdir(OUTPUT_FOLDER, 0755);
 
     FILE *source, *target;
     source = fopen(gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(f)), "rb");
@@ -155,38 +232,73 @@ void on_import_file_set(GtkFileChooserButton *f)
     fclose(source);
     fclose(target);
 
+    GtkLabel *label
+        = GTK_LABEL(gtk_builder_get_object(builder, "chooser_status"));
     chooser_selected = 1;
-    gtk_label_set_text(
-        chooser_status, (const gchar *)"A file has been selected!");
+    gtk_label_set_text(label, (const gchar *)"A file has been selected!");
 }
 
 void deselect()
 {
+    GtkLabel *label
+        = GTK_LABEL(gtk_builder_get_object(builder, "chooser_status"));
     chooser_selected = 0;
-    gtk_label_set_text(chooser_status, (const gchar *)"No selected image yet");
+    gtk_label_set_text(label, (const gchar *)"No selected image yet");
 }
 
 void quit()
 {
     clean_directory();
+    GtkWidget *window = GTK_WIDGET(gtk_builder_get_object(builder, "window"));
     gtk_window_close(GTK_WINDOW(window));
 }
 
-void clean_directory()
+int clean_directory()
 {
-    for (int i = 0; i < 81; i++)
-    {
-        char file_no[8];
-        sprintf(file_no, "%i.png", i);
+    DIR *d = opendir(OUTPUT_FOLDER);
+    size_t path_len = strlen(OUTPUT_FOLDER);
+    int r = -1;
 
-        char full_file[30] = "resources/ui/tmp/";
-        strcat(full_file, file_no);
-        remove(full_file);
+    if (d)
+    {
+        struct dirent *p;
+
+        r = 0;
+        while (!r && (p = readdir(d)))
+        {
+            int r2 = -1;
+            char *buf;
+            size_t len;
+
+            if (!strcmp(p->d_name, ".") || !strcmp(p->d_name, ".."))
+                continue;
+
+            len = path_len + strlen(p->d_name) + 2;
+            buf = malloc(len);
+
+            if (buf)
+            {
+                struct stat statbuf;
+
+                snprintf(buf, len, "%s/%s", OUTPUT_FOLDER, p->d_name);
+                if (!stat(buf, &statbuf))
+                {
+                    if (S_ISDIR(statbuf.st_mode))
+                        r2 = clean_directory(buf);
+                    else
+                        r2 = unlink(buf);
+                }
+                free(buf);
+            }
+            r = r2;
+        }
+        closedir(d);
     }
 
-    remove("resources/ui/tmp/grayscaled.png");
-    remove("resources/ui/tmp/binarized.png");
-    remove("resources/ui/tmp/current.png");
+    if (!r)
+        r = rmdir(OUTPUT_FOLDER);
+
+    return r;
 }
 
 void open_ui()
@@ -195,23 +307,10 @@ void open_ui()
 
     builder = gtk_builder_new_from_file("resources/ui/ui.glade");
 
-    window = GTK_WIDGET(gtk_builder_get_object(builder, "window"));
-    import = GTK_WIDGET(gtk_builder_get_object(builder, "import"));
-    rotated_image
-        = GTK_IMAGE(gtk_builder_get_object(builder, "rotated_image"));
-    grayscaled_image
-        = GTK_IMAGE(gtk_builder_get_object(builder, "grayscaled_image"));
-    binarized_image
-        = GTK_IMAGE(gtk_builder_get_object(builder, "binarized_image"));
-    scrollbar = GTK_WIDGET(gtk_builder_get_object(builder, "scrollbar"));
-    stack = GTK_STACK(gtk_builder_get_object(builder, "stack"));
-    show_rotation
-        = GTK_LABEL(gtk_builder_get_object(builder, "show_rotation"));
-    chooser_status
-        = GTK_LABEL(gtk_builder_get_object(builder, "chooser_status"));
-    split_grid = GTK_GRID(gtk_builder_get_object(builder, "split_grid"));
+    GtkWidget *window = GTK_WIDGET(gtk_builder_get_object(builder, "window"));
 
     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
+    g_signal_connect(window, "destroy", G_CALLBACK(quit), NULL);
 
     gtk_builder_connect_signals(builder, NULL);
 
