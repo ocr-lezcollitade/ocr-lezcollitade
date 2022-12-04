@@ -128,9 +128,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a2463a3acef2df4c951ce942a3229e44e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ui_8c.html#a2463a3acef2df4c951ce942a3229e44e">quit</a> ()</td></tr>
 <tr class="memdesc:a2463a3acef2df4c951ce942a3229e44e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quits the window.  <a href="ui_8c.html#a2463a3acef2df4c951ce942a3229e44e">More...</a><br /></td></tr>
 <tr class="separator:a2463a3acef2df4c951ce942a3229e44e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03526be21cfc656d3f728733f3f8f89c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ui_8c.html#a03526be21cfc656d3f728733f3f8f89c">clean_directory</a> ()</td></tr>
+<tr class="memitem:a03526be21cfc656d3f728733f3f8f89c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ui_8c.html#a03526be21cfc656d3f728733f3f8f89c">clean_directory</a> ()</td></tr>
 <tr class="memdesc:a03526be21cfc656d3f728733f3f8f89c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cleans the tmp directory.  <a href="ui_8c.html#a03526be21cfc656d3f728733f3f8f89c">More...</a><br /></td></tr>
 <tr class="separator:a03526be21cfc656d3f728733f3f8f89c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90a90d5d73161c0c22649ca1a9073c75"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ui_8c.html#a90a90d5d73161c0c22649ca1a9073c75">recursive_rmdir</a> (char *path)</td></tr>
+<tr class="memdesc:a90a90d5d73161c0c22649ca1a9073c75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recursively removes a directory.  <a href="ui_8c.html#a90a90d5d73161c0c22649ca1a9073c75">More...</a><br /></td></tr>
+<tr class="separator:a90a90d5d73161c0c22649ca1a9073c75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc2b0b54bf0cf819bb23bd351bebfa06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ui_8c.html#acc2b0b54bf0cf819bb23bd351bebfa06">open_ui</a> ()</td></tr>
 <tr class="memdesc:acc2b0b54bf0cf819bb23bd351bebfa06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens the UI.  <a href="ui_8c.html#acc2b0b54bf0cf819bb23bd351bebfa06">More...</a><br /></td></tr>
 <tr class="separator:acc2b0b54bf0cf819bb23bd351bebfa06"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -205,7 +208,7 @@ Variables</h2></td></tr>
 <div class="ttc" id="arotate_8c_html_abcb49af9bc9200ea8d35bcdf3da8600d"><div class="ttname"><a href="rotate_8c.html#abcb49af9bc9200ea8d35bcdf3da8600d">rotate_surface</a></div><div class="ttdeci">SDL_Surface * rotate_surface(SDL_Surface *surface, double deg)</div><div class="ttdef"><b>Definition:</b> <a href="rotate_8c_source.html#l00009">rotate.c:9</a></div></div>
 <div class="ttc" id="asudoku__split_8c_html_ac37320e6626d8b5cf2cc615fab636bbd"><div class="ttname"><a href="sudoku__split_8c.html#ac37320e6626d8b5cf2cc615fab636bbd">get_rotation</a></div><div class="ttdeci">int get_rotation(SDL_Surface *surface)</div><div class="ttdoc">finds the angle the image has to be rotated with to be straight</div><div class="ttdef"><b>Definition:</b> <a href="sudoku__split_8c_source.html#l00805">sudoku_split.c:805</a></div></div>
 <div class="ttc" id="aui_8c_html_a6a0c5772e95f340e4d6de429d6ca4802"><div class="ttname"><a href="ui_8c.html#a6a0c5772e95f340e4d6de429d6ca4802">load_grayscale</a></div><div class="ttdeci">void load_grayscale()</div><div class="ttdoc">Sets up the grayscale page.</div><div class="ttdef"><b>Definition:</b> <a href="ui_8c_source.html#l00084">ui.c:84</a></div></div>
-<div class="ttc" id="aui_8h_html_ad98ff8ce93ee7d217fbe869608c1f96d"><div class="ttname"><a href="ui_8h.html#ad98ff8ce93ee7d217fbe869608c1f96d">OUTPUT_FOLDER</a></div><div class="ttdeci">#define OUTPUT_FOLDER</div><div class="ttdef"><b>Definition:</b> <a href="ui_8h_source.html#l00003">ui.h:3</a></div></div>
+<div class="ttc" id="aui_8h_html_ad98ff8ce93ee7d217fbe869608c1f96d"><div class="ttname"><a href="ui_8h.html#ad98ff8ce93ee7d217fbe869608c1f96d">OUTPUT_FOLDER</a></div><div class="ttdeci">#define OUTPUT_FOLDER</div><div class="ttdef"><b>Definition:</b> <a href="ui_8h_source.html#l00004">ui.h:4</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -225,56 +228,12 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Cleans the tmp directory. </p>
-<dl class="section return"><dt>Returns</dt><dd>Whether the deletion went well (0) or not (-1) </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="ui_8c_source.html#l00256">256</a> of file <a class="el" href="ui_8c_source.html">ui.c</a>.</p>
 <div class="fragment"><div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;{</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    DIR *d = opendir(<a class="code" href="ui_8h.html#ad98ff8ce93ee7d217fbe869608c1f96d">OUTPUT_FOLDER</a>);</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    <span class="keywordtype">size_t</span> path_len = strlen(<a class="code" href="ui_8h.html#ad98ff8ce93ee7d217fbe869608c1f96d">OUTPUT_FOLDER</a>);</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    <span class="keywordtype">int</span> r = -1;</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160; </div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    <span class="keywordflow">if</span> (d)</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    {</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        <span class="keyword">struct </span>dirent *p;</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160; </div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;        r = 0;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        <span class="keywordflow">while</span> (!r &amp;&amp; (p = readdir(d)))</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        {</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;            <span class="keywordtype">int</span> r2 = -1;</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            <span class="keywordtype">char</span> *buf;</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;            <span class="keywordtype">size_t</span> len;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160; </div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;            <span class="keywordflow">if</span> (!strcmp(p-&gt;d_name, <span class="stringliteral">&quot;.&quot;</span>) || !strcmp(p-&gt;d_name, <span class="stringliteral">&quot;..&quot;</span>))</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160; </div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            len = path_len + strlen(p-&gt;d_name) + 2;</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;            buf = malloc(len);</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160; </div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            <span class="keywordflow">if</span> (buf)</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;            {</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                <span class="keyword">struct </span>stat statbuf;</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160; </div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;                snprintf(buf, len, <span class="stringliteral">&quot;%s/%s&quot;</span>, <a class="code" href="ui_8h.html#ad98ff8ce93ee7d217fbe869608c1f96d">OUTPUT_FOLDER</a>, p-&gt;d_name);</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;                <span class="keywordflow">if</span> (!stat(buf, &amp;statbuf))</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;                {</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;                    <span class="keywordflow">if</span> (S_ISDIR(statbuf.st_mode))</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;                        r2 = <a class="code" href="ui_8c.html#a03526be21cfc656d3f728733f3f8f89c">clean_directory</a>(buf);</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                        r2 = unlink(buf);</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                }</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;                free(buf);</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            }</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;            r = r2;</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;        }</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        closedir(d);</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    }</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160; </div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    <span class="keywordflow">if</span> (!r)</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        r = rmdir(<a class="code" href="ui_8h.html#ad98ff8ce93ee7d217fbe869608c1f96d">OUTPUT_FOLDER</a>);</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160; </div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    <span class="keywordflow">return</span> r;</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;}</div>
-<div class="ttc" id="aui_8c_html_a03526be21cfc656d3f728733f3f8f89c"><div class="ttname"><a href="ui_8c.html#a03526be21cfc656d3f728733f3f8f89c">clean_directory</a></div><div class="ttdeci">int clean_directory()</div><div class="ttdoc">Cleans the tmp directory.</div><div class="ttdef"><b>Definition:</b> <a href="ui_8c_source.html#l00256">ui.c:256</a></div></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    <a class="code" href="ui_8c.html#a90a90d5d73161c0c22649ca1a9073c75">recursive_rmdir</a>(<a class="code" href="ui_8h.html#ad98ff8ce93ee7d217fbe869608c1f96d">OUTPUT_FOLDER</a>);</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;}</div>
+<div class="ttc" id="aui_8c_html_a90a90d5d73161c0c22649ca1a9073c75"><div class="ttname"><a href="ui_8c.html#a90a90d5d73161c0c22649ca1a9073c75">recursive_rmdir</a></div><div class="ttdeci">int recursive_rmdir(char *path)</div><div class="ttdoc">Recursively removes a directory.</div><div class="ttdef"><b>Definition:</b> <a href="ui_8c_source.html#l00261">ui.c:261</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -511,26 +470,26 @@ Variables</h2></td></tr>
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    GtkGrid *grid = GTK_GRID(gtk_builder_get_object(<a class="code" href="ui_8c.html#afa501dbb63ae6077ac8db76b560de42b">builder</a>, <span class="stringliteral">&quot;split_grid&quot;</span>));</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordtype">char</span> bin[50], gscaled[50];</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordtype">char</span> bin[50], gscaled[50], split_path[50];</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    snprintf(bin, 50, <span class="stringliteral">&quot;%s/binarized.png&quot;</span>, <a class="code" href="ui_8h.html#ad98ff8ce93ee7d217fbe869608c1f96d">OUTPUT_FOLDER</a>);</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    snprintf(gscaled, 50, <span class="stringliteral">&quot;%s/grayscaled.png&quot;</span>, <a class="code" href="ui_8h.html#ad98ff8ce93ee7d217fbe869608c1f96d">OUTPUT_FOLDER</a>);</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="sudoku__split_8c.html#a65bdda2db99cc264f9e7a92920a4f4b4">sudoku_split</a>(bin, gscaled, <a class="code" href="ui_8h.html#ad98ff8ce93ee7d217fbe869608c1f96d">OUTPUT_FOLDER</a>))</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    {</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        gtk_widget_show(GTK_WIDGET(grid));</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 9; i++)</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        {</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; 9; j++)</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            {</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                GtkImage *image = GTK_IMAGE(gtk_grid_get_child_at(grid, i, j));</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                <span class="keywordtype">char</span> split_no[8];</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                snprintf(split_no, 8, <span class="stringliteral">&quot;%i.png&quot;</span>, i + j * 9);</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                <span class="keywordtype">char</span> full_split[30] = <a class="code" href="ui_8h.html#ad98ff8ce93ee7d217fbe869608c1f96d">OUTPUT_FOLDER</a>;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                strncat(full_split, split_no, 8);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    snprintf(split_path, 50, <span class="stringliteral">&quot;%s/split/&quot;</span>, <a class="code" href="ui_8h.html#ad98ff8ce93ee7d217fbe869608c1f96d">OUTPUT_FOLDER</a>);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    mkdir(split_path, 0777);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="sudoku__split_8c.html#a65bdda2db99cc264f9e7a92920a4f4b4">sudoku_split</a>(bin, gscaled, split_path))</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    {</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        gtk_widget_show(GTK_WIDGET(grid));</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 9; i++)</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        {</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; 9; j++)</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            {</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                GtkImage *image = GTK_IMAGE(gtk_grid_get_child_at(grid, i, j));</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                <span class="keywordtype">char</span> split_no[70];</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                snprintf(split_no, 70, <span class="stringliteral">&quot;%s%i.png&quot;</span>, split_path, i + j * 9);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                gtk_image_set_from_file(image, (gchar *)full_split);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                gtk_image_set_from_file(image, (gchar *) split_no);</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            }</div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        }</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
@@ -727,31 +686,31 @@ Variables</h2></td></tr>
 
 <p>Opens the UI. </p>
 
-<p class="definition">Definition at line <a class="el" href="ui_8c_source.html#l00304">304</a> of file <a class="el" href="ui_8c_source.html">ui.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;{</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    gtk_init(0, NULL);</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160; </div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    <a class="code" href="ui_8c.html#afa501dbb63ae6077ac8db76b560de42b">builder</a> = gtk_builder_new_from_file(<span class="stringliteral">&quot;resources/ui/ui.glade&quot;</span>);</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160; </div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    GtkWidget *window = GTK_WIDGET(gtk_builder_get_object(<a class="code" href="ui_8c.html#afa501dbb63ae6077ac8db76b560de42b">builder</a>, <span class="stringliteral">&quot;window&quot;</span>));</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160; </div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    g_signal_connect(window, <span class="stringliteral">&quot;destroy&quot;</span>, G_CALLBACK(gtk_main_quit), NULL);</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    g_signal_connect(window, <span class="stringliteral">&quot;destroy&quot;</span>, G_CALLBACK(<a class="code" href="ui_8c.html#a2463a3acef2df4c951ce942a3229e44e">quit</a>), NULL);</div>
+<p class="definition">Definition at line <a class="el" href="ui_8c_source.html#l00309">309</a> of file <a class="el" href="ui_8c_source.html">ui.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;{</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    gtk_init(0, NULL);</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160; </div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    <a class="code" href="ui_8c.html#afa501dbb63ae6077ac8db76b560de42b">builder</a> = gtk_builder_new_from_file(<span class="stringliteral">&quot;resources/ui/ui.glade&quot;</span>);</div>
 <div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160; </div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    gtk_builder_connect_signals(<a class="code" href="ui_8c.html#afa501dbb63ae6077ac8db76b560de42b">builder</a>, NULL);</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    GtkWidget *window = GTK_WIDGET(gtk_builder_get_object(<a class="code" href="ui_8c.html#afa501dbb63ae6077ac8db76b560de42b">builder</a>, <span class="stringliteral">&quot;window&quot;</span>));</div>
 <div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160; </div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    GtkCssProvider *cssProvider = gtk_css_provider_new();</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160; </div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    gtk_css_provider_load_from_path(cssProvider, <span class="stringliteral">&quot;resources/ui/gtk.css&quot;</span>, NULL);</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160; </div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    GdkScreen *screen = gdk_screen_get_default();</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    gtk_style_context_add_provider_for_screen(screen,</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;        GTK_STYLE_PROVIDER(cssProvider), GTK_STYLE_PROVIDER_PRIORITY_USER);</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160; </div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    gtk_widget_show(window);</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160; </div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    gtk_main();</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;}</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    g_signal_connect(window, <span class="stringliteral">&quot;destroy&quot;</span>, G_CALLBACK(gtk_main_quit), NULL);</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    g_signal_connect(window, <span class="stringliteral">&quot;destroy&quot;</span>, G_CALLBACK(<a class="code" href="ui_8c.html#a2463a3acef2df4c951ce942a3229e44e">quit</a>), NULL);</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160; </div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    gtk_builder_connect_signals(<a class="code" href="ui_8c.html#afa501dbb63ae6077ac8db76b560de42b">builder</a>, NULL);</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160; </div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    GtkCssProvider *cssProvider = gtk_css_provider_new();</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160; </div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    gtk_css_provider_load_from_path(cssProvider, <span class="stringliteral">&quot;resources/ui/gtk.css&quot;</span>, NULL);</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160; </div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    GdkScreen *screen = gdk_screen_get_default();</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    gtk_style_context_add_provider_for_screen(screen,</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;        GTK_STYLE_PROVIDER(cssProvider), GTK_STYLE_PROVIDER_PRIORITY_USER);</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160; </div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    gtk_widget_show(window);</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160; </div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    gtk_main();</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;}</div>
 <div class="ttc" id="aui_8c_html_a2463a3acef2df4c951ce942a3229e44e"><div class="ttname"><a href="ui_8c.html#a2463a3acef2df4c951ce942a3229e44e">quit</a></div><div class="ttdeci">void quit()</div><div class="ttdoc">Quits the window.</div><div class="ttdef"><b>Definition:</b> <a href="ui_8c_source.html#l00249">ui.c:249</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -779,6 +738,82 @@ Variables</h2></td></tr>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    GtkWidget *window = GTK_WIDGET(gtk_builder_get_object(<a class="code" href="ui_8c.html#afa501dbb63ae6077ac8db76b560de42b">builder</a>, <span class="stringliteral">&quot;window&quot;</span>));</div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    gtk_window_close(GTK_WINDOW(window));</div>
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;}</div>
+<div class="ttc" id="aui_8c_html_a03526be21cfc656d3f728733f3f8f89c"><div class="ttname"><a href="ui_8c.html#a03526be21cfc656d3f728733f3f8f89c">clean_directory</a></div><div class="ttdeci">void clean_directory()</div><div class="ttdoc">Cleans the tmp directory.</div><div class="ttdef"><b>Definition:</b> <a href="ui_8c_source.html#l00256">ui.c:256</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a90a90d5d73161c0c22649ca1a9073c75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90a90d5d73161c0c22649ca1a9073c75">&#9670;&nbsp;</a></span>recursive_rmdir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int recursive_rmdir </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Recursively removes a directory. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>The path of the folder to remove </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether the deletion went well (0) or not (-1) </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="ui_8c_source.html#l00261">261</a> of file <a class="el" href="ui_8c_source.html">ui.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;{</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    DIR *d = opendir(path);</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <span class="keywordtype">size_t</span> path_len = strlen(path);</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <span class="keywordtype">int</span> r = -1;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160; </div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    <span class="keywordflow">if</span> (d)</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    {</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        <span class="keyword">struct </span>dirent *p;</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160; </div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        r = 0;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        <span class="keywordflow">while</span> (!r &amp;&amp; (p = readdir(d)))</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        {</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;            <span class="keywordtype">int</span> r2 = -1;</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            <span class="keywordtype">char</span> *buf;</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            <span class="keywordtype">size_t</span> len;</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160; </div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            <span class="keywordflow">if</span> (!strcmp(p-&gt;d_name, <span class="stringliteral">&quot;.&quot;</span>) || !strcmp(p-&gt;d_name, <span class="stringliteral">&quot;..&quot;</span>))</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160; </div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;            len = path_len + strlen(p-&gt;d_name) + 2;</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;            buf = malloc(len);</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160; </div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;            <span class="keywordflow">if</span> (buf)</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            {</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;                <span class="keyword">struct </span>stat statbuf;</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160; </div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                snprintf(buf, len, <span class="stringliteral">&quot;%s/%s&quot;</span>, path, p-&gt;d_name);</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                <span class="keywordflow">if</span> (!stat(buf, &amp;statbuf))</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                {</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;                    <span class="keywordflow">if</span> (S_ISDIR(statbuf.st_mode))</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;                        r2 = <a class="code" href="ui_8c.html#a90a90d5d73161c0c22649ca1a9073c75">recursive_rmdir</a>(buf);</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;                    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;                        r2 = unlink(buf);</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;                }</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                free(buf);</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;            }</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            r = r2;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        }</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;        closedir(d);</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    }</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160; </div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    <span class="keywordflow">if</span> (!r)</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        r = rmdir(path);</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160; </div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    <span class="keywordflow">return</span> r;</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
