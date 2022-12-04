@@ -145,10 +145,12 @@ void load_split()
 
     GtkGrid *grid = GTK_GRID(gtk_builder_get_object(builder, "split_grid"));
 
-    char bin[50], gscaled[50];
+    char bin[50], gscaled[50], split_path[50];
     snprintf(bin, 50, "%s/binarized.png", OUTPUT_FOLDER);
     snprintf(gscaled, 50, "%s/grayscaled.png", OUTPUT_FOLDER);
-    if (!sudoku_split(bin, gscaled, OUTPUT_FOLDER))
+    snprintf(split_path, 50, "%s/split/", OUTPUT_FOLDER);
+    mkdir(split_path, 0777);
+    if (!sudoku_split(bin, gscaled, split_path))
     {
         gtk_widget_show(GTK_WIDGET(grid));
 
@@ -158,13 +160,10 @@ void load_split()
             {
                 GtkImage *image = GTK_IMAGE(gtk_grid_get_child_at(grid, i, j));
 
-                char split_no[8];
-                snprintf(split_no, 8, "%i.png", i + j * 9);
+                char split_no[70];
+                snprintf(split_no, 70, "%s%i.png", split_path, i + j * 9);
 
-                char full_split[30] = OUTPUT_FOLDER;
-                strncat(full_split, split_no, 8);
-
-                gtk_image_set_from_file(image, (gchar *)full_split);
+                gtk_image_set_from_file(image, (gchar *)split_no);
             }
         }
 
@@ -253,10 +252,15 @@ void quit()
     gtk_window_close(GTK_WINDOW(window));
 }
 
-int clean_directory()
+void clean_directory()
 {
-    DIR *d = opendir(OUTPUT_FOLDER);
-    size_t path_len = strlen(OUTPUT_FOLDER);
+    recursive_rmdir(OUTPUT_FOLDER);
+}
+
+int recursive_rmdir(char *path)
+{
+    DIR *d = opendir(path);
+    size_t path_len = strlen(path);
     int r = -1;
 
     if (d)
@@ -280,11 +284,11 @@ int clean_directory()
             {
                 struct stat statbuf;
 
-                snprintf(buf, len, "%s/%s", OUTPUT_FOLDER, p->d_name);
+                snprintf(buf, len, "%s/%s", path, p->d_name);
                 if (!stat(buf, &statbuf))
                 {
                     if (S_ISDIR(statbuf.st_mode))
-                        r2 = clean_directory(buf);
+                        r2 = recursive_rmdir(buf);
                     else
                         r2 = unlink(buf);
                 }
@@ -296,7 +300,7 @@ int clean_directory()
     }
 
     if (!r)
-        r = rmdir(OUTPUT_FOLDER);
+        r = rmdir(path);
 
     return r;
 }

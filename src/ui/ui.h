@@ -1,6 +1,8 @@
 #ifndef UI_UI_H
 #define UI_UI_H
+
 #define OUTPUT_FOLDER "/tmp/lezcollitade"
+
 /**
  * \brief Changes stack's page if a file was selected
  * \fn void on_start(GtkWidget *w, gpointer data)
@@ -64,9 +66,16 @@ void quit();
 /**
  * \brief Cleans the tmp directory
  * \fn void clean_directory()
+ */
+void clean_directory();
+
+/**
+ * \brief Recursively removes a directory
+ * \fn int recursive_rmdir(char *path)
+ * \param path The path of the folder to remove
  * \return Whether the deletion went well (0) or not (-1)
  */
-int clean_directory();
+int recursive_rmdir(char *path);
 
 /**
  * \brief Blocks the start button
