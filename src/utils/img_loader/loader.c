@@ -2,6 +2,7 @@
 #include <SDL2/SDL_image.h>
 #include <dirent.h>
 #include <err.h>
+#include <math.h>
 #include "loader.h"
 #include "../../network/network.h"
 #include "../../solver/solver.h"
@@ -66,7 +67,7 @@ static int get_index(char *name)
         temp[i] = name[i];
         i++;
     }
-    if (i >= 2)
+    if (i >= 3)
         errx(1, "get_index: name overflowing buffer");
     temp[i] = 0;
     int val = atoi(temp);
@@ -104,7 +105,7 @@ static int convert_single(char *img_path, char *net_path)
     return 0;
 }
 
-static void write_and_solve(int *sudoku, char *grid_path)
+static void write_and_solve(int *sudoku, char *grid_path, int DIM)
 {
 
     size_t filelen = 1024;
@@ -118,32 +119,48 @@ static void write_and_solve(int *sudoku, char *grid_path)
     FILE *pfile = fopen(gridfile, "w");
     if (pfile == NULL)
         errx(1, "write_and_solve: failed opening file %s", gridfile);
-    char ligne[12] = {};
-    for (size_t i = 0; i < 9; i++)
+
+    char ligne[2 * DIM];
+
+    size_t mod = sqrt(DIM);
+
+    for (int i = 0; i < DIM; i++)
     {
-        char subline[4];
-        for (size_t j = 0; j < 3; j++)
+        if (i > 0 && i % mod == 0)
+            fputs("\n", pfile);
+
+        size_t pl = 0;
+        for (int j = 0; j < DIM; j++)
         {
-            for (size_t k = 0; k < 3; k++)
+            if (j > 0 && j % mod == 0)
             {
-                size_t position = i * 9 + j * 3 + k;
-                char c = sudoku[position];
-                if (c == 0)
-                    subline[k] = '.';
-                else
-                    subline[k] = c + '0';
+                ligne[pl] = ' ';
+                pl++;
             }
-            subline[3] = ' ';
-            strncpy(ligne, subline, 4);
+            if (sudoku[i * DIM + j] <= 0)
+            {
+                ligne[pl] = '.';
+                pl++;
+            }
+
+            else if (sudoku[i * DIM + j] < 10)
+            {
+                ligne[pl] = sudoku[i * DIM + j] + 48;
+                pl++;
+            }
+            else
+            {
+                ligne[pl] = sudoku[i * DIM + j] + 55;
+                pl++;
+            }
         }
-        ligne[11] = '\0';
+        ligne[pl] = '\0';
         fputs(ligne, pfile);
         fputs("\n", pfile);
-        if (i == 2 || i == 5)
-            fputs("\n", pfile);
     }
+
     fclose(pfile);
-    solve(gridfile, 9);
+    solve(gridfile, DIM);
     printf("Sucessfully solved the grid!\n");
     free(gridfile);
 }
@@ -184,7 +201,7 @@ static int convert_multi(char *img_path, char *net_path, char *grid_path)
             }
         }
         network_free(net);
-        write_and_solve(sudoku, grid_path);
+        write_and_solve(sudoku, grid_path, 9);
         free(dir);
     }
     else
