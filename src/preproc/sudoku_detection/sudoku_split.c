@@ -332,6 +332,8 @@ static void average(size_t i, size_t j, double ratio_h, double ratio_w,
 void scale_down(
     SDL_Surface **surface_p, size_t w, size_t h, size_t new_w, size_t new_h)
 {
+    if (w < new_w || h < new_h)
+        return;
     SDL_Surface *surface = *surface_p;
     SDL_Surface *output
         = SDL_CreateRGBSurface(0, (int)new_w, (int)new_h, 32, 0, 0, 0, 0);
