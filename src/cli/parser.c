@@ -35,6 +35,10 @@ static int get_next_key_convert(const char *param)
     {
         nextkey = CONVERT_MODE;
     }
+    else if (strcmp("--threshold", param) == 0 || strcmp("-t", param) == 0)
+    {
+        nextkey = RATE;
+    }
     else
     {
         errx(-1, "Unknown flag %s", param);

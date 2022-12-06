@@ -15,6 +15,8 @@
 #include "./utils/matrices/matrix.h"
 #include "./utils/mnist/loader.h"
 
+#define DEFAULT_RATE 0.1
+
 #define UNUSED(x) (void)(x)
 
 static volatile int keep_running = 1;
@@ -131,14 +133,13 @@ static int get_verbose(params_t params)
     return params[VERBOSE] == NULL ? 0 : 1;
 }
 
-static double get_rate(params_t params)
+static double get_rate(params_t params, double val)
 {
-    double rate = 0.1;
+    double rate = val;
     if (params[RATE] != NULL)
     {
         rate = atof(params[RATE]);
     }
-
     return rate;
 }
 
@@ -245,7 +246,7 @@ static void train(params_t params)
     }
     printf("starting the training\n");
 
-    double rate = get_rate(params);
+    double rate = get_rate(params, DEFAULT_RATE);
     int running = keep_running || iterations > 0;
     for (size_t i = 0; running; i++)
     {
@@ -335,8 +336,13 @@ static int get_convert_mode(params_t params)
 static void cli_convert(params_t params)
 {
     int convert_mode = get_convert_mode(params);
-    convert(params[IMG_PATH], params[INPUT_NETWORK], params[GRID_PATH],
-        convert_mode);
+    double default_rate = 0.4;
+    double rate = get_rate(params, default_rate);
+    if (convert_mode == 1)
+        convert_single(params[IMG_PATH], params[INPUT_NETWORK], rate);
+    else
+        convert_multi(
+            params[IMG_PATH], params[INPUT_NETWORK], params[GRID_PATH], rate);
 }
 
 int main(int argc, char **argv)

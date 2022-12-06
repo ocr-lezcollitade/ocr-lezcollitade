@@ -75,7 +75,7 @@ static int get_index(char *name)
     return val;
 }
 
-static int convert_single(char *img_path, char *net_path)
+int convert_single(char *img_path, char *net_path, double tres)
 {
 
     if (SDL_Init(SDL_INIT_VIDEO) != 0)
@@ -89,11 +89,25 @@ static int convert_single(char *img_path, char *net_path)
     matrix_t *pixels = mat_create_fill(784, 1, values);
     network_t *net = network_load(net_path);
     matrix_t *res = compute_results(pixels, net);
-    int out = network_get_output(res, 0.8);
+    int out = network_get_output(res, tres);
+
+    double sum = 0;
+    for (size_t k = 0; k < net->inputs; k++)
+        sum += values[k];
+
+    if (sum == 0)
+        out = 0;
 
     print(values);
 
-    printf("Its a %i !\n", out);
+    printf("It's a ");
+    if (out < 0)
+        printf("%d", out);
+    else if (out < 10)
+        printf("%c", out + '0');
+    else
+        printf("%c", out - 10 + 'A');
+    printf("!\n");
     matrix_free(pixels);
     network_free(net);
     matrix_free(res);
@@ -165,18 +179,21 @@ static void write_and_solve(int *sudoku, char *grid_path, int DIM)
     free(gridfile);
 }
 
-static int convert_multi(char *img_path, char *net_path, char *grid_path)
+int *convert_multi(
+    char *img_path, char *net_path, char *grid_path, double tres)
 {
 
     if (SDL_Init(SDL_INIT_VIDEO) != 0)
-        errx(EXIT_FAILURE, "%s", SDL_GetError());
+        return NULL;
 
     struct dirent *dir;
     DIR *d = opendir(img_path);
-    int sudoku[81] = {};
+    int *sudoku = NULL;
     if (d)
     {
         network_t *net = network_load(net_path);
+        size_t grid_size = (net->inputs - 1) * (net->inputs - 1);
+        sudoku = calloc(grid_size, sizeof(int));
         while ((dir = readdir(d)) != NULL)
         {
             if (dir->d_type == 8)
@@ -188,9 +205,17 @@ static int convert_multi(char *img_path, char *net_path, char *grid_path)
                 strncat(path, dir->d_name, pathlen - 1);
                 surface = load_image(path);
                 double *values = surface_to_grayscale_img(surface);
-                matrix_t *pixels = mat_create_fill(784, 1, values);
+                matrix_t *pixels = mat_create_fill(net->inputs, 1, values);
                 matrix_t *res = compute_results(pixels, net);
-                int out = network_get_output(res, 0.8);
+                int out = network_get_output(res, tres);
+
+                double sum = 0;
+                for (size_t k = 0; k < net->inputs; k++)
+                    sum += values[k];
+
+                if (sum == 0)
+                    out = 0;
+
                 int index = get_index(dir->d_name);
                 sudoku[index] = out;
                 matrix_free(res);
@@ -211,24 +236,5 @@ static int convert_multi(char *img_path, char *net_path, char *grid_path)
     closedir(d);
     SDL_QuitSubSystem(SDL_INIT_VIDEO);
     SDL_Quit();
-    return 0;
-}
-
-int convert(char *img_path, char *net_path, char *grid_path, int mode)
-{
-
-    if (SDL_Init(SDL_INIT_VIDEO) != 0)
-        errx(EXIT_FAILURE, "%s", SDL_GetError());
-
-    if (mode == SINGLE_IMAGE)
-    {
-        return convert_single(img_path, net_path);
-    }
-
-    else if (mode == MULTI_IMAGE)
-    {
-        return convert_multi(img_path, net_path, grid_path);
-    }
-
-    errx(1, "Unvalid mode");
+    return sudoku;
 }
