@@ -35,17 +35,28 @@ void pixel_to_grayscale(
 double *surface_to_grayscale_img(SDL_Surface *surface);
 
 /**
- * \brief Convert images according to the mode
- * \fn int convert(char* img_path, char* net_path, char* grid_path, int mode);
- * \param img_path => If mode 1 : The path of the image
- * \param img_path => If mode 2 : A directory containing all the images
+ * \brief Convert a folder of images
+ * \fn int convert_multi(char* img_path, char* net_path, char* grid_path,
+ * double tres); \param img_path A directory containing all the images \param
+ * net_path The path of the trained network \param grid_path The path to save
+ * the grids grid.
+ * \param grid_elements The number of different elements in the grid
+ * (Thus the length of a sudoku line i.e. 9 for regular sudoku).
+ * \return int array containing all the detected values, NULL if failed.
+ */
+
+int *convert_multi(
+    char *img_path, char *net_path, char *grid_path, double tres);
+
+/**
+ * \brief Convert a single image to test
+ * \fn int convert_single(char* img_path, char* net_path,double tres);
+ * \param img_path The path of the image
  * \param net_path The path of the trained network
- * \param grid_path => Only in mode 2 : The path to save the grids
- * \param mode => If 1 : Display the image and give it's label
- * \param mode => If 2 : Takes a directory of image and convert them into a
+ * \param mode Display the image and give it's label
  * grid \return 0 if gone well, error otherwise
  */
 
-int convert(char *img_path, char *net_path, char *grid_path, int mode);
+int convert_single(char *img_path, char *net_path, double tres);
 
 #endif /* !LOADER_H */
