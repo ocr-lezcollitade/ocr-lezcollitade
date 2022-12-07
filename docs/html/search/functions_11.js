@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['win_305',['win',['../solver_8c.html#abb1b1136394eebdcf50450202efb3592',1,'win(int *grid, int DIM):&#160;solver.c'],['../solver_8h.html#abb1b1136394eebdcf50450202efb3592',1,'win(int *grid, int DIM):&#160;solver.c']]]
+  ['update_5frenderer_0',['update_renderer',['../painter_8c.html#aa6f663b12167167a952b1d851c55ca9e',1,'painter.c']]],
+  ['update_5frenderer_5freverse_1',['update_renderer_reverse',['../painter_8c.html#af9c1b292517732dff1159dad46016c08',1,'painter.c']]]
 ];

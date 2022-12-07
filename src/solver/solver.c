@@ -4,11 +4,7 @@
 #include <string.h>
 #include "solver.h"
 
-struct Cell
-{
-    int x;
-    int y;
-};
+// TESTS//
 
 int checkRow(int *grid, int DIM)
 {
@@ -84,40 +80,37 @@ int checkSquare(int *grid, int DIM)
     return 1;
 }
 
-int allChecks(int *grid, int DIM)
-{
-    return checkSquare(grid, DIM) + checkCol(grid, DIM) + checkRow(grid, DIM)
-           == 3;
-}
+//
 
-int win(int *grid, int DIM)
+int *readGrid(char *inputFile, int DIM)
 {
-    for (int i = 0; i < DIM; i++)
-    {
-        for (int j = 0; j < DIM; j++)
-        {
-            if (grid[i * DIM + j] == 0)
-                return 0;
-        }
-    }
-    return checkSquare(grid, DIM) + checkCol(grid, DIM) + checkRow(grid, DIM)
-           == 3;
-}
 
-int solve(char *inputFile, int DIM)
-{
     if (DIM > 25
         || (DIM != 1 && DIM != 4 && DIM != 9 && DIM != 16 && DIM != 25))
     {
         printf("Dimension shouls be <= 25 and its square root should be an "
-               "integer");
-        return 1;
+               "integer\n");
+        return NULL;
     }
 
     FILE *fpointer = fopen(inputFile, "r");
+
+    if (fpointer == NULL)
+    {
+        printf("Unable to open file %s\n", inputFile);
+        return NULL;
+    }
+
     char line[2 * DIM];
 
     int *grid = calloc(sizeof(int), DIM * DIM);
+
+    if (grid == NULL)
+    {
+        printf("Unable to allocate space for the grid\n");
+        return NULL;
+    }
+
     int i = 0;
 
     while (fgets(line, 2 * DIM, fpointer))
@@ -136,7 +129,7 @@ int solve(char *inputFile, int DIM)
                 else if (line[pk] != '.')
                 {
                     printf("Unknown charater %c\n", line[pk]);
-                    return 1;
+                    return NULL;
                 }
                 k++;
             }
@@ -147,130 +140,154 @@ int solve(char *inputFile, int DIM)
     }
 
     fclose(fpointer);
+    return grid;
+}
 
-    // Debug
+void writeGrid(char *inputFile, int *grid, int DIM)
+{
 
-    /*
-    for(int i=0;i<DIM;i++){
-        for(int j=0;j<DIM;j++){
-        printf("%d.",grid[i][j]);
+    char outputExt[] = ".result";
+    strcat(inputFile, outputExt);
+    FILE *pfile = fopen(inputFile, "w");
+
+    char ligne[2 * DIM];
+
+    size_t mod = sqrt(DIM);
+
+    for (int i = 0; i < DIM; i++)
+    {
+        if (i > 0 && i % mod == 0)
+            fputs("\n", pfile);
+
+        size_t pl = 0;
+        for (int j = 0; j < DIM; j++)
+        {
+            if (j > 0 && j % mod == 0)
+            {
+                ligne[pl] = ' ';
+                pl++;
+            }
+            if (grid[i * DIM + j] < 1)
+            {
+                ligne[pl] = '.';
+                pl++;
+            }
+            else if (grid[i * DIM + j] < 10)
+            {
+                ligne[pl] = grid[i * DIM + j] + 48;
+                pl++;
+            }
+            else
+            {
+                ligne[pl] = grid[i * DIM + j] + 55;
+                pl++;
+            }
         }
-        printf("\n");
+        ligne[pl] = '\0';
+        fputs(ligne, pfile);
+        fputs("\n", pfile);
     }
-    //    printf("CheckRow : %d\n",checkRow(grid));
-    //    printf("CheckCol : %d\n",checkCol(grid));
-    //    printf("CheckSquare : %d\n",checkSquare(grid));
+    fclose(pfile);
+}
 
-    */
+// SOLVING ALGORITHM //
+
+static int isSafe(int *grid, int row, int col, int num, int DIM)
+{
+
+    // Check if we find the same num
+    // in the similar row , we return 0
+    for (int x = 0; x <= DIM - 1; x++)
+        if (grid[row * DIM + x] == num)
+            return 0;
+
+    // Check if we find the same num in the
+    // similar column , we return 0
+    for (int x = 0; x <= DIM - 1; x++)
+        if (grid[x * DIM + col] == num)
+            return 0;
+
+    // Check if we find the same num in the
+    // particular DIM*DIM matrix, we return 0
+
+    int sqrtDIM = sqrt(DIM);
+
+    int startRow = row - row % sqrtDIM, startCol = col - col % sqrtDIM;
+
+    for (int i = 0; i < sqrtDIM; i++)
+        for (int j = 0; j < sqrtDIM; j++)
+            if (grid[(i + startRow) * DIM + (j + startCol)] == num)
+                return 0;
+
+    return 1;
+}
+
+static int solveSudoku(int *grid, int row, int col, int DIM)
+{
+
+    if (row == DIM - 1 && col == DIM)
+        return 1;
+
+    if (col == DIM)
+    {
+        row++;
+        col = 0;
+    }
+
+    if (grid[row * DIM + col] > 0)
+        return solveSudoku(grid, row, col + 1, DIM);
+
+    for (int num = 1; num <= DIM; num++)
+    {
+
+        if (isSafe(grid, row, col, num, DIM) == 1)
+        {
+            grid[row * DIM + col] = num;
+
+            if (solveSudoku(grid, row, col + 1, DIM) == 1)
+                return 1;
+        }
+        grid[row * DIM + col] = 0;
+    }
+    return 0;
+}
+
+// END OF SOLVING PART //
+
+int solve(int *grid, int DIM)
+{
+
+    if (grid == NULL)
+        return 0;
 
     // Si mauvaise grille
 
     if (!checkCol(grid, DIM) || !checkRow(grid, DIM)
         || !checkSquare(grid, DIM))
     {
-        printf("Erreur dans grille d'entrée\n");
-        return 1;
-    }
-
-    // On defini les case vides
-
-    int nbEmpty = 0;
-    struct Cell empty[DIM * DIM];
-
-    for (int i = 0; i < DIM; i++)
-    {
-        for (int j = 0; j < DIM; j++)
-        {
-            if (grid[i * DIM + j] == 0)
-            {
-                struct Cell c;
-                c.x = i;
-                c.y = j;
-                empty[nbEmpty] = c;
-                nbEmpty++;
-            }
-        }
-    }
-
-    // Debut de la boucle principale
-
-    int index = 0;
-
-    while (index < nbEmpty && index >= 0)
-    {
-        struct Cell curr = empty[index];
-        if (grid[curr.x * DIM + curr.y] < DIM)
-        {
-            grid[curr.x * DIM + curr.y]++;
-            if (allChecks(grid, DIM))
-                index++;
-        }
-        else
-        {
-            grid[curr.x * DIM + curr.y] = 0;
-            index--;
-        }
-    }
-
-    if (index < 0)
-    {
-        printf("Pas résolvable :(\n");
+        printf("Error in the initial grid :(\n");
         return 0;
     }
 
-    if (win(grid, DIM))
+    if (solveSudoku(grid, 0, 0, DIM) == 1)
     {
-        /*
-        printf("Voici la solution\n");
-        for(int i=0;i<DIM;i++){
-            for(int j=0;j<DIM;j++){
-                printf("%d.",grid[i][j]);
-            }
-            printf("\n");
-        }*/
-
-        // On ecrit dans un nouveau file
-        char outputExt[] = ".result";
-        strcat(inputFile, outputExt);
-        FILE *pfile = fopen(inputFile, "w");
-
-        char ligne[2 * DIM];
-
-        size_t mod = sqrt(DIM);
-
-        for (int i = 0; i < DIM; i++)
-        {
-            if (i > 0 && i % mod == 0)
-                fputs("\n", pfile);
-
-            size_t pl = 0;
-            for (int j = 0; j < DIM; j++)
-            {
-                if (j > 0 && j % mod == 0)
-                {
-                    ligne[pl] = ' ';
-                    pl++;
-                }
-
-                if (grid[i * DIM + j] < 10)
-                {
-                    ligne[pl] = grid[i * DIM + j] + 48;
-                    pl++;
-                }
-                else
-                {
-                    ligne[pl] = grid[i * DIM + j] + 55;
-                    pl++;
-                }
-            }
-            ligne[pl] = '\0';
-            fputs(ligne, pfile);
-            fputs("\n", pfile);
-        }
-        fclose(pfile);
+        printf("Successfully solved the grid\n");
+        return 1;
     }
-
-    free(grid);
-
+    printf("Not able to solve the grid :(\n");
     return 0;
+}
+
+int *copy_grid(int *grid, int DIM)
+{
+
+    int *copy = calloc(DIM, sizeof(int));
+
+    if (copy == NULL)
+        return NULL;
+
+    for (int i = 0; i < DIM; i++)
+        copy[i] = grid[i];
+
+    return copy;
 }

@@ -7,6 +7,7 @@
 #include <string.h>
 #include <sys/stat.h>
 #include "ui.h"
+#include "../network/network.h"
 #include "../preproc/color_removal/color_removal.h"
 #include "../preproc/rotate/rotate.h"
 #include "../preproc/sudoku_detection/sudoku_split.h"
