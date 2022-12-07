@@ -4,6 +4,7 @@
 #include <math.h>
 #include <stdio.h>
 #include "rotate.h"
+#include "../../network/network.h"
 #include "../../utils/img_loader/loader.h"
 
 SDL_Surface *rotate_surface(SDL_Surface *surface, double deg)

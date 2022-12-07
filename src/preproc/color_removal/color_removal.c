@@ -2,6 +2,7 @@
 #include <SDL2/SDL_image.h>
 #include <err.h>
 #include "color_removal.h"
+#include "../../network/network.h"
 #include "../../utils/img_loader/loader.h"
 
 static Uint32 pixel_to_gray(Uint32 pixel_color, SDL_Surface *surface)

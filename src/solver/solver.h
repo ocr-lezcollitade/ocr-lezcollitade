@@ -2,52 +2,40 @@
 #define SOLVER_SOLVER_H
 
 /**
- * \brief Checks if all the rows are valid
- * \fn int checkRow(int grid[9][9])
- * \param grid 2-d array represting the sudoku
- * \return 1 if the rows are valids 0 otherwise
+ * \brief read a sudoku grid from a file of dimension DIM and return int* of
+ * the loaded grid \fn int* readGrid(char *  inputFile, int DIM); \param
+ * inputFile the name of the input file \param DIM the dimension of the grid
+ * (its square root must be an integer and its value <=25) \return NULL if
+ * operation failed, int* of the grid otherwise
  */
-int checkRow(int *grid, int DIM);
+int *readGrid(char *inputFile, int DIM);
 
 /**
- * \brief Checks if all the columns are valid
- * \fn int checkCol(int grid[9][9])
- * \param grid 2-d array represting the sudoku
- * \return 1 if all the columns are valid 0 otherwise
+ * \brief write a sudoku grid to a file which path is inputFile.result
+ * \fn int* writeGrid(char *  inputFile,int* grid, int DIM);
+ * \param inputFile the name of the input file
+ * \param grid the int* of the grid
+ * \param DIM the dimension of the grid (its square root must be an integer and
+ * its value <=25) \return nothing
  */
-int checkCol(int *grid, int DIM);
+void writeGrid(char *inputFile, int *grid, int DIM);
 
 /**
- * \brief Checks if all the squares are valid
- * \fn int checkSquare(int grid[9][9])
- * \param grid 2-d array represting the sudoku
- * \return 1 if all the squares are valid 0 otherwise
+ * \brief solve a sudoku grid of dimension DIM (IN PLACE)
+ * \fn int* solve(int* grid, int DIM);
+ * \param grid the int* of the grid
+ * \param DIM the dimension of the grid (its square root must be an integer and
+ * its value <=25) \return 1 if solved, 0 otherwise
  */
-int checkSquare(int *grid, int DIM);
+int solve(int *grid, int DIM);
 
 /**
- * \brief Checks if all the rows, columns and squares are valid
- * \fn int allChecks(int grid[9][9])
- * \param grid 2-d array represting the sudoku
- * \return 1 if all the rows, columns and squares are valid 0 otherwise
+ * \brief copy a sudoku grid of dimension DIM
+ * \fn int* copy_grid(int* grid, int DIM);
+ * \param grid the int* of the grid
+ * \param DIM the dimension of the grid (its square root must be an integer and
+ * its value <=25) \return int* of the copy
  */
-int allChecks(int *grid, int DIM);
-
-/**
- * \brief Checks if all the cases have a number and all the rows, columns and
- * squares are valid \fn int win(int grid[9][9]) \param grid 2-d array
- * represting the sudoku \return 1 if all the cases have a number and all the
- * rows, columns and squares are valid 0 otherwise
- */
-int win(int *grid, int DIM);
-
-/**
- * \brief read a sudoku grid from a file, solve it and write the solution in
- * another file in ".result" \fn int solve(char *  inputFile); \param inputFile
- * the name og the input file \param DIM the dimension of the grid (its square
- * root must be an integer and its value <=25) \return 0 if the grid is
- * solvable, 0 otherwise
- */
-int solve(char *inputFile, int DIM);
+int *copy_grid(int *grid, int DIM);
 
 #endif /* !SOLVER_SOLVER_H */

@@ -338,11 +338,20 @@ static void cli_convert(params_t params)
     int convert_mode = get_convert_mode(params);
     double default_rate = 0.4;
     double rate = get_rate(params, default_rate);
+    network_t *net = network_load(params[INPUT_NETWORK]);
     if (convert_mode == 1)
-        convert_single(params[IMG_PATH], params[INPUT_NETWORK], rate);
+        test_single(net, params[IMG_PATH], rate);
     else
-        convert_multi(
-            params[IMG_PATH], params[INPUT_NETWORK], params[GRID_PATH], rate);
+    {
+        // 9 a change qd on aura le boutton de l'ui
+        int *grid = convert_multi(params[IMG_PATH], net, rate);
+        int *original = copy_grid(grid, 9);
+        solve(grid, 9);
+        writeGrid(params[GRID_PATH], grid, 9);
+        free(grid);
+        free(original);
+    }
+    network_free(net);
 }
 
 int main(int argc, char **argv)
@@ -358,7 +367,11 @@ int main(int argc, char **argv)
     params_t params = parse_params(argc, argv, &mode);
     if (argc == 2)
     {
-        return solve(argv[1], 16);
+        int *grid = readGrid(argv[1], 16);
+        solve(grid, 16);
+        writeGrid(argv[1], grid, 16);
+        free(grid);
+        return 0;
     }
     if (params == NULL)
     {
