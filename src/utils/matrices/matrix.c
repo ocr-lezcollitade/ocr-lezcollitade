@@ -11,6 +11,11 @@ double mat_el_at(matrix_t *mat, size_t i, size_t j)
 
 void mat_set_el(matrix_t *mat, size_t i, size_t j, double value)
 {
+    if (i >= mat->rows || j >= mat->columns)
+        fprintf(stderr,
+            "mat_set_el(mat: %p, i: %zu, j: %zu): error: tried to insert "
+            "value at (%zu, %zu) in matrix of dimensions (%zu, %zu)\n",
+            mat, i, j, i, j, mat->rows, mat->columns);
     size_t index = i * mat->columns + j;
     mat->_elements[index] = value;
 }

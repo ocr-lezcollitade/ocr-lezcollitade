@@ -12,6 +12,7 @@
 #include "../preproc/sudoku_detection/sudoku_split.h"
 #include "../utils/img_loader/loader.h"
 
+#define GRID_DIM 9
 #define UNUSED(x) (void)(x)
 
 /** GLOBAL VARIABLES **/
@@ -49,7 +50,7 @@ void auto_rotation()
     SDL_Surface *temp = load_image(filename);
     surface_to_grayscale(temp);
     SDL_Surface *binarized_surface = full_binary(temp);
-    int rotation = get_rotation(binarized_surface);
+    int rotation = get_rotation(binarized_surface, GRID_DIM);
     SDL_Surface *rotated = rotate_surface(current_surface, -rotation);
     snprintf(filename, 50, "%s/rotated.png", OUTPUT_FOLDER);
     IMG_SavePNG(rotated, filename);
@@ -150,7 +151,7 @@ void load_split()
     snprintf(gscaled, 50, "%s/grayscaled.png", OUTPUT_FOLDER);
     snprintf(split_path, 50, "%s/split/", OUTPUT_FOLDER);
     mkdir(split_path, 0777);
-    if (!sudoku_split(bin, gscaled, split_path))
+    if (!sudoku_split(bin, gscaled, split_path, GRID_DIM))
     {
         gtk_widget_show(GTK_WIDGET(grid));
 
