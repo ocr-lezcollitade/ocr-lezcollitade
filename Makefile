@@ -28,7 +28,7 @@ SRC=main.c cli/parser.c utils/mnist/loader.c utils/matrices/matrix.c\
 	solver/solver.c network/function.c network/network.c\
 	preproc/rotate/rotate.c preproc/sudoku_detection/sudoku_split.c\
 	preproc/color_removal/color_removal.c ui/ui.c\
-	utils/img_loader/loader.c
+	utils/img_loader/loader.c preproc/crop/crop.c
 
 OBJ_ROOT=./obj
 OBJ_DIR=$(OBJ_ROOT)/Release
