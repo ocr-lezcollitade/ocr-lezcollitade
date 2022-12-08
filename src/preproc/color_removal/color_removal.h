@@ -9,6 +9,13 @@
 void surface_to_grayscale(SDL_Surface *surface);
 
 /**
+ * \brief balance the light of the surface according to its most white pixel
+ * \fn void white_balance(SDL_Surface *surface)
+ * \param surface The surface for which we want to balance the whites
+ */
+void white_balance(SDL_Surface *surface);
+
+/**
  * \brief Turns a surface into binary
  * \fn void surface_to_binary(SDL_Surface* surface)
  * \param surface The surface to turn into binary

@@ -1,6 +1,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <err.h>
+#include <math.h>
 #include "color_removal.h"
 #include "../../network/network.h"
 #include "../../utils/img_loader/loader.h"
@@ -21,12 +22,41 @@ static Uint32 pixel_to_gray(Uint32 pixel_color, SDL_Surface *surface)
     return color;
 }
 
+void white_balance(SDL_Surface *surface)
+{
+
+    Uint32 *pixels = surface->pixels;
+
+    double max = 0;
+
+    for (int i = 0; i < (surface->w * surface->h); i++)
+    {
+        Uint8 r, g, b;
+        SDL_GetRGB(pixels[i], surface->format, &r, &g, &b);
+        double color = round((double)(r + g + b) / 3);
+        if (color > max)
+            max = color;
+    }
+
+    double ratio = 255 / max;
+
+    for (int i = 0; i < (surface->w * surface->h); i++)
+    {
+        Uint8 r, g, b;
+        SDL_GetRGB(pixels[i], surface->format, &r, &g, &b);
+        pixels[i] = SDL_MapRGB(surface->format, (Uint8)((double)r * ratio),
+            (Uint8)((double)g * ratio), (Uint8)((double)b * ratio));
+    }
+}
+
 void surface_to_grayscale(SDL_Surface *surface)
 {
     Uint32 *pixels = surface->pixels;
 
     for (int i = 0; i < (surface->w * surface->h); i++)
         pixels[i] = pixel_to_gray(pixels[i], surface);
+
+    white_balance(surface);
 }
 
 static Uint32 pixel_to_binary(
