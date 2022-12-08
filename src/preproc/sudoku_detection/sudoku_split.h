@@ -76,4 +76,15 @@ size_t clean_lines(size_t lines[][2], size_t len, size_t w, size_t h);
  */
 int rotation(matrix_t *acc, size_t rho, double maximum, int dim);
 
+/**
+ * \brief           debug function that creates the image "hough.png"
+ * corresponding to the accumulator matrix of the hough transform method \fn
+ * void draw_acc(matrix_t *acc, size_t rhos, double max) \param acc       the
+ * accumulator matrix \param rhos      the max rho possible in the accumulator
+ * matrix (corresponds to the diagonal of the image we are using) \param max
+ * the maximum value present in the accumulator matrix (used to scale the
+ * resulting picture)
+ */
+void draw_acc(matrix_t *acc, size_t rhos, double max);
+
 #endif
