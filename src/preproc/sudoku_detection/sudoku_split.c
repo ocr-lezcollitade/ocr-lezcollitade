@@ -225,6 +225,44 @@ static int crop(SDL_Surface **b_w_p, SDL_Surface **output_p)
     return 0;
 }
 
+static int check_line_v(SDL_Surface *surface, size_t x, size_t y1, size_t y2)
+{
+    size_t w = surface->w;
+
+    int res = 0;
+
+    SDL_PixelFormat *format = surface->format;
+    Uint32 *pixels = surface->pixels;
+
+    for (size_t j = y1; j < y2; j++)
+    {
+        Uint8 r, g, b;
+        SDL_GetRGB(pixels[j * w + x], format, &r, &g, &b);
+        if (r + g + b == WHITE)
+            res++;
+    }
+    return res;
+}
+
+static int check_line_h(SDL_Surface *surface, size_t x1, size_t x2, size_t y)
+{
+    size_t w = surface->w;
+
+    int res = 0;
+
+    SDL_PixelFormat *format = surface->format;
+    Uint32 *pixels = surface->pixels;
+
+    for (size_t i = x1; i < x2; i++)
+    {
+        Uint8 r, g, b;
+        SDL_GetRGB(pixels[y * w + i], format, &r, &g, &b);
+        if (r + g + b == WHITE)
+            res++;
+    }
+    return res;
+}
+
 static int check_square(
     SDL_Surface *surface, size_t x1, size_t x2, size_t y1, size_t y2)
 {
@@ -302,33 +340,45 @@ static void clean_border(SDL_Surface *surface, SDL_Surface *gray)
     size_t h = surface->h;
 
     size_t x1 = w / 2 - 1, x2 = w / 2 + 1, y1 = h / 2 - 1, y2 = h / 2 + 1;
-
     while (check_square(surface, x1, x2, y1, y2) == 0
            && !(x1 == 0 && x2 == w - 1 && y1 == 0 && y2 == h - 1))
     {
-        if (x1 > 0)
+        if (x1 > 0 && check_line_v(surface, x1, y1, y2) == 0)
             x1 -= 1;
-        if (x2 < w - 1)
+        if (x2 < w - 1 && check_line_v(surface, x2, y1, y2) == 0)
             x2 += 1;
-        if (y1 > 0)
+        if (y1 > 0 && check_line_h(surface, x1, x2, y1) == 0)
             y1 -= 1;
-        if (y2 < h - 1)
+        if (y2 < h - 1 && check_line_h(surface, x1, x2, y2) == 0)
             y2 += 1;
     }
     // test if the square is smaller than 30% of the image
     if ((x2 - x1) * (y2 - y1) < (w * h) * 0.3)
     {
-        while (check_square(surface, x1, x2, y1, y2) != 0
-               && !(x1 == 0 && x2 == w - 1 && y1 == 0 && y2 == h - 1))
+        int changed = 1;
+        while (changed && !(x1 == 0 && x2 == w - 1 && y1 == 0 && y2 == h - 1))
         {
-            if (x1 > 0)
+            changed = 0;
+            if (x1 > 0 && check_line_v(surface, x1, y1, y2) > 0)
+            {
+                changed = 1;
                 x1 -= 1;
-            if (x2 < w - 1)
+            }
+            if (x2 < w - 1 && check_line_v(surface, x2, y1, y2) > 0)
+            {
+                changed = 1;
                 x2 += 1;
-            if (y1 > 0)
+            }
+            if (y1 > 0 && check_line_h(surface, x1, x2, y1) > 0)
+            {
+                changed = 1;
                 y1 -= 1;
-            if (y2 < h - 1)
+            }
+            if (y2 < h - 1 && check_line_h(surface, x1, x2, y2) > 0)
+            {
+                changed = 1;
                 y2 += 1;
+            }
         }
 
         remove_border(surface, x1, x2, y1, y2);
@@ -499,17 +549,16 @@ static void clean_picture(SDL_Surface *b_w, SDL_Surface *gray)
     size_t h = b_w->h;
 
     size_t x1 = w / 2 - 1, x2 = w / 2 + 1, y1 = h / 2 - 1, y2 = h / 2 + 1;
-
     while (check_square(b_w, x1, x2, y1, y2) == 0
            && !(x1 == 0 && x2 == w - 1 && y1 == 0 && y2 == h - 1))
     {
-        if (x1 > 0)
+        if (x1 > 0 && check_line_v(b_w, x1, y1, y2) == 0)
             x1 -= 1;
-        if (x2 < w - 1)
+        if (x2 < w - 1 && check_line_v(b_w, x2, y1, y2) == 0)
             x2 += 1;
-        if (y1 > 0)
+        if (y1 > 0 && check_line_h(b_w, x1, x2, y1) == 0)
             y1 -= 1;
-        if (y2 < h - 1)
+        if (y2 < h - 1 && check_line_h(b_w, x1, x2, y2) == 0)
             y2 += 1;
     }
 
@@ -630,7 +679,7 @@ static void insert_line(
 }
 
 // lines should have 4 lines stored already
-static void add_missing_lines(size_t lines[][2], int dim)
+static void add_middle_lines(size_t lines[][2], int dim)
 {
     int root = sqrt(dim);
     for (size_t i = 0; i < (size_t)(2 * (root + 1)); i += root)
@@ -788,15 +837,14 @@ size_t clean_lines(size_t lines[][2], size_t len, size_t w, size_t h)
 {
     double thetas[len];
     for (size_t i = 0; i < len; i++)
-        thetas[i] = (double)lines[i][1];
+        thetas[i] = (double)lines[i][1]; // modulo((double)lines[i][1], 180);
 
     double m = mean(thetas, 0, len);
-
-    double thres_r = 50 * sqrt((w * w) + (h * h)) / 1000;
+    double thres_r = 30 * sqrt((w * w) + (h * h)) / 1000;
 
     for (size_t i = 1; i < len; i++)
     {
-        if ((lines[i - 1][1] > m + 5 || lines[i - 1][1] < m - 5)
+        if (((lines[i - 1][1]) > m + 5 || (lines[i - 1][1]) < m - 5)
             || abs((int)lines[i - 1][0] - (int)lines[i][0]) < thres_r)
         {
             move_left(lines, i, len);
@@ -810,6 +858,30 @@ size_t clean_lines(size_t lines[][2], size_t len, size_t w, size_t h)
     return len;
 }
 
+static void add_missing_lines(size_t lines[][2], size_t len, int dim)
+{
+    double distances[len - 1];
+    for (size_t i = 1; i < len; i++)
+    {
+        distances[i - 1]
+            = (double)(abs((int)lines[i][0] - (int)lines[i - 1][0]));
+    }
+
+    double double_m = 2 * mean(distances, 0, len - 1);
+
+    double thres = 0.3 * double_m;
+
+    for (size_t i = 0; i < len - 1; i++)
+    {
+        if (distances[i] > double_m - thres && distances[i] < double_m + thres)
+        {
+            size_t middle = (lines[i + 1][0] - lines[i][0]) / 2 + lines[i][0];
+            insert_line(lines, i + 1, middle, lines[i][1], dim);
+            i++;
+        }
+    }
+}
+
 static int intersections(matrix_t *acc, size_t rhos, SDL_Surface *surface,
     SDL_Surface *sudoku, double maximum, int thres, char path[30],
     int get_rotation, int dim)
@@ -821,7 +893,6 @@ static int intersections(matrix_t *acc, size_t rhos, SDL_Surface *surface,
     if (l < 0)
         return 1;
     size_t len = (size_t)l;
-
     size_t lines1[large_num / 2][2];
     size_t lines2[large_num / 2][2];
     size_t len1 = 0, len2 = 0;
@@ -832,14 +903,24 @@ static int intersections(matrix_t *acc, size_t rhos, SDL_Surface *surface,
     if (len2 > BIG_LINES(dim) && len2 != (size_t)(ALL_LINES(dim)))
         len2 = (clean_lines(lines2, len2, surface->w, surface->h));
     len = len1 + len2;
-
     calibrate_line(lines1, len1);
     calibrate_line(lines2, len2);
 
+    if (len1 < (size_t)ALL_LINES(dim) && len1 != (size_t)BIG_LINES(dim))
+    {
+        add_missing_lines(lines1, len1, dim);
+        len1++;
+    }
+    if (len2 < (size_t)ALL_LINES(dim) && len2 != (size_t)BIG_LINES(dim))
+    {
+        add_missing_lines(lines2, len2, dim);
+        len2++;
+    }
+
     if (len == 2 * (BIG_LINES(dim)))
     {
-        add_missing_lines(lines1, dim);
-        add_missing_lines(lines2, dim);
+        add_middle_lines(lines1, dim);
+        add_middle_lines(lines2, dim);
         len = 2 * ALL_LINES(dim);
     }
 
@@ -884,7 +965,7 @@ static void fuze_lines(matrix_t *acc, size_t rhos, double maximum, int thres)
                     // and have an angle that is (theta - 70 < t < theta + 70),
                     // theta being the angle of the line I found and t being
                     // the angle of the line I remove
-    int del_r = 30 * rhos / 1000;
+    int del_r = 20 * rhos / 1000;
     for (size_t j = 0; j < 360; j++)
         for (size_t i = 0; i < rhos; i++)
         {
@@ -949,9 +1030,10 @@ int rotation(matrix_t *acc, size_t rho, double maximum, int dim)
 {
     int count = 0;
     double res = 0;
-    ssize_t lines[2 * ALL_LINES(dim)][2];
-    size_t lines1[2 * ALL_LINES(dim)][2];
-    size_t lines2[2 * ALL_LINES(dim)][2];
+    size_t large_num = 6 * dim;
+    ssize_t lines[large_num][2];
+    size_t lines1[large_num / 2][2];
+    size_t lines2[large_num / 2][2];
     size_t len1 = 0;
     size_t len2 = 0;
     for (size_t t = 0; t < 360; t++)
@@ -973,6 +1055,24 @@ int rotation(matrix_t *acc, size_t rho, double maximum, int dim)
         return 0;
     return (round(res / len1));
 }
+
+void draw_acc(matrix_t *acc, size_t rhos, double max)
+{
+    SDL_Surface *surface = SDL_CreateRGBSurface(0, 360, rhos, 32, 0, 0, 0, 0);
+    SDL_PixelFormat *format = surface->format;
+    Uint32 *pixels = surface->pixels;
+    for (size_t i = 0; i < rhos; i++)
+        for (size_t j = 0; j < 360; j++)
+        {
+            double val = mat_el_at(acc, i, j) / max;
+            pixels[i * surface->w + j] = SDL_MapRGB(format, val * 255, 0, 0);
+        }
+    char out[50];
+    sprintf(out, "%s/hough.png", OUTPUT_FOLDER);
+
+    IMG_SavePNG(surface, out);
+}
+
 static int line_detection(SDL_Surface *surface, SDL_Surface *sudoku,
     int get_rotation, char path[30], int dim)
 {
@@ -1055,6 +1155,7 @@ static int modulo(int x, int y)
 
 int get_rotation(SDL_Surface *surface, int dim)
 {
+    add_border(&surface, surface->w, surface->h, 10);
     char save_path[30] = {0};
     int theta = line_detection(surface, surface, 1, save_path, dim);
     if (theta == ERROR_CODE)
