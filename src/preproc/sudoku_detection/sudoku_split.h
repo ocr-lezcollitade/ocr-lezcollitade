@@ -1,6 +1,7 @@
 #ifndef SUDOKU_SPLIT_H
 #define SUDOKU_SPLIT_H
 #include "../../utils/matrices/matrix.h"
+#define ERROR_CODE_SUDOKU_SPLIT 4242
 
 /**
  * \brief               splits the sudoku grid into 81 squares
@@ -37,11 +38,12 @@ int get_rotation(SDL_Surface *surface, int dim);
 /**
  * \brief               if some lines are too far away or to close to the other
  * lines, they are repositionned (according to the mean of the distances) \fn
- * void calibrate_line(size_t lines[][2], size_t len) \param lines         an
+ * int calibrate_line(size_t lines[][2], size_t len) \param lines         an
  * array containing the coordinates of all the lines with a similar angle
  * \param len           the length of the array
+ * \return              1 if there is an error, 0 otherwise
  */
-void calibrate_line(size_t lines[][2], size_t len);
+int calibrate_line(size_t lines[][2], size_t len);
 
 /**
  * \brief               moves the elements from x to the len of the array lines
