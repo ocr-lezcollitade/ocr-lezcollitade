@@ -901,13 +901,13 @@ static int intersections(matrix_t *acc, size_t rhos, SDL_Surface *surface,
     int l = store_lines(acc, rhos, lines, maximum, thres, dim);
 
     if (l < 0)
-        return 1;
+        return ERROR_CODE_SUDOKU_SPLIT;
     size_t len = (size_t)l;
     size_t lines1[large_num / 2][2];
     size_t lines2[large_num / 2][2];
     size_t len1 = 0, len2 = 0;
     if (len > large_num)
-        return 1;
+        return ERROR_CODE_SUDOKU_SPLIT;
     separate_lines(lines1, lines2, len, lines, &len1, &len2);
     if (len1 > BIG_LINES(dim) && len1 != (size_t)(ALL_LINES(dim)))
         len1 = clean_lines(lines1, len1, surface->w, surface->h);
@@ -915,10 +915,9 @@ static int intersections(matrix_t *acc, size_t rhos, SDL_Surface *surface,
         len2 = (clean_lines(lines2, len2, surface->w, surface->h));
     len = len1 + len2;
     if (calibrate_line(lines1, len1) != 0)
-        return 1;
+        return ERROR_CODE_SUDOKU_SPLIT;
     if (calibrate_line(lines2, len2) != 0)
-        return 1;
-
+        return ERROR_CODE_SUDOKU_SPLIT;
     if (len1 < (size_t)ALL_LINES(dim) && len1 != (size_t)BIG_LINES(dim))
     {
         add_missing_lines(lines1, len1, dim);
@@ -949,11 +948,11 @@ static int intersections(matrix_t *acc, size_t rhos, SDL_Surface *surface,
     IMG_SavePNG(surface, out);
 
     if (n < (len / 2) * (len / 2))
-        return 1;
+        return ERROR_CODE_SUDOKU_SPLIT;
 
     if (!get_rotation)
         if (cut_squares(inter, surface, sudoku, len / 2, path, dim) != 0)
-            return 1;
+            return ERROR_CODE_SUDOKU_SPLIT;
 
     matrix_free(inter);
     return 0;
@@ -1126,8 +1125,7 @@ static int line_detection(SDL_Surface *surface, SDL_Surface *sudoku,
         value = rotation(acc, diag, maximum, dim);
 
     matrix_free(acc);
-    if (value != 0)
-        return ERROR_CODE_SUDOKU_SPLIT;
+
     return value;
 }
 
