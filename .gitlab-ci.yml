@@ -21,7 +21,7 @@ build-job:
   before_script:
     - |
       apk update 
-      apk add build-base make tree pkgconfig sdl2-dev sdl2_image-dev gtk+3.0-dev
+      apk add build-base make tree pkgconfig sdl2-dev sdl2_image-dev sdl2_ttf-dev gtk+3.0-dev
   script:
     - make clean
     - make build
@@ -34,6 +34,6 @@ unit_test:
   stage: test
   image: ubuntu:22.04
   before_script:
-    - apt-get update -y && apt-get install -y libcriterion-dev build-essential libsdl2-dev libsdl2-image-dev libgtk-3-dev
+    - apt-get update -y && apt-get install -y libcriterion-dev build-essential libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libgtk-3-dev
   script:
     - make test

@@ -6,10 +6,12 @@
 #include "sudoku_split.h"
 #include "../../ui/ui.h"
 #include "../color_removal/color_removal.h"
+
 #define UNUSED(x) (void)(x)
 #define WHITE 765
 #define ALL_LINES(dim) (dim + 1)
 #define BIG_LINES(dim) (sqrt(dim) + 1)
+
 static int modulo(int x, int y);
 static void add_border(
     SDL_Surface **surface, size_t w, size_t h, size_t borderx, size_t bordery);

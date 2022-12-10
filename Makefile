@@ -1,12 +1,12 @@
 CC=gcc
 
-BASE_FLAGS=-Wall -Wextra -c `pkg-config --cflags gtk+-3.0 sdl2 SDL2_image`
+BASE_FLAGS=-Wall -Wextra -c `pkg-config --cflags gtk+-3.0 sdl2 SDL2_image SDL2_ttf`
 CFLAGS=$(BASE_FLAGS) -O3
 DFLAGS=$(BASE_FLAGS) -Werror -O0 -g -fsanitize=address
 
 LD=gcc
 LDFLAGS=-lm -rdynamic
-LDLIBS=`pkg-config --libs gtk+-3.0 sdl2 SDL2_image`
+LDLIBS=`pkg-config --libs gtk+-3.0 sdl2 SDL2_image SDL2_ttf`
 
 ROOT_TARGET=./bin
 TARGET_DIR=$(ROOT_TARGET)/Release
@@ -27,8 +27,8 @@ SRC_DIR=./src
 SRC=main.c cli/parser.c utils/mnist/loader.c utils/matrices/matrix.c\
 	solver/solver.c network/function.c network/network.c\
 	preproc/rotate/rotate.c preproc/sudoku_detection/sudoku_split.c\
-	preproc/color_removal/color_removal.c ui/ui.c\
-	utils/img_loader/loader.c preproc/crop/crop.c
+	preproc/color_removal/color_removal.c ui/ui.c ui/drawerizer.c\
+	utils/img_loader/loader.c preproc/crop/crop.c ui/utils.c
 
 OBJ_ROOT=./obj
 OBJ_DIR=$(OBJ_ROOT)/Release

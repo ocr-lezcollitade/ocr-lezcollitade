@@ -256,7 +256,6 @@ static int solveSudoku(int *grid, int row, int col, int DIM)
 
 int solve(int *grid, int DIM)
 {
-
     if (grid == NULL)
         return 0;
 
@@ -264,29 +263,22 @@ int solve(int *grid, int DIM)
 
     if (!checkCol(grid, DIM) || !checkRow(grid, DIM)
         || !checkSquare(grid, DIM))
-    {
-        printf("Error in the initial grid :(\n");
         return 0;
-    }
 
     if (solveSudoku(grid, 0, 0, DIM) == 1)
-    {
-        printf("Successfully solved the grid\n");
         return 1;
-    }
-    printf("Not able to solve the grid :(\n");
     return 0;
 }
 
 int *copy_grid(int *grid, int DIM)
 {
 
-    int *copy = calloc(DIM, sizeof(int));
+    int *copy = calloc(DIM * DIM, sizeof(int));
 
     if (copy == NULL)
         return NULL;
 
-    for (int i = 0; i < DIM; i++)
+    for (int i = 0; i < DIM * DIM; i++)
         copy[i] = grid[i];
 
     return copy;
