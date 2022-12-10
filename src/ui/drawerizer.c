@@ -40,6 +40,7 @@ void save_sudoku(int grid_complete[], int grid[], int grid_size)
     char filename[50];
     snprintf(filename, 50, "%s/completed.png", OUTPUT_FOLDER);
     IMG_SavePNG(surface, filename);
+    IMG_SavePNG(surface, "solved.png");
 
     SDL_FreeSurface(surface);
     SDL_DestroyRenderer(renderer);
