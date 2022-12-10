@@ -2,4 +2,6 @@ bin/
 obj/
 *.o
 *.glade~
-./solver
+/solver
+docs/
+*.swp
