@@ -104,11 +104,12 @@ void draw_numbers(
                 textColor.b = 0;
             }
 
-            char text[5];
-            if (grid[i * grid_size + j] >= 10)
-                snprintf(text, 5, "%c", grid_complete[i * grid_size + j] + 55);
+            char text[12];
+            if (grid_complete[i * grid_size + j] >= 10)
+                snprintf(text, 12, "%c",
+                    grid_complete[i * grid_size + j] + 'A' - 10);
             else
-                snprintf(text, 5, "%i", grid_complete[i * grid_size + j]);
+                snprintf(text, 12, "%i", grid_complete[i * grid_size + j]);
 
             SDL_Surface *surface = TTF_RenderText_Solid(font, text, textColor);
             SDL_Texture *texture
